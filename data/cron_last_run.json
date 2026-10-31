@@ -1,0 +1,9 @@
+{
+  "status": "online",
+  "engine": "Ultra-Lightweight HTTP/JSON",
+  "memory_footprint_mb": 16.4,
+  "last_sync": "2026-11-01 02:22:11 WIB",
+  "next_sync": "Besok 08:00 WIB (Daily Cron)",
+  "total_sources_scraped": 5,
+  "total_items_ingested": 5
+}

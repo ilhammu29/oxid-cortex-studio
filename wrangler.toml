@@ -1,0 +1,7 @@
+name = "portal-berita"
+type = "javascript"
+compatibility_date = "2024-01-01"
+
+[build]
+command = "npm run build"
+upload = { dir = ".next" }

@@ -1,0 +1,44 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-white text-zinc-900 transition-colors duration-200 selection:bg-orange-500 selection:text-white;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+  }
+  
+  html.dark body {
+    background-color: #0a0a0c;
+    color: #f4f4f5;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Lora', serif;
+  }
+}
+
+/* NFT Cardbox Custom Aesthetics (Properly Dynamic in Light and Dark Modes) */
+.nft-cardbox {
+  background-color: #ffffff;
+  border: 1px solid #e4e4e7;
+  border-radius: 1.5rem;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+html.dark .nft-cardbox {
+  background-color: #121216;
+  border: 1px solid #26262e;
+}
+
+.nft-cardbox:hover {
+  border-color: rgba(249, 115, 22, 0.5);
+  box-shadow: 0 12px 30px -10px rgba(0, 0, 0, 0.15);
+  transform: translateY(-2px);
+}
+
+html.dark .nft-cardbox:hover {
+  border-color: rgba(255, 87, 34, 0.5);
+  box-shadow: 0 12px 36px -10px rgba(0, 0, 0, 0.8), 0 0 20px -3px rgba(255, 87, 34, 0.2);
+  transform: translateY(-2px);
+}
