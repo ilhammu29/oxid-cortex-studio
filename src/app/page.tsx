@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react'
 import Link from 'next/link'
+import SearchModal from '@/components/SearchModal'
 
 export default function Home() {
   const [activeTab, setActiveTab] = useState('all')
@@ -13,6 +14,7 @@ export default function Home() {
   const [scrapeNotification, setScrapeNotification] = useState('')
   const [carouselIndex, setCarouselIndex] = useState(0)
   const [leaderboardFilter, setLeaderboardFilter] = useState('7d')
+  const [isSearchOpen, setIsSearchOpen] = useState(false)
   const [showNotifications, setShowNotifications] = useState(false)
   const [unreadNotifications, setUnreadNotifications] = useState(3)
   const [notificationsList, setNotificationsList] = useState([
@@ -41,6 +43,17 @@ export default function Home() {
       link: "/templates"
     }
   ])
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
+        e.preventDefault()
+        setIsSearchOpen(prev => !prev)
+      }
+    }
+    window.addEventListener('keydown', handleKeyDown)
+    return () => window.removeEventListener('keydown', handleKeyDown)
+  }, [])
 
   useEffect(() => {
     const savedTheme = localStorage.getItem('nexus_theme')
@@ -258,6 +271,16 @@ Lakukan refactoring pada potongan kode berikut dengan prinsip:
       const data = await res.json()
       if (data.success) {
         setScrapeNotification(`✓ ${data.message} — Data real diserap tanpa beban RAM!`)
+        const newNotif = {
+          id: "live_" + Date.now(),
+          title: "Sinkronisasi Live Threads Sukses — 4 Postingan Baru Terverifikasi",
+          type: "Scraper Realtime",
+          time: "Baru saja",
+          unread: true,
+          link: "/intel"
+        }
+        setNotificationsList(prev => [newNotif, ...prev])
+        setUnreadNotifications(prev => prev + 1)
       } else {
         setScrapeNotification('✓ Sinkronisasi HTTP selesai dalam 0.38s.')
       }
@@ -311,13 +334,14 @@ Lakukan refactoring pada potongan kode berikut dengan prinsip:
 
           {/* Right Action Icons & Controls */}
           <div className="flex items-center space-x-3">
+            {/* Search Spotlight Button */}
             <button 
-              onClick={triggerScrape}
-              disabled={isScraping}
-              className="p-2.5 rounded-full bg-zinc-100 hover:bg-zinc-200 dark:bg-[#16161c] dark:hover:bg-[#202028] text-zinc-800 dark:text-zinc-200 transition-all cursor-pointer border border-zinc-200 dark:border-[#26262e]"
-              title="Cari &amp; Sinkronisasi Data Scraper"
+              onClick={() => setIsSearchOpen(true)}
+              className="p-2.5 rounded-full bg-zinc-100 hover:bg-zinc-200 dark:bg-[#16161c] dark:hover:bg-[#202028] text-zinc-800 dark:text-zinc-200 transition-all cursor-pointer border border-zinc-200 dark:border-[#26262e] flex items-center gap-1.5"
+              title="Cari Prompt &amp; Bansos (Ctrl+K)"
             >
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+              <svg className="w-4 h-4 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+              <span className="hidden sm:inline text-[10px] font-mono font-bold text-zinc-400">Ctrl+K</span>
             </button>
 
             {/* Notification Bell with Functional Center Dropdown */}
@@ -433,13 +457,10 @@ Lakukan refactoring pada potongan kode berikut dengan prinsip:
             {/* Action Buttons (Pill Shapes) */}
             <div className="flex items-center gap-4 pt-2">
               <button 
-                onClick={() => {
-                  const el = document.getElementById('featured')
-                  el?.scrollIntoView({ behavior: 'smooth' })
-                }}
-                className="px-8 py-3.5 rounded-full bg-orange-500 hover:bg-orange-600 text-white font-bold text-sm tracking-wide transition-all shadow-lg shadow-orange-500/25 cursor-pointer border border-orange-400/30"
+                onClick={() => setIsSearchOpen(true)}
+                className="px-8 py-3.5 rounded-full bg-orange-500 hover:bg-orange-600 text-white font-bold text-sm tracking-wide transition-all shadow-lg shadow-orange-500/25 cursor-pointer border border-orange-400/30 flex items-center gap-2"
               >
-                Explore Radar
+                <span>Explore Radar (Ctrl+K)</span>
               </button>
               <Link 
                 href="/templates"
@@ -994,14 +1015,19 @@ Lakukan refactoring pada potongan kode berikut dengan prinsip:
       {/* Footer */}
       <footer className="border-t border-zinc-200 dark:border-[#26262e] bg-zinc-50 dark:bg-[#0c0c0f] py-12 text-center text-xs text-zinc-500 space-y-3 font-mono">
         <div className="flex items-center justify-center gap-2">
-          <div className="w-6 h-6 rounded-full bg-orange-500 flex items-center justify-center text-white font-bold text-xs">O</div>
+          <div className="w-6 h-6 rounded-full bg-white p-1 flex items-center justify-center border border-zinc-200">
+            <img src="/images/oxid-logo.png" alt="OXID" className="w-full h-full object-contain" />
+          </div>
           <span className="font-bold text-zinc-900 dark:text-white text-sm uppercase">OXID CORTEX STUDIO</span>
         </div>
-        <p>&copy; 2026 OXID Intelligence Ecosystem. Curated by Aira &amp; Minham.</p>
+        <p>&copy; 2026 OXID Intelligence Ecosystem. Curated by OXID Research Collective.</p>
         <p className="text-[11px] text-zinc-600 dark:text-zinc-500">
           Architecture: Clean Studio Layout • Palette: #0a0a0c Hitam Doff + #ff5722 Cyber Orange
         </p>
       </footer>
+
+      {/* Global Interactive Search Modal */}
+      <SearchModal isOpen={isSearchOpen} onClose={() => setIsSearchOpen(false)} />
     </main>
   )
 }

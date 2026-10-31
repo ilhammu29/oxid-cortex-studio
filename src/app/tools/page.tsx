@@ -95,8 +95,8 @@ export default function ToolsPage() {
           </nav>
         </div>
 
-        <div className="w-10 h-10 rounded-full bg-gradient-to-tr from-orange-500 to-amber-400 flex items-center justify-center font-bold text-xs text-white border-2 border-[#26262e]">
-          M
+        <div className="w-10 h-10 rounded-2xl bg-white p-1 border border-zinc-200 flex items-center justify-center shadow-lg shadow-orange-500/20" title="OXID Security Verified">
+          <img src="/images/oxid-logo.png" alt="OXID" className="w-full h-full object-contain" />
         </div>
       </aside>
 
@@ -204,7 +204,7 @@ export default function ToolsPage() {
             <div className="bg-[#121218] border border-[#26262e] rounded-3xl p-6 space-y-3 shadow-xl font-mono text-xs">
               <span className="text-orange-500 font-bold uppercase block">Local CLI Toolset</span>
               <p className="text-zinc-400 leading-relaxed text-[11px]">
-                Seluruh tools di radar ini telah diuji kompatibel untuk berjalan lokal di lingkungan Linux Arch laptop Minham tanpa membengkakkan konsumsi RAM.
+                Seluruh tools di radar ini telah diuji kompatibel untuk berjalan lokal di lingkungan sistem produksi tanpa membengkakkan konsumsi RAM.
               </p>
               <div className="pt-2 border-t border-[#26262e] flex items-center justify-between text-[10px]">
                 <span className="text-zinc-500">Host Engine:</span>

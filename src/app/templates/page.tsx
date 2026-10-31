@@ -20,7 +20,7 @@ export default function TemplatesPage() {
       id: "tpl_pro_dashboard_4pane",
       title: "High-Productivity Pro 4-Pane Studio Dashboard Layout",
       category: "Pro SaaS & AI Dashboard",
-      created_by: "Aira & Minham Studio (Karya Sendiri)",
+      created_by: "OXID Cortex Studio",
       badge: "KARYA SENDIRI #02",
       date: "November 2026",
       screenshotImage: "/screenshots/template_dashboard.png",
@@ -59,7 +59,7 @@ Gunakan Next.js 14 App Router dan Tailwind CSS dengan tema Hitam Doff (#0a0a0c) 
       id: "tpl_duke_nft",
       title: "Duke-Style Ultra-Modern NFT Showcase Layout",
       category: "Frontend Web Showcase",
-      created_by: "Aira & Minham Studio (Karya Sendiri)",
+      created_by: "OXID Cortex Studio",
       badge: "KARYA SENDIRI #01",
       date: "November 2026",
       screenshotImage: "/screenshots/template_duke.png",
@@ -119,8 +119,8 @@ Gunakan Next.js 14 App Router, Tailwind CSS, dan pastikan seluruh fungsi 1-klik 
           </nav>
         </div>
 
-        <div className="w-10 h-10 rounded-full bg-gradient-to-tr from-orange-500 to-amber-400 flex items-center justify-center font-bold text-xs text-white border-2 border-[#26262e]">
-          M
+        <div className="w-10 h-10 rounded-2xl bg-white p-1 border border-zinc-200 flex items-center justify-center shadow-lg shadow-orange-500/20" title="OXID Security Verified">
+          <img src="/images/oxid-logo.png" alt="OXID" className="w-full h-full object-contain" />
         </div>
       </aside>
 
@@ -248,7 +248,7 @@ Gunakan Next.js 14 App Router, Tailwind CSS, dan pastikan seluruh fungsi 1-klik 
             <div className="bg-[#121218] border border-[#26262e] rounded-3xl p-6 space-y-3 shadow-xl">
               <span className="text-orange-500 font-bold uppercase block">Studio Asset Registry</span>
               <p className="text-zinc-400 text-[11px] leading-relaxed">
-                Setiap kali Minham meminta replikasi desain berkelas, hasil akhir yang lolos uji otomatis diabadikan sebagai template resmi studio di repositori ini.
+                Setiap template dirancang berkelas, hasil akhir yang lolos uji otomatis diabadikan sebagai template resmi studio di repositori ini.
               </p>
               <div className="pt-2 border-t border-[#26262e] flex items-center justify-between text-[10px]">
                 <span className="text-zinc-500">Total Templates:</span>

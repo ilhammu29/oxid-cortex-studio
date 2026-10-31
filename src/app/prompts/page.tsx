@@ -64,7 +64,7 @@ Key Specifications:
     {
       id: "prompt_arch_3",
       title: "Senior Full-Stack Architect",
-      creator: "Minham & Aira",
+      creator: "OXID Architecture Collective",
       avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop&crop=face",
       image: "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?w=800&auto=format&fit=crop&q=80",
       benefit: "Architecture",
@@ -185,8 +185,8 @@ Key Specifications:
         </div>
 
         {/* Bottom Avatar */}
-        <div className="w-10 h-10 rounded-full bg-gradient-to-tr from-orange-500 to-amber-400 flex items-center justify-center font-bold text-xs text-white border-2 border-[#26262e]">
-          M
+        <div className="w-10 h-10 rounded-2xl bg-white p-1 border border-zinc-200 flex items-center justify-center shadow-lg shadow-orange-500/20" title="OXID Security Verified">
+          <img src="/images/oxid-logo.png" alt="OXID" className="w-full h-full object-contain" />
         </div>
       </aside>
 

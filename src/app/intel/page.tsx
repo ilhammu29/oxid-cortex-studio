@@ -51,8 +51,8 @@ export default function IntelPage() {
           </nav>
         </div>
 
-        <div className="w-10 h-10 rounded-full bg-gradient-to-tr from-orange-500 to-amber-400 flex items-center justify-center font-bold text-xs text-white border-2 border-[#26262e]">
-          M
+        <div className="w-10 h-10 rounded-2xl bg-white p-1 border border-zinc-200 flex items-center justify-center shadow-lg shadow-orange-500/20" title="OXID Security Verified">
+          <img src="/images/oxid-logo.png" alt="OXID" className="w-full h-full object-contain" />
         </div>
       </aside>
 
