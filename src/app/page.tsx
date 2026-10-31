@@ -592,6 +592,90 @@ Lakukan refactoring pada potongan kode berikut dengan prinsip:
       </section>
 
       {/* ======================================================== */}
+      {/* 3.5. FRONTIER AI DESIGN RESOURCES & MOTION SKILLS       */}
+      {/* ======================================================== */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-8">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
+          <div className="space-y-2">
+            <span className="text-xs font-mono font-bold uppercase tracking-widest text-orange-500 bg-orange-500/10 px-3 py-1 rounded-full border border-orange-500/20">
+              COMMUNITY CURATED • 10 BOOKMARK RESOURCES
+            </span>
+            <h2 className="font-serif text-3xl sm:text-4xl font-black text-zinc-900 dark:text-white">
+              AI Design Vault &amp; Motion Craft Skills
+            </h2>
+            <p className="text-sm text-zinc-600 dark:text-zinc-400 max-w-2xl font-sans">
+              100+ prompt website siap pakai, kurasi landing page terbaik dunia, panduan fisika motion springs, dan teknik ShaderToy 3D.
+            </p>
+          </div>
+          <Link 
+            href="/tools" 
+            className="px-6 py-2.5 rounded-full bg-orange-500 hover:bg-orange-600 text-white font-mono text-xs font-bold transition-all shadow-md shadow-orange-500/20 self-start md:self-auto whitespace-nowrap"
+          >
+            Lihat Semua di Radar →
+          </Link>
+        </div>
+
+        {/* 4 Featured Resource Bento Cards with Real Captures */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {[
+            {
+              title: "GetLayers AI",
+              badge: "100+ Free Prompts",
+              tag: "Website Prompts & Gradients",
+              img: "https://www.getlayers.ai/opengraph-image",
+              link: "https://getlayers.ai"
+            },
+            {
+              title: "Land-book",
+              badge: "Curated Showcase",
+              tag: "Landing Page Inspiration",
+              img: "https://cdn.land-book.com/assets/og-image.webp",
+              link: "https://land-book.com"
+            },
+            {
+              title: "Design Engineering",
+              badge: "Motion Physics",
+              tag: "Easing, Durations, Springs",
+              img: "https://emilkowal.ski/opengraph-image.png?892f3fd8543bf349",
+              link: "https://emilkowal.ski/skill"
+            },
+            {
+              title: "Shader Dev (MiniMax)",
+              badge: "36 ShaderToy GLSL",
+              tag: "3D Canvas & WebGL",
+              img: "https://opengraph.githubassets.com/1/MiniMax-AI/skills",
+              link: "https://github.com/MiniMax-AI/skills"
+            }
+          ].map(res => (
+            <div key={res.title} className="bg-white dark:bg-[#121216] border border-zinc-200 dark:border-[#26262e] rounded-3xl p-4 flex flex-col justify-between space-y-4 shadow-lg hover:border-orange-500/50 transition-all group">
+              <div className="space-y-3">
+                <div className="relative h-40 w-full rounded-2xl overflow-hidden border border-zinc-200 dark:border-white/10 bg-black/40">
+                  <img src={res.img} alt={res.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                  <div className="absolute top-2.5 left-2.5 bg-black/75 backdrop-blur-md px-2 py-0.5 rounded-full text-[10px] font-mono text-orange-400 border border-white/10">
+                    {res.badge}
+                  </div>
+                </div>
+                <div>
+                  <span className="text-[10px] font-mono font-bold uppercase text-zinc-500 block">{res.tag}</span>
+                  <h4 className="font-serif font-bold text-base text-zinc-900 dark:text-white mt-0.5 group-hover:text-orange-500 transition-colors">
+                    {res.title}
+                  </h4>
+                </div>
+              </div>
+              <a 
+                href={res.link} 
+                target="_blank" 
+                rel="noreferrer"
+                className="w-full py-2 rounded-full bg-zinc-100 hover:bg-orange-500 hover:text-white dark:bg-[#16161c] text-zinc-800 dark:text-zinc-200 font-mono text-xs font-bold transition-all text-center block border border-zinc-200 dark:border-[#26262e]"
+              >
+                Kunjungi Web ↗
+              </a>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* ======================================================== */}
       {/* 4. CORTEX TOPIC COLLECTIONS (TWO ROWS OF PILL BUTTONS)   */}
       {/* ======================================================== */}
       <section id="collections" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-8">

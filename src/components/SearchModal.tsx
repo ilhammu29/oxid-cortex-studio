@@ -100,6 +100,86 @@ const SEARCH_DATABASE: SearchItem[] = [
     snippet: "Layout komprehensif: Left Icon Rail, Header Filter, Split Main Content, dan Right Action Widget.",
     link: "/templates",
     badge: "Template #02"
+  },
+  {
+    id: "res_getlayers",
+    title: "GetLayers AI — Website Prompts & Motion Sections",
+    category: "Tools",
+    snippet: "100+ free premium website prompts with 1,000+ backgrounds, motion sections and gradients. Paste to Claude.",
+    link: "/tools",
+    badge: "100+ Free Prompts"
+  },
+  {
+    id: "res_landbook",
+    title: "Land-book — Curated Landing Page Inspiration",
+    category: "Tools",
+    snippet: "Landing page inspiration curated well. Discover finest web designs, portfolios, and SaaS apps.",
+    link: "/tools",
+    badge: "Top Showcase"
+  },
+  {
+    id: "res_recentdesign",
+    title: "Recent Design — Fresh Web Gallery",
+    category: "Tools",
+    snippet: "A great gallery of fresh web design inspiration updated daily with clean Swiss typography focus.",
+    link: "/tools",
+    badge: "Fresh Daily"
+  },
+  {
+    id: "res_landdding",
+    title: "Landdding — Top-Tier Landing Pages",
+    category: "Tools",
+    snippet: "Top-tier SaaS landing pages with micro-interactions, dark mode elegance, and high-conversion layouts.",
+    link: "/tools",
+    badge: "High Conversion"
+  },
+  {
+    id: "res_fontinlogo",
+    title: "FontInLogo — Find The Fonts in Famous Brands",
+    category: "Tools",
+    snippet: "Find the exact fonts used in world-famous company logos, tech brands, and startup identities.",
+    link: "/tools",
+    badge: "Brand Typography"
+  },
+  {
+    id: "skill_design_eng",
+    title: "Design Engineering — Easing, Durations & Springs",
+    category: "Prompts",
+    snippet: "Master micro-interactions by Emil Kowalski: cubic-bezier easing, spring physics, and organic UI transitions.",
+    link: "/prompts",
+    badge: "Motion Physics"
+  },
+  {
+    id: "skill_shader_dev",
+    title: "Shader Dev — 36 ShaderToy Techniques",
+    category: "Prompts",
+    snippet: "36 production ShaderToy and GLSL techniques for real-time generative canvas visuals in web apps.",
+    link: "/prompts",
+    badge: "WebGL & Shaders"
+  },
+  {
+    id: "skill_diagram_design",
+    title: "Diagram Design — 44 Editorial Diagram Types",
+    category: "Prompts",
+    snippet: "44 editorial diagram types for architectural documentation, DAG flows, and system engineering.",
+    link: "/prompts",
+    badge: "44 Diagram Types"
+  },
+  {
+    id: "skill_vercel_guidelines",
+    title: "Web Interface Guidelines — Vercel UI Review",
+    category: "Prompts",
+    snippet: "The gold standard for web interface quality: accessibility, focus states, keyboard shortcuts, and zero-slop UI.",
+    link: "/prompts",
+    badge: "Design Standards"
+  },
+  {
+    id: "skill_craftwork",
+    title: "Craftwork — Real Fonts, Icons & UI Components",
+    category: "Prompts",
+    snippet: "High-fidelity design assets: vector icons, production fonts, 3D illustrations, and crafted design systems.",
+    link: "/prompts",
+    badge: "Component Craft"
   }
 ]
 

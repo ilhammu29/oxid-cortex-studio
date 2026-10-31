@@ -1,0 +1,152 @@
+[
+  {
+    "id": "res_getlayers",
+    "title": "GetLayers AI \u2014 Website Prompts & Motion Sections",
+    "category": "AI Design Prompts",
+    "url": "https://getlayers.ai",
+    "image": "https://www.getlayers.ai/opengraph-image",
+    "badge": "100+ Free Prompts",
+    "description": "100+ free premium website prompts with 1,000+ backgrounds, motion sections and gradients. Paste them into Claude, v0, or Cursor and ship.",
+    "tags": [
+      "AI Prompts",
+      "Claude",
+      "Gradients",
+      "Motion"
+    ]
+  },
+  {
+    "id": "res_landbook",
+    "title": "Land-book \u2014 Curated Landing Page Inspiration",
+    "category": "Design Showcase",
+    "url": "https://land-book.com",
+    "image": "https://cdn.land-book.com/assets/og-image.webp",
+    "badge": "Top Showcase",
+    "description": "Landing page inspiration, curated well. Discover finest designs, web apps, portfolios and corporate websites.",
+    "tags": [
+      "Landing Page",
+      "Inspiration",
+      "Web Apps",
+      "Portfolio"
+    ]
+  },
+  {
+    "id": "res_recentdesign",
+    "title": "Recent Design \u2014 Fresh Web Gallery",
+    "category": "Design Showcase",
+    "url": "https://recent.design",
+    "image": "https://recent.design/og.png",
+    "badge": "Fresh Daily",
+    "description": "A great gallery of fresh web design inspiration updated daily. Clean Swiss grid and human typography focus.",
+    "tags": [
+      "Gallery",
+      "Minimalist",
+      "Typography",
+      "Editorial"
+    ]
+  },
+  {
+    "id": "res_landdding",
+    "title": "Landdding \u2014 Top-Tier SaaS Landing Pages",
+    "category": "Design Showcase",
+    "url": "https://landdding.com",
+    "image": "https://landdding.com/images/thumbnail.png",
+    "badge": "High Conversion",
+    "description": "Top-tier SaaS landing pages with micro-interactions, dark mode elegance, and high-conversion layouts.",
+    "tags": [
+      "SaaS",
+      "Micro-Interactions",
+      "Dark Mode",
+      "Conversion"
+    ]
+  },
+  {
+    "id": "res_fontinlogo",
+    "title": "FontInLogo \u2014 Find The Fonts in Famous Brands",
+    "category": "Typography Tools",
+    "url": "https://www.fontinlogo.com",
+    "image": "https://www.fontinlogo.com/images/1.jpg",
+    "badge": "Brand Typography",
+    "description": "Find the exact fonts used in world-famous company logos, tech brands, and startup identities.",
+    "tags": [
+      "Fonts",
+      "Branding",
+      "Logos",
+      "Typography"
+    ]
+  },
+  {
+    "id": "skill_design_eng",
+    "title": "Design Engineering \u2014 Easing, Durations & Springs",
+    "category": "Engineering Skills",
+    "url": "https://emilkowal.ski/skill",
+    "image": "https://emilkowal.ski/opengraph-image.png?892f3fd8543bf349",
+    "badge": "Motion Physics",
+    "description": "Master micro-interactions by Emil Kowalski: cubic-bezier easing, spring physics, and organic UI transitions.",
+    "tags": [
+      "Motion",
+      "Animation",
+      "Springs",
+      "Physics"
+    ]
+  },
+  {
+    "id": "skill_shader_dev",
+    "title": "Shader Dev \u2014 36 ShaderToy Techniques",
+    "category": "Engineering Skills",
+    "url": "https://github.com/MiniMax-AI/skills",
+    "image": "https://opengraph.githubassets.com/1/MiniMax-AI/skills",
+    "badge": "WebGL & Shaders",
+    "description": "36 production ShaderToy and GLSL techniques for real-time generative canvas visuals in web apps.",
+    "tags": [
+      "WebGL",
+      "Shaders",
+      "GLSL",
+      "Canvas 3D"
+    ]
+  },
+  {
+    "id": "skill_diagram_design",
+    "title": "Diagram Design \u2014 44 Editorial Diagram Types",
+    "category": "Engineering Skills",
+    "url": "https://diagramdesign.dev",
+    "image": "https://diagramdesign.dev/og.png",
+    "badge": "44 Diagram Models",
+    "description": "44 editorial diagram types for architectural documentation, DAG flows, and system engineering.",
+    "tags": [
+      "Diagrams",
+      "Architecture",
+      "System Flow",
+      "Editorial"
+    ]
+  },
+  {
+    "id": "skill_vercel_guidelines",
+    "title": "Web Interface Guidelines \u2014 Vercel UI Review",
+    "category": "Engineering Skills",
+    "url": "https://vercel.com/design/guidelines",
+    "image": "https://k2mkucxia43oc7fa.public.blob.vercel-storage.com/front/design/guidelines-og.png",
+    "badge": "Design Standards",
+    "description": "The gold standard for web interface quality: accessibility, focus states, keyboard shortcuts, and zero-slop UI.",
+    "tags": [
+      "Vercel",
+      "Guidelines",
+      "Accessibility",
+      "Design System"
+    ]
+  },
+  {
+    "id": "skill_craftwork",
+    "title": "Craftwork \u2014 Real Fonts, Icons & UI Components",
+    "category": "Engineering Skills",
+    "url": "https://craftwork.design/skill",
+    "image": "https://craftwork.design/opengraph-image.png",
+    "badge": "Component Craft",
+    "description": "High-fidelity design assets: vector icons, production fonts, 3D illustrations, and crafted design systems.",
+    "tags": [
+      "Icons",
+      "Components",
+      "Design Assets",
+      "Craft"
+    ]
+  }
+]
