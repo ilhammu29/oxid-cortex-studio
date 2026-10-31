@@ -345,11 +345,11 @@ Lakukan refactoring pada potongan kode berikut dengan prinsip:
               <span className="hidden sm:inline text-[10px] font-mono font-bold text-zinc-400">Ctrl+K</span>
             </button>
 
-            {/* Notification Bell with Functional Center Dropdown */}
-            <div className="relative">
+            {/* Notification Bell (Desktop Only) */}
+            <div className="relative hidden md:block">
               <button 
                 onClick={() => setShowNotifications(!showNotifications)}
-                className="p-2 sm:p-2.5 rounded-full bg-zinc-100 hover:bg-zinc-200 dark:bg-[#16161c] dark:hover:bg-[#202028] text-zinc-800 dark:text-zinc-200 transition-all cursor-pointer border border-zinc-200 dark:border-[#26262e] relative"
+                className="p-2.5 rounded-full bg-zinc-100 hover:bg-zinc-200 dark:bg-[#16161c] dark:hover:bg-[#202028] text-zinc-800 dark:text-zinc-200 transition-all cursor-pointer border border-zinc-200 dark:border-[#26262e] relative"
                 title="Pusat Notifikasi Studio"
               >
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path></svg>
@@ -360,7 +360,7 @@ Lakukan refactoring pada potongan kode berikut dengan prinsip:
 
               {/* Floating Notification Center Popover */}
               {showNotifications && (
-                <div className="absolute right-0 mt-3 w-[calc(100vw-32px)] sm:w-96 bg-white dark:bg-[#121216] border border-zinc-200 dark:border-[#26262e] rounded-3xl shadow-2xl z-50 p-4 space-y-3 font-mono text-xs animate-in fade-in slide-in-from-top-2 duration-200 max-w-sm">
+                <div className="absolute right-0 mt-3 w-80 sm:w-96 bg-white dark:bg-[#121216] border border-zinc-200 dark:border-[#26262e] rounded-3xl shadow-2xl z-50 p-4 space-y-3 font-mono text-xs animate-in fade-in slide-in-from-top-2 duration-200 max-w-sm">
                   <div className="flex items-center justify-between border-b border-zinc-100 dark:border-[#26262e] pb-3">
                     <div className="flex items-center gap-2">
                       <span className="font-bold text-zinc-900 dark:text-white uppercase">Studio Notifications</span>
@@ -411,25 +411,25 @@ Lakukan refactoring pada potongan kode berikut dengan prinsip:
               )}
             </div>
 
-            {/* Theme Toggle Pill */}
+            {/* Theme Toggle Pill (Desktop Only) */}
             <button 
               onClick={toggleTheme}
-              className="p-2 sm:px-3.5 sm:py-2 rounded-full border text-xs font-mono font-bold transition-all cursor-pointer bg-zinc-100 hover:bg-zinc-200 border-zinc-300 text-zinc-900 dark:bg-[#16161c] dark:hover:bg-[#202028] dark:border-[#26262e] dark:text-zinc-100 flex items-center gap-1.5"
+              className="hidden md:flex items-center gap-1.5 px-3.5 py-2 rounded-full border text-xs font-mono font-bold transition-all cursor-pointer bg-zinc-100 hover:bg-zinc-200 border-zinc-300 text-zinc-900 dark:bg-[#16161c] dark:hover:bg-[#202028] dark:border-[#26262e] dark:text-zinc-100"
               title="Ganti Tema"
             >
               <span>{darkMode ? '🌙' : '☀️'}</span>
-              <span className="hidden sm:inline">{darkMode ? 'Matte Dark' : 'Light Mode'}</span>
+              <span>{darkMode ? 'Matte Dark' : 'Light Mode'}</span>
             </button>
 
-            {/* Template Shortcut Button (Hidden on Mobile) */}
+            {/* Template Shortcut Button (Desktop Only) */}
             <Link 
               href="/templates" 
-              className="hidden sm:inline-flex px-4 py-2 rounded-full bg-orange-500 hover:bg-orange-600 text-white font-mono text-xs font-bold transition-all shadow-md shadow-orange-500/20 whitespace-nowrap"
+              className="hidden md:inline-flex px-4 py-2 rounded-full bg-orange-500 hover:bg-orange-600 text-white font-mono text-xs font-bold transition-all shadow-md shadow-orange-500/20 whitespace-nowrap"
             >
               Templates
             </Link>
 
-            {/* Mobile Hamburger Drawer Toggle */}
+            {/* Mobile Hamburger Drawer Toggle (Mobile Only) */}
             <button 
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               className="md:hidden p-2 rounded-full bg-zinc-100 dark:bg-[#16161c] text-zinc-800 dark:text-zinc-200 border border-zinc-200 dark:border-[#26262e] cursor-pointer"
@@ -447,10 +447,29 @@ Lakukan refactoring pada potongan kode berikut dengan prinsip:
 
         </div>
 
-        {/* Mobile Slide-down Navigation Drawer */}
+        {/* Mobile Slide-down Navigation Drawer with Theme & Notif */}
         {mobileMenuOpen && (
           <div className="md:hidden border-t border-zinc-200 dark:border-[#26262e] bg-white/95 dark:bg-[#0c0c10]/95 backdrop-blur-xl px-4 py-4 space-y-3 font-mono text-xs animate-in slide-in-from-top-2 duration-200 shadow-2xl">
-            <div className="grid grid-cols-2 gap-2">
+            {/* Mobile Drawer Quick Control Bar (Theme + Notif + Sync) */}
+            <div className="flex items-center justify-between pb-3 border-b border-zinc-200 dark:border-[#26262e]">
+              <button 
+                onClick={toggleTheme}
+                className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-zinc-100 dark:bg-[#181822] border border-zinc-200 dark:border-[#26262e] text-xs font-bold"
+              >
+                <span>{darkMode ? '🌙' : '☀️'}</span>
+                <span>{darkMode ? 'Matte Dark' : 'Light Mode'}</span>
+              </button>
+
+              <button 
+                onClick={triggerScrape}
+                disabled={isScraping}
+                className="flex items-center gap-1 px-3 py-1.5 rounded-full bg-orange-500/10 text-orange-500 border border-orange-500/20 text-xs font-bold"
+              >
+                <span>↻ Sync Radar</span>
+              </button>
+            </div>
+
+            <div className="grid grid-cols-2 gap-2 pt-1">
               <Link 
                 href="/prompts" 
                 onClick={() => setMobileMenuOpen(false)}

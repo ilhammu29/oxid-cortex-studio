@@ -271,69 +271,69 @@ export default function ToolsPage() {
       {/* MAIN CONTAINER */}
       <div className="flex-1 flex flex-col min-w-0">
         
-        {/* 2. TOP BAR (MOBILE RESPONSIVE COMPACT) */}
-        <header className="border-b border-[#26262e] bg-[#0a0a0c]/90 backdrop-blur-md p-4 sm:px-8 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 sticky top-0 z-30">
-          
-          {/* Mobile Top Brand Bar */}
-          <div className="flex sm:hidden items-center justify-between pb-2 border-b border-[#26262e]/50">
+        {/* 2. TOP BAR (ULTRA COMPACT 1-LINE HEADER ON MOBILE) */}
+        <header className="border-b border-[#26262e] bg-[#0a0a0c]/95 backdrop-blur-md sticky top-0 z-30">
+          <div className="h-14 sm:h-20 px-4 sm:px-8 flex items-center justify-between gap-3">
+            {/* Left: Brand / Title */}
             <Link href="/" className="flex items-center gap-2">
-              <div className="w-7 h-7 rounded-full bg-white p-1 flex items-center justify-center">
+              <div className="w-7 h-7 sm:w-10 sm:h-10 rounded-full bg-white p-1 flex items-center justify-center border border-zinc-200 shadow-sm flex-shrink-0">
                 <img src="/images/oxid-logo.png" alt="OXID" className="w-full h-full object-contain" />
               </div>
-              <span className="font-serif font-black text-sm text-white">OXID<span className="text-orange-500">.CORTEX</span></span>
+              <span className="font-serif font-black text-sm sm:text-lg text-white uppercase tracking-wider">
+                Tools<span className="text-orange-500">.Radar</span>
+              </span>
             </Link>
-            <Link href="/templates" className="px-3 py-1 rounded-full bg-orange-500 text-white font-mono text-[10px] font-bold">
-              Templates
-            </Link>
+
+            {/* Right: Search Input + Templates Button */}
+            <div className="flex items-center gap-2">
+              <input 
+                type="text" 
+                placeholder="Search tools..." 
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="bg-[#121216] border border-[#26262e] text-xs px-3 py-1.5 sm:px-4 sm:py-2 rounded-full text-zinc-200 focus:outline-none focus:border-orange-500 w-36 sm:w-60 font-mono"
+              />
+              <Link 
+                href="/templates" 
+                className="hidden sm:inline-flex px-4 py-2 rounded-full bg-orange-500 hover:bg-orange-600 text-white font-mono text-xs font-bold transition-all shadow-md shadow-orange-500/25 whitespace-nowrap"
+              >
+                Templates
+              </Link>
+            </div>
           </div>
 
-          <div className="flex items-center space-x-2 font-mono text-xs overflow-x-auto pb-1 sm:pb-0 scrollbar-none">
+          {/* Slim Horizontal Filter Pills Bar */}
+          <div className="px-4 sm:px-8 py-2 bg-[#0e0e12]/80 border-t border-[#26262e]/40 flex items-center space-x-2 font-mono text-xs overflow-x-auto scrollbar-none">
             <button 
               onClick={() => setActiveCategory('all')} 
-              className={`px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-full font-bold transition-all cursor-pointer whitespace-nowrap text-[11px] sm:text-xs ${activeCategory === 'all' ? 'bg-orange-500 text-white' : 'bg-[#16161c] text-zinc-400 hover:text-white'}`}
+              className={`px-3 py-1 rounded-full font-bold transition-all cursor-pointer whitespace-nowrap text-[11px] ${activeCategory === 'all' ? 'bg-orange-500 text-white' : 'bg-[#16161c] text-zinc-400 hover:text-white'}`}
             >
               Semua ({realTools.length})
             </button>
             <button 
               onClick={() => setActiveCategory('github')} 
-              className={`px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-full font-bold transition-all cursor-pointer whitespace-nowrap text-[11px] sm:text-xs ${activeCategory === 'github' ? 'bg-orange-500 text-white' : 'bg-[#16161c] text-zinc-400 hover:text-white'}`}
+              className={`px-3 py-1 rounded-full font-bold transition-all cursor-pointer whitespace-nowrap text-[11px] ${activeCategory === 'github' ? 'bg-orange-500 text-white' : 'bg-[#16161c] text-zinc-400 hover:text-white'}`}
             >
               ⭐ GitHub Repos ({realTools.filter(t => t.type === 'github').length})
             </button>
             <button 
               onClick={() => setActiveCategory('design')} 
-              className={`px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-full font-bold transition-all cursor-pointer whitespace-nowrap text-[11px] sm:text-xs ${activeCategory === 'design' ? 'bg-orange-500 text-white' : 'bg-[#16161c] text-zinc-400 hover:text-white'}`}
+              className={`px-3 py-1 rounded-full font-bold transition-all cursor-pointer whitespace-nowrap text-[11px] ${activeCategory === 'design' ? 'bg-orange-500 text-white' : 'bg-[#16161c] text-zinc-400 hover:text-white'}`}
             >
               ❤️‍🔥 Design Vault (5)
             </button>
             <button 
               onClick={() => setActiveCategory('skills')} 
-              className={`px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-full font-bold transition-all cursor-pointer whitespace-nowrap text-[11px] sm:text-xs ${activeCategory === 'skills' ? 'bg-orange-500 text-white' : 'bg-[#16161c] text-zinc-400 hover:text-white'}`}
+              className={`px-3 py-1 rounded-full font-bold transition-all cursor-pointer whitespace-nowrap text-[11px] ${activeCategory === 'skills' ? 'bg-orange-500 text-white' : 'bg-[#16161c] text-zinc-400 hover:text-white'}`}
             >
               ✦ Motion &amp; Craft (5)
             </button>
             <button 
               onClick={() => setActiveCategory('tools')} 
-              className={`px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-full font-bold transition-all cursor-pointer whitespace-nowrap text-[11px] sm:text-xs ${activeCategory === 'tools' ? 'bg-orange-500 text-white' : 'bg-[#16161c] text-zinc-400 hover:text-white'}`}
+              className={`px-3 py-1 rounded-full font-bold transition-all cursor-pointer whitespace-nowrap text-[11px] ${activeCategory === 'tools' ? 'bg-orange-500 text-white' : 'bg-[#16161c] text-zinc-400 hover:text-white'}`}
             >
               CLI &amp; Engine
             </button>
-          </div>
-
-          <div className="flex items-center space-x-2 sm:space-x-3">
-            <input 
-              type="text" 
-              placeholder="Search repo, font, shader..." 
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              className="bg-[#121216] border border-[#26262e] text-xs px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-full text-zinc-200 focus:outline-none focus:border-orange-500 w-full sm:w-60 font-mono"
-            />
-            <Link 
-              href="/templates" 
-              className="hidden sm:inline-flex px-5 py-2 rounded-full bg-orange-500 hover:bg-orange-600 text-white font-mono text-xs font-bold transition-all shadow-md shadow-orange-500/25 whitespace-nowrap"
-            >
-              Templates
-            </Link>
           </div>
         </header>
 
