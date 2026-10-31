@@ -180,6 +180,46 @@ const SEARCH_DATABASE: SearchItem[] = [
     snippet: "High-fidelity design assets: vector icons, production fonts, 3D illustrations, and crafted design systems.",
     link: "/prompts",
     badge: "Component Craft"
+  },
+  {
+    id: "gh_openhands",
+    title: "All-Hands-AI / OpenHands (Autonomous Agent)",
+    category: "Tools",
+    snippet: "Autonomous software development agent in bash and browser with 92k+ GitHub stars.",
+    link: "/tools",
+    badge: "⭐ 92.4k Stars"
+  },
+  {
+    id: "gh_vaul",
+    title: "emilkowalski / vaul (Drawer Component)",
+    category: "Tools",
+    snippet: "Unstyled drawer component for React with organic physics and spring dragging.",
+    link: "/tools",
+    badge: "⭐ 12.5k Stars"
+  },
+  {
+    id: "gh_three_fiber",
+    title: "pmndrs / react-three-fiber (3D Canvas)",
+    category: "Tools",
+    snippet: "Declarative Three.js WebGL renderer for React & Next.js apps with 28k+ stars.",
+    link: "/tools",
+    badge: "⭐ 28.1k Stars"
+  },
+  {
+    id: "gh_fastmcp",
+    title: "jlowin / fastmcp (Model Context Protocol)",
+    category: "Tools",
+    snippet: "Fast Model Context Protocol (MCP) servers in Python for AI agents.",
+    link: "/tools",
+    badge: "⭐ 6.5k Stars"
+  },
+  {
+    id: "gh_shadcn_ui",
+    title: "shadcn-ui / ui (Accessible Components)",
+    category: "Tools",
+    snippet: "Beautifully designed components copy-paste ready for Next.js with 89k+ stars.",
+    link: "/tools",
+    badge: "⭐ 89.2k Stars"
   }
 ]
 

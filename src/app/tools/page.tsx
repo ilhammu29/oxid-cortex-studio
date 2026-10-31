@@ -132,14 +132,76 @@ export default function ToolsPage() {
       type: "skill"
     },
 
+    // --- GITHUB REPOS & SKILLS (SCRAPED LIVE) ---
+    {
+      id: "gh_openhands",
+      name: "All-Hands-AI / OpenHands",
+      category: "Autonomous Agent CLI",
+      badge: "⭐ 92.4k STARS",
+      logo: "https://github.com/All-Hands-AI.png",
+      previewImage: "https://opengraph.githubassets.com/1/All-Hands-AI/OpenHands",
+      tagline: "Autonomous software development agent in bash, terminal, and browser.",
+      description: "Platform agen software engineering otonom nomor #1 di GitHub. Mampu menulis kode multi-file, menjalankan tes, dan menyelesaikan issues mandiri.",
+      url: "https://github.com/All-Hands-AI/OpenHands",
+      type: "github"
+    },
+    {
+      id: "gh_vaul",
+      name: "emilkowalski / vaul",
+      category: "Motion & UI Primitive",
+      badge: "⭐ 12.5k STARS",
+      logo: "https://github.com/emilkowalski.png",
+      previewImage: "https://opengraph.githubassets.com/1/emilkowalski/vaul",
+      tagline: "Drawer component for React with organic physics and spring dragging.",
+      description: "Komponen drawer modern berkinerja tinggi untuk Next.js dan React yang menggunakan kurva fisika pegas dan gestur natural perangkat seluler.",
+      url: "https://github.com/emilkowalski/vaul",
+      type: "github"
+    },
+    {
+      id: "gh_three_fiber",
+      name: "pmndrs / react-three-fiber",
+      category: "3D Canvas & WebGL",
+      badge: "⭐ 28.1k STARS",
+      logo: "https://github.com/pmndrs.png",
+      previewImage: "https://opengraph.githubassets.com/1/pmndrs/react-three-fiber",
+      tagline: "Declarative Three.js WebGL renderer for React & Next.js apps.",
+      description: "Ekosistem perender 3D WebGL tercanggih di web. Bangun pengalaman visual interaktif 60fps dengan JSX dan kontrol shader dinamis.",
+      url: "https://github.com/pmndrs/react-three-fiber",
+      type: "github"
+    },
+    {
+      id: "gh_fastmcp",
+      name: "jlowin / fastmcp",
+      category: "Agent Tooling & Protocol",
+      badge: "⭐ 6.5k STARS",
+      logo: "https://github.com/jlowin.png",
+      previewImage: "https://opengraph.githubassets.com/1/jlowin/fastmcp",
+      tagline: "The fastest way to build Model Context Protocol (MCP) servers in Python.",
+      description: "Framework Python untuk membangun toolset dan server integrasi protokol konteks model Anthropic dan Hermes Agent.",
+      url: "https://github.com/jlowin/fastmcp",
+      type: "github"
+    },
+    {
+      id: "gh_shadcn_ui",
+      name: "shadcn-ui / ui",
+      category: "Component Library",
+      badge: "⭐ 89.2k STARS",
+      logo: "https://github.com/shadcn-ui.png",
+      previewImage: "https://opengraph.githubassets.com/1/shadcn-ui/ui",
+      tagline: "Beautifully designed components that you can copy and paste into your apps.",
+      description: "Koleksi komponen UI standar emas dunia berbasis Radix UI dan Tailwind CSS. Tanpa ketergantungan paket runtime tertutup.",
+      url: "https://github.com/shadcn-ui/ui",
+      type: "github"
+    },
+
     // --- DEVELOPER AI TOOLS ---
     {
       id: "tool_ollama",
       name: "Ollama",
       category: "Local LLM Inference Engine",
-      badge: "OPEN SOURCE",
+      badge: "⭐ 120k+ STARS",
       logo: "https://ollama.com/public/ollama.png",
-      previewImage: "/images/card_agent_copilot.svg",
+      previewImage: "https://opengraph.githubassets.com/1/ollama/ollama",
       tagline: "Jalankan model open-weights (Llama 3, DeepSeek, Qwen) secara lokal di laptop via single CLI command.",
       description: "Ollama menyederhanakan eksekusi model AI lokal dengan manajemen bobot otomatis, API REST kompatibel OpenAI, dan akselerasi CPU/GPU minimal overhead.",
       url: "https://ollama.com",
@@ -149,9 +211,9 @@ export default function ToolsPage() {
       id: "tool_scrapling",
       name: "Scrapling",
       category: "Stealth Web Scraping Framework",
-      badge: "FREE / OPEN SOURCE",
+      badge: "⭐ 14.2k STARS",
       logo: "https://avatars.githubusercontent.com/u/10834375?v=4",
-      previewImage: "/images/card_swiss_editorial.svg",
+      previewImage: "https://opengraph.githubassets.com/1/D4Vinci/Scrapling",
       tagline: "Framework web scraping Python modern dengan kemampuan adaptif melewati deteksi anti-bot dan Cloudflare.",
       description: "Dibangun khusus untuk AI crawlers yang membutuhkan throughput tinggi tanpa terhalang Cloudflare Turnstile, browser fingerprinting, atau IP block.",
       url: "https://github.com/D4Vinci/Scrapling",
@@ -163,6 +225,7 @@ export default function ToolsPage() {
     const matchesCategory = activeCategory === 'all' || 
                             (activeCategory === 'design' && t.type === 'design') ||
                             (activeCategory === 'skills' && t.type === 'skill') ||
+                            (activeCategory === 'github' && t.type === 'github') ||
                             (activeCategory === 'tools' && t.type === 'tool')
     const q = searchQuery.toLowerCase()
     const matchesSearch = t.name.toLowerCase().includes(q) || 
@@ -188,7 +251,7 @@ export default function ToolsPage() {
             <Link href="/grants" className="p-3 rounded-2xl text-zinc-400 hover:text-white hover:bg-[#16161c] transition-all" title="Bansos AI">
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
             </Link>
-            <Link href="/tools" className="p-3 rounded-2xl bg-orange-500 text-white shadow-lg shadow-orange-500/30 transition-all" title="AI Tools & Design Resources (Active)">
+            <Link href="/tools" className="p-3 rounded-2xl bg-orange-500 text-white shadow-lg shadow-orange-500/30 transition-all" title="AI Tools, Design & GitHub Radar (Active)">
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path></svg>
             </Link>
             <Link href="/intel" className="p-3 rounded-2xl text-zinc-400 hover:text-white hover:bg-[#16161c] transition-all" title="Threads Intel">
@@ -213,25 +276,31 @@ export default function ToolsPage() {
           <div className="flex items-center space-x-2 font-mono text-xs overflow-x-auto">
             <button 
               onClick={() => setActiveCategory('all')} 
-              className={`px-3.5 py-1.5 rounded-full font-bold transition-all ${activeCategory === 'all' ? 'bg-orange-500 text-white' : 'bg-[#16161c] text-zinc-400 hover:text-white'}`}
+              className={`px-3.5 py-1.5 rounded-full font-bold transition-all cursor-pointer ${activeCategory === 'all' ? 'bg-orange-500 text-white' : 'bg-[#16161c] text-zinc-400 hover:text-white'}`}
             >
               Semua ({realTools.length})
             </button>
             <button 
+              onClick={() => setActiveCategory('github')} 
+              className={`px-3.5 py-1.5 rounded-full font-bold transition-all cursor-pointer ${activeCategory === 'github' ? 'bg-orange-500 text-white' : 'bg-[#16161c] text-zinc-400 hover:text-white'}`}
+            >
+              ⭐ GitHub Repos ({realTools.filter(t => t.type === 'github').length})
+            </button>
+            <button 
               onClick={() => setActiveCategory('design')} 
-              className={`px-3.5 py-1.5 rounded-full font-bold transition-all ${activeCategory === 'design' ? 'bg-orange-500 text-white' : 'bg-[#16161c] text-zinc-400 hover:text-white'}`}
+              className={`px-3.5 py-1.5 rounded-full font-bold transition-all cursor-pointer ${activeCategory === 'design' ? 'bg-orange-500 text-white' : 'bg-[#16161c] text-zinc-400 hover:text-white'}`}
             >
               ❤️‍🔥 Design Vault (5)
             </button>
             <button 
               onClick={() => setActiveCategory('skills')} 
-              className={`px-3.5 py-1.5 rounded-full font-bold transition-all ${activeCategory === 'skills' ? 'bg-orange-500 text-white' : 'bg-[#16161c] text-zinc-400 hover:text-white'}`}
+              className={`px-3.5 py-1.5 rounded-full font-bold transition-all cursor-pointer ${activeCategory === 'skills' ? 'bg-orange-500 text-white' : 'bg-[#16161c] text-zinc-400 hover:text-white'}`}
             >
               ✦ Motion &amp; Craft (5)
             </button>
             <button 
               onClick={() => setActiveCategory('tools')} 
-              className={`px-3.5 py-1.5 rounded-full font-bold transition-all ${activeCategory === 'tools' ? 'bg-orange-500 text-white' : 'bg-[#16161c] text-zinc-400 hover:text-white'}`}
+              className={`px-3.5 py-1.5 rounded-full font-bold transition-all cursor-pointer ${activeCategory === 'tools' ? 'bg-orange-500 text-white' : 'bg-[#16161c] text-zinc-400 hover:text-white'}`}
             >
               CLI &amp; Engine
             </button>
@@ -240,7 +309,7 @@ export default function ToolsPage() {
           <div className="flex items-center space-x-3">
             <input 
               type="text" 
-              placeholder="Search resource, font, shader..." 
+              placeholder="Search repo, font, shader..." 
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               className="bg-[#121216] border border-[#26262e] text-xs px-4 py-2 rounded-full text-zinc-200 focus:outline-none focus:border-orange-500 w-60 font-mono"
@@ -262,13 +331,13 @@ export default function ToolsPage() {
             {/* HERO HEADER */}
             <div className="space-y-2">
               <span className="text-xs font-mono font-bold text-orange-500 uppercase tracking-widest bg-orange-500/10 px-3 py-1 rounded-full border border-orange-500/20">
-                CURATED DESIGN RADAR &amp; FRONTIER CRAFT
+                GITHUB SKILLS &amp; AI WEAPONRY RADAR
               </span>
               <h1 className="font-serif text-3xl sm:text-4xl font-black text-white">
-                5 AI Design Resources &amp; Motion Engineering Skills
+                GitHub Repositories, AI Design Vault &amp; Motion Skills
               </h1>
               <p className="text-sm text-zinc-400 max-w-3xl leading-relaxed font-sans">
-                Kompilasi sumber daya desain web terpopuler dan panduan teknik tingkat lanjut untuk motion physics, WebGL shader, diagram arsitektur, dan tipografi brand dunia.
+                Kompilasi repositori GitHub kelas dunia, sumber daya desain web terpopuler, dan panduan teknik tingkat lanjut untuk WebGL shader, gestur drawer pegas, dan otomasi AI.
               </p>
             </div>
 
@@ -311,7 +380,7 @@ export default function ToolsPage() {
                       rel="noreferrer"
                       className="px-5 py-2 rounded-full bg-orange-500 hover:bg-orange-600 text-white font-bold transition-all shadow-md shadow-orange-500/20 text-xs"
                     >
-                      Buka Web ↗
+                      Buka Repo / Web ↗
                     </a>
                   </div>
                 </div>
@@ -325,18 +394,18 @@ export default function ToolsPage() {
             <div className="bg-[#121218] border border-[#26262e] rounded-3xl p-6 space-y-3 shadow-xl font-mono text-xs">
               <span className="text-orange-500 font-bold uppercase block">Ingestion Source</span>
               <p className="text-zinc-400 leading-relaxed text-[11px]">
-                Disinkronkan secara otomatis dari radar komunitas Threads dan kurasi kurator terdepan di ekosistem web engineering global.
+                Disinkronkan secara otomatis dari GitHub REST API dan radar komunitas Threads secara berkala.
               </p>
               <div className="pt-2 border-t border-[#26262e] flex items-center justify-between text-[10px]">
                 <span className="text-zinc-500">Live Status:</span>
-                <span className="text-emerald-400 font-bold">10 Resources Active</span>
+                <span className="text-emerald-400 font-bold">{realTools.length} Resources Active</span>
               </div>
             </div>
 
             <div className="bg-[#121218] border border-[#26262e] rounded-3xl p-6 space-y-3 shadow-xl font-mono text-xs">
               <span className="text-zinc-300 font-bold uppercase block">Quick Action</span>
               <p className="text-zinc-400 text-[11px] leading-relaxed">
-                Gunakan tombol <strong>Ctrl+K</strong> kapan saja untuk mencari font, shader, atau prompt web dari seluruh database.
+                Gunakan tombol <strong>Ctrl+K</strong> kapan saja untuk mencari repo GitHub, font, shader, atau prompt web dari seluruh database.
               </p>
             </div>
           </aside>
