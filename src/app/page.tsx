@@ -85,7 +85,7 @@ export default function Home() {
       benefit: "100% Free Quota",
       benefitSub: "Zero Cost / Dev",
       likes: 1250,
-      image: "/screenshots/template_dashboard.png",
+      image: "/images/card_agent_copilot.svg",
       body: `Design a developer-first Autonomous AI Agent studio workspace.
 Key Specifications:
 - Interface Structure: 3-pane cardbox layout featuring an agent pipeline dag viewer on the left, live streaming terminal execution log in the center, and contextual token/memory inspector on the right.
@@ -100,7 +100,7 @@ Key Specifications:
       benefit: "Free Quota",
       benefitSub: "Open Design",
       likes: 842,
-      image: "/screenshots/template_duke.png",
+      image: "/images/card_fintech_wealth.svg",
       body: `Design a high-end institutional wealth management dashboard in Tailwind CSS and Next.js.
 Key Specifications:
 - Palette: Deep matte obsidian (#0a0a0c), cardbox surface (#121216), hairline border (#26262e), neon flame orange accent (#ff5722), and emerald status indicators (#10b981).
@@ -114,7 +114,7 @@ Key Specifications:
       benefit: "Open Access",
       benefitSub: "Human Typography",
       likes: 615,
-      image: "/screenshots/template_dashboard.png",
+      image: "/images/card_swiss_editorial.svg",
       body: `Create a clean, human-centric editorial web magazine interface inspired by Swiss typography.
 Key Specifications:
 - Palette: Warm matte paper background (#fbfbfa), crisp ink text (#1c1917), subtle neutral dividers (#e7e5e4).
@@ -128,7 +128,7 @@ Key Specifications:
       benefit: "Frontier AI",
       benefitSub: "Modern Showcase",
       likes: 490,
-      image: "/screenshots/template_duke.png",
+      image: "/images/card_hardware_showcase.svg",
       body: `Design an ultra-minimalist flagship product launch page for bespoke hardware.
 Key Specifications:
 - Visuals: Full-bleed product render hero with smooth scroll-driven perspective reveal.
@@ -295,11 +295,13 @@ Lakukan refactoring pada potongan kode berikut dengan prinsip:
             <Link href="/templates" className="text-orange-400 hover:text-orange-500 font-bold transition-colors">Karya Templates</Link>
           </nav>
 
-          {/* Center Brand Identity (Round Icon + Text) */}
+          {/* Center Brand Identity (Real OXID Labs Logo + Text) */}
           <Link href="/" className="flex items-center gap-3 cursor-pointer">
-            <div className="w-10 h-10 rounded-full bg-orange-500 flex items-center justify-center text-white font-extrabold text-lg shadow-md shadow-orange-500/30">
-              O
-            </div>
+            <img 
+              src="/images/oxid-logo.png" 
+              alt="OXID Labs" 
+              className="w-10 h-10 object-contain rounded-full shadow-md shadow-orange-500/30 border border-orange-500/40 bg-[#121216] p-1"
+            />
             <span className="font-serif text-xl sm:text-2xl font-black tracking-wide text-zinc-900 dark:text-white uppercase">
               OXID<span className="text-orange-500">.CORTEX</span>
             </span>
@@ -483,7 +485,7 @@ Lakukan refactoring pada potongan kode berikut dengan prinsip:
               {/* REAR CARD (Angled Right: rotate-[6deg]) */}
               <div className="absolute inset-0 rounded-3xl bg-zinc-200 dark:bg-[#16161f] border border-zinc-300 dark:border-[#26262e] shadow-xl transform rotate-[6deg] translate-x-3 translate-y-2 overflow-hidden opacity-75">
                 <img 
-                  src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&auto=format&fit=crop&q=80" 
+                  src="/images/card_fintech_wealth.svg" 
                   alt="Fintech Wealth Bento" 
                   className="w-full h-64 object-cover"
                 />

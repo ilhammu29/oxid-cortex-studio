@@ -93,8 +93,8 @@ Gunakan Next.js 14 App Router, Tailwind CSS, dan pastikan seluruh fungsi 1-klik 
       {/* 1. LEFT ICON RAIL */}
       <aside className="w-16 sm:w-20 bg-[#0e0e12] border-r border-[#26262e] flex flex-col items-center justify-between py-6 flex-shrink-0 sticky top-0 h-screen z-40">
         <div className="space-y-8 flex flex-col items-center">
-          <Link href="/" className="w-10 h-10 rounded-2xl bg-orange-500 flex items-center justify-center text-white font-black text-xl shadow-lg shadow-orange-500/30">
-            ⚡
+          <Link href="/" className="w-10 h-10 rounded-2xl p-1 bg-[#121216] border border-orange-500/40 flex items-center justify-center shadow-lg shadow-orange-500/20 hover:scale-105 transition-transform" title="OXID Labs Home">
+            <img src="/images/oxid-logo.png" alt="OXID Labs" className="w-full h-full object-contain" />
           </Link>
 
           <nav className="flex flex-col items-center space-y-4">
