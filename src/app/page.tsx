@@ -1013,17 +1013,14 @@ Lakukan refactoring pada potongan kode berikut dengan prinsip:
       )}
 
       {/* Footer */}
-      <footer className="border-t border-zinc-200 dark:border-[#26262e] bg-zinc-50 dark:bg-[#0c0c0f] py-12 text-center text-xs text-zinc-500 space-y-3 font-mono">
-        <div className="flex items-center justify-center gap-2">
-          <div className="w-6 h-6 rounded-full bg-white p-1 flex items-center justify-center border border-zinc-200">
-            <img src="/images/oxid-logo.png" alt="OXID" className="w-full h-full object-contain" />
+      <footer className="border-t border-zinc-200 dark:border-[#26262e] bg-zinc-50 dark:bg-[#0c0c0f] py-10 text-center text-xs text-zinc-500 space-y-2 font-mono">
+        <div className="flex items-center justify-center gap-2.5">
+          <div className="w-6 h-6 rounded-full bg-white p-1 flex items-center justify-center border border-zinc-200 shadow-sm">
+            <img src="/images/oxid-logo.png" alt="OXID LABS" className="w-full h-full object-contain" />
           </div>
-          <span className="font-bold text-zinc-900 dark:text-white text-sm uppercase">OXID CORTEX STUDIO</span>
+          <span className="font-bold text-zinc-900 dark:text-white text-sm tracking-wide uppercase">OXID LABS</span>
         </div>
-        <p>&copy; 2026 OXID Intelligence Ecosystem. Curated by OXID Research Collective.</p>
-        <p className="text-[11px] text-zinc-600 dark:text-zinc-500">
-          Architecture: Clean Studio Layout • Palette: #0a0a0c Hitam Doff + #ff5722 Cyber Orange
-        </p>
+        <p>&copy; 2026 OXID LABS. All rights reserved.</p>
       </footer>
 
       {/* Global Interactive Search Modal */}
