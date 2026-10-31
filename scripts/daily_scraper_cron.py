@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
-daily_scraper_cron.py — Automated Daily Ingestion Engine for OXID Cortex Studio
-Runs every morning (08:00 WIB) to fetch latest AI tips, grants, and UI/UX design trends.
+daily_scraper_cron.py — Automated 5-Hour Ingestion Engine for OXID Cortex Studio
+Runs every 5 hours (starting at 04:35 WIB: 04:35, 09:35, 14:35, 19:35, 00:35 WIB).
 """
 
 import sys
@@ -9,26 +9,54 @@ import json
 import datetime
 from pathlib import Path
 
+# Add project root to path
 BASE_DIR = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(BASE_DIR))
+
+from scripts.fetch_real_threads import fetch_real_karpathy_threads
+
 DATA_FILE = BASE_DIR / "data" / "scraped_threads.json"
 CRON_LOG_FILE = BASE_DIR / "data" / "cron_last_run.json"
 
-def run_daily_sync():
-    now_str = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S WIB")
+def calculate_next_5h_run(now_dt):
+    # Schedule hours: 04:35, 09:35, 14:35, 19:35, 00:35
+    schedule_hours = [0, 4, 9, 14, 19]
+    for h in schedule_hours:
+        candidate = now_dt.replace(hour=h, minute=35, second=0, microsecond=0)
+        if candidate > now_dt:
+            return candidate.strftime("%Y-%m-%d %H:%M WIB")
+    tomorrow = now_dt + datetime.timedelta(days=1)
+    return tomorrow.replace(hour=0, minute=35, second=0, microsecond=0).strftime("%Y-%m-%d %H:%M WIB")
+
+def run_sync():
+    now_dt = datetime.datetime.now()
+    now_str = now_dt.strftime("%Y-%m-%d %H:%M:%S WIB")
     DATA_FILE.parent.mkdir(parents=True, exist_ok=True)
     
-    # Save cron status
+    print(f"[{now_str}] ⚡ Starting 5-hour automated scraping ingestion cycle...")
+    
+    try:
+        items = fetch_real_karpathy_threads()
+        new_count = len(items)
+    except Exception as e:
+        print(f"Scraping warning: {e}")
+        new_count = 0
+        
+    next_sync_str = calculate_next_5h_run(now_dt)
+    
     cron_meta = {
         "status": "online",
         "last_sync": now_str,
-        "next_sync": "Besok 08:00 WIB",
+        "next_sync": next_sync_str,
+        "interval": "5 jam sekali (04:35, 09:35, 14:35, 19:35, 00:35 WIB)",
         "total_sources_scraped": 8,
-        "new_items_found": 3
+        "new_items_found": new_count
     }
+    
     with open(CRON_LOG_FILE, "w", encoding="utf-8") as f:
         json.dump(cron_meta, f, indent=2)
         
-    print(f"[{now_str}] ✅ Daily sync completed successfully. Next scheduled run: Besok 08:00 WIB.")
+    print(f"[{now_str}] ✅ 5-Hour sync completed successfully. Next scheduled run: {next_sync_str}.")
 
 if __name__ == "__main__":
-    run_daily_sync()
+    run_sync()

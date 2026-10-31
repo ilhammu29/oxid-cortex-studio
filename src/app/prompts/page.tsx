@@ -127,7 +127,7 @@ Key Specifications:
         
         {/* Top Logo */}
         <div className="space-y-8 flex flex-col items-center">
-          <Link href="/" className="w-10 h-10 rounded-2xl p-1 bg-[#121216] border border-orange-500/40 flex items-center justify-center shadow-lg shadow-orange-500/20 hover:scale-105 transition-transform" title="OXID Labs Home">
+          <Link href="/" className="w-10 h-10 rounded-2xl p-1.5 bg-white border border-zinc-200 flex items-center justify-center shadow-lg shadow-orange-500/20 hover:scale-105 transition-transform" title="OXID Labs Home">
             <img src="/images/oxid-logo.png" alt="OXID Labs" className="w-full h-full object-contain" />
           </Link>
 

@@ -69,7 +69,7 @@ export default function ToolsPage() {
       {/* 1. LEFT ICON RAIL */}
       <aside className="w-16 sm:w-20 bg-[#0e0e12] border-r border-[#26262e] flex flex-col items-center justify-between py-6 flex-shrink-0 sticky top-0 h-screen z-40">
         <div className="space-y-8 flex flex-col items-center">
-          <Link href="/" className="w-10 h-10 rounded-2xl p-1 bg-[#121216] border border-orange-500/40 flex items-center justify-center shadow-lg shadow-orange-500/20 hover:scale-105 transition-transform" title="OXID Labs Home">
+          <Link href="/" className="w-10 h-10 rounded-2xl p-1.5 bg-white border border-zinc-200 flex items-center justify-center shadow-lg shadow-orange-500/20 hover:scale-105 transition-transform" title="OXID Labs Home">
             <img src="/images/oxid-logo.png" alt="OXID Labs" className="w-full h-full object-contain" />
           </Link>
 

@@ -295,13 +295,15 @@ Lakukan refactoring pada potongan kode berikut dengan prinsip:
             <Link href="/templates" className="text-orange-400 hover:text-orange-500 font-bold transition-colors">Karya Templates</Link>
           </nav>
 
-          {/* Center Brand Identity (Real OXID Labs Logo + Text) */}
+          {/* Center Brand Identity (Real OXID Labs Logo with White Background + Text) */}
           <Link href="/" className="flex items-center gap-3 cursor-pointer">
-            <img 
-              src="/images/oxid-logo.png" 
-              alt="OXID Labs" 
-              className="w-10 h-10 object-contain rounded-full shadow-md shadow-orange-500/30 border border-orange-500/40 bg-[#121216] p-1"
-            />
+            <div className="w-10 h-10 rounded-full bg-white p-1.5 flex items-center justify-center shadow-md shadow-orange-500/25 border border-zinc-200 flex-shrink-0">
+              <img 
+                src="/images/oxid-logo.png" 
+                alt="OXID Labs" 
+                className="w-full h-full object-contain"
+              />
+            </div>
             <span className="font-serif text-xl sm:text-2xl font-black tracking-wide text-zinc-900 dark:text-white uppercase">
               OXID<span className="text-orange-500">.CORTEX</span>
             </span>

@@ -19,6 +19,7 @@ export default function RootLayout({
   return (
     <html lang="id">
       <head>
+        <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
         <link rel="icon" href="/images/oxid-logo.png" type="image/png" />
         <link rel="apple-touch-icon" href="/images/oxid-logo.png" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
