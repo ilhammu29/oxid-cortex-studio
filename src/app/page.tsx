@@ -15,6 +15,7 @@ export default function Home() {
   const [carouselIndex, setCarouselIndex] = useState(0)
   const [leaderboardFilter, setLeaderboardFilter] = useState('7d')
   const [isSearchOpen, setIsSearchOpen] = useState(false)
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [showNotifications, setShowNotifications] = useState(false)
   const [unreadNotifications, setUnreadNotifications] = useState(3)
   const [notificationsList, setNotificationsList] = useState([
@@ -304,10 +305,10 @@ Lakukan refactoring pada potongan kode berikut dengan prinsip:
     <main className="min-h-screen bg-white text-zinc-900 dark:bg-[#0a0a0c] dark:text-[#f4f4f5] font-sans antialiased selection:bg-orange-500 selection:text-white transition-colors duration-200">
       
       {/* ======================================================== */}
-      {/* 1. HEADER (SYMMETRIC 3-COLUMN DUKE LAYOUT)               */}
+      {/* 1. HEADER (RESPONSIVE & CLEAN MOBILE DESIGN)             */}
       {/* ======================================================== */}
       <header className="border-b border-zinc-200 dark:border-[#26262e] bg-white/95 dark:bg-[#0a0a0c]/95 backdrop-blur-md sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 sm:h-20 flex items-center justify-between">
           
           {/* Left Navigation Links Pointing to Real Category Pages */}
           <nav className="hidden md:flex items-center space-x-6 text-xs font-semibold uppercase tracking-wider text-zinc-600 dark:text-zinc-400">
@@ -319,25 +320,25 @@ Lakukan refactoring pada potongan kode berikut dengan prinsip:
           </nav>
 
           {/* Center Brand Identity (Real OXID Labs Logo with White Background + Text) */}
-          <Link href="/" className="flex items-center gap-3 cursor-pointer">
-            <div className="w-10 h-10 rounded-full bg-white p-1.5 flex items-center justify-center shadow-md shadow-orange-500/25 border border-zinc-200 flex-shrink-0">
+          <Link href="/" className="flex items-center gap-2.5 sm:gap-3 cursor-pointer">
+            <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-white p-1 sm:p-1.5 flex items-center justify-center shadow-md shadow-orange-500/25 border border-zinc-200 flex-shrink-0">
               <img 
                 src="/images/oxid-logo.png" 
                 alt="OXID Labs" 
                 className="w-full h-full object-contain"
               />
             </div>
-            <span className="font-serif text-xl sm:text-2xl font-black tracking-wide text-zinc-900 dark:text-white uppercase">
+            <span className="font-serif text-lg sm:text-2xl font-black tracking-wide text-zinc-900 dark:text-white uppercase">
               OXID<span className="text-orange-500">.CORTEX</span>
             </span>
           </Link>
 
           {/* Right Action Icons & Controls */}
-          <div className="flex items-center space-x-3">
+          <div className="flex items-center space-x-2 sm:space-x-3">
             {/* Search Spotlight Button */}
             <button 
               onClick={() => setIsSearchOpen(true)}
-              className="p-2.5 rounded-full bg-zinc-100 hover:bg-zinc-200 dark:bg-[#16161c] dark:hover:bg-[#202028] text-zinc-800 dark:text-zinc-200 transition-all cursor-pointer border border-zinc-200 dark:border-[#26262e] flex items-center gap-1.5"
+              className="p-2 sm:p-2.5 rounded-full bg-zinc-100 hover:bg-zinc-200 dark:bg-[#16161c] dark:hover:bg-[#202028] text-zinc-800 dark:text-zinc-200 transition-all cursor-pointer border border-zinc-200 dark:border-[#26262e] flex items-center gap-1.5"
               title="Cari Prompt &amp; Bansos (Ctrl+K)"
             >
               <svg className="w-4 h-4 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
@@ -348,7 +349,7 @@ Lakukan refactoring pada potongan kode berikut dengan prinsip:
             <div className="relative">
               <button 
                 onClick={() => setShowNotifications(!showNotifications)}
-                className="p-2.5 rounded-full bg-zinc-100 hover:bg-zinc-200 dark:bg-[#16161c] dark:hover:bg-[#202028] text-zinc-800 dark:text-zinc-200 transition-all cursor-pointer border border-zinc-200 dark:border-[#26262e] relative"
+                className="p-2 sm:p-2.5 rounded-full bg-zinc-100 hover:bg-zinc-200 dark:bg-[#16161c] dark:hover:bg-[#202028] text-zinc-800 dark:text-zinc-200 transition-all cursor-pointer border border-zinc-200 dark:border-[#26262e] relative"
                 title="Pusat Notifikasi Studio"
               >
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path></svg>
@@ -359,7 +360,7 @@ Lakukan refactoring pada potongan kode berikut dengan prinsip:
 
               {/* Floating Notification Center Popover */}
               {showNotifications && (
-                <div className="absolute right-0 mt-3 w-80 sm:w-96 bg-white dark:bg-[#121216] border border-zinc-200 dark:border-[#26262e] rounded-3xl shadow-2xl z-50 p-4 space-y-3 font-mono text-xs animate-in fade-in slide-in-from-top-2 duration-200">
+                <div className="absolute right-0 mt-3 w-[calc(100vw-32px)] sm:w-96 bg-white dark:bg-[#121216] border border-zinc-200 dark:border-[#26262e] rounded-3xl shadow-2xl z-50 p-4 space-y-3 font-mono text-xs animate-in fade-in slide-in-from-top-2 duration-200 max-w-sm">
                   <div className="flex items-center justify-between border-b border-zinc-100 dark:border-[#26262e] pb-3">
                     <div className="flex items-center gap-2">
                       <span className="font-bold text-zinc-900 dark:text-white uppercase">Studio Notifications</span>
@@ -379,25 +380,32 @@ Lakukan refactoring pada potongan kode berikut dengan prinsip:
                     )}
                   </div>
 
-                  <div className="space-y-2 max-h-72 overflow-y-auto">
-                    {notificationsList.map(notif => (
+                  <div className="space-y-2 max-h-64 overflow-y-auto">
+                    {notificationsList.map(n => (
                       <Link 
-                        key={notif.id}
-                        href={notif.link}
+                        key={n.id}
+                        href={n.link}
                         onClick={() => setShowNotifications(false)}
-                        className="p-3 rounded-2xl bg-zinc-50 dark:bg-[#0a0a0c] hover:bg-orange-500/10 border border-zinc-200 dark:border-[#26262e] hover:border-orange-500/30 transition-all block space-y-1"
+                        className="p-2.5 rounded-2xl bg-zinc-50 hover:bg-zinc-100 dark:bg-[#181822] dark:hover:bg-[#20202c] transition-all block border border-zinc-200/50 dark:border-[#26262e]"
                       >
-                        <div className="flex items-center justify-between">
-                          <span className="text-[9px] font-bold uppercase text-orange-500">{notif.type}</span>
-                          <span className="text-[10px] text-zinc-400">{notif.time}</span>
+                        <div className="flex items-center justify-between mb-1">
+                          <span className="text-[10px] font-bold text-orange-500 bg-orange-500/10 px-2 py-0.5 rounded-full">{n.type}</span>
+                          <span className="text-[10px] text-zinc-400">{n.time}</span>
                         </div>
-                        <p className="text-xs font-sans text-zinc-800 dark:text-zinc-200 font-semibold">{notif.title}</p>
+                        <p className="font-sans font-bold text-xs text-zinc-900 dark:text-zinc-200 line-clamp-1">{n.title}</p>
                       </Link>
                     ))}
                   </div>
 
-                  <div className="pt-2 border-t border-zinc-100 dark:border-[#26262e] text-center">
-                    <span className="text-[10px] text-zinc-500">Auto-sync via Daily Scraper Cron</span>
+                  <div className="pt-2 border-t border-zinc-100 dark:border-[#26262e] flex items-center justify-between">
+                    <button 
+                      onClick={triggerScrape}
+                      disabled={isScraping}
+                      className="text-[11px] text-orange-500 hover:text-orange-400 font-bold flex items-center gap-1 cursor-pointer"
+                    >
+                      <span>↻ Sync Radar Scraper</span>
+                    </button>
+                    <span className="text-[10px] text-zinc-500">Auto-sync via Scraper Cron</span>
                   </div>
                 </div>
               )}
@@ -406,22 +414,81 @@ Lakukan refactoring pada potongan kode berikut dengan prinsip:
             {/* Theme Toggle Pill */}
             <button 
               onClick={toggleTheme}
-              className="flex items-center gap-1.5 px-3.5 py-2 rounded-full border text-xs font-mono font-bold transition-all cursor-pointer bg-zinc-100 hover:bg-zinc-200 border-zinc-300 text-zinc-900 dark:bg-[#16161c] dark:hover:bg-[#202028] dark:border-[#26262e] dark:text-zinc-100"
+              className="p-2 sm:px-3.5 sm:py-2 rounded-full border text-xs font-mono font-bold transition-all cursor-pointer bg-zinc-100 hover:bg-zinc-200 border-zinc-300 text-zinc-900 dark:bg-[#16161c] dark:hover:bg-[#202028] dark:border-[#26262e] dark:text-zinc-100 flex items-center gap-1.5"
+              title="Ganti Tema"
             >
               <span>{darkMode ? '🌙' : '☀️'}</span>
               <span className="hidden sm:inline">{darkMode ? 'Matte Dark' : 'Light Mode'}</span>
             </button>
 
-            {/* Template Shortcut Button */}
+            {/* Template Shortcut Button (Hidden on Mobile) */}
             <Link 
               href="/templates" 
-              className="px-4 py-2 rounded-full bg-orange-500 hover:bg-orange-600 text-white font-mono text-xs font-bold transition-all shadow-md shadow-orange-500/20"
+              className="hidden sm:inline-flex px-4 py-2 rounded-full bg-orange-500 hover:bg-orange-600 text-white font-mono text-xs font-bold transition-all shadow-md shadow-orange-500/20 whitespace-nowrap"
             >
               Templates
             </Link>
+
+            {/* Mobile Hamburger Drawer Toggle */}
+            <button 
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              className="md:hidden p-2 rounded-full bg-zinc-100 dark:bg-[#16161c] text-zinc-800 dark:text-zinc-200 border border-zinc-200 dark:border-[#26262e] cursor-pointer"
+              title="Menu Navigasi Mobile"
+            >
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                {mobileMenuOpen ? (
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+                ) : (
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16m-7 6h7" />
+                )}
+              </svg>
+            </button>
           </div>
 
         </div>
+
+        {/* Mobile Slide-down Navigation Drawer */}
+        {mobileMenuOpen && (
+          <div className="md:hidden border-t border-zinc-200 dark:border-[#26262e] bg-white/95 dark:bg-[#0c0c10]/95 backdrop-blur-xl px-4 py-4 space-y-3 font-mono text-xs animate-in slide-in-from-top-2 duration-200 shadow-2xl">
+            <div className="grid grid-cols-2 gap-2">
+              <Link 
+                href="/prompts" 
+                onClick={() => setMobileMenuOpen(false)}
+                className="p-3 rounded-2xl bg-zinc-50 dark:bg-[#16161c] border border-zinc-200/60 dark:border-[#26262e] font-bold text-zinc-800 dark:text-zinc-200 flex items-center gap-2"
+              >
+                <span className="text-orange-500">⚡</span> Prompt Lab
+              </Link>
+              <Link 
+                href="/grants" 
+                onClick={() => setMobileMenuOpen(false)}
+                className="p-3 rounded-2xl bg-zinc-50 dark:bg-[#16161c] border border-zinc-200/60 dark:border-[#26262e] font-bold text-zinc-800 dark:text-zinc-200 flex items-center gap-2"
+              >
+                <span className="text-emerald-500">🎁</span> Bansos AI
+              </Link>
+              <Link 
+                href="/tools" 
+                onClick={() => setMobileMenuOpen(false)}
+                className="p-3 rounded-2xl bg-zinc-50 dark:bg-[#16161c] border border-zinc-200/60 dark:border-[#26262e] font-bold text-zinc-800 dark:text-zinc-200 flex items-center gap-2"
+              >
+                <span className="text-orange-500">🛠️</span> Tools Radar
+              </Link>
+              <Link 
+                href="/intel" 
+                onClick={() => setMobileMenuOpen(false)}
+                className="p-3 rounded-2xl bg-zinc-50 dark:bg-[#16161c] border border-zinc-200/60 dark:border-[#26262e] font-bold text-zinc-800 dark:text-zinc-200 flex items-center gap-2"
+              >
+                <span className="text-blue-500">🌐</span> Threads Intel
+              </Link>
+            </div>
+            <Link 
+              href="/templates" 
+              onClick={() => setMobileMenuOpen(false)}
+              className="w-full p-3 rounded-2xl bg-orange-500 text-white font-bold flex items-center justify-center gap-2 shadow-md shadow-orange-500/25"
+            >
+              <span>✨</span> Buka Galeri Templates Studio
+            </Link>
+          </div>
+        )}
       </header>
 
       {/* Scrape Notification Banner */}
@@ -1109,6 +1176,30 @@ Lakukan refactoring pada potongan kode berikut dengan prinsip:
 
       {/* Global Interactive Search Modal */}
       <SearchModal isOpen={isSearchOpen} onClose={() => setIsSearchOpen(false)} />
+
+      {/* SLEEK FLOATING MOBILE BOTTOM NAVIGATION BAR */}
+      <div className="sm:hidden fixed bottom-3 inset-x-4 z-40 bg-white/90 dark:bg-[#0e0e12]/90 backdrop-blur-xl border border-zinc-200 dark:border-[#26262e] rounded-full p-2 flex items-center justify-around shadow-2xl">
+        <Link href="/" className="p-2 text-orange-500 flex flex-col items-center">
+          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
+          <span className="text-[9px] font-mono font-bold mt-0.5">Home</span>
+        </Link>
+        <Link href="/prompts" className="p-2 text-zinc-500 hover:text-orange-500 dark:text-zinc-400 dark:hover:text-white flex flex-col items-center">
+          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+          <span className="text-[9px] font-mono font-bold mt-0.5">Prompts</span>
+        </Link>
+        <Link href="/grants" className="p-2 text-zinc-500 hover:text-orange-500 dark:text-zinc-400 dark:hover:text-white flex flex-col items-center">
+          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+          <span className="text-[9px] font-mono font-bold mt-0.5">Bansos</span>
+        </Link>
+        <Link href="/tools" className="p-2 text-zinc-500 hover:text-orange-500 dark:text-zinc-400 dark:hover:text-white flex flex-col items-center">
+          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path></svg>
+          <span className="text-[9px] font-mono font-bold mt-0.5">Radar</span>
+        </Link>
+        <Link href="/templates" className="p-2 text-zinc-500 hover:text-orange-500 dark:text-zinc-400 dark:hover:text-white flex flex-col items-center">
+          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z"></path></svg>
+          <span className="text-[9px] font-mono font-bold mt-0.5">Templates</span>
+        </Link>
+      </div>
     </main>
   )
 }

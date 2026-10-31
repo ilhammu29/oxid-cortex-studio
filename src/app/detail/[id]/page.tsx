@@ -133,8 +133,8 @@ Gunakan bahasa teknis padat, langsung to the point, dan sertakan komentar hanya 
   return (
     <div className="min-h-screen bg-[#0a0a0c] text-[#f4f4f5] font-sans antialiased selection:bg-orange-500 selection:text-white flex">
       
-      {/* 1. LEFT ICON RAIL */}
-      <aside className="w-16 sm:w-20 bg-[#0e0e12] border-r border-[#26262e] flex flex-col items-center justify-between py-6 flex-shrink-0 sticky top-0 h-screen z-40">
+      {/* 1. LEFT ICON RAIL (DESKTOP ONLY) */}
+      <aside className="hidden sm:flex w-16 sm:w-20 bg-[#0e0e12] border-r border-[#26262e] flex-col items-center justify-between py-6 flex-shrink-0 sticky top-0 h-screen z-40">
         <div className="space-y-8 flex flex-col items-center">
           <Link href="/" className="w-10 h-10 rounded-2xl p-1.5 bg-white border border-zinc-200 flex items-center justify-center shadow-lg shadow-orange-500/20 hover:scale-105 transition-transform" title="OXID Labs Home">
             <img src="/images/oxid-logo.png" alt="OXID Labs" className="w-full h-full object-contain" />
@@ -167,34 +167,34 @@ Gunakan bahasa teknis padat, langsung to the point, dan sertakan komentar hanya 
       {/* 2. EXPANSIVE FULL-WIDTH MAIN CONTAINER */}
       <div className="flex-1 flex flex-col min-w-0">
         
-        {/* Top Header Navigation */}
-        <header className="h-20 border-b border-[#26262e] bg-[#0a0a0c]/90 backdrop-blur-md px-6 sm:px-10 flex items-center justify-between sticky top-0 z-30 font-mono text-xs">
-          <div className="flex items-center gap-3">
-            <Link href="/" className="px-3.5 py-1.5 rounded-full bg-[#16161c] hover:bg-[#202028] text-orange-500 border border-[#26262e] transition-all">
+        {/* Top Header Navigation (Compact Mobile) */}
+        <header className="h-16 sm:h-20 border-b border-[#26262e] bg-[#0a0a0c]/90 backdrop-blur-md px-4 sm:px-10 flex items-center justify-between sticky top-0 z-30 font-mono text-xs">
+          <div className="flex items-center gap-2 sm:gap-3">
+            <Link href="/" className="px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-full bg-[#16161c] hover:bg-[#202028] text-orange-500 border border-[#26262e] transition-all text-[11px] sm:text-xs">
               ← Studio Home
             </Link>
-            <span className="text-zinc-500">•</span>
-            <span className="text-zinc-400 uppercase font-bold">{current.category}</span>
+            <span className="text-zinc-500 hidden sm:inline">•</span>
+            <span className="text-zinc-400 uppercase font-bold text-[10px] sm:text-xs truncate max-w-[120px] sm:max-w-none">{current.category}</span>
           </div>
 
-          <div className="flex items-center space-x-3">
+          <div className="flex items-center space-x-2 sm:space-x-3">
             <Link 
               href="/grants"
-              className="px-4 py-2 rounded-full bg-[#16161c] hover:bg-[#202028] text-zinc-300 border border-[#26262e] transition-all"
+              className="px-3 py-1.5 sm:px-4 sm:py-2 rounded-full bg-[#16161c] hover:bg-[#202028] text-zinc-300 border border-[#26262e] transition-all text-xs"
             >
-              All Grants
+              Grants
             </Link>
             <Link 
               href="/prompts"
-              className="px-4 py-2 rounded-full bg-orange-500 hover:bg-orange-600 text-white font-bold transition-all shadow-md shadow-orange-500/25"
+              className="px-3 py-1.5 sm:px-4 sm:py-2 rounded-full bg-orange-500 hover:bg-orange-600 text-white font-bold transition-all shadow-md shadow-orange-500/25 text-xs"
             >
-              Prompt Lab
+              Prompts
             </Link>
           </div>
         </header>
 
-        {/* EXPANSIVE 2-COLUMN STUDIO LAYOUT (ANTI-FORM) */}
-        <div className="max-w-7xl mx-auto w-full p-6 sm:p-10 space-y-10">
+        {/* 3. SCROLLABLE ARTICLE BODY */}
+        <div className="flex-1 p-4 sm:p-12 pb-28 sm:pb-12 max-w-6xl mx-auto w-full space-y-8 sm:space-y-12 overflow-y-auto">
           
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
             
@@ -368,6 +368,30 @@ Gunakan bahasa teknis padat, langsung to the point, dan sertakan komentar hanya 
 
         </div>
 
+      </div>
+
+      {/* SLEEK FLOATING MOBILE BOTTOM NAVIGATION BAR */}
+      <div className="sm:hidden fixed bottom-3 inset-x-4 z-50 bg-[#0e0e12]/95 backdrop-blur-xl border border-[#26262e] rounded-full p-2 flex items-center justify-around shadow-2xl">
+        <Link href="/" className="p-2 text-zinc-400 hover:text-white flex flex-col items-center">
+          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
+          <span className="text-[9px] font-mono font-bold mt-0.5">Home</span>
+        </Link>
+        <Link href="/prompts" className="p-2 text-zinc-400 hover:text-white flex flex-col items-center">
+          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+          <span className="text-[9px] font-mono font-bold mt-0.5">Prompts</span>
+        </Link>
+        <Link href="/grants" className="p-2 text-zinc-400 hover:text-white flex flex-col items-center">
+          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+          <span className="text-[9px] font-mono font-bold mt-0.5">Bansos</span>
+        </Link>
+        <Link href="/tools" className="p-2 text-zinc-400 hover:text-white flex flex-col items-center">
+          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path></svg>
+          <span className="text-[9px] font-mono font-bold mt-0.5">Radar</span>
+        </Link>
+        <Link href="/templates" className="p-2 text-zinc-400 hover:text-white flex flex-col items-center">
+          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z"></path></svg>
+          <span className="text-[9px] font-mono font-bold mt-0.5">Templates</span>
+        </Link>
       </div>
 
     </div>

@@ -22,8 +22,8 @@ export default function IntelPage() {
   return (
     <div className="min-h-screen bg-[#0a0a0c] text-[#f4f4f5] font-sans antialiased selection:bg-orange-500 selection:text-white flex">
       
-      {/* 1. LEFT ICON RAIL */}
-      <aside className="w-16 sm:w-20 bg-[#0e0e12] border-r border-[#26262e] flex flex-col items-center justify-between py-6 flex-shrink-0 sticky top-0 h-screen z-40">
+      {/* 1. LEFT ICON RAIL (DESKTOP ONLY) */}
+      <aside className="hidden sm:flex w-16 sm:w-20 bg-[#0e0e12] border-r border-[#26262e] flex-col items-center justify-between py-6 flex-shrink-0 sticky top-0 h-screen z-40">
         <div className="space-y-8 flex flex-col items-center">
           <Link href="/" className="w-10 h-10 rounded-2xl p-1.5 bg-white border border-zinc-200 flex items-center justify-center shadow-lg shadow-orange-500/20 hover:scale-105 transition-transform" title="OXID Labs Home">
             <img src="/images/oxid-logo.png" alt="OXID Labs" className="w-full h-full object-contain" />
@@ -59,16 +59,19 @@ export default function IntelPage() {
       {/* MAIN CONTAINER */}
       <div className="flex-1 flex flex-col min-w-0">
         
-        {/* 2. TOP BAR */}
-        <header className="h-20 border-b border-[#26262e] bg-[#0a0a0c]/90 backdrop-blur-md px-6 sm:px-8 flex items-center justify-between sticky top-0 z-30 font-mono text-xs">
+        {/* 2. TOP BAR (MOBILE RESPONSIVE COMPACT) */}
+        <header className="border-b border-[#26262e] bg-[#0a0a0c]/90 backdrop-blur-md p-4 sm:px-8 flex items-center justify-between sticky top-0 z-30 font-mono text-xs">
           <div className="flex items-center gap-2">
+            <Link href="/" className="sm:hidden w-7 h-7 rounded-full bg-white p-1 flex items-center justify-center mr-1">
+              <img src="/images/oxid-logo.png" alt="OXID" className="w-full h-full object-contain" />
+            </Link>
             <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-            <span className="font-bold text-white uppercase">Category: Real Live Scraped Threads Intel</span>
+            <span className="font-bold text-white uppercase text-[11px] sm:text-xs">Live Threads Intel</span>
           </div>
 
           <Link 
             href="/templates" 
-            className="px-5 py-2 rounded-full bg-orange-500 hover:bg-orange-600 text-white font-mono text-xs font-bold transition-all shadow-md shadow-orange-500/25"
+            className="px-3.5 py-1.5 sm:px-5 sm:py-2 rounded-full bg-orange-500 hover:bg-orange-600 text-white font-mono text-xs font-bold transition-all shadow-md shadow-orange-500/25 whitespace-nowrap"
           >
             Templates
           </Link>
@@ -77,7 +80,7 @@ export default function IntelPage() {
         {/* 3. MAIN CENTER AREA + RIGHT SIDEBAR */}
         <div className="flex-1 flex flex-col xl:flex-row min-w-0">
           
-          <main className="flex-1 p-6 sm:p-8 space-y-6 min-w-0 overflow-y-auto">
+          <main className="flex-1 p-4 sm:p-8 pb-28 sm:pb-8 space-y-6 min-w-0 overflow-y-auto">
             {loading ? (
               <div className="p-8 text-center font-mono text-xs text-zinc-500">
                 Memuat data real-live dari threads.net...
@@ -136,6 +139,34 @@ export default function IntelPage() {
 
         </div>
 
+      </div>
+
+      {/* SLEEK FLOATING MOBILE BOTTOM NAVIGATION BAR */}
+      <div className="sm:hidden fixed bottom-3 inset-x-4 z-50 bg-[#0e0e12]/95 backdrop-blur-xl border border-[#26262e] rounded-full p-2 flex items-center justify-around shadow-2xl">
+        <Link href="/" className="p-2 text-zinc-400 hover:text-white flex flex-col items-center">
+          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
+          <span className="text-[9px] font-mono font-bold mt-0.5">Home</span>
+        </Link>
+        <Link href="/prompts" className="p-2 text-zinc-400 hover:text-white flex flex-col items-center">
+          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+          <span className="text-[9px] font-mono font-bold mt-0.5">Prompts</span>
+        </Link>
+        <Link href="/grants" className="p-2 text-zinc-400 hover:text-white flex flex-col items-center">
+          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+          <span className="text-[9px] font-mono font-bold mt-0.5">Bansos</span>
+        </Link>
+        <Link href="/tools" className="p-2 text-zinc-400 hover:text-white flex flex-col items-center">
+          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path></svg>
+          <span className="text-[9px] font-mono font-bold mt-0.5">Radar</span>
+        </Link>
+        <Link href="/intel" className="p-2 text-orange-500 flex flex-col items-center">
+          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"></path></svg>
+          <span className="text-[9px] font-mono font-bold mt-0.5">Intel</span>
+        </Link>
+        <Link href="/templates" className="p-2 text-zinc-400 hover:text-white flex flex-col items-center">
+          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z"></path></svg>
+          <span className="text-[9px] font-mono font-bold mt-0.5">Templates</span>
+        </Link>
       </div>
 
     </div>
