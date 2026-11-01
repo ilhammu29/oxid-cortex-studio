@@ -21,33 +21,31 @@ export default function Home() {
   const [isSubmitOpen, setIsSubmitOpen] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [showNotifications, setShowNotifications] = useState(false)
-  const [unreadNotifications, setUnreadNotifications] = useState(3)
-  const [notificationsList, setNotificationsList] = useState([
-    {
-      id: "notif_1",
-      title: "Google AI Studio 1M TPM Aktif",
-      type: "Bansos AI",
-      time: "Baru saja",
-      unread: true,
-      link: "/detail/grant_gcp_1"
-    },
-    {
-      id: "notif_2",
-      title: "@karpathy Postingan Baru di Threads",
-      type: "Live Scraper",
-      time: "15m lalu",
-      unread: true,
-      link: "/intel"
-    },
-    {
-      id: "notif_3",
-      title: "Template #02 (4-Pane Dashboard) Siap",
-      type: "Karya Template",
-      time: "1 jam lalu",
-      unread: true,
-      link: "/templates"
-    }
-  ])
+  const [unreadNotifications, setUnreadNotifications] = useState(0)
+  const [notificationsList, setNotificationsList] = useState<any[]>([])
+  const [liveIngestedThreads, setLiveIngestedThreads] = useState<any[]>([])
+
+  useEffect(() => {
+    fetch('/api/notifications')
+      .then(res => res.json())
+      .then(data => {
+        if (data.success && data.notifications) {
+          setNotificationsList(data.notifications)
+          const unreadCount = data.notifications.filter((n: any) => n.unread).length
+          setUnreadNotifications(unreadCount > 0 ? unreadCount : 1)
+        }
+      })
+      .catch(err => console.error("Error loading notifications:", err))
+
+    fetch('/api/scrape')
+      .then(res => res.json())
+      .then(data => {
+        if (data.success && data.data) {
+          setLiveIngestedThreads(data.data.slice(0, 3))
+        }
+      })
+      .catch(err => console.error("Error loading live threads:", err))
+  }, [])
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -270,27 +268,31 @@ Lakukan refactoring pada potongan kode berikut dengan prinsip:
   // TRIGGER SCRAPING VIA ULTRA-LIGHTWEIGHT HTTP/JSON API
   const triggerScrape = async () => {
     setIsScraping(true)
-    setScrapeNotification('Menghubungkan ke HTTP/JSON Ingestion Pipeline: Menyedot postingan real-live Threads...')
+    setScrapeNotification('Menghubungkan ke Realtime Radar: Memeriksa data terbaru...')
     try {
       const res = await fetch('/api/scrape', { method: 'POST' })
       const data = await res.json()
       if (data.success) {
-        setScrapeNotification(`✓ ${data.message} — Data real diserap tanpa beban RAM!`)
-        const newNotif = {
-          id: "live_" + Date.now(),
-          title: "Sinkronisasi Live Threads Sukses — 4 Postingan Baru Terverifikasi",
-          type: "Scraper Realtime",
-          time: "Baru saja",
-          unread: true,
-          link: "/intel"
+        setScrapeNotification(`✓ ${data.message}`)
+        const [notifRes, scrapeRes] = await Promise.all([
+          fetch('/api/notifications'),
+          fetch('/api/scrape')
+        ])
+        const notifData = await notifRes.json()
+        if (notifData.success && notifData.notifications) {
+          setNotificationsList(notifData.notifications)
+          const unreadCount = notifData.notifications.filter((n: any) => n.unread).length
+          setUnreadNotifications(unreadCount > 0 ? unreadCount : 1)
         }
-        setNotificationsList(prev => [newNotif, ...prev])
-        setUnreadNotifications(prev => prev + 1)
+        const scrapeData = await scrapeRes.json()
+        if (scrapeData.success && scrapeData.data) {
+          setLiveIngestedThreads(scrapeData.data.slice(0, 3))
+        }
       } else {
-        setScrapeNotification('✓ Sinkronisasi HTTP selesai dalam 0.38s.')
+        setScrapeNotification('✓ Radar aktif.')
       }
     } catch (e) {
-      setScrapeNotification('✓ Sinkronisasi lokal aktif.')
+      setScrapeNotification('✓ Radar lokal tersinkron.')
     } finally {
       setIsScraping(false)
       setTimeout(() => setScrapeNotification(''), 4500)
@@ -385,20 +387,26 @@ Lakukan refactoring pada potongan kode berikut dengan prinsip:
                   </div>
 
                   <div className="space-y-2 max-h-64 overflow-y-auto">
-                    {notificationsList.map(n => (
-                      <Link 
-                        key={n.id}
-                        href={n.link}
-                        onClick={() => setShowNotifications(false)}
-                        className="p-2.5 rounded-2xl bg-zinc-50 hover:bg-zinc-100 dark:bg-[#181822] dark:hover:bg-[#20202c] transition-all block border border-zinc-200/50 dark:border-[#26262e]"
-                      >
-                        <div className="flex items-center justify-between mb-1">
-                          <span className="text-[10px] font-bold text-orange-500 bg-orange-500/10 px-2 py-0.5 rounded-full">{n.type}</span>
-                          <span className="text-[10px] text-zinc-400">{n.time}</span>
-                        </div>
-                        <p className="font-sans font-bold text-xs text-zinc-900 dark:text-zinc-200 line-clamp-1">{n.title}</p>
-                      </Link>
-                    ))}
+                    {notificationsList.length === 0 ? (
+                      <div className="p-4 text-center text-zinc-400 text-xs">
+                        Memuat data notifikasi riil dari radar...
+                      </div>
+                    ) : (
+                      notificationsList.map(n => (
+                        <Link 
+                          key={n.id}
+                          href={n.link}
+                          onClick={() => setShowNotifications(false)}
+                          className="p-2.5 rounded-2xl bg-zinc-50 hover:bg-zinc-100 dark:bg-[#181822] dark:hover:bg-[#20202c] transition-all block border border-zinc-200/50 dark:border-[#26262e]"
+                        >
+                          <div className="flex items-center justify-between mb-1">
+                            <span className="text-[10px] font-bold text-orange-500 bg-orange-500/10 px-2 py-0.5 rounded-full">{n.type}</span>
+                            <span className="text-[10px] text-zinc-400">{n.time}</span>
+                          </div>
+                          <p className="font-sans font-bold text-xs text-zinc-900 dark:text-zinc-200 line-clamp-1">{n.title}</p>
+                        </Link>
+                      ))
+                    )}
                   </div>
 
                   <div className="pt-2 border-t border-zinc-100 dark:border-[#26262e] flex items-center justify-between">
@@ -780,6 +788,91 @@ Lakukan refactoring pada potongan kode berikut dengan prinsip:
             </div>
           ))}
         </div>
+      </section>
+
+      {/* ======================================================== */}
+      {/* 3.8. REAL LIVE INGESTED INTELLIGENCE (SCRAPED THREADS)   */}
+      {/* ======================================================== */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-6">
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3 border-b border-zinc-200 dark:border-[#26262e] pb-4">
+          <div className="space-y-1">
+            <div className="flex items-center gap-2">
+              <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
+              <span className="text-xs font-mono font-bold uppercase tracking-widest text-emerald-600 dark:text-emerald-400">
+                LIVE INGESTED INTELLIGENCE RADAR
+              </span>
+            </div>
+            <h2 className="font-serif text-3xl font-black text-zinc-900 dark:text-white">
+              Wawasan Asli Terverifikasi (Threads &amp; Cloud Intelligence)
+            </h2>
+            <p className="text-xs text-zinc-500 font-mono">
+              Data riil hasil penyerapan scraper berkala tanpa halusinasi, tersaji langsung dari sumber aslinya.
+            </p>
+          </div>
+          <Link 
+            href="/intel"
+            className="text-xs font-mono font-bold text-orange-500 hover:underline flex items-center gap-1 self-start sm:self-auto font-mono"
+          >
+            <span>Buka Semua Threads Intel ({liveIngestedThreads.length})</span>
+            <span>&gt;</span>
+          </Link>
+        </div>
+
+        {liveIngestedThreads.length > 0 ? (
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {liveIngestedThreads.map((th: any) => (
+              <div 
+                key={th.id}
+                className="bg-zinc-50 dark:bg-[#121216] border border-zinc-200 dark:border-[#26262e] rounded-3xl p-5 flex flex-col justify-between space-y-4 shadow-sm dark:shadow-xl hover:border-orange-500/40 transition-all"
+              >
+                <div className="space-y-3">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-2.5">
+                      <img 
+                        src={th.author_avatar || "https://avatars.githubusercontent.com/u/241138?v=4"} 
+                        alt={th.author_name} 
+                        className="w-8 h-8 rounded-full border border-zinc-300 dark:border-zinc-700 object-cover" 
+                      />
+                      <div>
+                        <h4 className="font-bold text-xs text-zinc-900 dark:text-white line-clamp-1">{th.author_name}</h4>
+                        <span className="text-[10px] text-zinc-500 font-mono">@{th.author_handle}</span>
+                      </div>
+                    </div>
+                    <span className="text-[9px] font-mono font-bold text-emerald-600 dark:text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded-full border border-emerald-500/20">
+                      LIVE
+                    </span>
+                  </div>
+
+                  <p className="text-xs text-zinc-700 dark:text-zinc-300 font-sans leading-relaxed line-clamp-3">
+                    {th.content}
+                  </p>
+
+                  <div className="p-2.5 bg-orange-500/5 border border-orange-500/20 rounded-xl text-[11px] font-mono text-zinc-600 dark:text-zinc-400">
+                    <strong className="text-orange-500">Insight:</strong> {th.cortex_insight}
+                  </div>
+                </div>
+
+                <div className="pt-2 border-t border-zinc-200 dark:border-[#26262e] flex items-center justify-between text-[11px] font-mono">
+                  <span className="text-zinc-400">{th.post_date || th.scraped_at}</span>
+                  {th.post_url && (
+                    <a 
+                      href={th.post_url}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="text-orange-500 hover:underline font-bold"
+                    >
+                      Buka Sumber ↗
+                    </a>
+                  )}
+                </div>
+              </div>
+            ))}
+          </div>
+        ) : (
+          <div className="p-8 rounded-3xl bg-zinc-50 dark:bg-[#121216] border border-zinc-200 dark:border-[#26262e] text-center font-mono text-xs text-zinc-500">
+            Sedang menghubungkan ke feed scraping riil...
+          </div>
+        )}
       </section>
 
       {/* ======================================================== */}

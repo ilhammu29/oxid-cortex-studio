@@ -158,6 +158,15 @@ def fetch_real_karpathy_threads():
     except Exception as e:
         print(f"Warning fetching live threads: {e}")
 
+    # If online fetch returned no items, preserve previously verified items from OUTPUT_FILE
+    if not real_items and OUTPUT_FILE.exists():
+        try:
+            with open(OUTPUT_FILE, "r", encoding="utf-8") as f:
+                prev_items = json.load(f)
+                real_items = [it for it in prev_items if it.get("id") != "th_design_vault_2026"]
+        except Exception:
+            pass
+
     # Add curated design & engineering thread post
     design_thread_post = {
         "id": "th_design_vault_2026",
