@@ -2,10 +2,14 @@
 
 import React, { useState } from 'react'
 import Link from 'next/link'
+import { useStudioTheme } from '@/lib/useStudioTheme'
+import { useBookmarks } from '@/lib/useBookmarks'
 
 export default function ToolsPage() {
   const [searchQuery, setSearchQuery] = useState('')
   const [activeCategory, setActiveCategory] = useState('all')
+  const { darkMode, toggleTheme } = useStudioTheme()
+  const { toggleBookmark, isBookmarked } = useBookmarks()
 
   const realTools = [
     // --- 5 FREE AI DESIGN RESOURCES (BOOKMARK VAULT) ---
@@ -28,183 +32,219 @@ export default function ToolsPage() {
       badge: "CURATED INSPIRATION",
       logo: "https://land-book.com/favicon.ico",
       previewImage: "https://cdn.land-book.com/assets/og-image.webp",
-      tagline: "Landing page inspiration, curated well for designers and developers.",
-      description: "Galeri kurasi landing page, portfolio, dan web app terbaik di dunia yang diperbarui setiap hari dengan standar visual tinggi.",
+      tagline: "The best hand-picked website design inspiration powered by designers and developers.",
+      description: "Katalog kurasi landing page, portfolio, dan SaaS terbaik dunia. Sumber benchmarking visual standar tinggi tanpa generik AI slop.",
       url: "https://land-book.com",
       type: "design"
     },
     {
       id: "res_recentdesign",
       name: "Recent Design",
-      category: "Design Gallery",
-      badge: "FRESH DAILY",
+      category: "Trend Vault",
+      badge: "DAILY ARCHIVE",
       logo: "https://recent.design/favicon.ico",
       previewImage: "https://recent.design/og.png",
-      tagline: "A great gallery of fresh web design inspiration with human typography.",
-      description: "Pameran karya web terkini yang berfokus pada tipografi tajam, ruang bernapas luas, dan keindahan antarmuka bebas slop.",
+      tagline: "A curated feed of recent design references for high-craft digital products.",
+      description: "Feed harian desain UI/UX interaktif dengan fokus pada tipografi editorial Swiss, micro-animations, dan layout minimalis.",
       url: "https://recent.design",
       type: "design"
     },
     {
       id: "res_landdding",
       name: "Landdding",
-      category: "SaaS Showcase",
-      badge: "TOP-TIER SAAS",
+      category: "Bento & Component Library",
+      badge: "HIGH CONVERTING",
       logo: "https://landdding.com/favicon.ico",
-      previewImage: "https://landdding.com/images/thumbnail.png",
-      tagline: "Top-tier landing pages with high conversion and modern micro-interactions.",
-      description: "Koleksi khusus landing page SaaS kelas atas dengan tata letak konversi tinggi, mode gelap elegan, dan interaksi interaktif.",
+      previewImage: "https://landdding.com/og-image.png",
+      tagline: "Landing page inspiration with breakdown of hero sections, pricing tables, and bento grids.",
+      description: "Bedah visual struktur landing page berkonversi tinggi. Menampilkan detail padding, kontras warna, dan hierarki visual tombol CTA.",
       url: "https://landdding.com",
       type: "design"
     },
     {
       id: "res_fontinlogo",
       name: "FontInLogo",
-      category: "Typography Tool",
-      badge: "FIND THE FONTS",
+      category: "Brand Typography Intel",
+      badge: "TYPOGRAPHY RADAR",
       logo: "https://www.fontinlogo.com/favicon.ico",
-      previewImage: "https://www.fontinlogo.com/images/1.jpg",
-      tagline: "Find the exact fonts used in famous world brands and logos.",
-      description: "Mesin pencari font resmi dari brand teknologi, startup unicorn, dan korporat dunia lengkap dengan tautan unduhan font.",
+      previewImage: "https://www.fontinlogo.com/images/meta.png",
+      tagline: "Find font used by world top brands and modern tech products.",
+      description: "Radar font resmi perusahaan teknologi dunia (Linear, Stripe, OpenAI, Vercel). Menemukan padanan font Google Fonts gratis dengan geometri serupa.",
       url: "https://www.fontinlogo.com",
       type: "design"
     },
 
-    // --- SKILLS FOR MOTION, 3D & FINAL POLISH ---
+    // --- 5 ADVANCED MOTION & CRAFT SKILLS ---
     {
-      id: "skill_design_eng",
-      name: "Design Engineering (Emil Kowalski)",
-      category: "Motion & Craft Skills",
-      badge: "MOTION PHYSICS",
-      logo: "https://emilkowal.ski/favicon.ico",
-      previewImage: "https://emilkowal.ski/opengraph-image.png?892f3fd8543bf349",
-      tagline: "Easing, durations, springs & physics-based micro-interactions.",
-      description: "Eksplorasi mendalam interaksi mikro: kurva cubic-bezier organik, parameter spring, dan durasi transisi yang membuat UI terasa hidup.",
-      url: "https://emilkowal.ski/skill",
+      id: "skill_emil_motion",
+      name: "Emil Kowalski — Delightful Animations",
+      category: "Micro-Interaction Engineering",
+      badge: "✦ MASTERCLASS",
+      logo: "https://avatars.githubusercontent.com/u/36730035?v=4",
+      previewImage: "https://animations.dev/og.png",
+      tagline: "Crafting fluid animations and spring physics in React and Web interfaces.",
+      description: "Panduan teknis transisi mikro, gesture springs, dan interruptible motion. Mencegah animasi kaku dan meningkatkan responsivitas antarmuka hingga 60fps.",
+      url: "https://animations.dev",
       type: "skill"
     },
     {
-      id: "skill_shader_dev",
-      name: "Shader Dev (MiniMax Skills)",
-      category: "3D & ShaderToy",
-      badge: "36 SHADER TECHNIQUES",
-      logo: "https://github.com/favicon.ico",
-      previewImage: "https://opengraph.githubassets.com/1/MiniMax-AI/skills",
-      tagline: "36 ShaderToy techniques for high-performance canvas & WebGL.",
-      description: "Kompilasi 36 teknik GLSL dan ShaderToy untuk menciptakan efek visual interaktif, partikel dinamis, dan distorsi canvas.",
-      url: "https://github.com/MiniMax-AI/skills",
+      id: "skill_shader_minimax",
+      name: "Shader Dev with MiniMax Hailuo",
+      category: "WebGL & Generative Canvas",
+      badge: "✦ WEBGL SHADER",
+      logo: "https://avatars.githubusercontent.com/u/10834375?v=4",
+      previewImage: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1200&q=80",
+      tagline: "Direct GLSL shader compilation and canvas particle engineering via AI prompting.",
+      description: "Prompt khusus dan kode fragment shader GLSL untuk background noise cair, iridescent glassmorphism, dan aurora gradient interaktif.",
+      url: "https://github.com/topics/glsl-shaders",
       type: "skill"
     },
     {
       id: "skill_diagram_design",
-      name: "Diagram Design",
-      category: "Architecture & Systems",
-      badge: "44 DIAGRAM TYPES",
-      logo: "https://diagramdesign.dev/favicon.ico",
-      previewImage: "https://diagramdesign.dev/og.png",
-      tagline: "44 editorial diagram types for system architecture and DAG flows.",
-      description: "Standar desain diagram teknis editorial: visualisasi alur sistem, pohon keputusan, dan kontrak arsitektur modular.",
-      url: "https://diagramdesign.dev",
+      name: "Diagram Design — Flow & Architecture",
+      category: "Data Visualization Craft",
+      badge: "✦ ARCHITECTURE",
+      logo: "https://avatars.githubusercontent.com/u/2330416?v=4",
+      previewImage: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80",
+      tagline: "Architectural blueprint generation and technical system diagrams.",
+      description: "Standar representasi diagram sistem backend, database schemas, dan flow AI agent pipeline dengan standar grafis industri.",
+      url: "https://github.com/mermaid-js/mermaid",
       type: "skill"
     },
     {
       id: "skill_vercel_guidelines",
-      name: "Web Interface Guidelines (Vercel)",
-      category: "UI Design Review",
-      badge: "INDUSTRY BENCHMARK",
-      logo: "https://vercel.com/favicon.ico",
-      previewImage: "https://k2mkucxia43oc7fa.public.blob.vercel-storage.com/front/design/guidelines-og.png",
-      tagline: "Vercel's official UI review and design quality benchmark.",
-      description: "Pedoman audit resmi tim desain Vercel: standar aksesibilitas WCAG, fokus keyboard navigation, dan performa DOM nol slop.",
-      url: "https://vercel.com/design/guidelines",
+      name: "Vercel Web Interface Guidelines",
+      category: "Frontend Design Doctrine",
+      badge: "✦ BEST PRACTICES",
+      logo: "https://assets.vercel.com/image/upload/front/favicon/vercel/favicon.ico",
+      previewImage: "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=1200&q=80",
+      tagline: "Performance, accessibility and visual standards for web applications.",
+      description: "Doktrin antarmuka web modern: zero cumulative layout shift (CLS), keyboard navigation lengkap (tab index), dan kontras teks WCAG AAA.",
+      url: "https://vercel.com/design",
       type: "skill"
     },
     {
-      id: "skill_craftwork",
-      name: "Craftwork Design",
-      category: "Craft Assets",
-      badge: "ICONS & 3D COMPONENTS",
+      id: "skill_craftwork_assets",
+      name: "Craftwork 3D & Vector Vault",
+      category: "High-Craft Asset Studio",
+      badge: "✦ VECTOR & 3D",
       logo: "https://craftwork.design/favicon.ico",
-      previewImage: "https://craftwork.design/opengraph-image.png",
-      tagline: "Real fonts, vector icons, 3D elements and engineered UI components.",
-      description: "Aset desain premium untuk developer: paket ikon vektor pixel-perfect, font siap produksi, dan sistem komponen terstruktur.",
-      url: "https://craftwork.design/skill",
+      previewImage: "https://images.unsplash.com/photo-1634017839464-5c339ebe3cb4?auto=format&fit=crop&w=1200&q=80",
+      tagline: "High-end 3D illustrations, UI mockups and isometric vector elements.",
+      description: "Pustaka aset grafis 3D presisi tinggi untuk hero section dan showcase fitur tanpa ketergantungan pada model rendering berat.",
+      url: "https://craftwork.design",
       type: "skill"
     },
 
-    // --- GITHUB REPOS & SKILLS (SCRAPED LIVE) ---
+    // --- 8 GITHUB REPOSITORIES ---
     {
       id: "gh_openhands",
       name: "All-Hands-AI / OpenHands",
-      category: "Autonomous Agent CLI",
-      badge: "⭐ 92.4k STARS",
-      logo: "https://github.com/All-Hands-AI.png",
+      category: "Autonomous AI Software Developer",
+      badge: "⭐ 42.1k STARS",
+      logo: "https://avatars.githubusercontent.com/u/163013219?v=4",
       previewImage: "https://opengraph.githubassets.com/1/All-Hands-AI/OpenHands",
-      tagline: "Autonomous software development agent in bash, terminal, and browser.",
-      description: "Platform agen software engineering otonom nomor #1 di GitHub. Mampu menulis kode multi-file, menjalankan tes, dan menyelesaikan issues mandiri.",
+      tagline: "Platform agen pengembang perangkat lunak AI open-source dengan eksekusi kode mandiri.",
+      description: "Agen AI otonom yang mampu menulis kode, menjalankan terminal, dan memperbaiki bug di repositori secara end-to-end.",
       url: "https://github.com/All-Hands-AI/OpenHands",
       type: "github"
     },
     {
-      id: "gh_vaul",
-      name: "emilkowalski / vaul",
-      category: "Motion & UI Primitive",
-      badge: "⭐ 12.5k STARS",
-      logo: "https://github.com/emilkowalski.png",
-      previewImage: "https://opengraph.githubassets.com/1/emilkowalski/vaul",
-      tagline: "Drawer component for React with organic physics and spring dragging.",
-      description: "Komponen drawer modern berkinerja tinggi untuk Next.js dan React yang menggunakan kurva fisika pegas dan gestur natural perangkat seluler.",
-      url: "https://github.com/emilkowalski/vaul",
+      id: "gh_browser_use",
+      name: "browser-use / browser-use",
+      category: "AI Agent Web Browser Automation",
+      badge: "⭐ 31.4k STARS",
+      logo: "https://avatars.githubusercontent.com/u/190875200?v=4",
+      previewImage: "https://opengraph.githubassets.com/1/browser-use/browser-use",
+      tagline: "Otomasi browser web cerdas untuk AI agents berinteraksi layaknya manusia.",
+      description: "Menghubungkan LLM dengan browser nyata untuk mengeksekusi navigasi web, pengisian formulir, dan ekstraksi data dinamis.",
+      url: "https://github.com/browser-use/browser-use",
       type: "github"
     },
     {
-      id: "gh_three_fiber",
-      name: "pmndrs / react-three-fiber",
-      category: "3D Canvas & WebGL",
-      badge: "⭐ 28.1k STARS",
-      logo: "https://github.com/pmndrs.png",
-      previewImage: "https://opengraph.githubassets.com/1/pmndrs/react-three-fiber",
-      tagline: "Declarative Three.js WebGL renderer for React & Next.js apps.",
-      description: "Ekosistem perender 3D WebGL tercanggih di web. Bangun pengalaman visual interaktif 60fps dengan JSX dan kontrol shader dinamis.",
-      url: "https://github.com/pmndrs/react-three-fiber",
+      id: "gh_eliza",
+      name: "elizaOS / eliza",
+      category: "Autonomous Multi-Agent Framework",
+      badge: "⭐ 12.8k STARS",
+      logo: "https://avatars.githubusercontent.com/u/188849764?v=4",
+      previewImage: "https://opengraph.githubassets.com/1/elizaOS/eliza",
+      tagline: "Sistem multi-agen otonom untuk Discord, Twitter, dan Telegram.",
+      description: "Framework agen modular dengan memori jangka panjang, integrasi multi-platform chat, dan interaksi otonom terdesentralisasi.",
+      url: "https://github.com/elizaOS/eliza",
       type: "github"
     },
     {
-      id: "gh_fastmcp",
-      name: "jlowin / fastmcp",
-      category: "Agent Tooling & Protocol",
-      badge: "⭐ 6.5k STARS",
-      logo: "https://github.com/jlowin.png",
-      previewImage: "https://opengraph.githubassets.com/1/jlowin/fastmcp",
-      tagline: "The fastest way to build Model Context Protocol (MCP) servers in Python.",
-      description: "Framework Python untuk membangun toolset dan server integrasi protokol konteks model Anthropic dan Hermes Agent.",
-      url: "https://github.com/jlowin/fastmcp",
+      id: "gh_ollama",
+      name: "ollama / ollama",
+      category: "Local LLM Inference Engine",
+      badge: "⭐ 104.2k STARS",
+      logo: "https://avatars.githubusercontent.com/u/152945722?v=4",
+      previewImage: "https://opengraph.githubassets.com/1/ollama/ollama",
+      tagline: "Menjalankan model Llama 3, Mistral, dan Gemma secara lokal dengan CLI cepat.",
+      description: "Engine inferensi lokal tercepat dan paling efisien untuk menjalankan model bahasa besar langsung di CPU atau GPU lokal.",
+      url: "https://github.com/ollama/ollama",
       type: "github"
     },
     {
-      id: "gh_shadcn_ui",
+      id: "gh_vllm",
+      name: "vllm-project / vllm",
+      category: "High-Throughput LLM Serving",
+      badge: "⭐ 35.6k STARS",
+      logo: "https://avatars.githubusercontent.com/u/137744793?v=4",
+      previewImage: "https://opengraph.githubassets.com/1/vllm-project/vllm",
+      tagline: "Library throughput tinggi dan hemat memori untuk inferensi dan serving LLM.",
+      description: "Engine serving kelas produksi dengan PagedAttention yang mampu melipatgandakan throughput inferensi model AI.",
+      url: "https://github.com/vllm-project/vllm",
+      type: "github"
+    },
+    {
+      id: "gh_crewAI",
+      name: "crewAIInc / crewAI",
+      category: "Multi-Agent Orchestration",
+      badge: "⭐ 24.5k STARS",
+      logo: "https://avatars.githubusercontent.com/u/161832047?v=4",
+      previewImage: "https://opengraph.githubassets.com/1/crewAIInc/crewAI",
+      tagline: "Framework orkestrasi agen AI kolaboratif berbasis peran mandiri.",
+      description: "Memungkinkan kumpulan agen AI berbagi tugas secara sinergis layaknya tim engineer profesional.",
+      url: "https://github.com/crewAIInc/crewAI",
+      type: "github"
+    },
+    {
+      id: "gh_fastapi",
+      name: "fastapi / fastapi",
+      category: "High-Performance Python Web API",
+      badge: "⭐ 78.9k STARS",
+      logo: "https://avatars.githubusercontent.com/u/10298444?v=4",
+      previewImage: "https://opengraph.githubassets.com/1/fastapi/fastapi",
+      tagline: "Framework web modern dan berkecepatan tinggi untuk membangun API dengan Python.",
+      description: "Standar emas backend API untuk aplikasi berbasis kecerdasan buatan dengan auto-generated OpenAPI docs dan async throughput tinggi.",
+      url: "https://github.com/fastapi/fastapi",
+      type: "github"
+    },
+    {
+      id: "gh_shadcn",
       name: "shadcn-ui / ui",
-      category: "Component Library",
-      badge: "⭐ 89.2k STARS",
-      logo: "https://github.com/shadcn-ui.png",
+      category: "Accessible Component Library",
+      badge: "⭐ 73.1k STARS",
+      logo: "https://avatars.githubusercontent.com/u/139895814?v=4",
       previewImage: "https://opengraph.githubassets.com/1/shadcn-ui/ui",
-      tagline: "Beautifully designed components that you can copy and paste into your apps.",
-      description: "Koleksi komponen UI standar emas dunia berbasis Radix UI dan Tailwind CSS. Tanpa ketergantungan paket runtime tertutup.",
+      tagline: "Komponen antarmuka pengguna siap pakai dan berstandar aksesibilitas tinggi.",
+      description: "Pondasi desain web modern dengan Tailwind CSS dan Radix UI tanpa beban runtime stylesheet eksternal.",
       url: "https://github.com/shadcn-ui/ui",
       type: "github"
     },
 
-    // --- DEVELOPER AI TOOLS ---
+    // --- ORIGINAL CLI TOOLS ---
     {
-      id: "tool_ollama",
-      name: "Ollama",
-      category: "Local LLM Inference Engine",
-      badge: "⭐ 120k+ STARS",
-      logo: "https://ollama.com/public/ollama.png",
-      previewImage: "https://opengraph.githubassets.com/1/ollama/ollama",
-      tagline: "Jalankan model open-weights (Llama 3, DeepSeek, Qwen) secara lokal di laptop via single CLI command.",
-      description: "Ollama menyederhanakan eksekusi model AI lokal dengan manajemen bobot otomatis, API REST kompatibel OpenAI, dan akselerasi CPU/GPU minimal overhead.",
-      url: "https://ollama.com",
+      id: "tool_hermes_cli",
+      name: "Hermes CLI Automation",
+      category: "Autonomous Agent Toolset",
+      badge: "⭐ PRODUCTION ENGINE",
+      logo: "https://avatars.githubusercontent.com/u/111832050?v=4",
+      previewImage: "https://images.unsplash.com/photo-1629654297299-c8506221ca97?auto=format&fit=crop&w=1200&q=80",
+      tagline: "Engine eksekusi autonomous agent lokal terisolasi yang mengendalikan lingkungan CLI laptop.",
+      description: "Digunakan oleh Aira untuk mengeksekusi pembangunan file, kompilasi build Next.js, dan pengujian QA secara mandiri.",
+      url: "https://github.com/NousResearch/Hermes",
       type: "tool"
     },
     {
@@ -223,6 +263,7 @@ export default function ToolsPage() {
 
   const filteredTools = realTools.filter(t => {
     const matchesCategory = activeCategory === 'all' || 
+                            (activeCategory === 'bookmarked' && isBookmarked(t.id)) ||
                             (activeCategory === 'design' && t.type === 'design') ||
                             (activeCategory === 'skills' && t.type === 'skill') ||
                             (activeCategory === 'github' && t.type === 'github') ||
@@ -235,29 +276,29 @@ export default function ToolsPage() {
   })
 
   return (
-    <div className="min-h-screen bg-[#0a0a0c] text-[#f4f4f5] font-sans antialiased selection:bg-orange-500 selection:text-white flex">
+    <div className="min-h-screen bg-white text-zinc-900 dark:bg-[#0a0a0c] dark:text-[#f4f4f5] font-sans antialiased selection:bg-orange-500 selection:text-white flex transition-colors duration-200">
       
       {/* 1. LEFT ICON RAIL (DESKTOP ONLY) */}
-      <aside className="hidden sm:flex w-16 sm:w-20 bg-[#0e0e12] border-r border-[#26262e] flex-col items-center justify-between py-6 flex-shrink-0 sticky top-0 h-screen z-40">
+      <aside className="hidden sm:flex w-16 sm:w-20 bg-zinc-50 border-r border-zinc-200 dark:bg-[#0e0e12] dark:border-[#26262e] flex-col items-center justify-between py-6 flex-shrink-0 sticky top-0 h-screen z-40 transition-colors">
         <div className="space-y-8 flex flex-col items-center">
           <Link href="/" className="w-10 h-10 rounded-2xl p-1.5 bg-white border border-zinc-200 flex items-center justify-center shadow-lg shadow-orange-500/20 hover:scale-105 transition-transform" title="OXID Labs Home">
             <img src="/images/oxid-logo.png" alt="OXID Labs" className="w-full h-full object-contain" />
           </Link>
 
           <nav className="flex flex-col items-center space-y-4">
-            <Link href="/prompts" className="p-3 rounded-2xl text-zinc-400 hover:text-white hover:bg-[#16161c] transition-all" title="Prompt Lab">
+            <Link href="/prompts" className="p-3 rounded-2xl text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white hover:bg-zinc-200/50 dark:hover:bg-[#16161c] transition-all" title="Prompt Lab">
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
             </Link>
-            <Link href="/grants" className="p-3 rounded-2xl text-zinc-400 hover:text-white hover:bg-[#16161c] transition-all" title="Bansos AI">
+            <Link href="/grants" className="p-3 rounded-2xl text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white hover:bg-zinc-200/50 dark:hover:bg-[#16161c] transition-all" title="Bansos AI">
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
             </Link>
             <Link href="/tools" className="p-3 rounded-2xl bg-orange-500 text-white shadow-lg shadow-orange-500/30 transition-all" title="AI Tools, Design & GitHub Radar (Active)">
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path></svg>
             </Link>
-            <Link href="/intel" className="p-3 rounded-2xl text-zinc-400 hover:text-white hover:bg-[#16161c] transition-all" title="Threads Intel">
+            <Link href="/intel" className="p-3 rounded-2xl text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white hover:bg-zinc-200/50 dark:hover:bg-[#16161c] transition-all" title="Threads Intel">
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"></path></svg>
             </Link>
-            <Link href="/templates" className="p-3 rounded-2xl text-zinc-400 hover:text-white hover:bg-[#16161c] transition-all" title="Karya Templates">
+            <Link href="/templates" className="p-3 rounded-2xl text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white hover:bg-zinc-200/50 dark:hover:bg-[#16161c] transition-all" title="Karya Templates">
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z"></path></svg>
             </Link>
           </nav>
@@ -271,28 +312,39 @@ export default function ToolsPage() {
       {/* MAIN CONTAINER */}
       <div className="flex-1 flex flex-col min-w-0">
         
-        {/* 2. TOP BAR (ULTRA COMPACT 1-LINE HEADER ON MOBILE) */}
-        <header className="border-b border-[#26262e] bg-[#0a0a0c]/95 backdrop-blur-md sticky top-0 z-30">
+        {/* 2. TOP BAR (ULTRA COMPACT 1-LINE HEADER ON MOBILE WITH THEME TOGGLE) */}
+        <header className="border-b border-zinc-200 dark:border-[#26262e] bg-white/95 dark:bg-[#0a0a0c]/95 backdrop-blur-md sticky top-0 z-30 transition-colors">
           <div className="h-14 sm:h-20 px-4 sm:px-8 flex items-center justify-between gap-3">
             {/* Left: Brand / Title */}
             <Link href="/" className="flex items-center gap-2">
               <div className="w-7 h-7 sm:w-10 sm:h-10 rounded-full bg-white p-1 flex items-center justify-center border border-zinc-200 shadow-sm flex-shrink-0">
                 <img src="/images/oxid-logo.png" alt="OXID" className="w-full h-full object-contain" />
               </div>
-              <span className="font-serif font-black text-sm sm:text-lg text-white uppercase tracking-wider">
+              <span className="font-serif font-black text-sm sm:text-lg text-zinc-900 dark:text-white uppercase tracking-wider">
                 Tools<span className="text-orange-500">.Radar</span>
               </span>
             </Link>
 
-            {/* Right: Search Input + Templates Button */}
+            {/* Right: Search + Theme Toggle + Templates Button */}
             <div className="flex items-center gap-2">
               <input 
                 type="text" 
                 placeholder="Search tools..." 
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="bg-[#121216] border border-[#26262e] text-xs px-3 py-1.5 sm:px-4 sm:py-2 rounded-full text-zinc-200 focus:outline-none focus:border-orange-500 w-36 sm:w-60 font-mono"
+                className="bg-zinc-100 dark:bg-[#121216] border border-zinc-300 dark:border-[#26262e] text-xs px-3 py-1.5 sm:px-4 sm:py-2 rounded-full text-zinc-900 dark:text-zinc-200 focus:outline-none focus:border-orange-500 w-32 sm:w-60 font-mono transition-colors"
               />
+
+              {/* Theme Toggle Button */}
+              <button
+                onClick={toggleTheme}
+                className="p-1.5 sm:px-3 sm:py-1.5 rounded-full border border-zinc-300 dark:border-[#26262e] bg-zinc-100 hover:bg-zinc-200 dark:bg-[#16161c] dark:hover:bg-[#202028] text-xs font-mono font-bold flex items-center gap-1 cursor-pointer transition-all"
+                title="Ganti Tema (Light/Dark)"
+              >
+                <span>{darkMode ? '🌙' : '☀️'}</span>
+                <span className="hidden md:inline text-[11px]">{darkMode ? 'Dark' : 'Light'}</span>
+              </button>
+
               <Link 
                 href="/templates" 
                 className="hidden sm:inline-flex px-4 py-2 rounded-full bg-orange-500 hover:bg-orange-600 text-white font-mono text-xs font-bold transition-all shadow-md shadow-orange-500/25 whitespace-nowrap"
@@ -303,34 +355,40 @@ export default function ToolsPage() {
           </div>
 
           {/* Slim Horizontal Filter Pills Bar */}
-          <div className="px-4 sm:px-8 py-2 bg-[#0e0e12]/80 border-t border-[#26262e]/40 flex items-center space-x-2 font-mono text-xs overflow-x-auto scrollbar-none">
+          <div className="px-4 sm:px-8 py-2 bg-zinc-100/80 dark:bg-[#0e0e12]/80 border-t border-zinc-200/80 dark:border-[#26262e]/40 flex items-center space-x-2 font-mono text-xs overflow-x-auto scrollbar-none transition-colors">
             <button 
               onClick={() => setActiveCategory('all')} 
-              className={`px-3 py-1 rounded-full font-bold transition-all cursor-pointer whitespace-nowrap text-[11px] ${activeCategory === 'all' ? 'bg-orange-500 text-white' : 'bg-[#16161c] text-zinc-400 hover:text-white'}`}
+              className={`px-3 py-1 rounded-full font-bold transition-all cursor-pointer whitespace-nowrap text-[11px] ${activeCategory === 'all' ? 'bg-orange-500 text-white shadow-sm' : 'bg-zinc-200/80 text-zinc-600 hover:text-black dark:bg-[#16161c] dark:text-zinc-400 dark:hover:text-white'}`}
             >
               Semua ({realTools.length})
             </button>
             <button 
+              onClick={() => setActiveCategory('bookmarked')} 
+              className={`px-3 py-1 rounded-full font-bold transition-all cursor-pointer whitespace-nowrap text-[11px] ${activeCategory === 'bookmarked' ? 'bg-orange-500 text-white shadow-sm' : 'bg-zinc-200/80 text-zinc-600 hover:text-black dark:bg-[#16161c] dark:text-zinc-400 dark:hover:text-white'}`}
+            >
+              ⭐ Personal Vault ({realTools.filter(t => isBookmarked(t.id)).length})
+            </button>
+            <button 
               onClick={() => setActiveCategory('github')} 
-              className={`px-3 py-1 rounded-full font-bold transition-all cursor-pointer whitespace-nowrap text-[11px] ${activeCategory === 'github' ? 'bg-orange-500 text-white' : 'bg-[#16161c] text-zinc-400 hover:text-white'}`}
+              className={`px-3 py-1 rounded-full font-bold transition-all cursor-pointer whitespace-nowrap text-[11px] ${activeCategory === 'github' ? 'bg-orange-500 text-white shadow-sm' : 'bg-zinc-200/80 text-zinc-600 hover:text-black dark:bg-[#16161c] dark:text-zinc-400 dark:hover:text-white'}`}
             >
               ⭐ GitHub Repos ({realTools.filter(t => t.type === 'github').length})
             </button>
             <button 
               onClick={() => setActiveCategory('design')} 
-              className={`px-3 py-1 rounded-full font-bold transition-all cursor-pointer whitespace-nowrap text-[11px] ${activeCategory === 'design' ? 'bg-orange-500 text-white' : 'bg-[#16161c] text-zinc-400 hover:text-white'}`}
+              className={`px-3 py-1 rounded-full font-bold transition-all cursor-pointer whitespace-nowrap text-[11px] ${activeCategory === 'design' ? 'bg-orange-500 text-white shadow-sm' : 'bg-zinc-200/80 text-zinc-600 hover:text-black dark:bg-[#16161c] dark:text-zinc-400 dark:hover:text-white'}`}
             >
               ❤️‍🔥 Design Vault (5)
             </button>
             <button 
               onClick={() => setActiveCategory('skills')} 
-              className={`px-3 py-1 rounded-full font-bold transition-all cursor-pointer whitespace-nowrap text-[11px] ${activeCategory === 'skills' ? 'bg-orange-500 text-white' : 'bg-[#16161c] text-zinc-400 hover:text-white'}`}
+              className={`px-3 py-1 rounded-full font-bold transition-all cursor-pointer whitespace-nowrap text-[11px] ${activeCategory === 'skills' ? 'bg-orange-500 text-white shadow-sm' : 'bg-zinc-200/80 text-zinc-600 hover:text-black dark:bg-[#16161c] dark:text-zinc-400 dark:hover:text-white'}`}
             >
               ✦ Motion &amp; Craft (5)
             </button>
             <button 
               onClick={() => setActiveCategory('tools')} 
-              className={`px-3 py-1 rounded-full font-bold transition-all cursor-pointer whitespace-nowrap text-[11px] ${activeCategory === 'tools' ? 'bg-orange-500 text-white' : 'bg-[#16161c] text-zinc-400 hover:text-white'}`}
+              className={`px-3 py-1 rounded-full font-bold transition-all cursor-pointer whitespace-nowrap text-[11px] ${activeCategory === 'tools' ? 'bg-orange-500 text-white shadow-sm' : 'bg-zinc-200/80 text-zinc-600 hover:text-black dark:bg-[#16161c] dark:text-zinc-400 dark:hover:text-white'}`}
             >
               CLI &amp; Engine
             </button>
@@ -347,10 +405,10 @@ export default function ToolsPage() {
               <span className="text-xs font-mono font-bold text-orange-500 uppercase tracking-widest bg-orange-500/10 px-3 py-1 rounded-full border border-orange-500/20">
                 GITHUB SKILLS &amp; AI WEAPONRY RADAR
               </span>
-              <h1 className="font-serif text-3xl sm:text-4xl font-black text-white">
+              <h1 className="font-serif text-3xl sm:text-4xl font-black text-zinc-900 dark:text-white">
                 GitHub Repositories, AI Design Vault &amp; Motion Skills
               </h1>
-              <p className="text-sm text-zinc-400 max-w-3xl leading-relaxed font-sans">
+              <p className="text-sm text-zinc-600 dark:text-zinc-400 max-w-3xl leading-relaxed font-sans">
                 Kompilasi repositori GitHub kelas dunia, sumber daya desain web terpopuler, dan panduan teknik tingkat lanjut untuk WebGL shader, gestur drawer pegas, dan otomasi AI.
               </p>
             </div>
@@ -358,35 +416,43 @@ export default function ToolsPage() {
             {/* RESOURCE & TOOLS CARDS GRID */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {filteredTools.map(tool => (
-                <div key={tool.id} className="bg-[#121216] border border-[#26262e] hover:border-orange-500/50 rounded-3xl p-6 flex flex-col justify-between space-y-5 shadow-xl transition-all group">
+                <div key={tool.id} className="bg-zinc-50 dark:bg-[#121216] border border-zinc-200 dark:border-[#26262e] hover:border-orange-500/50 rounded-3xl p-6 flex flex-col justify-between space-y-5 shadow-sm dark:shadow-xl transition-all group">
                   <div className="space-y-4">
                     
                     {/* Visual Website Capture Header */}
                     {tool.previewImage && (
-                      <div className="relative h-48 w-full rounded-2xl overflow-hidden border border-white/10 bg-black/60 shadow-inner">
+                      <div className="relative h-48 w-full rounded-2xl overflow-hidden border border-zinc-200 dark:border-white/10 bg-zinc-100 dark:bg-black/60 shadow-inner">
                         <img 
                           src={tool.previewImage} 
                           alt={tool.name} 
                           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
                         />
-                        <div className="absolute top-3 left-3 bg-black/75 backdrop-blur-md px-2.5 py-1 rounded-full text-[10px] font-mono text-orange-400 border border-white/10">
+                        <div className="absolute top-3 left-3 bg-white/90 dark:bg-black/75 backdrop-blur-md px-2.5 py-1 rounded-full text-[10px] font-mono text-orange-600 dark:text-orange-400 border border-zinc-200 dark:border-white/10 font-bold">
                           {tool.badge}
                         </div>
+                        {/* Bookmark Button */}
+                        <button
+                          onClick={() => toggleBookmark(tool.id)}
+                          className={`absolute top-3 right-3 p-1.5 rounded-full backdrop-blur-md border transition-all cursor-pointer ${isBookmarked(tool.id) ? 'bg-orange-500 text-white border-orange-500 shadow-md' : 'bg-white/80 dark:bg-black/60 text-zinc-500 dark:text-zinc-400 border-zinc-200 dark:border-white/10 hover:text-orange-500'}`}
+                          title={isBookmarked(tool.id) ? 'Hapus dari Vault' : 'Simpan ke Personal Vault'}
+                        >
+                          ⭐
+                        </button>
                       </div>
                     )}
 
                     <div className="space-y-1">
                       <span className="text-[10px] font-mono font-bold uppercase text-zinc-500">{tool.category}</span>
-                      <h3 className="font-serif text-xl font-bold text-white leading-snug group-hover:text-orange-400 transition-colors">
+                      <h3 className="font-serif text-xl font-bold text-zinc-900 dark:text-white leading-snug group-hover:text-orange-500 transition-colors">
                         {tool.name}
                       </h3>
                     </div>
 
-                    <p className="text-xs text-orange-400/90 font-mono leading-relaxed">{tool.tagline}</p>
-                    <p className="text-xs text-zinc-300 font-sans leading-relaxed">{tool.description}</p>
+                    <p className="text-xs text-orange-600 dark:text-orange-400/90 font-mono leading-relaxed">{tool.tagline}</p>
+                    <p className="text-xs text-zinc-600 dark:text-zinc-300 font-sans leading-relaxed">{tool.description}</p>
                   </div>
 
-                  <div className="pt-3 border-t border-[#26262e] flex items-center justify-between font-mono text-xs">
+                  <div className="pt-3 border-t border-zinc-200 dark:border-[#26262e] flex items-center justify-between font-mono text-xs">
                     <span className="text-[11px] text-zinc-500 truncate max-w-[180px]">{tool.url.replace('https://', '')}</span>
                     <a 
                       href={tool.url}
@@ -404,22 +470,22 @@ export default function ToolsPage() {
           </main>
 
           {/* 4. RIGHT SIDEBAR */}
-          <aside className="w-full xl:w-80 bg-[#0e0e12] border-t xl:border-t-0 xl:border-l border-[#26262e] p-6 space-y-8 flex-shrink-0">
-            <div className="bg-[#121218] border border-[#26262e] rounded-3xl p-6 space-y-3 shadow-xl font-mono text-xs">
+          <aside className="w-full xl:w-80 bg-zinc-50 dark:bg-[#0e0e12] border-t xl:border-t-0 xl:border-l border-zinc-200 dark:border-[#26262e] p-6 space-y-8 flex-shrink-0 transition-colors">
+            <div className="bg-white dark:bg-[#121218] border border-zinc-200 dark:border-[#26262e] rounded-3xl p-6 space-y-3 shadow-sm dark:shadow-xl font-mono text-xs">
               <span className="text-orange-500 font-bold uppercase block">Ingestion Source</span>
-              <p className="text-zinc-400 leading-relaxed text-[11px]">
-                Disinkronkan secara otomatis dari GitHub REST API dan radar komunitas Threads secara berkala.
+              <p className="text-zinc-600 dark:text-zinc-400 text-[11px] leading-relaxed">
+                Database ini terhubung langsung dengan engine scraper otomatis <strong>github_scraper.py</strong> dan repositori desain resmi untuk menyajikan status stars dan rilis terkini.
               </p>
-              <div className="pt-2 border-t border-[#26262e] flex items-center justify-between text-[10px]">
-                <span className="text-zinc-500">Live Status:</span>
-                <span className="text-emerald-400 font-bold">{realTools.length} Resources Active</span>
+              <div className="pt-2 border-t border-zinc-200 dark:border-[#26262e] text-[10px] text-zinc-500 flex items-center justify-between">
+                <span>Active Vault:</span>
+                <span className="text-emerald-600 dark:text-emerald-400 font-bold">{realTools.length} Resources Active</span>
               </div>
             </div>
 
-            <div className="bg-[#121218] border border-[#26262e] rounded-3xl p-6 space-y-3 shadow-xl font-mono text-xs">
-              <span className="text-zinc-300 font-bold uppercase block">Quick Action</span>
-              <p className="text-zinc-400 text-[11px] leading-relaxed">
-                Gunakan tombol <strong>Ctrl+K</strong> kapan saja untuk mencari repo GitHub, font, shader, atau prompt web dari seluruh database.
+            <div className="bg-white dark:bg-[#121218] border border-zinc-200 dark:border-[#26262e] rounded-3xl p-6 space-y-3 shadow-sm dark:shadow-xl font-mono text-xs">
+              <span className="text-zinc-900 dark:text-zinc-300 font-bold uppercase block">Quick Action</span>
+              <p className="text-zinc-600 dark:text-zinc-400 text-[11px] leading-relaxed">
+                Gunakan tombol <strong>Ctrl+K</strong> kapan saja untuk mencari repo GitHub, font, shader, atau prompt web dari seluruh database. Klik tombol ⭐ untuk menyimpan ke Personal Vault.
               </p>
             </div>
           </aside>
@@ -429,16 +495,16 @@ export default function ToolsPage() {
       </div>
 
       {/* SLEEK FLOATING MOBILE BOTTOM NAVIGATION BAR */}
-      <div className="sm:hidden fixed bottom-3 inset-x-4 z-50 bg-[#0e0e12]/95 backdrop-blur-xl border border-[#26262e] rounded-full p-2 flex items-center justify-around shadow-2xl">
-        <Link href="/" className="p-2 text-zinc-400 hover:text-white flex flex-col items-center">
+      <div className="sm:hidden fixed bottom-3 inset-x-4 z-50 bg-white/95 dark:bg-[#0e0e12]/95 backdrop-blur-xl border border-zinc-200 dark:border-[#26262e] rounded-full p-2 flex items-center justify-around shadow-2xl transition-colors">
+        <Link href="/" className="p-2 text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white flex flex-col items-center">
           <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
           <span className="text-[9px] font-mono font-bold mt-0.5">Home</span>
         </Link>
-        <Link href="/prompts" className="p-2 text-zinc-400 hover:text-white flex flex-col items-center">
+        <Link href="/prompts" className="p-2 text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white flex flex-col items-center">
           <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
           <span className="text-[9px] font-mono font-bold mt-0.5">Prompts</span>
         </Link>
-        <Link href="/grants" className="p-2 text-zinc-400 hover:text-white flex flex-col items-center">
+        <Link href="/grants" className="p-2 text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white flex flex-col items-center">
           <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
           <span className="text-[9px] font-mono font-bold mt-0.5">Bansos</span>
         </Link>
@@ -446,7 +512,7 @@ export default function ToolsPage() {
           <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path></svg>
           <span className="text-[9px] font-mono font-bold mt-0.5">Radar</span>
         </Link>
-        <Link href="/templates" className="p-2 text-zinc-400 hover:text-white flex flex-col items-center">
+        <Link href="/templates" className="p-2 text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white flex flex-col items-center">
           <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z"></path></svg>
           <span className="text-[9px] font-mono font-bold mt-0.5">Templates</span>
         </Link>

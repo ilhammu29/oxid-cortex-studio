@@ -2,12 +2,16 @@
 
 import React, { useState } from 'react'
 import Link from 'next/link'
+import { useStudioTheme } from '@/lib/useStudioTheme'
+import { useBookmarks } from '@/lib/useBookmarks'
 
 export default function PromptsPage() {
   const [activeTab, setActiveTab] = useState('all')
   const [searchQuery, setSearchQuery] = useState('')
   const [copiedId, setCopiedId] = useState<string | null>(null)
   const [heroTab, setHeroTab] = useState('details')
+  const { darkMode, toggleTheme } = useStudioTheme()
+  const { toggleBookmark, isBookmarked } = useBookmarks()
 
   const handleCopy = (id: string, text: string) => {
     if (navigator.clipboard) {
@@ -112,18 +116,37 @@ Key Specifications:
   ]
 
   const filteredGrid = promptGrid.filter(item => {
-    const matchCategory = activeTab === 'all' || item.category === activeTab
+    const matchCategory = activeTab === 'all' || 
+                          (activeTab === 'bookmarked' && isBookmarked(item.id)) ||
+                          item.category === activeTab
     const matchSearch = item.title.toLowerCase().includes(searchQuery.toLowerCase()) || item.body.toLowerCase().includes(searchQuery.toLowerCase())
     return matchCategory && matchSearch
   })
 
+  const handleExportAllPrompts = () => {
+    const bundleText = `# OXID CORTEX STUDIO — MASTER PROMPT BUNDLE
+Generated: ${new Date().toLocaleDateString('id-ID')}
+Total Prompts: ${promptGrid.length}
+
+${promptGrid.map((p, idx) => `## ${idx + 1}. ${p.title} (${p.category.toUpperCase()})
+- Creator: ${p.creator}
+- Benefit: ${p.benefit}
+
+\`\`\`markdown
+${p.body}
+\`\`\`
+`).join('\n---\n\n')}
+`
+    handleCopy("export_bundle", bundleText)
+  }
+
   return (
-    <div className="min-h-screen bg-[#0a0a0c] text-[#f4f4f5] font-sans antialiased selection:bg-orange-500 selection:text-white flex">
+    <div className="min-h-screen bg-white text-zinc-900 dark:bg-[#0a0a0c] dark:text-[#f4f4f5] font-sans antialiased selection:bg-orange-500 selection:text-white flex transition-colors duration-200">
       
       {/* ======================================================== */}
       {/* 1. LEFT ICON RAIL (DESKTOP ONLY)                         */}
       {/* ======================================================== */}
-      <aside className="hidden sm:flex w-16 sm:w-20 bg-[#0e0e12] border-r border-[#26262e] flex-col items-center justify-between py-6 flex-shrink-0 sticky top-0 h-screen z-40">
+      <aside className="hidden sm:flex w-16 sm:w-20 bg-zinc-50 border-r border-zinc-200 dark:bg-[#0e0e12] dark:border-[#26262e] flex-col items-center justify-between py-6 flex-shrink-0 sticky top-0 h-screen z-40 transition-colors">
         
         {/* Top Logo */}
         <div className="space-y-8 flex flex-col items-center">
@@ -135,7 +158,7 @@ Key Specifications:
           <nav className="flex flex-col items-center space-y-4">
             <Link 
               href="/" 
-              className="p-3 rounded-2xl text-zinc-400 hover:text-white hover:bg-[#16161c] transition-all"
+              className="p-3 rounded-2xl text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white hover:bg-zinc-200/50 dark:hover:bg-[#16161c] transition-all"
               title="Home Studio"
             >
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
@@ -152,7 +175,7 @@ Key Specifications:
 
             <Link 
               href="/grants" 
-              className="p-3 rounded-2xl text-zinc-400 hover:text-white hover:bg-[#16161c] transition-all"
+              className="p-3 rounded-2xl text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white hover:bg-zinc-200/50 dark:hover:bg-[#16161c] transition-all"
               title="Bansos AI & Grants"
             >
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
@@ -160,7 +183,7 @@ Key Specifications:
 
             <Link 
               href="/tools" 
-              className="p-3 rounded-2xl text-zinc-400 hover:text-white hover:bg-[#16161c] transition-all"
+              className="p-3 rounded-2xl text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white hover:bg-zinc-200/50 dark:hover:bg-[#16161c] transition-all"
               title="AI Tools Radar"
             >
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path></svg>
@@ -168,7 +191,7 @@ Key Specifications:
 
             <Link 
               href="/intel" 
-              className="p-3 rounded-2xl text-zinc-400 hover:text-white hover:bg-[#16161c] transition-all"
+              className="p-3 rounded-2xl text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white hover:bg-zinc-200/50 dark:hover:bg-[#16161c] transition-all"
               title="Threads Intel Live"
             >
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"></path></svg>
@@ -176,7 +199,7 @@ Key Specifications:
 
             <Link 
               href="/templates" 
-              className="p-3 rounded-2xl text-orange-400 hover:text-white hover:bg-[#16161c] transition-all"
+              className="p-3 rounded-2xl text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white hover:bg-zinc-200/50 dark:hover:bg-[#16161c] transition-all"
               title="Karya Templates Kita"
             >
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z"></path></svg>
@@ -198,47 +221,61 @@ Key Specifications:
         {/* ======================================================== */}
         {/* 2. TOP BAR (ULTRA COMPACT 1-LINE HEADER ON MOBILE)       */}
         {/* ======================================================== */}
-        <header className="border-b border-[#26262e] bg-[#0a0a0c]/95 backdrop-blur-md sticky top-0 z-30">
+        <header className="border-b border-zinc-200 dark:border-[#26262e] bg-white/95 dark:bg-[#0a0a0c]/95 backdrop-blur-md sticky top-0 z-30 transition-colors">
           <div className="h-14 sm:h-20 px-4 sm:px-8 flex items-center justify-between gap-3">
             {/* Left: Brand / Title */}
             <Link href="/" className="flex items-center gap-2">
               <div className="w-7 h-7 sm:w-10 sm:h-10 rounded-full bg-white p-1 flex items-center justify-center border border-zinc-200 shadow-sm flex-shrink-0">
                 <img src="/images/oxid-logo.png" alt="OXID" className="w-full h-full object-contain" />
               </div>
-              <span className="font-serif font-black text-sm sm:text-lg text-white uppercase tracking-wider">
+              <span className="font-serif font-black text-sm sm:text-lg text-zinc-900 dark:text-white uppercase tracking-wider">
                 Prompt<span className="text-orange-500">.Lab</span>
               </span>
             </Link>
 
-            {/* Right: Search Input + Templates Button */}
+            {/* Right: Search Input + Theme Toggle + Export Bundle Button */}
             <div className="flex items-center gap-2">
               <input 
                 type="text" 
                 placeholder="Search prompt..." 
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="bg-[#121216] border border-[#26262e] text-xs px-3 py-1.5 sm:px-4 sm:py-2 rounded-full text-zinc-200 focus:outline-none focus:border-orange-500 w-36 sm:w-60 font-mono"
+                className="bg-zinc-100 dark:bg-[#121216] border border-zinc-300 dark:border-[#26262e] text-xs px-3 py-1.5 sm:px-4 sm:py-2 rounded-full text-zinc-900 dark:text-zinc-200 focus:outline-none focus:border-orange-500 w-32 sm:w-60 font-mono transition-colors"
               />
-              <Link 
-                href="/templates" 
-                className="hidden sm:inline-flex px-4 py-2 rounded-full bg-orange-500 hover:bg-orange-600 text-white font-mono text-xs font-bold transition-all shadow-md shadow-orange-500/25 whitespace-nowrap"
+
+              {/* Theme Toggle Button */}
+              <button
+                onClick={toggleTheme}
+                className="p-1.5 sm:px-3 sm:py-1.5 rounded-full border border-zinc-300 dark:border-[#26262e] bg-zinc-100 hover:bg-zinc-200 dark:bg-[#16161c] dark:hover:bg-[#202028] text-xs font-mono font-bold flex items-center gap-1 cursor-pointer transition-all"
+                title="Ganti Tema (Light/Dark)"
               >
-                Templates
-              </Link>
+                <span>{darkMode ? '🌙' : '☀️'}</span>
+                <span className="hidden md:inline text-[11px]">{darkMode ? 'Dark' : 'Light'}</span>
+              </button>
+
+              {/* Export Bundle Button */}
+              <button 
+                onClick={handleExportAllPrompts}
+                className="hidden sm:inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-orange-500 hover:bg-orange-600 text-white font-mono text-xs font-bold transition-all shadow-md shadow-orange-500/25 whitespace-nowrap cursor-pointer"
+                title="Salin Seluruh Bundle Prompt ke Clipboard (Siap Pakai untuk Cursor / Claude)"
+              >
+                <span>{copiedId === "export_bundle" ? "✓ Bundle Tersalin" : "📦 Export Bundle"}</span>
+              </button>
             </div>
           </div>
 
           {/* Slim Horizontal Filter Pills Bar */}
-          <div className="px-4 sm:px-8 py-2 bg-[#0e0e12]/80 border-t border-[#26262e]/40 flex items-center space-x-2 font-mono text-xs overflow-x-auto scrollbar-none">
+          <div className="px-4 sm:px-8 py-2 bg-zinc-100/80 dark:bg-[#0e0e12]/80 border-t border-zinc-200/80 dark:border-[#26262e]/40 flex items-center space-x-2 font-mono text-xs overflow-x-auto scrollbar-none transition-colors">
             {[
               { id: 'all', label: 'All Prompts' },
+              { id: 'bookmarked', label: `⭐ Saved (${promptGrid.filter(p => isBookmarked(p.id)).length})` },
               { id: 'coding', label: 'Architecture & Coding' },
               { id: 'uiux', label: 'UI/UX Bento Design' }
             ].map(tab => (
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
-                className={`px-3 py-1 rounded-full font-bold transition-all cursor-pointer whitespace-nowrap text-[11px] ${activeTab === tab.id ? 'bg-orange-500 text-white shadow-md' : 'bg-[#16161c] text-zinc-400 hover:text-white'}`}
+                className={`px-3 py-1 rounded-full font-bold transition-all cursor-pointer whitespace-nowrap text-[11px] ${activeTab === tab.id ? 'bg-orange-500 text-white shadow-sm' : 'bg-zinc-200/80 text-zinc-600 hover:text-black dark:bg-[#16161c] dark:text-zinc-400 dark:hover:text-white'}`}
               >
                 {tab.label}
               </button>
@@ -255,7 +292,7 @@ Key Specifications:
           <main className="flex-1 p-4 sm:p-8 pb-28 sm:pb-8 space-y-6 sm:space-y-8 min-w-0 overflow-y-auto">
             
             {/* A. FEATURED HERO CARD (EXACT REFERENCE 2-COLUMN SPLIT) */}
-            <div className="bg-[#121216] border border-[#26262e] rounded-3xl overflow-hidden shadow-2xl grid grid-cols-1 lg:grid-cols-12 gap-0">
+            <div className="bg-zinc-50 dark:bg-[#121216] border border-zinc-200 dark:border-[#26262e] rounded-3xl overflow-hidden shadow-sm dark:shadow-2xl grid grid-cols-1 lg:grid-cols-12 gap-0 transition-colors">
               
               {/* Left Side: Visual Preview Render */}
               <div className="lg:col-span-6 relative h-80 sm:h-96 lg:h-auto overflow-hidden bg-black group">
@@ -291,7 +328,7 @@ Key Specifications:
 
                   <button 
                     onClick={() => handleCopy("hero_feat", heroCard.prompt)}
-                    className="px-4 py-2 rounded-xl bg-orange-500 hover:bg-orange-600 text-white font-bold text-xs uppercase transition-all shadow-md shadow-orange-500/25 flex items-center gap-1.5"
+                    className="px-4 py-2 rounded-xl bg-orange-500 hover:bg-orange-600 text-white font-bold text-xs uppercase transition-all shadow-md shadow-orange-500/25 flex items-center gap-1.5 cursor-pointer"
                   >
                     <span>{copiedId === "hero_feat" ? "✓ Copied" : "Copy Prompt >"}</span>
                   </button>
@@ -303,12 +340,12 @@ Key Specifications:
                 <div className="space-y-4">
                   
                   {/* Segment Tabs */}
-                  <div className="flex items-center space-x-2 border-b border-[#26262e] pb-3 text-xs font-mono">
+                  <div className="flex items-center space-x-2 border-b border-zinc-200 dark:border-[#26262e] pb-3 text-xs font-mono transition-colors">
                     {['details', 'parameters', 'changelog'].map(tab => (
                       <button
                         key={tab}
                         onClick={() => setHeroTab(tab)}
-                        className={`px-3 py-1 rounded-full uppercase transition-all cursor-pointer ${heroTab === tab ? 'bg-orange-500 text-white font-bold' : 'text-zinc-500 hover:text-white'}`}
+                        className={`px-3 py-1 rounded-full uppercase transition-all cursor-pointer ${heroTab === tab ? 'bg-orange-500 text-white font-bold' : 'text-zinc-500 hover:text-zinc-900 dark:hover:text-white'}`}
                       >
                         {tab}
                       </button>
@@ -317,115 +354,153 @@ Key Specifications:
 
                   {/* Date Meta */}
                   <div className="flex items-center gap-2 text-xs font-mono text-zinc-500">
-                    <svg className="w-4 h-4 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
-                    <span>Live Verified: May 01, 2026, 12:01 PM</span>
+                    <span>14 OCT 2026</span>
+                    <span>•</span>
+                    <span className="text-orange-500 font-bold">OXID VERIFIED WORKSPACE</span>
                   </div>
 
-                  {/* Title & Body */}
-                  <h2 className="font-serif text-2xl sm:text-3xl font-bold text-white leading-tight">
+                  {/* Title */}
+                  <h2 className="font-serif text-2xl sm:text-3xl font-black text-zinc-900 dark:text-white leading-tight">
                     {heroCard.title}
                   </h2>
-                  <p className="text-xs text-zinc-300 leading-relaxed font-sans">
+
+                  {/* Author / Creator Line */}
+                  <div className="flex items-center gap-3">
+                    <img 
+                      src={heroCard.avatar} 
+                      alt={heroCard.creator}
+                      className="w-8 h-8 rounded-full border border-orange-500/40 object-cover" 
+                    />
+                    <div>
+                      <strong className="text-xs font-sans text-zinc-900 dark:text-zinc-200 block">{heroCard.creator}</strong>
+                      <span className="text-[10px] font-mono text-zinc-500">{heroCard.handle}</span>
+                    </div>
+                  </div>
+
+                  {/* Body Text */}
+                  <p className="text-xs text-zinc-600 dark:text-zinc-400 font-sans leading-relaxed">
                     {heroCard.description}
                   </p>
 
-                  {/* Prompt Preview Snippet */}
-                  <div className="p-3.5 bg-[#0a0a0c] rounded-2xl border border-[#26262e] font-mono text-xs text-zinc-300 max-h-36 overflow-y-auto">
-                    {heroCard.prompt}
+                  {/* Prompt Box */}
+                  <div className="p-4 bg-zinc-100 dark:bg-[#0a0a0c] border border-zinc-200 dark:border-[#26262e] rounded-2xl font-mono text-xs text-zinc-800 dark:text-zinc-300 space-y-2 transition-colors">
+                    <div className="flex items-center justify-between text-[10px] text-zinc-500 border-b border-zinc-200 dark:border-[#26262e] pb-2">
+                      <span className="font-bold uppercase text-orange-500">Live Agent Pipeline Schema</span>
+                      <span>Markdown Spec</span>
+                    </div>
+                    <pre className="text-[11px] leading-relaxed whitespace-pre-wrap font-mono text-zinc-700 dark:text-zinc-300">
+                      {heroCard.prompt}
+                    </pre>
                   </div>
                 </div>
 
-                {/* Footer Creator Profile */}
-                <div className="pt-4 border-t border-[#26262e] flex items-center justify-between">
-                  <div className="flex items-center space-x-3">
-                    <img src={heroCard.avatar} alt={heroCard.creator} className="w-10 h-10 rounded-full object-cover border border-[#26262e]" />
-                    <div>
-                      <span className="text-[10px] font-mono text-zinc-500 block uppercase">Lead AI Architect</span>
-                      <strong className="text-xs text-white block">{heroCard.creator}</strong>
-                    </div>
+                {/* Footer Action Card */}
+                <div className="pt-4 border-t border-zinc-200 dark:border-[#26262e] flex items-center justify-between font-mono text-xs transition-colors">
+                  <div className="flex items-center gap-2">
+                    <span className="w-2 h-2 rounded-full bg-emerald-500"></span>
+                    <span className="text-zinc-500 text-[11px]">Ready for Production Scaffolding</span>
                   </div>
 
-                  <Link 
-                    href="/intel"
-                    className="px-4 py-2 rounded-full bg-[#16161c] hover:bg-orange-500 hover:text-white text-orange-400 border border-[#26262e] font-mono text-xs font-bold transition-all"
+                  <button 
+                    onClick={() => handleCopy("hero_direct", heroCard.prompt)}
+                    className="text-orange-500 hover:text-orange-600 dark:hover:text-orange-400 font-bold flex items-center gap-1 cursor-pointer"
                   >
-                    Other Works &gt;
-                  </Link>
+                    <span>{copiedId === "hero_direct" ? "✓ Copied" : "Copy Complete Pipeline Prompt →"}</span>
+                  </button>
                 </div>
               </div>
-
             </div>
 
-            {/* B. ALL WEAPONS SECTION (3-COLUMN ITEM GRID) */}
-            <div className="space-y-6">
-              <div className="flex items-center justify-between border-b border-[#26262e] pb-3">
-                <div className="flex items-center gap-2">
-                  <h3 className="font-serif text-xl sm:text-2xl font-bold text-white">
-                    All Studio Weapons
+            {/* B. 3-COLUMN BENTO GRID CARDS */}
+            <div className="space-y-4 pt-4">
+              <div className="flex items-center justify-between">
+                <div>
+                  <h3 className="font-serif text-xl sm:text-2xl font-black text-zinc-900 dark:text-white">
+                    Pustaka Master Prompt &amp; Layout Architectures
                   </h3>
-                  <span className="text-xs font-mono text-zinc-500">({filteredGrid.length} items)</span>
+                  <p className="text-xs text-zinc-500 font-mono">
+                    Template prompt siap salin dengan instruksi anti-slop tanpa boilerplate berlebih.
+                  </p>
                 </div>
-
-                <div className="text-xs font-mono text-orange-500 flex items-center gap-1 cursor-pointer">
-                  <span>Sort by: Today</span>
-                  <span>▼</span>
-                </div>
+                <span className="text-xs font-mono text-orange-500 font-bold bg-orange-500/10 px-3 py-1 rounded-full border border-orange-500/20">
+                  {filteredGrid.length} Prompts Active
+                </span>
               </div>
 
-              {/* Grid 3 Columns */}
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {filteredGrid.map(item => (
+                {filteredGrid.map((card) => (
                   <div 
-                    key={item.id}
-                    className="bg-[#121216] border border-[#26262e] hover:border-orange-500/50 rounded-3xl p-5 flex flex-col justify-between space-y-4 shadow-xl transition-all group"
+                    key={card.id}
+                    className="bg-zinc-50 dark:bg-[#121216] border border-zinc-200 dark:border-[#26262e] hover:border-orange-500/50 rounded-3xl overflow-hidden shadow-sm dark:shadow-xl transition-all flex flex-col justify-between group"
                   >
-                    <div>
-                      {/* Top Action Row */}
-                      <div className="flex items-center justify-between pb-3 text-xs font-mono text-zinc-500">
-                        <span>•••</span>
-                        <span className="text-orange-500 flex items-center gap-1">
-                          ❤️ {item.likes}
-                        </span>
-                      </div>
+                    {/* Top Preview Image Container */}
+                    <div className="relative h-48 bg-zinc-100 dark:bg-black/60 overflow-hidden">
+                      <img 
+                        src={card.image} 
+                        alt={card.title} 
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      />
 
-                      {/* Visual Thumbnail with Avatar on Bottom Left */}
-                      <div className="relative h-44 w-full rounded-2xl overflow-hidden bg-black mb-3">
-                        <img 
-                          src={item.image} 
-                          alt={item.title} 
-                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                        />
-                        <div className="absolute bottom-2 left-2 w-8 h-8 rounded-full border-2 border-black overflow-hidden shadow-md">
-                          <img src={item.avatar} alt={item.creator} className="w-full h-full object-cover" />
+                      {/* Category Badge */}
+                      <span className="absolute top-3 left-3 bg-white/90 dark:bg-black/75 backdrop-blur-md px-2.5 py-1 rounded-full text-[10px] font-mono uppercase font-bold text-orange-600 dark:text-orange-400 border border-zinc-200 dark:border-white/10">
+                        {card.category}
+                      </span>
+
+                      {/* Bookmark Button */}
+                      <button
+                        onClick={() => toggleBookmark(card.id)}
+                        className={`absolute top-3 right-3 p-1.5 rounded-full backdrop-blur-md border transition-all cursor-pointer ${isBookmarked(card.id) ? 'bg-orange-500 text-white border-orange-500 shadow-md' : 'bg-white/80 dark:bg-black/60 text-zinc-500 dark:text-zinc-400 border-zinc-200 dark:border-white/10 hover:text-orange-500'}`}
+                        title={isBookmarked(card.id) ? 'Hapus Bookmark' : 'Simpan ke Personal Vault'}
+                      >
+                        ⭐
+                      </button>
+
+                      {/* Benefit Tag */}
+                      <div className="absolute bottom-3 left-3 bg-white/90 dark:bg-black/75 backdrop-blur-md px-3 py-1 rounded-xl text-[10px] font-mono text-zinc-700 dark:text-zinc-300 border border-zinc-200 dark:border-white/10 flex items-center gap-1.5">
+                        <span className="text-emerald-600 dark:text-emerald-400 font-bold">{card.benefit}</span>
+                        <span>•</span>
+                        <span className="text-zinc-500">{card.valueUsd}</span>
+                      </div>
+                    </div>
+
+                    {/* Content Body */}
+                    <div className="p-6 space-y-4 flex-1 flex flex-col justify-between">
+                      <div className="space-y-3">
+                        {/* Title */}
+                        <h4 className="font-serif text-lg font-bold text-zinc-900 dark:text-white leading-snug group-hover:text-orange-500 transition-colors">
+                          {card.title}
+                        </h4>
+
+                        {/* Creator Tag */}
+                        <div className="flex items-center gap-2">
+                          <img 
+                            src={card.avatar} 
+                            alt={card.creator} 
+                            className="w-5 h-5 rounded-full border border-orange-500/40 object-cover" 
+                          />
+                          <span className="text-[11px] font-mono text-zinc-500">{card.creator}</span>
+                        </div>
+
+                        {/* Prompt Body Box */}
+                        <div className="p-3 bg-zinc-100 dark:bg-[#0a0a0c] border border-zinc-200 dark:border-[#26262e] rounded-xl font-mono text-xs text-zinc-700 dark:text-zinc-300 leading-relaxed max-h-32 overflow-y-auto transition-colors">
+                          {card.body}
                         </div>
                       </div>
 
-                      {/* Title & Meta */}
-                      <div className="space-y-1">
-                        <h4 className="font-bold text-base text-white truncate">{item.title}</h4>
-                        <p className="text-xs font-mono text-zinc-500">By {item.creator}</p>
-                      </div>
+                      {/* Bottom Footer Actions */}
+                      <div className="pt-3 border-t border-zinc-200 dark:border-[#26262e] flex items-center justify-between font-mono text-xs transition-colors">
+                        <div className="flex items-center gap-1 text-[11px] text-zinc-500">
+                          <span>❤️</span>
+                          <span>{card.likes}</span>
+                        </div>
 
-                      <div className="pt-2 flex items-center justify-between font-mono text-xs">
-                        <span className="text-zinc-400">{item.benefit}</span>
-                        <strong className="text-orange-400 font-bold">{item.valueUsd}</strong>
+                        <button 
+                          onClick={() => handleCopy(card.id, card.body)}
+                          className="px-4 py-1.5 rounded-full bg-orange-500 hover:bg-orange-600 text-white font-bold text-xs transition-all shadow-md shadow-orange-500/20 cursor-pointer"
+                        >
+                          {copiedId === card.id ? "✓ Copied" : "Copy Prompt >"}
+                        </button>
                       </div>
-                    </div>
-
-                    {/* Bottom Two Action Buttons */}
-                    <div className="pt-3 border-t border-[#26262e] grid grid-cols-2 gap-2 font-mono text-xs">
-                      <Link 
-                        href={`/detail/${item.id}`}
-                        className="py-2 rounded-xl bg-[#16161c] hover:bg-[#202028] text-zinc-300 text-center font-bold border border-[#26262e] transition-all"
-                      >
-                        Inspect
-                      </Link>
-                      <button 
-                        onClick={() => handleCopy(item.id, item.body)}
-                        className="py-2 rounded-xl bg-orange-500 hover:bg-orange-600 text-white text-center font-bold transition-all shadow-md shadow-orange-500/25"
-                      >
-                        {copiedId === item.id ? "✓ Done" : "Copy"}
-                      </button>
                     </div>
                   </div>
                 ))}
@@ -435,115 +510,44 @@ Key Specifications:
           </main>
 
           {/* ======================================================== */}
-          {/* 4. RIGHT SIDEBAR (SAVINGS, CREATORS, HISTORY)            */}
+          {/* 4. RIGHT SIDEBAR (REFERENCE INSPECTOR & AUDIT)           */}
           {/* ======================================================== */}
-          <aside className="w-full xl:w-80 bg-[#0e0e12] border-t xl:border-t-0 xl:border-l border-[#26262e] p-6 space-y-8 flex-shrink-0">
+          <aside className="w-full xl:w-80 bg-zinc-50 dark:bg-[#0e0e12] border-t xl:border-t-0 xl:border-l border-zinc-200 dark:border-[#26262e] p-6 space-y-8 flex-shrink-0 transition-colors">
             
-            {/* A. Studio Quota & Savings Container (Dark Navy / Black) */}
-            <div className="bg-[#121218] border border-[#26262e] rounded-3xl p-6 space-y-4 shadow-xl">
+            {/* Top Stat Widget */}
+            <div className="bg-white dark:bg-[#121218] border border-zinc-200 dark:border-[#26262e] rounded-3xl p-6 space-y-4 shadow-sm dark:shadow-xl font-mono text-xs transition-colors">
               <div className="flex items-center justify-between">
-                <h4 className="font-mono text-xs font-bold uppercase text-emerald-400 tracking-wider">
-                  STUDIO SAVINGS
-                </h4>
-                <span className="text-zinc-500 text-xs cursor-pointer">•••</span>
+                <span className="text-zinc-500 uppercase tracking-widest text-[10px]">Studio Status</span>
+                <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
               </div>
-
-              {/* Provider Pills */}
-              <div className="flex items-center space-x-1.5 font-mono text-[10px]">
-                <span className="px-2.5 py-1 rounded-full bg-orange-500 text-white font-bold">• Gemini Free</span>
-                <span className="px-2 py-1 rounded-full bg-[#181822] text-zinc-400">• Groq</span>
-                <span className="px-2 py-1 rounded-full bg-[#181822] text-zinc-400">• Cloudflare</span>
+              <div>
+                <strong className="text-2xl font-serif text-zinc-900 dark:text-white font-bold block">{promptGrid.length + 1} Master Prompts</strong>
+                <span className="text-emerald-600 dark:text-emerald-400 text-[11px]">100% Zero-Slop Standard</span>
               </div>
-
-              {/* Balance Amount */}
-              <div className="space-y-1">
-                <div className="flex items-center justify-between">
-                  <span className="text-[10px] font-mono text-zinc-400 uppercase">Total Free Value Saved:</span>
-                  <span className="text-[10px] font-mono font-bold text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded-full">+61.2% Eff</span>
-                </div>
-                <strong className="font-serif text-3xl font-black text-white block">
-                  $28,672.10
-                </strong>
-              </div>
-
-              {/* Sparkline Curve Chart (SVG) */}
-              <div className="pt-2">
-                <svg className="w-full h-14" viewBox="0 0 200 60" fill="none">
-                  <path d="M5 45 Q 40 10, 80 35 T 150 15 T 195 5" stroke="#10b981" strokeWidth="2.5" fill="none" />
-                  <circle cx="80" cy="35" r="3" fill="#10b981" />
-                  <circle cx="150" cy="15" r="3" fill="#10b981" />
-                  <circle cx="195" cy="5" r="4" fill="#ff5722" />
-                </svg>
-              </div>
-
-              <button 
-                onClick={() => handleCopy("sidebar_quota", "echo 'Quota refreshed successfully.'")}
-                className="w-full py-2.5 rounded-2xl bg-orange-500 hover:bg-orange-600 text-white font-mono text-xs font-bold transition-all shadow-md shadow-orange-500/25"
-              >
-                Refresh Quota +
-              </button>
+              <p className="text-zinc-600 dark:text-zinc-400 text-[11px] leading-relaxed font-sans">
+                Setiap prompt dirancang dengan doktrin anti-AI slop: tanpa gradasi ungu norak, layout terstruktur kuat, dan kode siap kompilasi.
+              </p>
             </div>
 
-            {/* B. Featured Creators */}
-            <div className="space-y-4">
-              <div className="flex items-center justify-between border-b border-[#26262e] pb-2 font-mono text-xs">
-                <span className="font-bold text-white uppercase">Featured Creators</span>
-                <Link href="/intel" className="text-orange-500 hover:underline">See All &gt;</Link>
-              </div>
-
-              <div className="flex items-center justify-between">
-                <div className="flex items-center space-x-3">
-                  <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100" className="w-9 h-9 rounded-full object-cover border border-[#26262e]" />
-                  <div>
-                    <span className="text-[10px] font-mono text-zinc-500 block uppercase">Lead Architect</span>
-                    <strong className="text-xs text-white">Andrej Karpathy</strong>
-                  </div>
-                </div>
-                <span className="text-xs font-mono text-orange-500 cursor-pointer hover:underline">+ Follow</span>
-              </div>
-
-              {/* Mini Cards */}
-              <div className="grid grid-cols-2 gap-3 pt-2">
-                <div className="p-3 bg-[#121216] border border-[#26262e] rounded-2xl space-y-2">
-                  <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=200" className="w-full h-16 rounded-xl object-cover" />
-                  <div className="font-mono text-[10px]">
-                    <span className="text-white block font-bold truncate">Wealth Bento</span>
-                    <span className="text-orange-400">Free Tier</span>
-                  </div>
-                </div>
-
-                <div className="p-3 bg-[#121216] border border-[#26262e] rounded-2xl space-y-2">
-                  <img src="https://images.unsplash.com/photo-1505373877841-8d25f7d46678?w=200" className="w-full h-16 rounded-xl object-cover" />
-                  <div className="font-mono text-[10px]">
-                    <span className="text-white block font-bold truncate">Swiss Journal</span>
-                    <span className="text-orange-400">Open Access</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* C. Live Real Ingestion History */}
-            <div className="space-y-4">
-              <div className="flex items-center justify-between border-b border-[#26262e] pb-2 font-mono text-xs">
-                <span className="font-bold text-white uppercase">Live Activity</span>
-                <Link href="/intel" className="text-orange-500 hover:underline">See All &gt;</Link>
-              </div>
-
-              <div className="space-y-3 font-mono text-xs">
-                <div className="p-3 bg-[#121216] border border-[#26262e] rounded-2xl space-y-1">
+            {/* Ingestion Monitor Widget */}
+            <div className="bg-white dark:bg-[#121218] border border-zinc-200 dark:border-[#26262e] rounded-3xl p-6 space-y-4 shadow-sm dark:shadow-xl font-mono text-xs transition-colors">
+              <span className="text-orange-500 uppercase tracking-widest text-[10px] font-bold block">Live Quota Feeds</span>
+              
+              <div className="space-y-3">
+                <div className="p-3 bg-zinc-100 dark:bg-[#121216] border border-zinc-200 dark:border-[#26262e] rounded-2xl space-y-1 transition-colors">
                   <div className="flex items-center justify-between">
-                    <span className="text-white font-bold">@karpathy</span>
-                    <span className="text-[10px] text-zinc-500">Live Threads</span>
+                    <span className="text-zinc-900 dark:text-white font-bold">@karpathy</span>
+                    <span className="text-[10px] text-orange-500 font-bold">Threads Feed</span>
                   </div>
-                  <p className="text-[11px] text-zinc-400 truncate">Old fear: not utilizing GPUs! New fear: token quota...</p>
+                  <p className="text-[11px] text-zinc-600 dark:text-zinc-400 truncate">Old fear: not utilizing GPUs! New fear: token quota...</p>
                 </div>
 
-                <div className="p-3 bg-[#121216] border border-[#26262e] rounded-2xl space-y-1">
+                <div className="p-3 bg-zinc-100 dark:bg-[#121216] border border-zinc-200 dark:border-[#26262e] rounded-2xl space-y-1 transition-colors">
                   <div className="flex items-center justify-between">
-                    <span className="text-white font-bold">@GoogleCloud</span>
-                    <span className="text-[10px] text-emerald-400">Grant Active</span>
+                    <span className="text-zinc-900 dark:text-white font-bold">@GoogleCloud</span>
+                    <span className="text-[10px] text-emerald-600 dark:text-emerald-400 font-bold">Grant Active</span>
                   </div>
-                  <p className="text-[11px] text-zinc-400 truncate">Gemini 1.5 Pro free 1M TPM quota active</p>
+                  <p className="text-[11px] text-zinc-600 dark:text-zinc-400 truncate">Gemini 1.5 Pro free 1M TPM quota active</p>
                 </div>
               </div>
             </div>
@@ -555,8 +559,8 @@ Key Specifications:
       </div>
 
       {/* SLEEK FLOATING MOBILE BOTTOM NAVIGATION BAR */}
-      <div className="sm:hidden fixed bottom-3 inset-x-4 z-50 bg-[#0e0e12]/95 backdrop-blur-xl border border-[#26262e] rounded-full p-2 flex items-center justify-around shadow-2xl">
-        <Link href="/" className="p-2 text-zinc-400 hover:text-white flex flex-col items-center">
+      <div className="sm:hidden fixed bottom-3 inset-x-4 z-50 bg-white/95 dark:bg-[#0e0e12]/95 backdrop-blur-xl border border-zinc-200 dark:border-[#26262e] rounded-full p-2 flex items-center justify-around shadow-2xl transition-colors">
+        <Link href="/" className="p-2 text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white flex flex-col items-center">
           <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
           <span className="text-[9px] font-mono font-bold mt-0.5">Home</span>
         </Link>
@@ -564,15 +568,15 @@ Key Specifications:
           <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
           <span className="text-[9px] font-mono font-bold mt-0.5">Prompts</span>
         </Link>
-        <Link href="/grants" className="p-2 text-zinc-400 hover:text-white flex flex-col items-center">
+        <Link href="/grants" className="p-2 text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white flex flex-col items-center">
           <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
           <span className="text-[9px] font-mono font-bold mt-0.5">Bansos</span>
         </Link>
-        <Link href="/tools" className="p-2 text-zinc-400 hover:text-white flex flex-col items-center">
+        <Link href="/tools" className="p-2 text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white flex flex-col items-center">
           <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path></svg>
           <span className="text-[9px] font-mono font-bold mt-0.5">Radar</span>
         </Link>
-        <Link href="/templates" className="p-2 text-zinc-400 hover:text-white flex flex-col items-center">
+        <Link href="/templates" className="p-2 text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white flex flex-col items-center">
           <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z"></path></svg>
           <span className="text-[9px] font-mono font-bold mt-0.5">Templates</span>
         </Link>
