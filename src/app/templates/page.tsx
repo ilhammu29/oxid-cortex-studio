@@ -171,10 +171,10 @@ Spesifikasi Detail Antarmuka:
           </div>
         </header>
 
-        {/* 3. MAIN CENTER AREA + RIGHT SIDEBAR */}
-        <div className="flex-1 flex flex-col xl:flex-row min-w-0">
+        {/* 3. MAIN CENTER AREA (FULL-WIDTH EXPANDED LAYOUT) */}
+        <div className="flex-1 flex flex-col min-w-0">
           
-          <main className="flex-1 p-4 sm:p-8 pb-28 sm:pb-8 space-y-8 min-w-0 overflow-y-auto">
+          <main className="flex-1 p-4 sm:p-8 pb-28 sm:pb-8 space-y-8 min-w-0 overflow-y-auto w-full max-w-7xl mx-auto">
             
             <div className="space-y-2">
               <h1 className="font-serif text-3xl sm:text-4xl font-black text-zinc-900 dark:text-white">
@@ -303,20 +303,6 @@ Spesifikasi Detail Antarmuka:
             </div>
 
           </main>
-
-          {/* 4. RIGHT SIDEBAR */}
-          <aside className="w-full xl:w-80 bg-zinc-50 dark:bg-[#0e0e12] border-t xl:border-t-0 xl:border-l border-zinc-200 dark:border-[#26262e] p-6 space-y-8 flex-shrink-0 font-mono text-xs transition-colors">
-            <div className="bg-white dark:bg-[#121218] border border-zinc-200 dark:border-[#26262e] rounded-3xl p-6 space-y-3 shadow-sm dark:shadow-xl transition-colors">
-              <span className="text-orange-500 font-bold uppercase block">Studio Asset Registry</span>
-              <p className="text-zinc-600 dark:text-zinc-400 text-[11px] leading-relaxed">
-                Setiap template dirancang berkelas, hasil akhir yang lolos uji otomatis diabadikan sebagai template resmi studio di repositori ini.
-              </p>
-              <div className="pt-2 border-t border-zinc-200 dark:border-[#26262e] flex items-center justify-between text-[10px]">
-                <span className="text-zinc-500">Total Templates:</span>
-                <span className="text-zinc-900 dark:text-white font-bold">{templatesList.length} Templates Active</span>
-              </div>
-            </div>
-          </aside>
 
         </div>
 

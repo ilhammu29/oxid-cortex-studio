@@ -395,10 +395,10 @@ export default function ToolsPage() {
           </div>
         </header>
 
-        {/* 3. MAIN CENTER AREA + RIGHT SIDEBAR */}
-        <div className="flex-1 flex flex-col xl:flex-row min-w-0">
+        {/* 3. MAIN CENTER AREA (FULL-WIDTH EXPANDED LAYOUT) */}
+        <div className="flex-1 flex flex-col min-w-0">
           
-          <main className="flex-1 p-4 sm:p-8 pb-28 sm:pb-8 space-y-6 sm:space-y-8 min-w-0 overflow-y-auto">
+          <main className="flex-1 p-4 sm:p-8 pb-28 sm:pb-8 space-y-6 sm:space-y-8 min-w-0 overflow-y-auto w-full max-w-7xl mx-auto">
             
             {/* HERO HEADER */}
             <div className="space-y-2">
@@ -475,27 +475,6 @@ export default function ToolsPage() {
             </div>
 
           </main>
-
-          {/* 4. RIGHT SIDEBAR */}
-          <aside className="w-full xl:w-80 bg-zinc-50 dark:bg-[#0e0e12] border-t xl:border-t-0 xl:border-l border-zinc-200 dark:border-[#26262e] p-6 space-y-8 flex-shrink-0 transition-colors">
-            <div className="bg-white dark:bg-[#121218] border border-zinc-200 dark:border-[#26262e] rounded-3xl p-6 space-y-3 shadow-sm dark:shadow-xl font-mono text-xs">
-              <span className="text-orange-500 font-bold uppercase block">Ingestion Source</span>
-              <p className="text-zinc-600 dark:text-zinc-400 text-[11px] leading-relaxed">
-                Database ini terhubung langsung dengan engine scraper otomatis <strong>github_scraper.py</strong> dan repositori desain resmi untuk menyajikan status stars dan rilis terkini.
-              </p>
-              <div className="pt-2 border-t border-zinc-200 dark:border-[#26262e] text-[10px] text-zinc-500 flex items-center justify-between">
-                <span>Active Vault:</span>
-                <span className="text-emerald-600 dark:text-emerald-400 font-bold">{realTools.length} Resources Active</span>
-              </div>
-            </div>
-
-            <div className="bg-white dark:bg-[#121218] border border-zinc-200 dark:border-[#26262e] rounded-3xl p-6 space-y-3 shadow-sm dark:shadow-xl font-mono text-xs">
-              <span className="text-zinc-900 dark:text-zinc-300 font-bold uppercase block">Quick Action</span>
-              <p className="text-zinc-600 dark:text-zinc-400 text-[11px] leading-relaxed">
-                Gunakan tombol <strong>Ctrl+K</strong> kapan saja untuk mencari repo GitHub, font, shader, atau prompt web dari seluruh database. Klik tombol ⭐ untuk menyimpan ke Personal Vault.
-              </p>
-            </div>
-          </aside>
 
         </div>
 

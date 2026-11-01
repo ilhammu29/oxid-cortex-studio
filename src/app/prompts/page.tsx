@@ -305,12 +305,12 @@ ${p.body}
         </header>
 
         {/* ======================================================== */}
-        {/* 3. MAIN CENTER AREA + RIGHT SIDEBAR                      */}
+        {/* 3. MAIN CENTER AREA (FULL-WIDTH EXPANDED LAYOUT)         */}
         {/* ======================================================== */}
-        <div className="flex-1 flex flex-col xl:flex-row min-w-0">
+        <div className="flex-1 flex flex-col min-w-0">
           
           {/* CENTER MAIN FEED */}
-          <main className="flex-1 p-4 sm:p-8 pb-28 sm:pb-8 space-y-6 sm:space-y-8 min-w-0 overflow-y-auto">
+          <main className="flex-1 p-4 sm:p-8 pb-28 sm:pb-8 space-y-6 sm:space-y-8 min-w-0 overflow-y-auto w-full max-w-7xl mx-auto">
             
             {/* A. FEATURED HERO CARD (EXACT REFERENCE 2-COLUMN SPLIT) */}
             <div className="bg-zinc-50 dark:bg-[#121216] border border-zinc-200 dark:border-[#26262e] rounded-3xl overflow-hidden shadow-sm dark:shadow-2xl grid grid-cols-1 lg:grid-cols-12 gap-0 transition-colors">
@@ -547,51 +547,6 @@ ${p.body}
             </div>
 
           </main>
-
-          {/* ======================================================== */}
-          {/* 4. RIGHT SIDEBAR (REFERENCE INSPECTOR & AUDIT)           */}
-          {/* ======================================================== */}
-          <aside className="w-full xl:w-80 bg-zinc-50 dark:bg-[#0e0e12] border-t xl:border-t-0 xl:border-l border-zinc-200 dark:border-[#26262e] p-6 space-y-8 flex-shrink-0 transition-colors">
-            
-            {/* Top Stat Widget */}
-            <div className="bg-white dark:bg-[#121218] border border-zinc-200 dark:border-[#26262e] rounded-3xl p-6 space-y-4 shadow-sm dark:shadow-xl font-mono text-xs transition-colors">
-              <div className="flex items-center justify-between">
-                <span className="text-zinc-500 uppercase tracking-widest text-[10px]">Studio Status</span>
-                <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-              </div>
-              <div>
-                <strong className="text-2xl font-serif text-zinc-900 dark:text-white font-bold block">{promptGrid.length + 1} Master Prompts</strong>
-                <span className="text-emerald-600 dark:text-emerald-400 text-[11px]">100% Zero-Slop Standard</span>
-              </div>
-              <p className="text-zinc-600 dark:text-zinc-400 text-[11px] leading-relaxed font-sans">
-                Setiap prompt dirancang dengan doktrin anti-AI slop: tanpa gradasi ungu norak, layout terstruktur kuat, dan kode siap kompilasi.
-              </p>
-            </div>
-
-            {/* Ingestion Monitor Widget */}
-            <div className="bg-white dark:bg-[#121218] border border-zinc-200 dark:border-[#26262e] rounded-3xl p-6 space-y-4 shadow-sm dark:shadow-xl font-mono text-xs transition-colors">
-              <span className="text-orange-500 uppercase tracking-widest text-[10px] font-bold block">Live Quota Feeds</span>
-              
-              <div className="space-y-3">
-                <div className="p-3 bg-zinc-100 dark:bg-[#121216] border border-zinc-200 dark:border-[#26262e] rounded-2xl space-y-1 transition-colors">
-                  <div className="flex items-center justify-between">
-                    <span className="text-zinc-900 dark:text-white font-bold">@karpathy</span>
-                    <span className="text-[10px] text-orange-500 font-bold">Threads Feed</span>
-                  </div>
-                  <p className="text-[11px] text-zinc-600 dark:text-zinc-400 truncate">Old fear: not utilizing GPUs! New fear: token quota...</p>
-                </div>
-
-                <div className="p-3 bg-zinc-100 dark:bg-[#121216] border border-zinc-200 dark:border-[#26262e] rounded-2xl space-y-1 transition-colors">
-                  <div className="flex items-center justify-between">
-                    <span className="text-zinc-900 dark:text-white font-bold">@GoogleCloud</span>
-                    <span className="text-[10px] text-emerald-600 dark:text-emerald-400 font-bold">Grant Active</span>
-                  </div>
-                  <p className="text-[11px] text-zinc-600 dark:text-zinc-400 truncate">Gemini 1.5 Pro free 1M TPM quota active</p>
-                </div>
-              </div>
-            </div>
-
-          </aside>
 
         </div>
 

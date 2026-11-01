@@ -226,10 +226,10 @@ export default function GrantsPage() {
           </div>
         </header>
 
-        {/* 3. SPLIT MAIN CONTENT */}
-        <div className="flex-1 flex flex-col xl:flex-row min-w-0">
+        {/* 3. MAIN CENTER AREA (FULL-WIDTH EXPANDED LAYOUT) */}
+        <div className="flex-1 flex flex-col min-w-0">
           
-          <main className="flex-1 p-4 sm:p-8 pb-28 sm:pb-8 space-y-6 sm:space-y-8 min-w-0 overflow-y-auto">
+          <main className="flex-1 p-4 sm:p-8 pb-28 sm:pb-8 space-y-6 sm:space-y-8 min-w-0 overflow-y-auto w-full max-w-7xl mx-auto">
             
             {/* FEATURED GRANT CARD */}
             <div className="bg-zinc-50 dark:bg-[#121216] border border-zinc-200 dark:border-[#26262e] rounded-3xl overflow-hidden shadow-sm dark:shadow-2xl grid grid-cols-1 lg:grid-cols-12 transition-colors">
@@ -364,76 +364,6 @@ export default function GrantsPage() {
             </div>
 
           </main>
-
-          {/* 4. RIGHT SAVINGS SIDEBAR WITH LIVE LATENCY MONITOR */}
-          <aside className="w-full xl:w-80 bg-zinc-50 dark:bg-[#0e0e12] border-t xl:border-t-0 xl:border-l border-zinc-200 dark:border-[#26262e] p-6 space-y-8 flex-shrink-0 transition-colors">
-            
-            {/* Live Health & Latency Monitor */}
-            <div className="bg-white dark:bg-[#121218] border border-zinc-200 dark:border-[#26262e] rounded-3xl p-6 space-y-4 shadow-sm dark:shadow-xl font-mono text-xs transition-colors">
-              <div className="flex items-center justify-between">
-                <span className="font-bold text-zinc-900 dark:text-white uppercase block">Live Quota Latency</span>
-                <button 
-                  onClick={handlePingLatency}
-                  disabled={isPinging}
-                  className="text-[10px] text-orange-500 hover:underline flex items-center gap-1 cursor-pointer font-bold"
-                >
-                  <span>{isPinging ? 'Pinging...' : '↻ Re-ping'}</span>
-                </button>
-              </div>
-
-              <div className="space-y-2.5">
-                <div className="p-2.5 bg-zinc-50 dark:bg-[#121216] border border-zinc-200 dark:border-[#26262e] rounded-xl flex items-center justify-between transition-colors">
-                  <div className="flex items-center gap-2">
-                    <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-                    <span className="text-zinc-800 dark:text-zinc-300 font-bold">Google AI Studio</span>
-                  </div>
-                  <span className="text-emerald-600 dark:text-emerald-400 font-bold">{latencyPings.google} ms</span>
-                </div>
-
-                <div className="p-2.5 bg-zinc-50 dark:bg-[#121216] border border-zinc-200 dark:border-[#26262e] rounded-xl flex items-center justify-between transition-colors">
-                  <div className="flex items-center gap-2">
-                    <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-                    <span className="text-zinc-800 dark:text-zinc-300 font-bold">Groq LPU Engine</span>
-                  </div>
-                  <span className="text-emerald-600 dark:text-emerald-400 font-bold">{latencyPings.groq} ms</span>
-                </div>
-
-                <div className="p-2.5 bg-zinc-50 dark:bg-[#121216] border border-zinc-200 dark:border-[#26262e] rounded-xl flex items-center justify-between transition-colors">
-                  <div className="flex items-center gap-2">
-                    <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-                    <span className="text-zinc-800 dark:text-zinc-300 font-bold">Cloudflare Workers</span>
-                  </div>
-                  <span className="text-emerald-600 dark:text-emerald-400 font-bold">{latencyPings.cloudflare} ms</span>
-                </div>
-              </div>
-            </div>
-
-            {/* Savings Widget */}
-            <div className="bg-white dark:bg-[#121218] border border-zinc-200 dark:border-[#26262e] rounded-3xl p-6 space-y-4 shadow-sm dark:shadow-xl font-mono text-xs transition-colors">
-              <div className="flex items-center justify-between">
-                <h4 className="font-mono text-xs font-bold uppercase text-emerald-600 dark:text-emerald-400 tracking-wider">
-                  STUDIO SAVINGS
-                </h4>
-                <span className="text-zinc-400 text-xs">•••</span>
-              </div>
-
-              <div className="space-y-1">
-                <span className="text-[10px] font-mono text-zinc-500 uppercase block">Total Nilai Bansos Tersedia:</span>
-                <strong className="font-serif text-3xl font-black text-zinc-900 dark:text-white block">$200,000+</strong>
-                <span className="text-[10px] font-mono text-emerald-600 dark:text-emerald-400">100% Free Developer Quotas</span>
-              </div>
-
-              <a 
-                href="https://aistudio.google.com/"
-                target="_blank"
-                rel="noreferrer"
-                className="w-full block py-2.5 rounded-2xl bg-orange-500 hover:bg-orange-600 text-white font-mono text-xs font-bold text-center transition-all shadow-md"
-              >
-                Klaim Gemini 1.5 Free
-              </a>
-            </div>
-
-          </aside>
 
         </div>
 

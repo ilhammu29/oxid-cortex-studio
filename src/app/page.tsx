@@ -317,45 +317,65 @@ Lakukan refactoring pada potongan kode berikut dengan prinsip:
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 sm:h-20 flex items-center justify-between">
           
           {/* Left Navigation Links Pointing to Real Category Pages */}
-          <nav className="hidden md:flex items-center space-x-6 text-xs font-semibold uppercase tracking-wider text-zinc-600 dark:text-zinc-400">
+          <nav className="hidden md:flex items-center space-x-5 text-xs font-semibold uppercase tracking-wider text-zinc-600 dark:text-zinc-400">
             <Link href="/prompts" className="hover:text-orange-500 transition-colors">Prompt Lab</Link>
             <Link href="/grants" className="hover:text-orange-500 transition-colors">Bansos AI</Link>
             <Link href="/tools" className="hover:text-orange-500 transition-colors">Tools Radar</Link>
-            <Link href="/intel" className="hover:text-orange-500 transition-colors">Threads Intel</Link>
-            <Link href="/templates" className="text-orange-400 hover:text-orange-500 font-bold transition-colors">Karya Templates</Link>
+            <Link href="/intel" className="hover:text-orange-500 transition-colors">Intel</Link>
+            <Link href="/templates" className="hover:text-orange-500 transition-colors">Templates</Link>
           </nav>
 
-          {/* Center Brand Identity (Real OXID Labs Logo with White Background + Text) */}
-          <Link href="/" className="flex items-center gap-2.5 sm:gap-3 cursor-pointer">
-            <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-white p-1 sm:p-1.5 flex items-center justify-center shadow-md shadow-orange-500/25 border border-zinc-200 flex-shrink-0">
+          {/* Center Brand Identity (OXID [Logo] CORTEX) */}
+          <Link href="/" className="flex items-center gap-2 sm:gap-2.5 cursor-pointer group" title="OXID CORTEX Studio">
+            <span className="font-serif text-base sm:text-xl font-black tracking-widest text-zinc-900 dark:text-white uppercase group-hover:text-orange-500 transition-colors">
+              OXID
+            </span>
+            <div className="w-7 h-7 sm:w-9 sm:h-9 rounded-full bg-white p-1 sm:p-1.5 flex items-center justify-center shadow-md shadow-orange-500/25 border border-zinc-200 flex-shrink-0 group-hover:scale-105 transition-transform">
               <img 
                 src="/images/oxid-logo.png" 
                 alt="OXID Labs" 
                 className="w-full h-full object-contain"
               />
             </div>
-            <span className="font-serif text-lg sm:text-2xl font-black tracking-wide text-zinc-900 dark:text-white uppercase">
-              OXID<span className="text-orange-500">.CORTEX</span>
+            <span className="font-serif text-base sm:text-xl font-black tracking-widest text-orange-500 uppercase">
+              CORTEX
             </span>
           </Link>
 
-          {/* Right Action Icons & Controls */}
-          <div className="flex items-center space-x-2 sm:space-x-3">
+          {/* Right Action Icons & Controls (Icon-Only Buttons) */}
+          <div className="flex items-center space-x-1.5 sm:space-x-2">
             {/* Search Spotlight Button */}
             <button 
               onClick={() => setIsSearchOpen(true)}
-              className="p-2 sm:p-2.5 rounded-full bg-zinc-100 hover:bg-zinc-200 dark:bg-[#16161c] dark:hover:bg-[#202028] text-zinc-800 dark:text-zinc-200 transition-all cursor-pointer border border-zinc-200 dark:border-[#26262e] flex items-center gap-1.5"
-              title="Cari Prompt &amp; Bansos (Ctrl+K)"
+              className="p-2 sm:p-2.5 rounded-full bg-zinc-100 hover:bg-zinc-200 dark:bg-[#16161c] dark:hover:bg-[#202028] text-zinc-800 dark:text-zinc-200 transition-all cursor-pointer border border-zinc-200 dark:border-[#26262e] flex items-center justify-center"
+              title="Cari Prompt & Bansos (Ctrl+K)"
             >
               <svg className="w-4 h-4 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
-              <span className="hidden sm:inline text-[10px] font-mono font-bold text-zinc-400">Ctrl+K</span>
+            </button>
+
+            {/* Model Arena Shortcut Icon */}
+            <button
+              onClick={() => setIsArenaOpen(true)}
+              className="hidden md:flex p-2 sm:p-2.5 rounded-full bg-zinc-100 hover:bg-zinc-200 dark:bg-[#16161c] dark:hover:bg-[#202028] text-zinc-800 dark:text-zinc-200 transition-all cursor-pointer border border-zinc-200 dark:border-[#26262e] items-center justify-center"
+              title="Model Arena (Side-by-Side)"
+            >
+              <span className="text-xs">⚔️</span>
+            </button>
+
+            {/* Community Submit Shortcut Icon */}
+            <button
+              onClick={() => setIsSubmitOpen(true)}
+              className="hidden md:flex p-2 sm:p-2.5 rounded-full bg-zinc-100 hover:bg-zinc-200 dark:bg-[#16161c] dark:hover:bg-[#202028] text-zinc-800 dark:text-zinc-200 transition-all cursor-pointer border border-zinc-200 dark:border-[#26262e] items-center justify-center"
+              title="Submit Weapon / Prompt Baru"
+            >
+              <span className="text-xs font-bold text-orange-500">➕</span>
             </button>
 
             {/* Notification Bell (Desktop Only) */}
             <div className="relative hidden md:block">
               <button 
                 onClick={() => setShowNotifications(!showNotifications)}
-                className="p-2.5 rounded-full bg-zinc-100 hover:bg-zinc-200 dark:bg-[#16161c] dark:hover:bg-[#202028] text-zinc-800 dark:text-zinc-200 transition-all cursor-pointer border border-zinc-200 dark:border-[#26262e] relative"
+                className="p-2 sm:p-2.5 rounded-full bg-zinc-100 hover:bg-zinc-200 dark:bg-[#16161c] dark:hover:bg-[#202028] text-zinc-800 dark:text-zinc-200 transition-all cursor-pointer border border-zinc-200 dark:border-[#26262e] relative flex items-center justify-center"
                 title="Pusat Notifikasi Studio"
               >
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path></svg>
@@ -423,22 +443,22 @@ Lakukan refactoring pada potongan kode berikut dengan prinsip:
               )}
             </div>
 
-            {/* Theme Toggle Pill (Desktop Only) */}
+            {/* Theme Toggle Button (Icon Only) */}
             <button 
               onClick={toggleTheme}
-              className="hidden md:flex items-center gap-1.5 px-3.5 py-2 rounded-full border text-xs font-mono font-bold transition-all cursor-pointer bg-zinc-100 hover:bg-zinc-200 border-zinc-300 text-zinc-900 dark:bg-[#16161c] dark:hover:bg-[#202028] dark:border-[#26262e] dark:text-zinc-100"
-              title="Ganti Tema"
+              className="hidden md:flex p-2 sm:p-2.5 rounded-full border text-xs font-mono font-bold transition-all cursor-pointer bg-zinc-100 hover:bg-zinc-200 border-zinc-300 text-zinc-900 dark:bg-[#16161c] dark:hover:bg-[#202028] dark:border-[#26262e] dark:text-zinc-100 items-center justify-center"
+              title={darkMode ? "Beralih ke Light Mode" : "Beralih ke Dark Mode"}
             >
               <span>{darkMode ? '🌙' : '☀️'}</span>
-              <span>{darkMode ? 'Matte Dark' : 'Light Mode'}</span>
             </button>
 
-            {/* Template Shortcut Button (Desktop Only) */}
+            {/* Template Shortcut Icon Button (Desktop Only) */}
             <Link 
               href="/templates" 
-              className="hidden md:inline-flex px-4 py-2 rounded-full bg-orange-500 hover:bg-orange-600 text-white font-mono text-xs font-bold transition-all shadow-md shadow-orange-500/20 whitespace-nowrap"
+              className="hidden md:flex p-2 sm:p-2.5 rounded-full bg-orange-500 hover:bg-orange-600 text-white font-mono text-xs font-bold transition-all shadow-md shadow-orange-500/20 items-center justify-center"
+              title="Karya Templates Kita"
             >
-              Templates
+              <span>✨</span>
             </Link>
 
             {/* Mobile Hamburger Drawer Toggle (Mobile Only) */}

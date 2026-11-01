@@ -134,10 +134,10 @@ export default function IntelPage() {
           </div>
         </header>
 
-        {/* 3. MAIN CENTER AREA + RIGHT SIDEBAR */}
-        <div className="flex-1 flex flex-col xl:flex-row min-w-0">
+        {/* 3. MAIN CENTER AREA (FULL-WIDTH EXPANDED LAYOUT) */}
+        <div className="flex-1 flex flex-col min-w-0">
           
-          <main className="flex-1 p-4 sm:p-8 pb-28 sm:pb-8 space-y-6 min-w-0 overflow-y-auto">
+          <main className="flex-1 p-4 sm:p-8 pb-28 sm:pb-8 space-y-6 min-w-0 overflow-y-auto w-full max-w-7xl mx-auto">
             {loading ? (
               <div className="p-8 text-center font-mono text-xs text-zinc-500">
                 Memuat data wawasan riil dan prompt AI...
@@ -259,27 +259,6 @@ export default function IntelPage() {
               ))
             )}
           </main>
-
-          {/* 4. RIGHT SIDEBAR */}
-          <aside className="w-full xl:w-80 bg-zinc-50 dark:bg-[#0e0e12] border-t xl:border-t-0 xl:border-l border-zinc-200 dark:border-[#26262e] p-6 space-y-6 flex-shrink-0 font-mono text-xs transition-colors">
-            <div className="bg-white dark:bg-[#121218] border border-zinc-200 dark:border-[#26262e] rounded-3xl p-6 space-y-3 shadow-sm dark:shadow-xl transition-colors">
-              <span className="text-emerald-600 dark:text-emerald-400 font-bold uppercase block">High-Signal Gateway</span>
-              <p className="text-zinc-600 dark:text-zinc-400 text-[11px] leading-relaxed">
-                Filter otomatis membuang postingan pendek, meme, dan teks receh. Hanya menyerap wawasan teknis, kuota gratis, dan seni visual AI dengan prompt reproduksi nyata.
-              </p>
-              <div className="pt-2 border-t border-zinc-200 dark:border-[#26262e] text-[10px] text-zinc-500 space-y-1">
-                <div>Kategori: Coding, Design, Bansos, Generative Art</div>
-                <div>Sumber: Komunitas Kreator, GitHub, Meta Threads</div>
-              </div>
-            </div>
-
-            <div className="bg-white dark:bg-[#121218] border border-zinc-200 dark:border-[#26262e] rounded-3xl p-6 space-y-3 shadow-sm dark:shadow-xl transition-colors">
-              <span className="text-orange-500 font-bold uppercase block">Prompt Feature Status</span>
-              <p className="text-zinc-600 dark:text-zinc-400 text-[11px] leading-relaxed">
-                Setiap gambar AI yang dibagikan komunitas otomatis diekstrak beserta prompt pembuatannya agar dapat langsung digunakan di Midjourney, Flux, atau Claude.
-              </p>
-            </div>
-          </aside>
 
         </div>
 
