@@ -25,14 +25,26 @@ export default function CommunitySubmitModal({
     e.preventDefault()
     if (!title.trim() || !content.trim()) return
 
+    // Security Sanitization: URL Scheme Validation (Prevent XSS/javascript: URI schemes)
+    if (url.trim()) {
+      const isValidScheme = /^https?:\/\//i.test(url.trim())
+      if (!isValidScheme) {
+        setStatusMessage('⚠️ Keamanan: Tautan harus diawali dengan https:// atau http:// yang valid.')
+        return
+      }
+    }
+
+    const sanitizedTitle = title.replace(/<[^>]*>?/gm, '').trim()
+    const sanitizedAuthor = submittedBy.replace(/<[^>]*>?/gm, '').trim()
+
     const submission = {
       id: `sub_${Date.now()}`,
-      title,
+      title: sanitizedTitle,
       category,
-      providerOrAuthor,
-      url,
-      content,
-      submittedBy: submittedBy || 'Anonymous Contributor',
+      providerOrAuthor: providerOrAuthor.replace(/<[^>]*>?/gm, '').trim(),
+      url: url.trim(),
+      content: content.trim(),
+      submittedBy: sanitizedAuthor || 'Anonymous Contributor',
       createdAt: new Date().toISOString(),
       status: 'PENDING_VERIFICATION'
     }
