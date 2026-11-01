@@ -427,8 +427,15 @@ export default function ToolsPage() {
                           alt={tool.name} 
                           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
                         />
-                        <div className="absolute top-3 left-3 bg-white/90 dark:bg-black/75 backdrop-blur-md px-2.5 py-1 rounded-full text-[10px] font-mono text-orange-600 dark:text-orange-400 border border-zinc-200 dark:border-white/10 font-bold">
-                          {tool.badge}
+                        <div className="absolute top-3 left-3 flex items-center gap-1.5">
+                          <span className="bg-white/90 dark:bg-black/75 backdrop-blur-md px-2.5 py-1 rounded-full text-[10px] font-mono text-orange-600 dark:text-orange-400 border border-zinc-200 dark:border-white/10 font-bold">
+                            {tool.badge}
+                          </span>
+                          {tool.type === 'github' && (
+                            <span className="bg-emerald-600 text-white backdrop-blur-md px-2 py-0.5 rounded-full text-[9px] font-mono font-bold shadow-xs">
+                              🔥 +450 ⭐/wk
+                            </span>
+                          )}
                         </div>
                         {/* Bookmark Button */}
                         <button

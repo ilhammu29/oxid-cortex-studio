@@ -4,14 +4,24 @@ import React, { useState } from 'react'
 import Link from 'next/link'
 import { useStudioTheme } from '@/lib/useStudioTheme'
 import { useBookmarks } from '@/lib/useBookmarks'
+import PromptPlaygroundModal from '@/components/PromptPlaygroundModal'
 
 export default function PromptsPage() {
   const [activeTab, setActiveTab] = useState('all')
   const [searchQuery, setSearchQuery] = useState('')
   const [copiedId, setCopiedId] = useState<string | null>(null)
   const [heroTab, setHeroTab] = useState('details')
+  const [playgroundData, setPlaygroundData] = useState<{ open: boolean; prompt: string; title: string }>({
+    open: false,
+    prompt: '',
+    title: ''
+  })
   const { darkMode, toggleTheme } = useStudioTheme()
   const { toggleBookmark, isBookmarked } = useBookmarks()
+
+  const openPlayground = (title: string, prompt: string) => {
+    setPlaygroundData({ open: true, title, prompt })
+  }
 
   const handleCopy = (id: string, text: string) => {
     if (navigator.clipboard) {
@@ -326,12 +336,21 @@ ${p.body}
                     <span className="text-[10px] text-zinc-400 ml-1.5">({heroCard.benefitSub})</span>
                   </div>
 
-                  <button 
-                    onClick={() => handleCopy("hero_feat", heroCard.prompt)}
-                    className="px-4 py-2 rounded-xl bg-orange-500 hover:bg-orange-600 text-white font-bold text-xs uppercase transition-all shadow-md shadow-orange-500/25 flex items-center gap-1.5 cursor-pointer"
-                  >
-                    <span>{copiedId === "hero_feat" ? "✓ Copied" : "Copy Prompt >"}</span>
-                  </button>
+                  <div className="flex items-center gap-2">
+                    <button 
+                      onClick={() => openPlayground(heroCard.title, heroCard.prompt)}
+                      className="px-3.5 py-2 rounded-xl bg-emerald-500 hover:bg-emerald-600 text-white font-bold text-xs uppercase transition-all shadow-md shadow-emerald-500/25 flex items-center gap-1 cursor-pointer"
+                      title="Uji Langsung Prompt Ini di Browser Playground"
+                    >
+                      <span>▶ Test Run</span>
+                    </button>
+                    <button 
+                      onClick={() => handleCopy("hero_feat", heroCard.prompt)}
+                      className="px-4 py-2 rounded-xl bg-orange-500 hover:bg-orange-600 text-white font-bold text-xs uppercase transition-all shadow-md shadow-orange-500/25 flex items-center gap-1.5 cursor-pointer"
+                    >
+                      <span>{copiedId === "hero_feat" ? "✓ Copied" : "Copy Prompt >"}</span>
+                    </button>
+                  </div>
                 </div>
               </div>
 
@@ -494,12 +513,21 @@ ${p.body}
                           <span>{card.likes}</span>
                         </div>
 
-                        <button 
-                          onClick={() => handleCopy(card.id, card.body)}
-                          className="px-4 py-1.5 rounded-full bg-orange-500 hover:bg-orange-600 text-white font-bold text-xs transition-all shadow-md shadow-orange-500/20 cursor-pointer"
-                        >
-                          {copiedId === card.id ? "✓ Copied" : "Copy Prompt >"}
-                        </button>
+                        <div className="flex items-center gap-1.5">
+                          <button
+                            onClick={() => openPlayground(card.title, card.body)}
+                            className="px-3 py-1.5 rounded-full bg-emerald-500 hover:bg-emerald-600 text-white font-bold text-xs transition-all shadow-sm flex items-center gap-1 cursor-pointer"
+                            title="Uji Langsung di In-Browser Playground Runner"
+                          >
+                            <span>▶ Run</span>
+                          </button>
+                          <button 
+                            onClick={() => handleCopy(card.id, card.body)}
+                            className="px-4 py-1.5 rounded-full bg-orange-500 hover:bg-orange-600 text-white font-bold text-xs transition-all shadow-md shadow-orange-500/20 cursor-pointer"
+                          >
+                            {copiedId === card.id ? "✓ Copied" : "Copy >"}
+                          </button>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -581,6 +609,14 @@ ${p.body}
           <span className="text-[9px] font-mono font-bold mt-0.5">Templates</span>
         </Link>
       </div>
+
+      {/* In-Browser Prompt Runner & Playground Modal */}
+      <PromptPlaygroundModal
+        isOpen={playgroundData.open}
+        onClose={() => setPlaygroundData(prev => ({ ...prev, open: false }))}
+        initialPrompt={playgroundData.prompt}
+        initialTitle={playgroundData.title}
+      />
 
     </div>
   )

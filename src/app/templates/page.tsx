@@ -31,6 +31,7 @@ export default function TemplatesPage() {
       date: "November 2026",
       screenshotImage: "/screenshots/template_dashboard.png",
       previewUrl: "/prompts",
+      cliCommand: "npx create-oxid-app my-dashboard --template pro-4pane",
       description: "Template arsitektur dashboard profesional 4-pane yang mengadopsi struktur referensi NFT.Market Pro: Left Icon Rail vertikal (w-20), Top Action Bar dengan capsule search, Main Center Area dengan Featured Split Card + 3-Column Item Grid, serta Right Finance & Savings Sidebar dengan kurva sparkline chart.",
       specs: [
         "Arsitektur: 4-Pane Responsive Grid (Left Rail, Top Bar, Center Main, Right Sidebar)",
@@ -71,6 +72,7 @@ Gunakan Next.js 14 App Router dan Tailwind CSS dengan tema Hitam Doff (#0a0a0c) 
       date: "November 2026",
       screenshotImage: "/screenshots/template_home.png",
       previewUrl: "/",
+      cliCommand: "npx create-oxid-app my-showcase --template duke-nft",
       description: "Template replikasi visual berkelas dunia yang mengadopsi struktur estetika NFT.Market Duke 100%: 3-Column Header Simetris, Hero Section dengan kartu miring 3D bergaya layered cards, Carousel 4-Drop Koleksi Visual, Live Activity Stream interaktif, dan Featured Artists Showcase.",
       specs: [
         "Desain: 7 Zona Eksplorasi Visual (Hero 3D, Drops Carousel, Live Activity, Top Artists)",
@@ -256,6 +258,25 @@ Spesifikasi Detail Antarmuka:
                   <p className="text-sm text-zinc-700 dark:text-zinc-300 leading-relaxed font-sans">
                     {tpl.description}
                   </p>
+
+                  {/* Autonomous CLI Scaffolding Box */}
+                  <div className="p-4 bg-zinc-900 border border-zinc-800 rounded-2xl font-mono text-xs text-white space-y-2 shadow-inner">
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-2">
+                        <span className="text-orange-500 font-bold">$</span>
+                        <span className="text-[10px] uppercase font-bold text-zinc-400">Autonomous CLI Scaffold:</span>
+                      </div>
+                      <button
+                        onClick={() => handleCopy(`cli_${tpl.id}`, tpl.cliCommand)}
+                        className="px-3 py-1 rounded-full bg-orange-500 hover:bg-orange-600 text-white text-[10px] font-bold transition-all cursor-pointer"
+                      >
+                        {copiedId === `cli_${tpl.id}` ? "✓ Command Tersalin" : "Copy Command"}
+                      </button>
+                    </div>
+                    <div className="p-2.5 bg-black/60 rounded-xl font-mono text-orange-400 text-[11px] overflow-x-auto whitespace-nowrap">
+                      {tpl.cliCommand}
+                    </div>
+                  </div>
 
                   {/* Specs */}
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-3 p-4 bg-zinc-100 dark:bg-[#0a0a0c] rounded-2xl border border-zinc-200 dark:border-[#26262e] text-xs font-mono text-zinc-600 dark:text-zinc-400 transition-colors">
