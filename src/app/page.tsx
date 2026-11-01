@@ -5,6 +5,7 @@ import Link from 'next/link'
 import SearchModal from '@/components/SearchModal'
 import ModelComparisonArenaModal from '@/components/ModelComparisonArenaModal'
 import CommunitySubmitModal from '@/components/CommunitySubmitModal'
+import FlueHeroCanvas from '@/components/FlueHeroCanvas'
 
 export default function Home() {
   const [darkMode, setDarkMode] = useState(true)
@@ -398,79 +399,80 @@ export default function Home() {
       </header>
 
       {/* ======================================================== */}
-      {/* 2. GETLAYERS CINEMATIC HERO SECTION (EXACT 100% REPLICA)  */}
+      {/* 2. GETLAYERS CINEMATIC HERO SECTION (STAGE BOX & FLUE)   */}
       {/* ======================================================== */}
-      <section 
-        className="hero-stage relative pt-24 sm:pt-32 pb-20 sm:pb-28 px-4 sm:px-6 lg:px-8 text-center overflow-hidden border-b border-white/[0.06]"
-        style={{
-          background: 'radial-gradient(72% 86% at 8% 19%, rgba(216, 216, 219, 0.3) 0%, rgba(168, 168, 172, 0.09) 42%, rgba(0, 0, 0, 0) 72%), radial-gradient(78% 96% at 95% 92%, rgba(226, 224, 221, 0.34) 0%, rgba(154, 154, 156, 0.1) 44%, rgba(0, 0, 0, 0) 76%), radial-gradient(46% 62% at 2% 54%, rgba(186, 186, 190, 0.14) 0%, rgba(0, 0, 0, 0) 66%), #090909'
-        }}
-      >
-        <div className="hero-content max-w-4xl mx-auto flex flex-col items-center">
+      <section className="hero-region max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4 sm:pt-6 pb-10 sm:pb-14">
+        <div className="hero-stage relative rounded-[24px] sm:rounded-[32px] border border-white/[0.08] overflow-hidden min-h-[480px] sm:min-h-[540px] flex items-center justify-center p-6 sm:p-14 text-center bg-[#050505] shadow-2xl">
           
-          {/* Eyebrow Pill */}
-          <div className="mb-6 animate-in fade-in duration-500">
-            <span 
-              className="eyebrow inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-[11.5px] font-sans transition-all"
-              style={{
-                border: '1px solid rgba(255, 255, 255, 0.08)',
-                background: 'linear-gradient(rgba(255, 255, 255, 0.035) 0%, rgba(255, 255, 255, 0) 45%), radial-gradient(120% 90% at 0% 0%, rgba(254, 234, 225, 0.043), transparent 55%), radial-gradient(120% 90% at 100% 100%, rgba(192, 206, 242, 0.04), transparent 60%), rgba(255, 255, 255, 0.027)',
-                color: 'rgb(166, 166, 166)'
-              }}
-            >
-              <span className="eyebrow-text">Trusted by 1,000+ creators</span>
-            </span>
-          </div>
+          {/* Flue Plain WebGL2 Canvas Background */}
+          <FlueHeroCanvas />
 
-          {/* Hero Display Headline */}
-          <h1 
-            className="hero-title text-[42px] sm:text-[58px] lg:text-[68px] font-[300] tracking-[-1.28px] leading-[1.06] sm:whitespace-nowrap max-w-4xl mx-auto"
-            style={{
-              background: 'linear-gradient(122deg, rgb(245, 245, 245) 0%, rgb(245, 245, 245) 18%, rgb(166, 166, 166) 100%)',
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
-              fontFamily: 'var(--font-sans, system-ui, sans-serif)'
-            }}
-          >
-            Cinematic AI sites, <br className="sm:hidden" aria-hidden="true" />made easy
-          </h1>
-
-          {/* Subtitle Paragraph */}
-          <p 
-            className="hero-subtitle mt-5 max-w-md mx-auto text-pretty text-[16.8px] leading-relaxed font-sans"
-            style={{ color: 'rgb(166, 166, 166)' }}
-          >
-            Copy a prompt, paste it into your AI, and launch a site that doesn&apos;t look AI-made.
-          </p>
-
-          {/* GetLayers Exact Silver Glass Capsule Button */}
-          <div className="mt-9 flex items-center justify-center">
-            <Link 
-              href="/templates" 
-              className="btn-link group inline-block"
-            >
+          {/* Hero Content Box (Overlaid Above Canvas) */}
+          <div className="hero-content relative z-10 max-w-4xl mx-auto flex flex-col items-center pointer-events-auto">
+            
+            {/* Eyebrow Pill */}
+            <div className="mb-6 animate-in fade-in duration-500">
               <span 
-                className="btn btn-silver btn-with-icon inline-flex items-center gap-3.5 rounded-full text-[14.2px] text-[#f5f5f5] font-sans transition-all duration-300 pl-6 pr-1.5 py-1.5 cursor-pointer border border-white/10 hover:border-white/20 hover:scale-[1.02]"
+                className="eyebrow inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-[11.5px] font-sans transition-all"
                 style={{
-                  background: 'rgba(255, 255, 255, 0.055)',
-                  boxShadow: 'rgba(255, 255, 255, 0.16) 0px 1px 1px 0px inset, rgba(255, 255, 255, 0.16) 0px -14px 24px -16px inset'
+                  border: '1px solid rgba(255, 255, 255, 0.08)',
+                  background: 'linear-gradient(rgba(255, 255, 255, 0.035) 0%, rgba(255, 255, 255, 0) 45%), radial-gradient(120% 90% at 0% 0%, rgba(254, 234, 225, 0.043), transparent 55%), radial-gradient(120% 90% at 100% 100%, rgba(192, 206, 242, 0.04), transparent 60%), rgba(255, 255, 255, 0.027)',
+                  color: 'rgb(166, 166, 166)'
                 }}
               >
-                <span className="btn-label font-medium tracking-tight">Get unlimited access</span>
-                <span className="btn-icon-circle w-7 h-7 rounded-full bg-white text-black flex items-center justify-center group-hover:scale-105 transition-transform">
-                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                    <path d="M16.4043 15.75C16.4488 15.7501 16.4923 15.7633 16.5293 15.7881C16.5664 15.8129 16.5953 15.8484 16.6123 15.8896L16.9502 17.0732C17.1004 17.6058 17.3851 18.0911 17.7764 18.4824C18.1676 18.8736 18.653 19.1574 19.1855 19.3076L20.3691 19.6465C20.4142 19.6594 20.4541 19.6863 20.4824 19.7236C20.5108 19.7612 20.5263 19.8074 20.5264 19.8545C20.5264 19.9017 20.5108 19.9477 20.4824 19.9854C20.454 20.0229 20.4144 20.0505 20.3691 20.0635L19.1855 20.4014C18.6529 20.5516 18.1677 20.8362 17.7764 21.2275C17.3851 21.6189 17.1004 22.1041 16.9502 22.6367L16.6123 23.8193C16.5994 23.8648 16.5718 23.9051 16.5342 23.9336C16.4967 23.9618 16.4512 23.9774 16.4043 23.9775C16.3572 23.9775 16.311 23.9619 16.2734 23.9336C16.2358 23.9051 16.2082 23.8648 16.1953 23.8193L15.8574 22.6367C15.7073 22.1041 15.4226 21.6189 15.0312 21.2275C14.6399 20.8362 14.1547 20.5516 13.6221 20.4014L12.4395 20.0635C12.394 20.0506 12.3537 20.023 12.3252 19.9854C12.2968 19.9477 12.2812 19.9017 12.2812 19.8545C12.2813 19.8074 12.2968 19.7612 12.3252 19.7236C12.3536 19.6861 12.3941 19.6593 12.4395 19.6465L13.6221 19.3076C14.1546 19.1574 14.64 18.8736 15.0312 18.4824C15.4225 18.0911 15.7072 17.6058 15.8574 17.0732L16.1953 15.8896C16.2123 15.8484 16.2412 15.8129 16.2783 15.7881C16.3155 15.7632 16.3596 15.75 16.4043 15.75Z" fill="currentColor" />
-                    <path d="M8.53516 4.875C8.61253 4.875 8.68866 4.89833 8.75293 4.94141C8.81701 4.98447 8.86714 5.04576 8.89648 5.11719L9.48047 7.16211C9.74017 8.08328 10.2324 8.92285 10.9092 9.59961C11.5858 10.2762 12.4248 10.7676 13.3457 11.0273L15.3916 11.6123C15.4701 11.6346 15.5396 11.6819 15.5889 11.7471C15.638 11.8122 15.6641 11.892 15.6641 11.9736C15.664 12.055 15.6379 12.1342 15.5889 12.1992C15.5396 12.2644 15.4701 12.3117 15.3916 12.334L13.3457 12.9189C12.4248 13.1787 11.5858 13.6701 10.9092 14.3467C10.2324 15.0234 9.74017 15.863 9.48047 16.7842L8.89648 18.8301C8.87417 18.9084 8.82666 18.9772 8.76172 19.0264C8.69658 19.0756 8.6168 19.1025 8.53516 19.1025C8.45366 19.1025 8.37462 19.0755 8.30957 19.0264C8.24458 18.9773 8.19716 18.9084 8.1748 18.8301L7.58984 16.7842C7.33014 15.863 6.83789 15.0234 6.16113 14.3467C5.48446 13.6701 4.64557 13.1786 3.72461 12.9189L1.67871 12.334C1.6003 12.3117 1.53158 12.2643 1.48242 12.1992C1.43328 12.1342 1.40633 12.0551 1.40625 11.9736C1.40625 11.892 1.4332 11.8122 1.48242 11.7471C1.53158 11.6821 1.60034 11.6346 1.67871 11.6123L3.72461 11.0273C4.6456 10.7677 5.48446 10.2762 6.16113 9.59961C6.83789 8.92285 7.33014 8.08328 7.58984 7.16211L8.1748 5.11719C8.2042 5.04562 8.25409 4.98449 8.31836 4.94141C8.38257 4.89838 8.45787 4.87503 8.53516 4.875Z" fill="currentColor" />
-                    <path d="M16.4043 0C16.4488 9.07153e-05 16.4923 0.0133377 16.5293 0.0380859C16.5664 0.0629351 16.5953 0.0983965 16.6123 0.139648L16.9502 1.32324C17.1004 1.85582 17.3851 2.34114 17.7764 2.73242C18.1676 3.12365 18.653 3.40742 19.1855 3.55762L20.3691 3.89648C20.4142 3.90941 20.4541 3.93625 20.4824 3.97363C20.5108 4.01123 20.5263 4.05738 20.5264 4.10449C20.5264 4.15167 20.5108 4.1977 20.4824 4.23535C20.454 4.27291 20.4144 4.30054 20.3691 4.31348L19.1855 4.65137C18.6529 4.80156 18.1677 5.08623 17.7764 5.47754C17.3851 5.86887 17.1004 6.35408 16.9502 6.88672L16.6123 8.06934C16.5994 8.11476 16.5718 8.15513 16.5342 8.18359C16.4967 8.2118 16.4512 8.22744 16.4043 8.22754C16.3572 8.22754 16.311 8.21191 16.2734 8.18359C16.2358 8.15513 16.2082 8.11476 16.1953 8.06934L15.8574 6.88672C15.7073 6.35407 15.4226 5.86888 15.0312 5.47754C14.6399 5.08622 14.1547 4.80156 13.6221 4.65137L12.4395 4.31348C12.394 4.30058 12.3537 4.27302 12.3252 4.23535C12.2968 4.1977 12.2812 4.15166 12.2812 4.10449C12.2813 4.05738 12.2968 4.01123 12.3252 3.97363C12.3536 3.93609 12.3941 3.90935 12.4395 3.89648L13.6221 3.55762C14.1546 3.40743 14.64 3.12365 15.0312 2.73242C15.4225 2.34114 15.7072 1.85582 15.8574 1.32324L16.1953 0.139648C16.2123 0.0983879 16.2412 0.0629391 16.2783 0.0380859C16.3155 0.0132357 16.3596 0 16.4043 0Z" fill="currentColor" />
-                  </svg>
-                </span>
+                <span className="eyebrow-text">Trusted by 1,000+ creators</span>
               </span>
-            </Link>
-          </div>
+            </div>
 
+            {/* Hero Display Headline */}
+            <h1 
+              className="hero-title text-[42px] sm:text-[58px] lg:text-[68px] font-[300] tracking-[-1.28px] leading-[1.06] sm:whitespace-nowrap max-w-4xl mx-auto"
+              style={{
+                background: 'linear-gradient(122deg, rgb(245, 245, 245) 0%, rgb(245, 245, 245) 18%, rgb(166, 166, 166) 100%)',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                fontFamily: 'var(--font-sans, system-ui, sans-serif)'
+              }}
+            >
+              Cinematic AI sites, <br className="sm:hidden" aria-hidden="true" />made easy
+            </h1>
+
+            {/* Subtitle Paragraph */}
+            <p 
+              className="hero-subtitle mt-5 max-w-md mx-auto text-pretty text-[16.8px] leading-relaxed font-sans"
+              style={{ color: 'rgb(166, 166, 166)' }}
+            >
+              Copy a prompt, paste it into your AI, and launch a site that doesn&apos;t look AI-made.
+            </p>
+
+            {/* GetLayers Exact Silver Glass Capsule Button */}
+            <div className="mt-9 flex items-center justify-center">
+              <Link 
+                href="/templates" 
+                className="btn-link group inline-block"
+              >
+                <span 
+                  className="btn btn-silver btn-with-icon inline-flex items-center gap-3.5 rounded-full text-[14.2px] text-[#f5f5f5] font-sans transition-all duration-300 pl-6 pr-1.5 py-1.5 cursor-pointer border border-white/10 hover:border-white/20 hover:scale-[1.02]"
+                  style={{
+                    background: 'rgba(255, 255, 255, 0.055)',
+                    boxShadow: 'rgba(255, 255, 255, 0.16) 0px 1px 1px 0px inset, rgba(255, 255, 255, 0.16) 0px -14px 24px -16px inset'
+                  }}
+                >
+                  <span className="btn-label font-medium tracking-tight">Get unlimited access</span>
+                  <span className="btn-icon-circle w-7 h-7 rounded-full bg-white text-black flex items-center justify-center group-hover:scale-105 transition-transform">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                      <path d="M16.4043 15.75C16.4488 15.7501 16.4923 15.7633 16.5293 15.7881C16.5664 15.8129 16.5953 15.8484 16.6123 15.8896L16.9502 17.0732C17.1004 17.6058 17.3851 18.0911 17.7764 18.4824C18.1676 18.8736 18.653 19.1574 19.1855 19.3076L20.3691 19.6465C20.4142 19.6594 20.4541 19.6863 20.4824 19.7236C20.5108 19.7612 20.5263 19.8074 20.5264 19.8545C20.5264 19.9017 20.5108 19.9477 20.4824 19.9854C20.454 20.0229 20.4144 20.0505 20.3691 20.0635L19.1855 20.4014C18.6529 20.5516 18.1677 20.8362 17.7764 21.2275C17.3851 21.6189 17.1004 22.1041 16.9502 22.6367L16.6123 23.8193C16.5994 23.8648 16.5718 23.9051 16.5342 23.9336C16.4967 23.9618 16.4512 23.9774 16.4043 23.9775C16.3572 23.9775 16.311 23.9619 16.2734 23.9336C16.2358 23.9051 16.2082 23.8648 16.1953 23.8193L15.8574 22.6367C15.7073 22.1041 15.4226 21.6189 15.0312 21.2275C14.6399 20.8362 14.1547 20.5516 13.6221 20.4014L12.4395 20.0635C12.394 20.0506 12.3537 20.023 12.3252 19.9854C12.2968 19.9477 12.2812 19.9017 12.2812 19.8545C12.2813 19.8074 12.2968 19.7612 12.3252 19.7236C12.3536 19.6861 12.3941 19.6593 12.4395 19.6465L13.6221 19.3076C14.1546 19.1574 14.64 18.8736 15.0312 18.4824C15.4225 18.0911 15.7072 17.6058 15.8574 1.32324L16.1953 0.139648C16.2123 0.0983879 16.2412 0.0629391 16.2783 0.0380859C16.3155 0.0132357 16.3596 0 16.4043 0Z" fill="currentColor" />
+                      <path d="M8.53516 4.875C8.61253 4.875 8.68866 4.89833 8.75293 4.94141C8.81701 4.98447 8.86714 5.04576 8.89648 5.11719L9.48047 7.16211C9.74017 8.08328 10.2324 8.92285 10.9092 9.59961C11.5858 10.2762 12.4248 10.7676 13.3457 11.0273L15.3916 11.6123C15.4701 11.6346 15.5396 11.6819 15.5889 11.7471C15.638 11.8122 15.6641 11.892 15.6641 11.9736C15.664 12.055 15.6379 12.1342 15.5889 12.1992C15.5396 12.2644 15.4701 12.3117 15.3916 12.334L13.3457 12.9189C12.4248 13.1787 11.5858 13.6701 10.9092 14.3467C10.2324 15.0234 9.74017 15.863 9.48047 16.7842L8.89648 18.8301C8.87417 18.9084 8.82666 18.9772 8.76172 19.0264C8.69658 19.0756 8.6168 19.1025 8.53516 19.1025C8.45366 19.1025 8.37462 19.0755 8.30957 19.0264C8.24458 18.9773 8.19716 18.9084 8.1748 18.8301L7.58984 16.7842C7.33014 15.863 6.83789 15.0234 6.16113 14.3467C5.48446 13.6701 4.64557 13.1786 3.72461 12.9189L1.67871 12.334C1.6003 12.3117 1.53158 12.2643 1.48242 12.1992C1.43328 12.1342 1.40633 12.0551 1.40625 11.9736C1.40625 11.892 1.4332 11.8122 1.48242 11.7471C1.53158 11.6821 1.60034 11.6346 1.67871 11.6123L3.72461 11.0273C4.6456 10.7677 5.48446 10.2762 6.16113 9.59961C6.83789 8.92285 7.33014 8.08328 7.58984 7.16211L8.1748 5.11719C8.2042 5.04562 8.25409 4.98449 8.31836 4.94141C8.38257 4.89838 8.45787 4.87503 8.53516 4.875Z" fill="currentColor" />
+                      <path d="M16.4043 0C16.4488 9.07153e-05 16.4923 0.0133377 16.5293 0.0380859C16.5664 0.0629351 16.5953 0.0983965 16.6123 0.139648L16.9502 1.32324C17.1004 1.85582 17.3851 2.34114 17.7764 2.73242C18.1676 3.12365 18.653 3.40742 19.1855 3.55762L20.3691 3.89648C20.4142 3.90941 20.4541 3.93625 20.4824 3.97363C20.5108 4.01123 20.5263 4.05738 20.5264 4.10449C20.5264 4.15167 20.5108 4.1977 20.4824 4.23535C20.454 4.27291 20.4144 4.30054 20.3691 4.31348L19.1855 4.65137C18.6529 4.80156 18.1677 5.08623 17.7764 5.47754C17.3851 5.86887 17.1004 6.35408 16.9502 6.88672L16.6123 8.06934C16.5994 8.11476 16.5718 8.15513 16.5342 8.18359C16.4967 8.2118 16.4512 8.22744 16.4043 8.22754C16.3572 8.22754 16.311 8.21191 16.2734 8.18359C16.2358 8.15513 16.2082 8.11476 16.1953 8.06934L15.8574 6.88672C15.7073 6.35407 15.4226 5.86888 15.0312 5.47754C14.6399 5.08622 14.1547 4.80156 13.6221 4.65137L12.4395 4.31348C12.394 4.30058 12.3537 4.27302 12.3252 4.23535C12.2968 4.1977 12.2812 4.15166 12.2812 4.10449C12.2813 4.05738 12.2968 4.01123 12.3252 3.97363C12.3536 3.93609 12.3941 3.90935 12.4395 3.89648L13.6221 3.55762C14.1546 3.40743 14.64 3.12365 15.0312 2.73242C15.4225 2.34114 15.7072 1.85582 15.8574 1.32324L16.1953 0.139648C16.2123 0.0983879 16.2412 0.0629391 16.2783 0.0380859C16.3155 0.0132357 16.3596 0 16.4043 0Z" fill="currentColor" />
+                    </svg>
+                  </span>
+                </span>
+              </Link>
+            </div>
+
+          </div>
         </div>
       </section>
-
       {/* ======================================================== */}
       {/* 3. GETLAYERS IMMERSIVE TEMPLATES GRID & OVERFLOW MASK   */}
       {/* ======================================================== */}
