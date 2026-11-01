@@ -7,13 +7,31 @@ import { useBookmarks } from '@/lib/useBookmarks'
 
 export default function TemplatesPage() {
   const [copiedId, setCopiedId] = useState<string | null>(null)
+  const [activeTab, setActiveTab] = useState('all')
+  const [activeTone, setActiveTone] = useState<'all' | 'dark' | 'light'>('all')
+  const [activeCategory, setActiveCategory] = useState('all')
+  const [searchQuery, setSearchQuery] = useState('')
   const [zoomImage, setZoomImage] = useState<string | null>(null)
-  const [sandboxPreview, setSandboxPreview] = useState<{ url: string; title: string } | null>(null)
-  const [viewportMode, setViewportMode] = useState<'desktop' | 'tablet' | 'mobile'>('desktop')
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const { darkMode, toggleTheme } = useStudioTheme()
   const { toggleBookmark, isBookmarked } = useBookmarks()
+  const [likes, setLikes] = useState<Record<string, number>>({
+    'lumiere': 142,
+    'prisma': 289,
+    'vesper': 310,
+    'stride': 245,
+    'aistudio': 412,
+    'dantora': 198,
+    'kyoto': 523,
+    'clarix': 167,
+    'pro_4pane': 340,
+    'duke_nft': 275,
+    'swiss_journal': 210,
+    'hardware_showcase': 185
+  })
 
-  const handleCopy = (id: string, text: string) => {
+  const handleCopy = (id: string, text: string, e?: React.MouseEvent) => {
+    if (e) e.stopPropagation()
     if (navigator.clipboard) {
       navigator.clipboard.writeText(text)
     }
@@ -21,396 +39,406 @@ export default function TemplatesPage() {
     setTimeout(() => setCopiedId(null), 2500)
   }
 
+  const handleLike = (id: string, e: React.MouseEvent) => {
+    e.stopPropagation()
+    setLikes(prev => ({ ...prev, [id]: (prev[id] || 0) + 1 }))
+  }
+
   const templatesList = [
     {
-      id: "tpl_pro_dashboard_4pane",
-      title: "High-Productivity Pro 4-Pane Studio Dashboard Layout",
-      category: "Pro SaaS & AI Dashboard",
-      created_by: "OXID Cortex Studio",
-      badge: "KARYA SENDIRI #02",
-      date: "November 2026",
-      screenshotImage: "/screenshots/template_dashboard.png",
-      previewUrl: "/prompts",
-      cliCommand: "npx create-oxid-app my-dashboard --template pro-4pane",
-      description: "Template arsitektur dashboard profesional 4-pane yang mengadopsi struktur referensi NFT.Market Pro: Left Icon Rail vertikal (w-20), Top Action Bar dengan capsule search, Main Center Area dengan Featured Split Card + 3-Column Item Grid, serta Right Finance & Savings Sidebar dengan kurva sparkline chart.",
-      specs: [
-        "Arsitektur: 4-Pane Responsive Grid (Left Rail, Top Bar, Center Main, Right Sidebar)",
-        "Palet Warna: Hitam Doff (#0a0a0c), Deep Obsidian (#121216), Cyber Orange (#ff5722), Neon Emerald (#10b981)",
-        "Fitur Utama: Countdown Timer, Double Action Buttons (Inspect & Copy), Sparkline Savings Chart",
-        "Framework: Next.js 14 App Router, Tailwind CSS, TypeScript"
-      ],
-      prompt: `Bertindaklah sebagai Lead Software Architect & UI/UX Engineer kelas dunia.
-Tugasmu: Bangun arsitektur dashboard web pro modern 4-pane dengan standar produksi tinggi.
-Struktur & Hierarki Layout:
-1. Left Navigation Rail (w-16 sm:w-20 fixed/sticky):
-   - Logo atas dengan badge rounded-2xl
-   - Menu ikon vertikal dengan active indicator pill melengkung
-   - Avatar profil di bagian paling bawah
-2. Top Bar (h-20 sticky):
-   - Deretan filter pills di sisi kiri
-   - Search bar berbentuk kapsul di tengah
-   - Tombol aksi utama (Sync Radar / Connect) dan theme toggle di sisi kanan
-3. Main Center Content Area:
-   - Featured Hero Card (Container besar terbelah 2 kolom):
-     * Sisi Kiri (Visual Preview): Gambar render mockup, badge avatar insinyur aktif (+28), timer hitung mundur kuota (Quota Refresh in 14H : 17M), dan bottom overlay benefit gratis dengan tombol aksi copy.
-     * Sisi Kanan (Metadata): Segment tabs (Details, Parameters, Changelog), timestamp verifikasi, judul besar H1, naskah teknis, dan profil kreator di footer.
-   - All Items Section (3-Column Item Grid):
-     * Header section dengan counter total items dan sorting dropdown
-     * Kartu item 3 kolom dengan menu tiga titik, counter hati, visual thumbnail, benefit price, dan 2 tombol aksi bawah (Inspect & Copy)
-4. Right Sidebar (w-80):
-   - Widget 'Studio Savings / Quota' dengan kurva sparkline SVG grafik hijau neon, kalkulator penghematan biaya ($28k+ Saved), dan tombol refresh.
-   - Featured Creators mini cards
-   - Live Activity stream feed
-Gunakan Next.js 14 App Router dan Tailwind CSS dengan tema Hitam Doff (#0a0a0c) dan aksen Cyber Flame Orange (#ff5722).`
+      id: "lumiere",
+      title: "Lumière",
+      category: "E-commerce",
+      tone: "dark",
+      badge: "New",
+      likes: 142,
+      image: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=800&q=80",
+      prompt: `Create a luxury high-end editorial fragrance e-commerce store with minimal Swiss typography, generous whitespace, smooth scroll-driven product reveal, and dark matte aesthetic. Built in Next.js 14 and Tailwind CSS.`
     },
     {
-      id: "tpl_duke_nft",
-      title: "Duke-Style Ultra-Modern NFT Showcase Layout",
-      category: "Web3 & AI Art Portal",
-      created_by: "OXID Cortex Studio",
-      badge: "KARYA SENDIRI #01",
-      date: "November 2026",
-      screenshotImage: "/screenshots/template_home.png",
-      previewUrl: "/",
-      cliCommand: "npx create-oxid-app my-showcase --template duke-nft",
-      description: "Template replikasi visual berkelas dunia yang mengadopsi struktur estetika NFT.Market Duke 100%: 3-Column Header Simetris, Hero Section dengan kartu miring 3D bergaya layered cards, Carousel 4-Drop Koleksi Visual, Live Activity Stream interaktif, dan Featured Artists Showcase.",
-      specs: [
-        "Desain: 7 Zona Eksplorasi Visual (Hero 3D, Drops Carousel, Live Activity, Top Artists)",
-        "Interaksi: Real-time Live Scraper trigger button, carousel next/prev state, dan spotlight search Ctrl+K",
-        "Aset Grafis: 4 SVG Vektor Kustom (Copilot, Fintech, Editorial, Hardware)",
-        "Styling: Glassmorphism header, badge verified, and custom scrollbars"
-      ],
-      prompt: `Bertindaklah sebagai Lead Front-End Engineer & UI/UX Designer kelas atas.
-Tugasmu: Replikasi penuh tata letak dan estetika Duke NFT Marketplace ke dalam aplikasi portal web berita/intelijen AI modern.
-Spesifikasi Detail Antarmuka:
-1. Header Simetris 3-Kolom (Sticky Glassmorphism):
-   - Kiri: 5 Menu navigasi utama
-   - Tengah: Brand logo OXID Labs melingkar putih + teks uppercase
-   - Kanan: Tombol spotlight search (Ctrl+K), Notification Bell dengan popover floating, sakelar tema, dan tombol aksi oranye
-2. Hero Section 2-Kolom:
-   - Sisi Kiri: Headline font serif berbobot tebal, deskripsi tajam, CTA ganda, dan stat counter 3 kolom (250+ Drops, 12.8k Quotas, 99.8% Speed)
-   - Sisi Kanan: Kartu bertumpuk 3D (Layered Angled Cards) dengan kartu belakang terotasi 6 derajat
-3. Featured Drops Showcase:
-   - Carousel interaktif 4 kartu dengan tombol panah melingkar bergaris tipis 1px
-4. Live Activity Stream:
-   - Feed data scraper terbaru dengan avatar kreator asli (@karpathy, @swyx, @shuding_, @sama)
-5. Bento Grid AI Design Vault:
-   - Bento box interaktif dengan OpenGraph capture asli dan tombol salin prompt`
+      id: "prisma",
+      title: "Prisma",
+      category: "AI / Tech",
+      tone: "dark",
+      badge: "Hot",
+      likes: 289,
+      image: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80",
+      prompt: `Design an immersive developer workspace for autonomous coding agents with neon telemetry charts, dark glassmorphism backplate, and high-performance latency monitors.`
+    },
+    {
+      id: "vesper",
+      title: "Vesper",
+      category: "SaaS",
+      tone: "dark",
+      badge: "Popular",
+      likes: 310,
+      image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80",
+      prompt: `Build a modern B2B analytics platform dashboard featuring asymmetric bento grids, real-time candlestick feeds, and dark obsidian aesthetic.`
+    },
+    {
+      id: "stride",
+      title: "Stride",
+      category: "Fintech",
+      tone: "dark",
+      badge: "Hot",
+      likes: 245,
+      image: "https://images.unsplash.com/photo-1559526324-4b87b5e36e44?auto=format&fit=crop&w=800&q=80",
+      prompt: `Institutional wealth management portal with clean border-1px lines, multi-currency portfolio breakdown, and micro-interactions.`
+    },
+    {
+      id: "aistudio",
+      title: "AI Studio",
+      category: "AI / Tech",
+      tone: "dark",
+      badge: "Frontier",
+      likes: 412,
+      image: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?auto=format&fit=crop&w=800&q=80",
+      prompt: `Autonomous AI multi-agent orchestration console with live terminal logs, DAG pipeline visualizer, and token consumption analytics.`
+    },
+    {
+      id: "dantora",
+      title: "Dantora",
+      category: "Health / Science",
+      tone: "dark",
+      badge: "Featured",
+      likes: 198,
+      image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=800&q=80",
+      prompt: `Biotechnology & genomic data explorer web application with clean scientific grid, high contrast data tables, and WCAG AAA compliance.`
+    },
+    {
+      id: "kyoto",
+      title: "Kyoto Villa",
+      category: "Brutalist 3D",
+      tone: "dark",
+      badge: "Trending",
+      likes: 523,
+      image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80",
+      prompt: `Ultra-minimalist raw concrete pavilion villa nestled inside misty autumn bamboo forest in Kyoto, cinematic volumetric lighting, raytraced reflections on wet stone pavement, brutalist architectural composition, 8k resolution, photorealistic shot on Hasselblad X2D 100C --ar 16:9 --style raw`
+    },
+    {
+      id: "clarix",
+      title: "Clarix",
+      category: "AI / Tech",
+      tone: "dark",
+      badge: "New",
+      likes: 167,
+      image: "https://images.unsplash.com/photo-1504639725590-34d0984388bd?auto=format&fit=crop&w=800&q=80",
+      prompt: `Full-bleed minimal developer documentation and API playground portal with instant search, syntax highlighting, and copyable bash snippets.`
+    },
+    {
+      id: "pro_4pane",
+      title: "Pro 4-Pane Studio",
+      category: "Pro Dashboard",
+      tone: "dark",
+      badge: "Verified",
+      likes: 340,
+      image: "/screenshots/template_dashboard.png",
+      prompt: `Lead Software Architect dashboard layout: 4-pane responsive grid with Left Navigation Rail, Top Filter Bar, Center Item Grid, and Right Savings & Sparkline Sidebar.`
+    },
+    {
+      id: "duke_nft",
+      title: "Duke Showcase",
+      category: "Web3 Showcase",
+      tone: "dark",
+      badge: "Verified",
+      likes: 275,
+      image: "/screenshots/template_home.png",
+      prompt: `Ultra-modern showcase layout: 3-column symmetric header, 3D stacked layered cards hero, and real-time live scraper feed.`
+    },
+    {
+      id: "swiss_journal",
+      title: "Swiss Journal",
+      category: "Editorial",
+      tone: "light",
+      badge: "Verified",
+      likes: 210,
+      image: "https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=800&q=80",
+      prompt: `Swiss editorial typography journal with monochrome high-contrast layout, asymmetric columns, and zero unnecessary visual ornament.`
+    },
+    {
+      id: "hardware_showcase",
+      title: "Hardware Showcase",
+      category: "Hardware",
+      tone: "dark",
+      badge: "Verified",
+      likes: 185,
+      image: "https://images.unsplash.com/photo-1550009158-9ebf69173e03?auto=format&fit=crop&w=800&q=80",
+      prompt: `Industrial hardware showcase with dark matte finish, hairline measurement grids, interactive rotating viewer, and technical specs table.`
     }
   ]
 
+  const filteredTemplates = templatesList.filter(t => {
+    if (activeTone !== 'all' && t.tone !== activeTone) return false
+    if (activeCategory !== 'all' && t.category !== activeCategory) return false
+    if (searchQuery && !t.title.toLowerCase().includes(searchQuery.toLowerCase()) && !t.category.toLowerCase().includes(searchQuery.toLowerCase())) return false
+    if (activeTab === 'saved' && !isBookmarked(t.id)) return false
+    return true
+  })
+
+  const categories = Array.from(new Set(templatesList.map(t => t.category)))
+
   return (
-    <div className="min-h-screen bg-white text-zinc-900 dark:bg-[#0a0a0c] dark:text-[#f4f4f5] font-sans antialiased selection:bg-orange-500 selection:text-white flex transition-colors duration-200">
+    <main className="min-h-screen bg-[#000000] text-zinc-100 font-sans antialiased selection:bg-orange-500 selection:text-white">
       
-      {/* 1. LEFT ICON RAIL (DESKTOP ONLY) */}
-      <aside className="hidden sm:flex w-16 sm:w-20 bg-zinc-50 border-r border-zinc-200 dark:bg-[#0e0e12] dark:border-[#26262e] flex-col items-center justify-between py-6 flex-shrink-0 sticky top-0 h-screen z-40 transition-colors">
-        <div className="space-y-8 flex flex-col items-center">
-          <Link href="/" className="w-10 h-10 rounded-2xl p-1.5 bg-white border border-zinc-200 flex items-center justify-center shadow-lg shadow-orange-500/20 hover:scale-105 transition-transform" title="OXID Labs Home">
-            <img src="/images/oxid-logo.png" alt="OXID Labs" className="w-full h-full object-contain" />
+      {/* 1. GETLAYERS STICKY TOP NAVBAR */}
+      <header className="sticky top-0 z-50 bg-[#000000]/90 backdrop-blur-xl border-b border-white/[0.08]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-14 sm:h-16 flex items-center justify-between gap-3">
+          
+          {/* Brand */}
+          <Link href="/" className="flex items-center gap-2.5 group cursor-pointer flex-shrink-0" title="OXID CORTEX STUDIO">
+            <div className="w-7 h-7 rounded-full bg-white p-1 flex items-center justify-center shadow-md shadow-white/10 group-hover:scale-105 transition-transform flex-shrink-0">
+              <img src="/images/oxid-logo.png" alt="OXID" className="w-full h-full object-contain" />
+            </div>
+            <div className="flex items-center font-sans text-sm font-bold tracking-tight text-white">
+              <span>OXID</span>
+              <span className="text-zinc-400 font-light ml-1">CORTEX</span>
+            </div>
           </Link>
 
-          <nav className="flex flex-col items-center space-y-4">
-            <Link href="/" className="p-3 rounded-2xl text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white hover:bg-zinc-200/50 dark:hover:bg-[#16161c] transition-all" title="Home Studio">
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
+          {/* Search Pill */}
+          <div className="hidden xl:flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/[0.04] border border-white/[0.08] text-xs font-mono text-zinc-400 w-64">
+            <svg className="w-3.5 h-3.5 text-zinc-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+            <input 
+              type="text" 
+              placeholder="Filter templates..." 
+              value={searchQuery}
+              onChange={e => setSearchQuery(e.target.value)}
+              className="bg-transparent border-none outline-none text-white text-xs w-full placeholder-zinc-500"
+            />
+          </div>
+
+          {/* Nav Pills Container */}
+          <nav className="hidden lg:flex items-center px-4 py-1.5 rounded-full bg-white/[0.04] border border-white/[0.08] text-xs font-mono font-medium text-zinc-400 space-x-5">
+            <Link href="/templates" className="text-white font-bold transition-colors">Templates</Link>
+            <Link href="/prompts" className="hover:text-white transition-colors">Prompt Lab</Link>
+            <Link href="/grants" className="hover:text-white transition-colors flex items-center gap-1.5">
+              <span>Bansos AI</span>
+              <span className="px-1.5 py-0.2 text-[9px] bg-emerald-500/15 text-emerald-400 border border-emerald-500/25 rounded-full font-bold">Free</span>
             </Link>
-            <Link href="/prompts" className="p-3 rounded-2xl text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white hover:bg-zinc-200/50 dark:hover:bg-[#16161c] transition-all" title="Prompt Lab">
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
-            </Link>
-            <Link href="/grants" className="p-3 rounded-2xl text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white hover:bg-zinc-200/50 dark:hover:bg-[#16161c] transition-all" title="Bansos AI">
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-            </Link>
-            <Link href="/tools" className="p-3 rounded-2xl text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white hover:bg-zinc-200/50 dark:hover:bg-[#16161c] transition-all" title="AI Tools Radar">
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path></svg>
-            </Link>
-            <Link href="/intel" className="p-3 rounded-2xl text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white hover:bg-zinc-200/50 dark:hover:bg-[#16161c] transition-all" title="Threads Intel Live">
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"></path></svg>
-            </Link>
-            <Link href="/templates" className="p-3 rounded-2xl bg-orange-500 text-white shadow-lg shadow-orange-500/30 transition-all" title="Karya Templates Kita (Active)">
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z"></path></svg>
-            </Link>
+            <Link href="/tools" className="hover:text-white transition-colors">Tools Radar</Link>
+            <Link href="/intel" className="hover:text-white transition-colors">Threads Intel</Link>
           </nav>
-        </div>
 
-        <div className="w-10 h-10 rounded-2xl bg-white p-1 border border-zinc-200 flex items-center justify-center shadow-lg shadow-orange-500/20" title="OXID Security Verified">
-          <img src="/images/oxid-logo.png" alt="OXID" className="w-full h-full object-contain" />
-        </div>
-      </aside>
-
-      {/* MAIN CONTAINER */}
-      <div className="flex-1 flex flex-col min-w-0">
-        
-        {/* 2. TOP BAR (MOBILE RESPONSIVE COMPACT WITH THEME TOGGLE) */}
-        <header className="border-b border-zinc-200 dark:border-[#26262e] bg-white/95 dark:bg-[#0a0a0c]/95 backdrop-blur-md p-4 sm:px-8 flex items-center justify-between sticky top-0 z-30 font-mono text-xs transition-colors">
-          <div className="flex items-center gap-2">
-            <Link href="/" className="sm:hidden w-7 h-7 rounded-full bg-white p-1 flex items-center justify-center mr-1 border border-zinc-200">
-              <img src="/images/oxid-logo.png" alt="OXID" className="w-full h-full object-contain" />
-            </Link>
-            <span className="w-2.5 h-2.5 rounded-full bg-orange-500"></span>
-            <span className="font-bold text-zinc-900 dark:text-white uppercase text-[11px] sm:text-xs tracking-wider truncate">
-              KARYA TEMPLATES STUDIO
-            </span>
-          </div>
-
-          <div className="flex items-center gap-2">
-            {/* Theme Toggle Button */}
-            <button
-              onClick={toggleTheme}
-              className="p-1.5 sm:px-3 sm:py-1.5 rounded-full border border-zinc-300 dark:border-[#26262e] bg-zinc-100 hover:bg-zinc-200 dark:bg-[#16161c] dark:hover:bg-[#202028] text-xs font-mono font-bold flex items-center gap-1 cursor-pointer transition-all"
-              title="Ganti Tema (Light/Dark)"
-            >
-              <span>{darkMode ? '🌙' : '☀️'}</span>
-              <span className="hidden md:inline text-[11px]">{darkMode ? 'Dark' : 'Light'}</span>
-            </button>
-
+          {/* Right Action */}
+          <div className="flex items-center space-x-2">
             <Link 
-              href="/prompts"
-              className="px-3.5 py-1.5 sm:px-5 sm:py-2 rounded-full bg-[#16161c] hover:bg-orange-500 hover:text-white text-orange-400 border border-zinc-300 dark:border-[#26262e] font-bold transition-all shadow-md text-xs whitespace-nowrap"
+              href="/" 
+              className="px-4 py-1.5 rounded-full bg-white text-black hover:bg-zinc-200 text-xs font-mono font-bold transition-all"
             >
-              Prompt Lab →
+              ← Beranda
             </Link>
+
+            <button 
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              className="md:hidden p-2 rounded-full bg-white/[0.04] border border-white/[0.08] text-zinc-400"
+            >
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+            </button>
           </div>
-        </header>
 
-        {/* 3. MAIN CENTER AREA (FULL-WIDTH EXPANDED LAYOUT) */}
-        <div className="flex-1 flex flex-col min-w-0">
+        </div>
+
+        {mobileMenuOpen && (
+          <div className="md:hidden border-t border-white/[0.08] bg-[#000000]/95 backdrop-blur-2xl p-4 space-y-3 font-mono text-xs">
+            <Link href="/templates" onClick={() => setMobileMenuOpen(false)} className="block p-2.5 rounded-xl bg-white/[0.04] text-white font-bold">✨ Templates</Link>
+            <Link href="/prompts" onClick={() => setMobileMenuOpen(false)} className="block p-2.5 rounded-xl bg-white/[0.04] text-white">⚡ Prompt Lab</Link>
+            <Link href="/grants" onClick={() => setMobileMenuOpen(false)} className="block p-2.5 rounded-xl bg-white/[0.04] text-emerald-400">🎁 Bansos AI</Link>
+            <Link href="/tools" onClick={() => setMobileMenuOpen(false)} className="block p-2.5 rounded-xl bg-white/[0.04] text-white">🛠️ Tools Radar</Link>
+            <Link href="/intel" onClick={() => setMobileMenuOpen(false)} className="block p-2.5 rounded-xl bg-white/[0.04] text-white">🌐 Threads Intel</Link>
+          </div>
+        )}
+      </header>
+
+      {/* 2. GETLAYERS SUBPAGE HEADER & TABLIST */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 sm:pt-14 pb-6 space-y-6">
+        
+        {/* Title Group */}
+        <div className="space-y-2">
+          <span className="text-[11px] font-mono uppercase tracking-widest text-zinc-500 block">
+            {templatesList.length} template produksi · kurasi zero-slop
+          </span>
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-sans font-[300] tracking-[-1px] text-white">
+            Immersive website prompts &amp; templates
+          </h1>
+          <p className="text-sm text-zinc-400 font-sans max-w-2xl leading-relaxed">
+            Template web Next.js 14, Tailwind CSS, dan skema Supabase siap pakai. Klik kartu untuk menyalin prompt pembentuknya.
+          </p>
+        </div>
+
+        {/* Tablist Pill Bar (GetLayers Style) */}
+        <div className="flex flex-wrap items-center gap-1.5 p-1 rounded-xl bg-white/[0.03] border border-white/[0.08] font-mono text-xs w-fit">
+          <button 
+            onClick={() => setActiveTab('all')}
+            className={`px-3.5 py-1.5 rounded-lg transition-all cursor-pointer ${activeTab === 'all' ? 'bg-white text-black font-bold shadow' : 'text-zinc-400 hover:text-white'}`}
+          >
+            Semua Template ({templatesList.length})
+          </button>
+          <button 
+            onClick={() => setActiveTab('saved')}
+            className={`px-3.5 py-1.5 rounded-lg transition-all cursor-pointer flex items-center gap-1.5 ${activeTab === 'saved' ? 'bg-white text-black font-bold shadow' : 'text-zinc-400 hover:text-white'}`}
+          >
+            <span>⭐ Favourites</span>
+            <span>({templatesList.filter(t => isBookmarked(t.id)).length})</span>
+          </button>
+        </div>
+
+        {/* Filters Group (Tone & Industry Chips) */}
+        <div className="flex flex-wrap items-center gap-x-6 gap-y-3 pt-2 text-[11px] font-mono border-t border-white/[0.06]">
           
-          <main className="flex-1 p-4 sm:p-8 pb-28 sm:pb-8 space-y-8 min-w-0 overflow-y-auto w-full max-w-7xl mx-auto">
-            
-            <div className="space-y-2">
-              <h1 className="font-serif text-3xl sm:text-4xl font-black text-zinc-900 dark:text-white">
-                Koleksi Template Web &amp; Prompt Generator (Aset Mandiri)
-              </h1>
-              <p className="text-sm text-zinc-600 dark:text-zinc-400 max-w-2xl font-sans">
-                Dokumentasi hasil karya desain web kita sendiri lengkap dengan gambar screenshot hasil render nyata, prompt master pembentuknya, dan sandbox preview interaktif.
-              </p>
-            </div>
+          {/* TONE Group */}
+          <div className="flex items-center gap-2">
+            <span className="text-zinc-500 uppercase tracking-wider text-[10px]">TONE:</span>
+            <button 
+              onClick={() => setActiveTone('all')}
+              className={`px-2.5 py-1 rounded-full border transition-all cursor-pointer ${activeTone === 'all' ? 'bg-white text-black font-bold border-white' : 'bg-transparent text-zinc-400 border-white/[0.08] hover:border-white/20'}`}
+            >
+              All {templatesList.length}
+            </button>
+            <button 
+              onClick={() => setActiveTone('dark')}
+              className={`px-2.5 py-1 rounded-full border transition-all cursor-pointer ${activeTone === 'dark' ? 'bg-white text-black font-bold border-white' : 'bg-transparent text-zinc-400 border-white/[0.08] hover:border-white/20'}`}
+            >
+              Dark {templatesList.filter(t => t.tone === 'dark').length}
+            </button>
+            <button 
+              onClick={() => setActiveTone('light')}
+              className={`px-2.5 py-1 rounded-full border transition-all cursor-pointer ${activeTone === 'light' ? 'bg-white text-black font-bold border-white' : 'bg-transparent text-zinc-400 border-white/[0.08] hover:border-white/20'}`}
+            >
+              Light {templatesList.filter(t => t.tone === 'light').length}
+            </button>
+          </div>
 
-            {/* Templates List */}
-            <div className="space-y-10">
-              {templatesList.map(tpl => (
-                <div 
-                  key={tpl.id}
-                  className="bg-zinc-50 dark:bg-[#121216] border border-zinc-200 dark:border-[#26262e] rounded-3xl p-6 sm:p-8 space-y-6 shadow-sm dark:shadow-xl transition-all"
-                >
-                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-zinc-200 dark:border-[#26262e] pb-4 font-mono text-xs transition-colors">
-                    <div className="space-y-1">
-                      <div className="flex items-center gap-2">
-                        <span className="text-[10px] font-bold uppercase bg-orange-500/10 text-orange-600 dark:text-orange-400 border border-orange-500/30 px-3 py-1 rounded-full">
-                          {tpl.badge}
-                        </span>
-                        <span className="text-zinc-500">{tpl.category}</span>
-                        {/* Bookmark Button */}
-                        <button
-                          onClick={() => toggleBookmark(tpl.id)}
-                          className={`p-1 rounded-full border transition-all cursor-pointer text-xs ${isBookmarked(tpl.id) ? 'bg-orange-500 text-white border-orange-500 shadow-xs' : 'bg-zinc-200/60 dark:bg-black/60 text-zinc-500 border-zinc-300 dark:border-[#26262e]'}`}
-                          title={isBookmarked(tpl.id) ? 'Hapus Bookmark' : 'Simpan ke Personal Vault'}
-                        >
-                          ⭐
-                        </button>
-                      </div>
-                      <h2 className="font-serif text-2xl font-bold text-zinc-900 dark:text-white pt-1">{tpl.title}</h2>
-                      <p className="text-[11px] text-zinc-500">Karya resmi: <strong>{tpl.created_by}</strong> • {tpl.date}</p>
-                    </div>
+          <span className="hidden sm:inline text-white/10">|</span>
 
-                    <div className="flex items-center gap-2">
-                      {/* Live Sandbox Interactive Preview Button */}
-                      <button 
-                        onClick={() => setSandboxPreview({ url: tpl.previewUrl, title: tpl.title })}
-                        className="px-4 py-2 rounded-full bg-emerald-500 hover:bg-emerald-600 text-white font-mono text-xs font-bold transition-all shadow-md shadow-emerald-500/25 flex items-center gap-1.5 cursor-pointer whitespace-nowrap"
-                        title="Jalankan Live Sandbox Interaktif dengan Switcher Layar"
-                      >
-                        <span>▶</span>
-                        <span>Live Sandbox</span>
-                      </button>
+          {/* INDUSTRY Group */}
+          <div className="flex flex-wrap items-center gap-2">
+            <span className="text-zinc-500 uppercase tracking-wider text-[10px]">CATEGORY:</span>
+            <button 
+              onClick={() => setActiveCategory('all')}
+              className={`px-2.5 py-1 rounded-full border transition-all cursor-pointer ${activeCategory === 'all' ? 'bg-white text-black font-bold border-white' : 'bg-transparent text-zinc-400 border-white/[0.08] hover:border-white/20'}`}
+            >
+              Semua
+            </button>
+            {categories.map(cat => (
+              <button 
+                key={cat}
+                onClick={() => setActiveCategory(cat)}
+                className={`px-2.5 py-1 rounded-full border transition-all cursor-pointer ${activeCategory === cat ? 'bg-white text-black font-bold border-white' : 'bg-transparent text-zinc-400 border-white/[0.08] hover:border-white/20'}`}
+              >
+                {cat} {templatesList.filter(t => t.category === cat).length}
+              </button>
+            ))}
+          </div>
 
-                      <button 
-                        onClick={() => handleCopy(tpl.id, tpl.prompt)}
-                        className="px-5 py-2 rounded-full bg-orange-500 hover:bg-orange-600 text-white font-mono text-xs font-bold transition-all shadow-md shadow-orange-500/25 flex items-center gap-1.5 cursor-pointer whitespace-nowrap"
-                      >
-                        <span>{copiedId === tpl.id ? "✓ Prompt Tersalin" : "Salin Prompt Template"}</span>
-                      </button>
-                    </div>
+        </div>
+
+      </section>
+
+      {/* 3. SIMPLE CARDBOX GRID (GETLAYERS STYLE) */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 pb-24">
+        
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6">
+          
+          {filteredTemplates.map((tpl, idx) => (
+            <React.Fragment key={tpl.id}>
+              
+              {/* Simple Cardbox */}
+              <article 
+                onClick={() => handleCopy(tpl.id, tpl.prompt)}
+                className="group relative bg-[#0c0c0e] border border-white/[0.08] hover:border-white/[0.2] rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-1 flex flex-col justify-between cursor-pointer"
+              >
+                {/* 16:9 Aspect Media Container */}
+                <div className="relative aspect-[16/9] w-full overflow-hidden bg-zinc-950">
+                  <img 
+                    src={tpl.image} 
+                    alt={tpl.title} 
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+
+                  {/* Top-Left Badge */}
+                  <div className="absolute top-2.5 left-2.5 flex items-center gap-1.5">
+                    {tpl.badge && (
+                      <span className="px-2 py-0.5 rounded-full text-[9px] font-mono font-bold bg-white text-black shadow">
+                        {tpl.badge}
+                      </span>
+                    )}
                   </div>
 
-                  {/* Screenshot Container with Click to Zoom */}
-                  <div className="space-y-2">
-                    <span className="text-xs font-mono text-zinc-500 uppercase block font-bold">Screenshot Hasil Render Nyata:</span>
-                    <div 
-                      className="relative h-72 sm:h-96 w-full rounded-2xl overflow-hidden bg-zinc-100 dark:bg-black border border-zinc-200 dark:border-[#26262e] cursor-pointer group shadow-md dark:shadow-xl transition-colors"
-                      onClick={() => setZoomImage(tpl.screenshotImage)}
-                    >
-                      <img 
-                        src={tpl.screenshotImage} 
-                        alt={tpl.title} 
-                        className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500" 
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex items-end justify-between p-4">
-                        <span className="text-xs font-mono text-zinc-300 bg-black/60 px-3 py-1 rounded-full border border-white/20">
-                          🔍 Klik untuk Zoom Layar Penuh
-                        </span>
-                        <span className="text-xs font-mono text-orange-400 font-bold">
-                          100% Verified Production
-                        </span>
-                      </div>
-                    </div>
-                  </div>
+                  {/* Top-Right Like Button */}
+                  <button 
+                    onClick={(e) => handleLike(tpl.id, e)}
+                    className="absolute top-2.5 right-2.5 px-2 py-0.5 rounded-full bg-black/60 hover:bg-black/90 text-[10px] font-mono text-zinc-300 backdrop-blur-md border border-white/10 flex items-center gap-1 transition-colors"
+                  >
+                    <span>♥</span>
+                    <span>{likes[tpl.id] || tpl.likes}</span>
+                  </button>
 
-                  <p className="text-sm text-zinc-700 dark:text-zinc-300 leading-relaxed font-sans">
-                    {tpl.description}
-                  </p>
-
-                  {/* Autonomous CLI Scaffolding Box */}
-                  <div className="p-4 bg-zinc-900 border border-zinc-800 rounded-2xl font-mono text-xs text-white space-y-2 shadow-inner">
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-2">
-                        <span className="text-orange-500 font-bold">$</span>
-                        <span className="text-[10px] uppercase font-bold text-zinc-400">Autonomous CLI Scaffold:</span>
-                      </div>
-                      <button
-                        onClick={() => handleCopy(`cli_${tpl.id}`, tpl.cliCommand)}
-                        className="px-3 py-1 rounded-full bg-orange-500 hover:bg-orange-600 text-white text-[10px] font-bold transition-all cursor-pointer"
-                      >
-                        {copiedId === `cli_${tpl.id}` ? "✓ Command Tersalin" : "Copy Command"}
-                      </button>
-                    </div>
-                    <div className="p-2.5 bg-black/60 rounded-xl font-mono text-orange-400 text-[11px] overflow-x-auto whitespace-nowrap">
-                      {tpl.cliCommand}
-                    </div>
-                  </div>
-
-                  {/* Specs */}
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3 p-4 bg-zinc-100 dark:bg-[#0a0a0c] rounded-2xl border border-zinc-200 dark:border-[#26262e] text-xs font-mono text-zinc-600 dark:text-zinc-400 transition-colors">
-                    {tpl.specs.map(spec => (
-                      <div key={spec} className="flex items-center gap-2">
-                        <span className="text-orange-500 font-bold">✦</span>
-                        <span>{spec}</span>
-                      </div>
-                    ))}
-                  </div>
-
-                  {/* Prompt Master Box */}
-                  <div className="space-y-2">
-                    <div className="flex items-center justify-between text-xs font-mono text-zinc-500">
-                      <span className="uppercase text-orange-500 font-bold">Prompt Master Pembentuk Template:</span>
-                      <span>Gunakan di Claude / v0 / Cursor</span>
-                    </div>
-                    <div className="p-4 bg-zinc-100 dark:bg-[#0a0a0c] border border-zinc-200 dark:border-[#26262e] rounded-2xl font-mono text-xs text-zinc-800 dark:text-zinc-300 whitespace-pre-wrap leading-relaxed max-h-56 overflow-y-auto transition-colors">
-                      {tpl.prompt}
-                    </div>
+                  {/* Center Copy Overlay */}
+                  <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/40 backdrop-blur-[2px]">
+                    <span className="px-3.5 py-1.5 rounded-full bg-white text-black font-mono text-xs font-bold shadow-xl">
+                      {copiedId === tpl.id ? "✓ Prompt Copied!" : "Salin Prompt"}
+                    </span>
                   </div>
                 </div>
-              ))}
-            </div>
 
-          </main>
+                {/* Simple Card Footer Bar */}
+                <div className="p-3.5 flex items-center justify-between border-t border-white/[0.06] font-mono text-xs">
+                  <div className="flex items-center gap-2">
+                    <span className="font-bold text-white group-hover:text-orange-400 transition-colors">
+                      {tpl.title}
+                    </span>
+                    <span className="px-1.5 py-0.2 rounded text-[9px] bg-white/[0.08] text-zinc-400 font-mono">
+                      Free
+                    </span>
+                  </div>
+                  <span className="text-[11px] text-zinc-500">
+                    {tpl.category}
+                  </span>
+                </div>
+              </article>
+
+              {/* In-Grid Promotional Banner at Slot #4 */}
+              {idx === 3 && (
+                <div className="bg-[#0c0c0e] border border-white/[0.1] rounded-2xl p-5 flex flex-col justify-between space-y-4">
+                  <div className="space-y-2">
+                    <div className="flex items-center gap-2">
+                      <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                      <span className="text-[10px] font-mono uppercase tracking-widest text-emerald-400 font-bold">
+                        Full-Stack Ready
+                      </span>
+                    </div>
+                    <h3 className="text-base font-bold text-white leading-snug">
+                      Source code with AI orchestration
+                    </h3>
+                    <p className="text-xs text-zinc-400 font-sans leading-relaxed">
+                      Next.js 14 App Router, skema Supabase, dan aturan agen coding terpasang lengkap.
+                    </p>
+                  </div>
+                  <a 
+                    href="https://github.com/ilhammu29/oxid-cortex-studio" 
+                    target="_blank" 
+                    rel="noreferrer"
+                    className="inline-flex items-center justify-center gap-1.5 px-4 py-2 rounded-full bg-white text-black text-xs font-mono font-bold hover:bg-zinc-200 transition-all text-center"
+                  >
+                    <span>Clone GitHub</span>
+                    <span>↗</span>
+                  </a>
+                </div>
+              )}
+
+            </React.Fragment>
+          ))}
 
         </div>
 
-      </div>
+      </section>
 
-      {/* SLEEK FLOATING MOBILE BOTTOM NAVIGATION BAR */}
-      <div className="sm:hidden fixed bottom-3 inset-x-4 z-50 bg-white/95 dark:bg-[#0e0e12]/95 backdrop-blur-xl border border-zinc-200 dark:border-[#26262e] rounded-full p-2 flex items-center justify-around shadow-2xl transition-colors">
-        <Link href="/" className="p-2 text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white flex flex-col items-center">
-          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
-          <span className="text-[9px] font-mono font-bold mt-0.5">Home</span>
-        </Link>
-        <Link href="/prompts" className="p-2 text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white flex flex-col items-center">
-          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
-          <span className="text-[9px] font-mono font-bold mt-0.5">Prompts</span>
-        </Link>
-        <Link href="/grants" className="p-2 text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white flex flex-col items-center">
-          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-          <span className="text-[9px] font-mono font-bold mt-0.5">Bansos</span>
-        </Link>
-        <Link href="/tools" className="p-2 text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white flex flex-col items-center">
-          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path></svg>
-          <span className="text-[9px] font-mono font-bold mt-0.5">Radar</span>
-        </Link>
-        <Link href="/templates" className="p-2 text-orange-500 flex flex-col items-center">
-          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z"></path></svg>
-          <span className="text-[9px] font-mono font-bold mt-0.5">Templates</span>
-        </Link>
-      </div>
+      {/* FOOTER */}
+      <footer className="border-t border-white/[0.08] bg-[#000000] py-8 text-center text-xs font-mono text-zinc-500">
+        <div>© 2026 OXID LABS. All rights reserved. Built for autonomous engineers.</div>
+      </footer>
 
-      {/* Lightbox Zoom Modal */}
-      {zoomImage && (
-        <div 
-          className="fixed inset-0 z-50 bg-black/95 backdrop-blur-md flex items-center justify-center p-4"
-          onClick={() => setZoomImage(null)}
-        >
-          <div className="relative max-w-5xl max-h-[90vh] overflow-hidden rounded-3xl border border-orange-500/40 shadow-2xl">
-            <button 
-              onClick={() => setZoomImage(null)}
-              className="absolute top-4 right-4 bg-orange-500 text-white rounded-full w-8 h-8 flex items-center justify-center text-xs font-bold hover:bg-orange-600 transition-all cursor-pointer shadow-lg"
-            >
-              ✕
-            </button>
-            <img src={zoomImage} alt="Template Screenshot" className="w-full h-auto max-h-[85vh] object-contain" />
-          </div>
-        </div>
-      )}
-
-      {/* Live Sandbox Interactive Modal */}
-      {sandboxPreview && (
-        <div className="fixed inset-0 z-50 bg-black/90 backdrop-blur-md flex flex-col p-2 sm:p-6 animate-in fade-in duration-200">
-          <div className="bg-zinc-900 border border-zinc-700 rounded-3xl overflow-hidden flex-1 flex flex-col shadow-2xl max-w-7xl mx-auto w-full">
-            {/* Sandbox Toolbar */}
-            <div className="h-14 border-b border-zinc-800 bg-zinc-950 px-4 sm:px-6 flex items-center justify-between font-mono text-xs text-white">
-              <div className="flex items-center gap-3">
-                <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
-                <span className="font-bold truncate max-w-[160px] sm:max-w-none">Live Interactive Sandbox: {sandboxPreview.title}</span>
-              </div>
-
-              {/* Viewport Width Switcher */}
-              <div className="flex items-center gap-1.5 bg-zinc-800/80 p-1 rounded-full border border-zinc-700">
-                <button
-                  onClick={() => setViewportMode('desktop')}
-                  className={`px-3 py-1 rounded-full text-[11px] font-bold transition-all cursor-pointer ${viewportMode === 'desktop' ? 'bg-orange-500 text-white' : 'text-zinc-400 hover:text-white'}`}
-                >
-                  🖥️ Desktop (100%)
-                </button>
-                <button
-                  onClick={() => setViewportMode('tablet')}
-                  className={`px-3 py-1 rounded-full text-[11px] font-bold transition-all cursor-pointer ${viewportMode === 'tablet' ? 'bg-orange-500 text-white' : 'text-zinc-400 hover:text-white'}`}
-                >
-                  📱 Tablet (768px)
-                </button>
-                <button
-                  onClick={() => setViewportMode('mobile')}
-                  className={`px-3 py-1 rounded-full text-[11px] font-bold transition-all cursor-pointer ${viewportMode === 'mobile' ? 'bg-orange-500 text-white' : 'text-zinc-400 hover:text-white'}`}
-                >
-                  📱 Mobile (375px)
-                </button>
-              </div>
-
-              {/* Close Button */}
-              <button 
-                onClick={() => setSandboxPreview(null)}
-                className="px-3 py-1.5 rounded-full bg-zinc-800 hover:bg-zinc-700 text-white text-xs font-bold transition-all cursor-pointer"
-              >
-                ✕ Tutup Sandbox
-              </button>
-            </div>
-
-            {/* Iframe Viewport Container */}
-            <div className="flex-1 bg-zinc-950 flex items-center justify-center p-2 sm:p-4 overflow-hidden">
-              <div 
-                className="h-full bg-black rounded-2xl overflow-hidden border border-zinc-800 shadow-2xl transition-all duration-300 flex flex-col"
-                style={{
-                  width: viewportMode === 'desktop' ? '100%' : viewportMode === 'tablet' ? '768px' : '375px'
-                }}
-              >
-                <iframe 
-                  src={sandboxPreview.url} 
-                  title="Template Live Interactive Preview"
-                  className="w-full h-full border-0 bg-black"
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
-
-    </div>
+    </main>
   )
 }
