@@ -257,57 +257,74 @@ export default function Home() {
     <main className="min-h-screen bg-[#000000] text-zinc-100 font-sans antialiased selection:bg-orange-500 selection:text-white transition-colors duration-200">
       
       {/* ======================================================== */}
-      {/* 1. GETLAYERS-STYLE SLIM STICKY HEADER                   */}
+      {/* 1. GETLAYERS-STYLE SLIM STICKY HEADER (DUAL PILL GROUPS) */}
       {/* ======================================================== */}
-      <header className="sticky top-0 z-50 bg-[#000000]/80 backdrop-blur-xl border-b border-white/[0.08]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-14 sm:h-16 flex items-center justify-between">
+      <header className="sticky top-0 z-50 bg-[#000000]/90 backdrop-blur-xl border-b border-white/[0.08]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-14 sm:h-16 flex items-center justify-between gap-3">
           
-          {/* Left Brand Logo (GetLayers Style) */}
-          <div className="flex items-center gap-6">
-            <Link href="/" className="flex items-center gap-2 group cursor-pointer" title="getlayers / oxid.cortex">
-              <div className="w-7 h-7 rounded-full bg-white p-1 flex items-center justify-center shadow-md shadow-white/10 group-hover:scale-105 transition-transform">
-                <img src="/images/oxid-logo.png" alt="OXID" className="w-full h-full object-contain" />
-              </div>
-              <div className="flex items-baseline font-mono text-sm font-bold tracking-tight">
-                <span className="text-zinc-400 group-hover:text-white transition-colors">get</span>
-                <span className="text-white">layers</span>
-                <span className="text-orange-500 font-black ml-1 text-xs">.ai</span>
-              </div>
-            </Link>
+          {/* 1. Left Brand Logo */}
+          <Link href="/" className="flex items-center gap-2.5 group cursor-pointer flex-shrink-0" title="OXID CORTEX STUDIO">
+            <div className="w-7 h-7 rounded-full bg-white p-1 flex items-center justify-center shadow-md shadow-white/10 group-hover:scale-105 transition-transform flex-shrink-0">
+              <img src="/images/oxid-logo.png" alt="OXID" className="w-full h-full object-contain" />
+            </div>
+            <div className="flex items-center font-sans text-sm font-bold tracking-tight text-white">
+              <span>OXID</span>
+              <span className="text-zinc-400 font-light ml-1">CORTEX</span>
+            </div>
+          </Link>
 
-            {/* Quick Search Capsule Button (GetLayers / shortcut trigger) */}
-            <button 
-              onClick={() => setIsSearchOpen(true)}
-              className="hidden lg:flex items-center gap-3 px-3 py-1.5 rounded-full bg-white/[0.04] hover:bg-white/[0.08] border border-white/[0.08] text-xs font-mono text-zinc-400 hover:text-zinc-200 transition-all cursor-pointer"
-              title="Search the library (/)"
-            >
-              <svg className="w-3.5 h-3.5 text-zinc-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-              </svg>
-              <span>Search the library</span>
-              <kbd className="px-1.5 py-0.5 rounded bg-white/[0.08] text-[10px] text-zinc-300 font-mono border border-white/[0.1]">/</kbd>
-            </button>
-          </div>
+          {/* 2. Center-Left Search Pill Button */}
+          <button 
+            onClick={() => setIsSearchOpen(true)}
+            className="hidden xl:flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-white/[0.04] hover:bg-white/[0.08] border border-white/[0.08] text-xs font-mono text-zinc-400 hover:text-zinc-200 transition-all cursor-pointer flex-shrink-0"
+            title="Cari Library Prompt (/)"
+          >
+            <svg className="w-3.5 h-3.5 text-zinc-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+            </svg>
+            <span className="text-[11px]">Cari library prompt</span>
+            <kbd className="px-1.5 py-0.5 rounded bg-white/[0.08] text-[9px] text-zinc-400 font-mono border border-white/[0.1]">/</kbd>
+          </button>
 
-          {/* Center Navigation Links (GetLayers Clean Primary Menu) */}
-          <nav className="hidden md:flex items-center space-x-6 text-xs font-mono font-medium text-zinc-400">
-            <Link href="/templates" className="hover:text-white transition-colors">Templates</Link>
+          {/* 3. Center Navigation Pill Container (Pill Group 1) */}
+          <nav className="hidden lg:flex items-center px-4 py-1.5 rounded-full bg-white/[0.04] border border-white/[0.08] text-xs font-mono font-medium text-zinc-400 space-x-5">
             <Link href="/prompts" className="hover:text-white transition-colors">Prompt Lab</Link>
             <Link href="/grants" className="hover:text-white transition-colors flex items-center gap-1.5">
               <span>Bansos AI</span>
-              <span className="px-1.5 py-0.2 text-[9px] bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 rounded-full font-bold">Free</span>
+              <span className="px-1.5 py-0.2 text-[9px] bg-emerald-500/15 text-emerald-400 border border-emerald-500/25 rounded-full font-bold">Free</span>
             </Link>
             <Link href="/tools" className="hover:text-white transition-colors">Tools Radar</Link>
-            <Link href="/intel" className="hover:text-white transition-colors">Intel</Link>
+            <Link href="/intel" className="hover:text-white transition-colors">Threads Intel</Link>
+            <Link href="/templates" className="hover:text-white transition-colors">Templates</Link>
           </nav>
 
-          {/* Right Action Buttons */}
-          <div className="flex items-center space-x-2 sm:space-x-3">
-            {/* Search Icon Trigger for Mobile */}
+          {/* 4. Center-Right Action Pill Container (Pill Group 2) */}
+          <div className="hidden md:flex items-center px-3.5 py-1.5 rounded-full bg-white/[0.04] border border-white/[0.08] text-xs font-mono space-x-3.5 flex-shrink-0">
+            <button
+              onClick={() => setIsArenaOpen(true)}
+              className="text-zinc-300 hover:text-white transition-colors flex items-center gap-1.5 cursor-pointer"
+              title="Side-by-Side Model Arena"
+            >
+              <span>⚔️</span>
+              <span>Model Arena</span>
+            </button>
+            <span className="text-white/20">|</span>
+            <button
+              onClick={() => setIsSubmitOpen(true)}
+              className="text-zinc-300 hover:text-white transition-colors flex items-center gap-1.5 cursor-pointer"
+              title="Submit Weapon / Prompt Baru"
+            >
+              <span>➕ Submit</span>
+              <span className="px-1.5 py-0.2 text-[9px] bg-orange-500/15 text-orange-400 border border-orange-500/25 rounded-full font-bold">New</span>
+            </button>
+          </div>
+
+          {/* 5. Far Right Action Cluster */}
+          <div className="flex items-center space-x-2">
             <button 
               onClick={() => setIsSearchOpen(true)}
-              className="lg:hidden p-2 rounded-full bg-white/[0.04] hover:bg-white/[0.08] border border-white/[0.08] text-zinc-400 hover:text-white transition-all cursor-pointer"
-              title="Search"
+              className="xl:hidden p-2 rounded-full bg-white/[0.04] hover:bg-white/[0.08] border border-white/[0.08] text-zinc-400 hover:text-white transition-all cursor-pointer"
+              title="Cari"
             >
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
             </button>
@@ -317,7 +334,7 @@ export default function Home() {
               <button 
                 onClick={() => setShowNotifications(!showNotifications)}
                 className="p-2 sm:p-2.5 rounded-full bg-white/[0.04] hover:bg-white/[0.08] text-zinc-400 hover:text-white border border-white/[0.08] transition-all cursor-pointer relative"
-                title="Studio Notifications"
+                title="Pusat Notifikasi Radar"
               >
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path></svg>
                 {unreadNotifications > 0 && (
@@ -356,25 +373,6 @@ export default function Home() {
               )}
             </div>
 
-            {/* Model Arena Shortcut */}
-            <button
-              onClick={() => setIsArenaOpen(true)}
-              className="hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/[0.04] hover:bg-white/[0.08] text-zinc-300 hover:text-white border border-white/[0.08] text-xs font-mono font-medium transition-all cursor-pointer"
-              title="Side-by-Side Model Arena"
-            >
-              <span>⚔️</span>
-              <span className="hidden md:inline">Arena</span>
-            </button>
-
-            {/* Primary GetLayers Action Capsule (Get Unlimited Access) */}
-            <button 
-              onClick={() => setIsSubmitOpen(true)}
-              className="px-3.5 py-1.5 sm:px-4 sm:py-1.5 rounded-full bg-white text-black hover:bg-zinc-200 text-xs font-mono font-bold transition-all shadow-md shadow-white/10 flex items-center gap-1.5 cursor-pointer"
-            >
-              <span>+ Submit</span>
-              <span className="hidden sm:inline">Weapon</span>
-            </button>
-
             {/* Mobile Hamburger Toggle */}
             <button 
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -391,7 +389,7 @@ export default function Home() {
           <div className="md:hidden border-t border-white/[0.08] bg-[#000000]/95 backdrop-blur-2xl p-4 space-y-3 font-mono text-xs">
             <Link href="/templates" onClick={() => setMobileMenuOpen(false)} className="block p-2.5 rounded-xl bg-white/[0.04] text-white font-bold">✨ All Templates</Link>
             <Link href="/prompts" onClick={() => setMobileMenuOpen(false)} className="block p-2.5 rounded-xl bg-white/[0.04] text-white">⚡ Prompt Lab</Link>
-            <Link href="/grants" onClick={() => setMobileMenuOpen(false)} className="block p-2.5 rounded-xl bg-white/[0.04] text-emerald-400">🎁 Bansos AI & Free Quotas</Link>
+            <Link href="/grants" onClick={() => setMobileMenuOpen(false)} className="block p-2.5 rounded-xl bg-white/[0.04] text-emerald-400">🎁 Bansos AI &amp; Free Quotas</Link>
             <Link href="/tools" onClick={() => setMobileMenuOpen(false)} className="block p-2.5 rounded-xl bg-white/[0.04] text-white">🛠️ AI Tools Radar</Link>
             <Link href="/intel" onClick={() => setMobileMenuOpen(false)} className="block p-2.5 rounded-xl bg-white/[0.04] text-white">🌐 Live Intel Feed</Link>
           </div>
@@ -399,9 +397,9 @@ export default function Home() {
       </header>
 
       {/* ======================================================== */}
-      {/* 2. GETLAYERS CINEMATIC HERO SECTION (STAGE BOX & FLUE)   */}
+      {/* 2. OXID CORTEX CINEMATIC HERO SECTION (STAGE BOX & FLUE) */}
       {/* ======================================================== */}
-      <section className="hero-region max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4 sm:pt-6 pb-10 sm:pb-14">
+      <section className="hero-region max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4 sm:pt-6 pb-8 sm:pb-12">
         <div className="hero-stage relative rounded-[24px] sm:rounded-[32px] border border-white/[0.08] overflow-hidden min-h-[480px] sm:min-h-[540px] flex items-center justify-center p-6 sm:p-14 text-center bg-[#050505] shadow-2xl">
           
           {/* Flue Plain WebGL2 Canvas Background */}
@@ -420,13 +418,13 @@ export default function Home() {
                   color: 'rgb(166, 166, 166)'
                 }}
               >
-                <span className="eyebrow-text">Trusted by 1,000+ creators</span>
+                <span className="eyebrow-text">✦ OXID INTELLIGENCE &amp; DIGITAL GRANTS</span>
               </span>
             </div>
 
             {/* Hero Display Headline */}
             <h1 
-              className="hero-title text-[42px] sm:text-[58px] lg:text-[68px] font-[300] tracking-[-1.28px] leading-[1.06] sm:whitespace-nowrap max-w-4xl mx-auto"
+              className="hero-title text-[42px] sm:text-[56px] lg:text-[66px] font-[300] tracking-[-1.28px] leading-[1.08] sm:whitespace-nowrap max-w-4xl mx-auto"
               style={{
                 background: 'linear-gradient(122deg, rgb(245, 245, 245) 0%, rgb(245, 245, 245) 18%, rgb(166, 166, 166) 100%)',
                 WebkitBackgroundClip: 'text',
@@ -434,18 +432,18 @@ export default function Home() {
                 fontFamily: 'var(--font-sans, system-ui, sans-serif)'
               }}
             >
-              Cinematic AI sites, <br className="sm:hidden" aria-hidden="true" />made easy
+              Production AI Prompts &amp; Cloud Grants, <br className="sm:hidden" aria-hidden="true" />made easy
             </h1>
 
             {/* Subtitle Paragraph */}
             <p 
-              className="hero-subtitle mt-5 max-w-md mx-auto text-pretty text-[16.8px] leading-relaxed font-sans"
+              className="hero-subtitle mt-5 max-w-xl mx-auto text-pretty text-[16px] sm:text-[17px] leading-relaxed font-sans"
               style={{ color: 'rgb(166, 166, 166)' }}
             >
-              Copy a prompt, paste it into your AI, and launch a site that doesn&apos;t look AI-made.
+              Salin master prompt terverifikasi, klaim kuota LLM gratis tanpa biaya langganan, dan bangun arsitektur web modern bebas slop.
             </p>
 
-            {/* GetLayers Exact Silver Glass Capsule Button */}
+            {/* GetLayers Exact Silver Glass Capsule Button with OXID context */}
             <div className="mt-9 flex items-center justify-center">
               <Link 
                 href="/templates" 
@@ -458,7 +456,7 @@ export default function Home() {
                     boxShadow: 'rgba(255, 255, 255, 0.16) 0px 1px 1px 0px inset, rgba(255, 255, 255, 0.16) 0px -14px 24px -16px inset'
                   }}
                 >
-                  <span className="btn-label font-medium tracking-tight">Get unlimited access</span>
+                  <span className="btn-label font-medium tracking-tight">Jelajahi Library &amp; Bansos</span>
                   <span className="btn-icon-circle w-7 h-7 rounded-full bg-white text-black flex items-center justify-center group-hover:scale-105 transition-transform">
                     <svg width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                       <path d="M16.4043 15.75C16.4488 15.7501 16.4923 15.7633 16.5293 15.7881C16.5664 15.8129 16.5953 15.8484 16.6123 15.8896L16.9502 17.0732C17.1004 17.6058 17.3851 18.0911 17.7764 18.4824C18.1676 18.8736 18.653 19.1574 19.1855 19.3076L20.3691 19.6465C20.4142 19.6594 20.4541 19.6863 20.4824 19.7236C20.5108 19.7612 20.5263 19.8074 20.5264 19.8545C20.5264 19.9017 20.5108 19.9477 20.4824 19.9854C20.454 20.0229 20.4144 20.0505 20.3691 20.0635L19.1855 20.4014C18.6529 20.5516 18.1677 20.8362 17.7764 21.2275C17.3851 21.6189 17.1004 22.1041 16.9502 22.6367L16.6123 23.8193C16.5994 23.8648 16.5718 23.9051 16.5342 23.9336C16.4967 23.9618 16.4512 23.9774 16.4043 23.9775C16.3572 23.9775 16.311 23.9619 16.2734 23.9336C16.2358 23.9051 16.2082 23.8648 16.1953 23.8193L15.8574 22.6367C15.7073 22.1041 15.4226 21.6189 15.0312 21.2275C14.6399 20.8362 14.1547 20.5516 13.6221 20.4014L12.4395 20.0635C12.394 20.0506 12.3537 20.023 12.3252 19.9854C12.2968 19.9477 12.2812 19.9017 12.2812 19.8545C12.2813 19.8074 12.2968 19.7612 12.3252 19.7236C12.3536 19.6861 12.3941 19.6593 12.4395 19.6465L13.6221 19.3076C14.1546 19.1574 14.64 18.8736 15.0312 18.4824C15.4225 18.0911 15.7072 17.6058 15.8574 1.32324L16.1953 0.139648C16.2123 0.0983879 16.2412 0.0629391 16.2783 0.0380859C16.3155 0.0132357 16.3596 0 16.4043 0Z" fill="currentColor" />
@@ -473,26 +471,42 @@ export default function Home() {
           </div>
         </div>
       </section>
+
       {/* ======================================================== */}
       {/* 3. GETLAYERS IMMERSIVE TEMPLATES GRID & OVERFLOW MASK   */}
       {/* ======================================================== */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-6">
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 space-y-6">
         
-        {/* Section Header */}
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-white/[0.08] pb-4">
-          <div className="space-y-1">
+        {/* Section Header with Left Content, Center Floating Button, and Right Link */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-white/[0.08] pb-5 relative">
+          
+          {/* Left Title & Eyebrow */}
+          <div className="space-y-1.5">
             <span className="text-[11px] font-mono uppercase tracking-widest text-zinc-500 block">
-              New templates arrive weekly
+              Kurasi Mingguan Terverifikasi
             </span>
             <h2 className="text-2xl sm:text-3xl font-sans font-bold text-white tracking-tight">
-              Immersive website prompts
+              Immersive website prompts &amp; templates
             </h2>
           </div>
+
+          {/* Center Floating Pill Button (GetLayers Ask AI / Model Arena) */}
+          <div className="hidden md:flex absolute left-1/2 -translate-x-1/2 bottom-3">
+            <button
+              onClick={() => setIsArenaOpen(true)}
+              className="px-4 py-2 rounded-full bg-white/[0.06] hover:bg-white/[0.12] border border-white/[0.12] text-xs font-mono text-zinc-200 flex items-center gap-2 cursor-pointer shadow-lg backdrop-blur-md hover:scale-105 transition-all"
+            >
+              <span>⚔️</span>
+              <span>Tanya AI / Model Arena</span>
+            </button>
+          </div>
+
+          {/* Right Link */}
           <Link 
             href="/templates" 
-            className="text-xs font-mono text-zinc-400 hover:text-white flex items-center gap-1 transition-colors"
+            className="text-xs font-mono text-zinc-400 hover:text-white flex items-center gap-1.5 transition-colors self-start md:self-end"
           >
-            <span>All Templates</span>
+            <span>Semua Template &amp; Prompt</span>
             <span>→</span>
           </Link>
         </div>
