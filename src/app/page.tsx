@@ -3,6 +3,8 @@
 import React, { useState, useEffect } from 'react'
 import Link from 'next/link'
 import SearchModal from '@/components/SearchModal'
+import ModelComparisonArenaModal from '@/components/ModelComparisonArenaModal'
+import CommunitySubmitModal from '@/components/CommunitySubmitModal'
 
 export default function Home() {
   const [activeTab, setActiveTab] = useState('all')
@@ -15,6 +17,8 @@ export default function Home() {
   const [carouselIndex, setCarouselIndex] = useState(0)
   const [leaderboardFilter, setLeaderboardFilter] = useState('7d')
   const [isSearchOpen, setIsSearchOpen] = useState(false)
+  const [isArenaOpen, setIsArenaOpen] = useState(false)
+  const [isSubmitOpen, setIsSubmitOpen] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [showNotifications, setShowNotifications] = useState(false)
   const [unreadNotifications, setUnreadNotifications] = useState(3)
@@ -541,18 +545,35 @@ Lakukan refactoring pada potongan kode berikut dengan prinsip:
             </div>
 
             {/* Action Buttons (Pill Shapes) */}
-            <div className="flex items-center gap-4 pt-2">
+            <div className="flex flex-wrap items-center gap-3 pt-2 font-mono text-xs">
               <button 
                 onClick={() => setIsSearchOpen(true)}
-                className="px-8 py-3.5 rounded-full bg-orange-500 hover:bg-orange-600 text-white font-bold text-sm tracking-wide transition-all shadow-lg shadow-orange-500/25 cursor-pointer border border-orange-400/30 flex items-center gap-2"
+                className="px-6 py-3.5 rounded-full bg-orange-500 hover:bg-orange-600 text-white font-bold tracking-wide transition-all shadow-lg shadow-orange-500/25 cursor-pointer border border-orange-400/30 flex items-center gap-2"
               >
                 <span>Explore Radar (Ctrl+K)</span>
               </button>
+
+              <button 
+                onClick={() => setIsArenaOpen(true)}
+                className="px-5 py-3.5 rounded-full bg-zinc-100 hover:bg-zinc-200 dark:bg-[#16161c] dark:hover:bg-[#202028] text-zinc-900 dark:text-white font-bold transition-all border border-zinc-300 dark:border-[#26262e] cursor-pointer flex items-center gap-1.5"
+                title="Buka Side-by-Side Model Comparison Arena"
+              >
+                <span>⚔️ Model Arena</span>
+              </button>
+
+              <button 
+                onClick={() => setIsSubmitOpen(true)}
+                className="px-5 py-3.5 rounded-full bg-zinc-100 hover:bg-zinc-200 dark:bg-[#16161c] dark:hover:bg-[#202028] text-zinc-900 dark:text-white font-bold transition-all border border-zinc-300 dark:border-[#26262e] cursor-pointer flex items-center gap-1.5"
+                title="Kirimkan Prompt / Kuota AI Baru dari Komunitas"
+              >
+                <span>+ Submit Weapon</span>
+              </button>
+
               <Link 
                 href="/templates"
-                className="px-8 py-3.5 rounded-full bg-transparent hover:bg-zinc-100 dark:hover:bg-[#16161c] text-zinc-900 dark:text-white font-bold text-sm tracking-wide transition-all border border-zinc-300 dark:border-[#26262e] cursor-pointer"
+                className="px-6 py-3.5 rounded-full bg-transparent hover:bg-zinc-100 dark:hover:bg-[#16161c] text-zinc-900 dark:text-white font-bold tracking-wide transition-all border border-zinc-300 dark:border-[#26262e] cursor-pointer"
               >
-                Karya Templates
+                Templates
               </Link>
             </div>
 
@@ -1195,6 +1216,12 @@ Lakukan refactoring pada potongan kode berikut dengan prinsip:
 
       {/* Global Interactive Search Modal */}
       <SearchModal isOpen={isSearchOpen} onClose={() => setIsSearchOpen(false)} />
+
+      {/* Side-by-Side Model Comparison Arena Modal */}
+      <ModelComparisonArenaModal isOpen={isArenaOpen} onClose={() => setIsArenaOpen(false)} />
+
+      {/* Community AI Weapon / Grant / Prompt Submission Modal */}
+      <CommunitySubmitModal isOpen={isSubmitOpen} onClose={() => setIsSubmitOpen(false)} />
 
       {/* SLEEK FLOATING MOBILE BOTTOM NAVIGATION BAR */}
       <div className="sm:hidden fixed bottom-3 inset-x-4 z-40 bg-white/90 dark:bg-[#0e0e12]/90 backdrop-blur-xl border border-zinc-200 dark:border-[#26262e] rounded-full p-2 flex items-center justify-around shadow-2xl">

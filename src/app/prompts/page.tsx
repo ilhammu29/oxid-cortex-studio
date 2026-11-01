@@ -5,12 +5,14 @@ import Link from 'next/link'
 import { useStudioTheme } from '@/lib/useStudioTheme'
 import { useBookmarks } from '@/lib/useBookmarks'
 import PromptPlaygroundModal from '@/components/PromptPlaygroundModal'
+import ModelComparisonArenaModal from '@/components/ModelComparisonArenaModal'
 
 export default function PromptsPage() {
   const [activeTab, setActiveTab] = useState('all')
   const [searchQuery, setSearchQuery] = useState('')
   const [copiedId, setCopiedId] = useState<string | null>(null)
   const [heroTab, setHeroTab] = useState('details')
+  const [isArenaOpen, setIsArenaOpen] = useState(false)
   const [playgroundData, setPlaygroundData] = useState<{ open: boolean; prompt: string; title: string }>({
     open: false,
     prompt: '',
@@ -261,6 +263,15 @@ ${p.body}
               >
                 <span>{darkMode ? '🌙' : '☀️'}</span>
                 <span className="hidden md:inline text-[11px]">{darkMode ? 'Dark' : 'Light'}</span>
+              </button>
+
+              {/* Arena Button */}
+              <button 
+                onClick={() => setIsArenaOpen(true)}
+                className="hidden sm:inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full bg-zinc-100 hover:bg-zinc-200 dark:bg-[#16161c] dark:hover:bg-[#202028] text-zinc-800 dark:text-zinc-200 border border-zinc-300 dark:border-[#26262e] font-mono text-xs font-bold transition-all shadow-sm cursor-pointer whitespace-nowrap"
+                title="Buka Side-by-Side Model Comparison Arena"
+              >
+                <span>⚔️ Arena</span>
               </button>
 
               {/* Export Bundle Button */}
@@ -616,6 +627,12 @@ ${p.body}
         onClose={() => setPlaygroundData(prev => ({ ...prev, open: false }))}
         initialPrompt={playgroundData.prompt}
         initialTitle={playgroundData.title}
+      />
+
+      {/* Side-by-Side Model Comparison Arena Modal */}
+      <ModelComparisonArenaModal
+        isOpen={isArenaOpen}
+        onClose={() => setIsArenaOpen(false)}
       />
 
     </div>
