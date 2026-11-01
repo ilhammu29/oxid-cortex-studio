@@ -7,6 +7,9 @@ import { useStudioTheme } from '@/lib/useStudioTheme'
 export default function IntelPage() {
   const [threads, setThreads] = useState<any[]>([])
   const [loading, setLoading] = useState(true)
+  const [activeCategory, setActiveCategory] = useState('all')
+  const [copiedPromptId, setCopiedPromptId] = useState<string | null>(null)
+  const [zoomImage, setZoomImage] = useState<string | null>(null)
   const { darkMode, toggleTheme } = useStudioTheme()
 
   useEffect(() => {
@@ -20,6 +23,23 @@ export default function IntelPage() {
       .catch(err => console.error("Error loading threads:", err))
       .finally(() => setLoading(false))
   }, [])
+
+  const handleCopyPrompt = (id: string, promptText: string) => {
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(promptText)
+      setCopiedPromptId(id)
+      setTimeout(() => setCopiedPromptId(null), 2500)
+    }
+  }
+
+  const filteredThreads = threads.filter(th => {
+    if (activeCategory === 'all') return true
+    if (activeCategory === 'art') return th.category?.includes('Art') || th.category?.includes('Prompt')
+    if (activeCategory === 'coding') return th.category?.includes('Coding') || th.category?.includes('Autonomous')
+    if (activeCategory === 'design') return th.category?.includes('Design') || th.category?.includes('Motion')
+    if (activeCategory === 'grants') return th.category?.includes('Bansos') || th.category?.includes('Cloud')
+    return true
+  })
 
   return (
     <div className="min-h-screen bg-white text-zinc-900 dark:bg-[#0a0a0c] dark:text-[#f4f4f5] font-sans antialiased selection:bg-orange-500 selection:text-white flex transition-colors duration-200">
@@ -62,32 +82,55 @@ export default function IntelPage() {
       <div className="flex-1 flex flex-col min-w-0">
         
         {/* 2. TOP BAR (MOBILE RESPONSIVE COMPACT WITH THEME TOGGLE) */}
-        <header className="border-b border-zinc-200 dark:border-[#26262e] bg-white/95 dark:bg-[#0a0a0c]/95 backdrop-blur-md p-4 sm:px-8 flex items-center justify-between sticky top-0 z-30 font-mono text-xs transition-colors">
-          <div className="flex items-center gap-2">
-            <Link href="/" className="sm:hidden w-7 h-7 rounded-full bg-white p-1 flex items-center justify-center mr-1 border border-zinc-200">
-              <img src="/images/oxid-logo.png" alt="OXID" className="w-full h-full object-contain" />
-            </Link>
-            <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-            <span className="font-bold text-zinc-900 dark:text-white uppercase text-[11px] sm:text-xs">Live Threads Intel</span>
+        <header className="border-b border-zinc-200 dark:border-[#26262e] bg-white/95 dark:bg-[#0a0a0c]/95 backdrop-blur-md p-4 sm:px-8 sticky top-0 z-30 font-mono text-xs transition-colors">
+          <div className="flex items-center justify-between pb-3">
+            <div className="flex items-center gap-2">
+              <Link href="/" className="sm:hidden w-7 h-7 rounded-full bg-white p-1 flex items-center justify-center mr-1 border border-zinc-200">
+                <img src="/images/oxid-logo.png" alt="OXID" className="w-full h-full object-contain" />
+              </Link>
+              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+              <span className="font-bold text-zinc-900 dark:text-white uppercase text-[11px] sm:text-xs">
+                Live Radar &amp; Generative Art Intel
+              </span>
+            </div>
+
+            <div className="flex items-center gap-2">
+              {/* Theme Toggle Button */}
+              <button
+                onClick={toggleTheme}
+                className="p-1.5 sm:px-3 sm:py-1.5 rounded-full border border-zinc-300 dark:border-[#26262e] bg-zinc-100 hover:bg-zinc-200 dark:bg-[#16161c] dark:hover:bg-[#202028] text-xs font-mono font-bold flex items-center gap-1 cursor-pointer transition-all"
+                title="Ganti Tema (Light/Dark)"
+              >
+                <span>{darkMode ? '🌙' : '☀️'}</span>
+                <span className="hidden md:inline text-[11px]">{darkMode ? 'Dark' : 'Light'}</span>
+              </button>
+
+              <Link 
+                href="/templates" 
+                className="px-3.5 py-1.5 sm:px-5 sm:py-2 rounded-full bg-orange-500 hover:bg-orange-600 text-white font-mono text-xs font-bold transition-all shadow-md shadow-orange-500/25 whitespace-nowrap"
+              >
+                Templates
+              </Link>
+            </div>
           </div>
 
-          <div className="flex items-center gap-2">
-            {/* Theme Toggle Button */}
-            <button
-              onClick={toggleTheme}
-              className="p-1.5 sm:px-3 sm:py-1.5 rounded-full border border-zinc-300 dark:border-[#26262e] bg-zinc-100 hover:bg-zinc-200 dark:bg-[#16161c] dark:hover:bg-[#202028] text-xs font-mono font-bold flex items-center gap-1 cursor-pointer transition-all"
-              title="Ganti Tema (Light/Dark)"
-            >
-              <span>{darkMode ? '🌙' : '☀️'}</span>
-              <span className="hidden md:inline text-[11px]">{darkMode ? 'Dark' : 'Light'}</span>
-            </button>
-
-            <Link 
-              href="/templates" 
-              className="px-3.5 py-1.5 sm:px-5 sm:py-2 rounded-full bg-orange-500 hover:bg-orange-600 text-white font-mono text-xs font-bold transition-all shadow-md shadow-orange-500/25 whitespace-nowrap"
-            >
-              Templates
-            </Link>
+          {/* Category Filter Pills Bar */}
+          <div className="flex items-center space-x-2 pt-2 border-t border-zinc-200/80 dark:border-[#26262e]/40 overflow-x-auto scrollbar-none">
+            {[
+              { id: 'all', label: `Semua Intel (${threads.length})` },
+              { id: 'art', label: '🎨 AI Generative Art & Prompts' },
+              { id: 'coding', label: '⚡ Autonomous AI & Coding' },
+              { id: 'design', label: '❤️‍🔥 Design & Motion Skills' },
+              { id: 'grants', label: '🎁 Bansos AI & Cloud Quotas' }
+            ].map(cat => (
+              <button
+                key={cat.id}
+                onClick={() => setActiveCategory(cat.id)}
+                className={`px-3 py-1 rounded-full font-bold transition-all cursor-pointer whitespace-nowrap text-[11px] ${activeCategory === cat.id ? 'bg-orange-500 text-white shadow-sm' : 'bg-zinc-200/80 text-zinc-600 hover:text-black dark:bg-[#16161c] dark:text-zinc-400 dark:hover:text-white'}`}
+              >
+                {cat.label}
+              </button>
+            ))}
           </div>
         </header>
 
@@ -97,38 +140,117 @@ export default function IntelPage() {
           <main className="flex-1 p-4 sm:p-8 pb-28 sm:pb-8 space-y-6 min-w-0 overflow-y-auto">
             {loading ? (
               <div className="p-8 text-center font-mono text-xs text-zinc-500">
-                Memuat data real-live dari threads.net...
+                Memuat data wawasan riil dan prompt AI...
+              </div>
+            ) : filteredThreads.length === 0 ? (
+              <div className="p-12 text-center font-mono text-xs text-zinc-500 bg-zinc-50 dark:bg-[#121216] rounded-3xl border border-zinc-200 dark:border-[#26262e]">
+                Belum ada data untuk kategori ini.
               </div>
             ) : (
-              threads.map(th => (
-                <div key={th.id} className="bg-zinc-50 dark:bg-[#121216] border border-zinc-200 dark:border-[#26262e] hover:border-orange-500/50 rounded-3xl p-6 sm:p-8 space-y-4 shadow-sm dark:shadow-xl transition-all">
-                  <div className="flex items-center justify-between">
+              filteredThreads.map(th => (
+                <div key={th.id} className="bg-zinc-50 dark:bg-[#121216] border border-zinc-200 dark:border-[#26262e] hover:border-orange-500/50 rounded-3xl p-6 sm:p-8 space-y-5 shadow-sm dark:shadow-xl transition-all">
+                  
+                  {/* Author Header & Badges */}
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                     <div className="flex items-center space-x-3">
-                      <img src="https://avatars.githubusercontent.com/u/241138?v=4" alt={th.author_name} className="w-11 h-11 rounded-full object-cover border border-zinc-300 dark:border-[#26262e]" />
+                      <img 
+                        src={th.author_avatar || "https://avatars.githubusercontent.com/u/241138?v=4"} 
+                        alt={th.author_name} 
+                        className="w-11 h-11 rounded-full object-cover border border-zinc-300 dark:border-[#26262e] shadow-xs" 
+                      />
                       <div>
-                        <h3 className="font-bold text-base text-zinc-900 dark:text-white">{th.author_name}</h3>
-                        <p className="text-xs text-zinc-500 font-mono">@{th.author_handle} • {th.post_date || th.scraped_at}</p>
+                        <div className="flex items-center gap-2">
+                          <h3 className="font-bold text-base text-zinc-900 dark:text-white">{th.author_name}</h3>
+                          <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-zinc-200 dark:bg-[#1a1a24] text-zinc-700 dark:text-zinc-300">
+                            @{th.author_handle}
+                          </span>
+                        </div>
+                        <p className="text-xs text-zinc-500 font-mono mt-0.5">
+                          {th.post_date || th.scraped_at}
+                        </p>
                       </div>
                     </div>
 
-                    <span className="text-[10px] font-mono font-bold uppercase bg-orange-500/10 text-orange-600 dark:text-orange-400 border border-orange-500/30 px-3 py-1 rounded-full">
-                      REAL THREADS POST
-                    </span>
+                    <div className="flex items-center gap-2 flex-wrap">
+                      <span className="text-[10px] font-mono font-bold uppercase bg-orange-500/10 text-orange-600 dark:text-orange-400 border border-orange-500/30 px-3 py-1 rounded-full">
+                        {th.category || "General Intelligence"}
+                      </span>
+                      {th.model_used && (
+                        <span className="text-[10px] font-mono font-bold text-purple-600 dark:text-purple-400 bg-purple-500/10 border border-purple-500/20 px-2.5 py-0.5 rounded-full">
+                          ⚡ {th.model_used}
+                        </span>
+                      )}
+                    </div>
                   </div>
 
+                  {/* AI Generated Image Showcase (If Present) */}
+                  {th.image_url && (
+                    <div className="space-y-2">
+                      <div 
+                        onClick={() => setZoomImage(th.image_url)}
+                        className="relative h-64 sm:h-96 w-full rounded-2xl overflow-hidden bg-black/60 border border-zinc-200 dark:border-[#26262e] cursor-pointer group shadow-inner"
+                      >
+                        <img 
+                          src={th.image_url} 
+                          alt={th.content} 
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex items-end justify-between p-4">
+                          <span className="text-xs font-mono text-zinc-300 bg-black/70 px-3 py-1 rounded-full border border-white/20">
+                            🔍 Klik untuk Zoom Gambar Penuh
+                          </span>
+                          {th.aspect_ratio && (
+                            <span className="text-xs font-mono text-orange-400 bg-black/70 px-2.5 py-0.5 rounded-full border border-white/20 font-bold">
+                              AR: {th.aspect_ratio}
+                            </span>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Text Content */}
                   <div className="p-4 bg-white dark:bg-[#0a0a0c] rounded-2xl border border-zinc-200 dark:border-[#26262e] font-sans text-sm text-zinc-800 dark:text-zinc-200 leading-relaxed transition-colors">
                     {th.content}
                   </div>
 
+                  {/* AI Prompt Reproduction Box (If Present) */}
+                  {th.prompt && (
+                    <div className="p-4 bg-zinc-100 dark:bg-[#08080c] border border-zinc-300 dark:border-[#26262e] rounded-2xl font-mono text-xs space-y-2.5">
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-2">
+                          <span className="text-purple-500 font-bold">✦</span>
+                          <span className="text-[10px] text-zinc-500 uppercase font-bold tracking-wider">
+                            Master Prompt Pembuatan AI:
+                          </span>
+                        </div>
+                        <button
+                          onClick={() => handleCopyPrompt(th.id, th.prompt)}
+                          className="px-3.5 py-1 rounded-full bg-orange-500 hover:bg-orange-600 text-white font-bold transition-all shadow-sm cursor-pointer text-[11px]"
+                        >
+                          {copiedPromptId === th.id ? "✓ Prompt Tersalin!" : "Salin Prompt Gambar"}
+                        </button>
+                      </div>
+                      <div className="p-3 bg-white dark:bg-black/60 rounded-xl border border-zinc-200 dark:border-zinc-800 text-zinc-800 dark:text-zinc-300 leading-relaxed overflow-x-auto whitespace-pre-wrap">
+                        {th.prompt}
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Cortex Insight */}
                   <div className="p-3 bg-orange-500/5 border border-orange-500/20 rounded-xl text-xs font-mono text-zinc-700 dark:text-zinc-300">
                     <strong className="text-orange-500">Cortex Insight:</strong> {th.cortex_insight}
                   </div>
 
+                  {/* Bottom Footer Actions */}
                   <div className="flex items-center justify-between pt-2 border-t border-zinc-200 dark:border-[#26262e] text-xs font-mono transition-colors">
-                    <span className="text-emerald-600 dark:text-emerald-500">✓ Data Asli Terverifikasi</span>
+                    <span className="text-emerald-600 dark:text-emerald-500 flex items-center gap-1.5 font-bold">
+                      <span className="w-2 h-2 rounded-full bg-emerald-500"></span>
+                      <span>Verified High-Signal Content</span>
+                    </span>
                     {th.post_url && (
                       <a href={th.post_url} target="_blank" rel="noreferrer" className="text-orange-600 dark:text-orange-400 hover:underline flex items-center gap-1 font-bold">
-                        <span>Lihat Postingan Asli Threads</span>
+                        <span>Lihat Sumber Asli</span>
                         <span>↗</span>
                       </a>
                     )}
@@ -139,21 +261,47 @@ export default function IntelPage() {
           </main>
 
           {/* 4. RIGHT SIDEBAR */}
-          <aside className="w-full xl:w-80 bg-zinc-50 dark:bg-[#0e0e12] border-t xl:border-t-0 xl:border-l border-zinc-200 dark:border-[#26262e] p-6 space-y-8 flex-shrink-0 font-mono text-xs transition-colors">
+          <aside className="w-full xl:w-80 bg-zinc-50 dark:bg-[#0e0e12] border-t xl:border-t-0 xl:border-l border-zinc-200 dark:border-[#26262e] p-6 space-y-6 flex-shrink-0 font-mono text-xs transition-colors">
             <div className="bg-white dark:bg-[#121218] border border-zinc-200 dark:border-[#26262e] rounded-3xl p-6 space-y-3 shadow-sm dark:shadow-xl transition-colors">
-              <span className="text-emerald-600 dark:text-emerald-400 font-bold uppercase block">Real Ingestion Status</span>
+              <span className="text-emerald-600 dark:text-emerald-400 font-bold uppercase block">High-Signal Gateway</span>
               <p className="text-zinc-600 dark:text-zinc-400 text-[11px] leading-relaxed">
-                Skrip <code className="text-orange-500">fetch_real_threads.py</code> menyedot langsung feed teks, tanggal, dan permalink tanpa akun bot dummy.
+                Filter otomatis membuang postingan pendek, meme, dan teks receh. Hanya menyerap wawasan teknis, kuota gratis, dan seni visual AI dengan prompt reproduksi nyata.
               </p>
-              <div className="pt-2 border-t border-zinc-200 dark:border-[#26262e] text-[10px] text-zinc-500">
-                Target: @karpathy, @swyx, @shuding_
+              <div className="pt-2 border-t border-zinc-200 dark:border-[#26262e] text-[10px] text-zinc-500 space-y-1">
+                <div>Kategori: Coding, Design, Bansos, Generative Art</div>
+                <div>Sumber: Komunitas Kreator, GitHub, Meta Threads</div>
               </div>
+            </div>
+
+            <div className="bg-white dark:bg-[#121218] border border-zinc-200 dark:border-[#26262e] rounded-3xl p-6 space-y-3 shadow-sm dark:shadow-xl transition-colors">
+              <span className="text-orange-500 font-bold uppercase block">Prompt Feature Status</span>
+              <p className="text-zinc-600 dark:text-zinc-400 text-[11px] leading-relaxed">
+                Setiap gambar AI yang dibagikan komunitas otomatis diekstrak beserta prompt pembuatannya agar dapat langsung digunakan di Midjourney, Flux, atau Claude.
+              </p>
             </div>
           </aside>
 
         </div>
 
       </div>
+
+      {/* Lightbox Zoom Modal */}
+      {zoomImage && (
+        <div 
+          className="fixed inset-0 z-50 bg-black/95 backdrop-blur-md flex items-center justify-center p-4 animate-in fade-in duration-200"
+          onClick={() => setZoomImage(null)}
+        >
+          <div className="relative max-w-5xl max-h-[90vh] overflow-hidden rounded-3xl border border-orange-500/40 shadow-2xl">
+            <button 
+              onClick={() => setZoomImage(null)}
+              className="absolute top-4 right-4 bg-orange-500 text-white rounded-full w-8 h-8 flex items-center justify-center text-xs font-bold hover:bg-orange-600 transition-all cursor-pointer shadow-lg"
+            >
+              ✕
+            </button>
+            <img src={zoomImage} alt="AI Artwork Zoom" className="w-full h-auto max-h-[85vh] object-contain" />
+          </div>
+        </div>
+      )}
 
       {/* SLEEK FLOATING MOBILE BOTTOM NAVIGATION BAR */}
       <div className="sm:hidden fixed bottom-3 inset-x-4 z-50 bg-white/95 dark:bg-[#0e0e12]/95 backdrop-blur-xl border border-zinc-200 dark:border-[#26262e] rounded-full p-2 flex items-center justify-around shadow-2xl transition-colors">

@@ -1,6 +1,6 @@
 {
   "name": "portal-berita",
-  "version": "25.0.2",
+  "version": "25.1.0",
   "private": true,
   "scripts": {
     "dev": "next dev",

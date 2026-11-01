@@ -843,6 +843,18 @@ Lakukan refactoring pada potongan kode berikut dengan prinsip:
                     </span>
                   </div>
 
+                  {/* Image Preview if available */}
+                  {th.image_url && (
+                    <div className="relative h-40 w-full rounded-2xl overflow-hidden border border-zinc-200 dark:border-zinc-800 bg-black/40 shadow-inner">
+                      <img src={th.image_url} alt={th.content} className="w-full h-full object-cover" />
+                      {th.model_used && (
+                        <div className="absolute top-2 left-2 bg-black/75 backdrop-blur-md px-2 py-0.5 rounded-full text-[9px] font-mono text-purple-400 font-bold border border-white/10">
+                          {th.model_used}
+                        </div>
+                      )}
+                    </div>
+                  )}
+
                   <p className="text-xs text-zinc-700 dark:text-zinc-300 font-sans leading-relaxed line-clamp-3">
                     {th.content}
                   </p>
@@ -854,16 +866,26 @@ Lakukan refactoring pada potongan kode berikut dengan prinsip:
 
                 <div className="pt-2 border-t border-zinc-200 dark:border-[#26262e] flex items-center justify-between text-[11px] font-mono">
                   <span className="text-zinc-400">{th.post_date || th.scraped_at}</span>
-                  {th.post_url && (
-                    <a 
-                      href={th.post_url}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="text-orange-500 hover:underline font-bold"
-                    >
-                      Buka Sumber ↗
-                    </a>
-                  )}
+                  <div className="flex items-center gap-2">
+                    {th.prompt && (
+                      <button 
+                        onClick={() => handleCopyPrompt(th.id, th.prompt)}
+                        className="text-orange-500 hover:underline font-bold cursor-pointer"
+                      >
+                        {copiedPromptId === th.id ? "✓ Tersalin" : "Salin Prompt"}
+                      </button>
+                    )}
+                    {th.post_url && (
+                      <a 
+                        href={th.post_url}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="text-zinc-500 hover:text-zinc-900 dark:hover:text-white"
+                      >
+                        ↗
+                      </a>
+                    )}
+                  </div>
                 </div>
               </div>
             ))}
