@@ -16,7 +16,7 @@ export default function ToolsPage() {
   const { darkMode, toggleTheme } = useStudioTheme()
   const { toggleBookmark, isBookmarked } = useBookmarks()
   const [likes, setLikes] = useState<Record<string, number>>({
-    'res_getlayers': 350,
+    'res_shadcn': 350,
     'res_landbook': 410,
     'res_recentdesign': 280,
     'res_landdding': 230,
@@ -50,15 +50,15 @@ export default function ToolsPage() {
   }, [])
 
   const realTools = [
-    // 5 FREE AI DESIGN RESOURCES
+    // 5 FREE AI DESIGN & ARCHITECTURE RESOURCES
     {
-      id: "res_getlayers",
-      name: "GetLayers AI",
-      category: "AI Design Prompts",
-      badge: "100+ Prompts",
-      image: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80",
+      id: "res_shadcn",
+      name: "shadcn/ui",
+      category: "Design System",
+      badge: "Open Source",
+      image: "https://opengraph.githubassets.com/1/shadcn-ui/ui",
       type: "design",
-      url: "https://getlayers.ai"
+      url: "https://ui.shadcn.com"
     },
     {
       id: "res_landbook",
@@ -100,75 +100,84 @@ export default function ToolsPage() {
     // 5 MOTION & CRAFT SKILLS
     {
       id: "skill_emil_motion",
-      name: "Emil Kowalski — Delightful Animations",
+      name: "Emil Kowalski — Vaul & Motion",
       category: "Motion Physics",
       badge: "Masterclass",
-      image: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=800&q=80",
+      image: "https://opengraph.githubassets.com/1/emilkowalski/vaul",
       type: "skills",
       url: "https://animations.dev"
     },
     {
       id: "skill_shader_minimax",
-      name: "Shader Dev with MiniMax Hailuo",
+      name: "MiniMax 36 Canvas Shaders",
       category: "WebGL Canvas",
       badge: "GLSL Shader",
-      image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80",
+      image: "https://opengraph.githubassets.com/1/MiniMax-AI/skills",
       type: "skills",
-      url: "https://github.com/topics/glsl-shaders"
+      url: "https://github.com/MiniMax-AI/skills"
     },
     {
-      id: "skill_diagram_design",
-      name: "Diagram Design Architecture",
-      category: "Data Viz",
-      badge: "System Design",
-      image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=800&q=80",
+      id: "skill_r3f_canvas",
+      name: "React Three Fiber 3D Scene",
+      category: "3D Canvas",
+      badge: "Three.js",
+      image: "https://opengraph.githubassets.com/1/pmndrs/react-three-fiber",
       type: "skills",
-      url: "https://diagram.design"
+      url: "https://github.com/pmndrs/react-three-fiber"
     },
     {
       id: "skill_vercel_guidelines",
       name: "Vercel Web Interface Guidelines",
       category: "Standard",
       badge: "Zero-Slop",
-      image: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=800&q=80",
+      image: "https://opengraph.githubassets.com/1/vercel/ai",
       type: "skills",
       url: "https://vercel.com/design"
     },
     {
       id: "skill_craftwork_assets",
-      name: "Craftwork 3D Assets & Vectors",
-      category: "3D Elements",
-      badge: "Vector Asset",
-      image: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?auto=format&fit=crop&w=800&q=80",
+      name: "FastMCP Model Context Protocol",
+      category: "Agent Standard",
+      badge: "SDK",
+      image: "https://opengraph.githubassets.com/1/jlowin/fastmcp",
       type: "skills",
-      url: "https://craftwork.design"
+      url: "https://github.com/jlowin/fastmcp"
     },
 
-    // GITHUB REPOSITORIES
+    // REAL SCRAPED GITHUB AI REPOSITORIES
     {
       id: "repo_openhands",
       name: "All-Hands-AI / OpenHands",
       category: "Agent Platform",
-      badge: "🔥 +450 ⭐/wk",
-      image: "https://images.unsplash.com/photo-1534972195531-a756b1126f24?auto=format&fit=crop&w=800&q=80",
+      badge: "★ 92.5k",
+      image: "https://opengraph.githubassets.com/1/All-Hands-AI/OpenHands",
       type: "github",
       url: "https://github.com/All-Hands-AI/OpenHands"
     },
     {
-      id: "repo_claude_code",
-      name: "Anthropic / Claude Code CLI",
-      category: "Autonomous CLI",
-      badge: "Official",
-      image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=800&q=80",
+      id: "repo_ollama",
+      name: "ollama / ollama",
+      category: "Local LLM",
+      badge: "★ 185.7k",
+      image: "https://opengraph.githubassets.com/1/ollama/ollama",
       type: "github",
-      url: "https://github.com/anthropics/claude-code"
+      url: "https://github.com/ollama/ollama"
+    },
+    {
+      id: "repo_scrapling",
+      name: "D4Vinci / Scrapling",
+      category: "Scraper Framework",
+      badge: "★ 92.5k",
+      image: "https://opengraph.githubassets.com/1/D4Vinci/Scrapling",
+      type: "github",
+      url: "https://github.com/D4Vinci/Scrapling"
     },
     {
       id: "repo_hermes_agent",
       name: "NousResearch / Hermes-Agent",
       category: "Agent Harness",
       badge: "Autonomous",
-      image: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&q=80",
+      image: "https://opengraph.githubassets.com/1/NousResearch/Hermes-Agent",
       type: "github",
       url: "https://github.com/NousResearch/Hermes-Agent"
     },
@@ -176,8 +185,8 @@ export default function ToolsPage() {
       id: "repo_v0_sdk",
       name: "Vercel / AI SDK 3.0",
       category: "Framework",
-      badge: "Production",
-      image: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=800&q=80",
+      badge: "★ 85.0k",
+      image: "https://opengraph.githubassets.com/1/vercel/ai",
       type: "github",
       url: "https://github.com/vercel/ai"
     }
@@ -271,11 +280,11 @@ export default function ToolsPage() {
               
               {/* Simple Cardbox with Rotating Silver Beam */}
               <article 
-                className="silver-beam-wrapper group flex flex-col justify-between"
+                className="silver-beam-wrapper group flex flex-col justify-between !rounded-[14px]"
               >
-                <div className="silver-beam-inner flex flex-col justify-between">
-                  {/* 16:9 Image Container */}
-                  <div className="relative aspect-[16/9] w-full overflow-hidden bg-zinc-950">
+                <div className="silver-beam-inner flex flex-col justify-between !rounded-[13px] bg-[#0c0c0e]">
+                  {/* Aspect Ratio aspect-[960/684] Media Container */}
+                  <div className="relative aspect-[960/684] w-full overflow-hidden bg-zinc-950">
                     <img 
                       src={t.image} 
                       alt={t.name} 
@@ -285,7 +294,7 @@ export default function ToolsPage() {
 
                     {/* Top-Left Badge */}
                     <div className="absolute top-2.5 left-2.5 flex items-center gap-1.5">
-                      <span className="px-2 py-0.5 rounded-full text-[9px] font-mono font-bold bg-white text-black shadow">
+                      <span className="px-2 py-0.5 rounded-full text-[9.5px] font-mono font-bold bg-white text-black shadow">
                         {t.badge}
                       </span>
                     </div>
@@ -295,7 +304,9 @@ export default function ToolsPage() {
                       onClick={(e) => handleLike(t.id, e)}
                       className="absolute top-2.5 right-2.5 px-2 py-0.5 rounded-full bg-black/60 hover:bg-black/90 text-[10px] font-mono text-zinc-300 backdrop-blur-md border border-white/10 flex items-center gap-1 transition-colors"
                     >
-                      <span>♥</span>
+                      <svg className="w-3 h-3 text-red-400" viewBox="0 0 16 16" fill="currentColor">
+                        <path d="M8 13.6S2.4 9.9 2.4 6.2A3 3 0 0 1 8 4.7 3 3 0 0 1 13.6 6.2C13.6 9.9 8 13.6 8 13.6Z" />
+                      </svg>
                       <span>{likes[t.id] || 320}</span>
                     </button>
 
@@ -307,7 +318,7 @@ export default function ToolsPage() {
                         rel="noreferrer"
                         className="px-4 py-1.5 rounded-full bg-white text-black font-mono text-xs font-bold shadow-xl flex items-center gap-1.5"
                       >
-                        <span>Buka Link</span>
+                        <span>Buka Repo / Link</span>
                         <span>↗</span>
                       </a>
                     </div>

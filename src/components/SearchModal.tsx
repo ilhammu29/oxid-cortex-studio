@@ -102,12 +102,12 @@ const SEARCH_DATABASE: SearchItem[] = [
     badge: "Template #02"
   },
   {
-    id: "res_getlayers",
-    title: "GetLayers AI — Website Prompts & Motion Sections",
+    id: "res_shadcn",
+    title: "shadcn/ui — Re-usable Design System & Components",
     category: "Tools",
-    snippet: "100+ free premium website prompts with 1,000+ backgrounds, motion sections and gradients. Paste to Claude.",
+    snippet: "Beautifully designed components that you can copy and paste into your apps. Accessible. Customizable. Open Source.",
     link: "/tools",
-    badge: "100+ Free Prompts"
+    badge: "Design System"
   },
   {
     id: "res_landbook",

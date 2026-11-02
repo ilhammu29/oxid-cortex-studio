@@ -15,41 +15,35 @@ export default function DetailPage() {
   // Free SVG Category Icon Helper
   const getCategoryIcon = (category: string) => {
     switch (category) {
-      case 'E-commerce':
+      case 'Autonomous Agents':
         return (
           <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
           </svg>
         )
-      case 'AI / Tech':
+      case 'Cloud Grants & Quotas':
         return (
           <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z" />
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 00-9.78 2.096A4.001 4.001 0 003 15z" />
           </svg>
         )
-      case 'SaaS':
+      case 'AI Engineering':
+        return (
+          <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+          </svg>
+        )
+      case 'UI/UX Architecture':
         return (
           <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z" />
           </svg>
         )
-      case 'Fintech':
-        return (
-          <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
-          </svg>
-        )
-      case 'Health / Science':
-        return (
-          <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
-          </svg>
-        )
-      case 'Brutalist 3D':
+      case 'Frontier Research':
       default:
         return (
           <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
           </svg>
         )
     }
@@ -57,139 +51,135 @@ export default function DetailPage() {
 
   // Template Library Database
   const templatesDb: Record<string, any> = {
-    lumiere: {
-      id: "lumiere",
-      title: "Lumière",
-      category: "E-commerce",
-      badge: "New",
-      image: "https://storage.getlayers.ai/templates/lumi-re-9893947dfd.webp",
-      tagline: "High-end luxury fragrance store with Swiss typography & scroll-driven motion.",
-      overview: "Lumière dirancang untuk merek e-commerce mewah yang menuntut tipografi presisi tinggi, komposisi whitespace luas, dan tata letak editorial bergaya majalah Swiss. Dilengkapi dengan transisi produk berbasis interaksi scroll halus dan estetika matte gelap anti-slop.",
-      prompt: `Create a luxury high-end editorial fragrance e-commerce store with minimal Swiss typography, generous whitespace, smooth scroll-driven product reveal, and dark matte aesthetic. Built in Next.js 14 and Tailwind CSS. Avoid generic gradients, use 1px hairline borders, and ensure full responsiveness.`,
+    openhands: {
+      id: "openhands",
+      title: "OpenHands Developer Agent",
+      category: "Autonomous Agents",
+      badge: "92.5k Stars",
+      image: "https://opengraph.githubassets.com/1/All-Hands-AI/OpenHands",
+      tagline: "Autonomous AI software engineer harness with virtual environment & git sandbox.",
+      overview: "OpenHands (sebelumnya OpenDevin) adalah agen pengembang perangkat lunak otonom yang mampu menulis kode, mengeksekusi perintah bash, menjelajahi web, dan berinteraksi dengan GitHub PR secara mandiri.",
+      prompt: `Build an autonomous AI-driven development agent harness with virtual sandbox, git version control integration, multi-model LLM router, and real-time terminal streaming interface. Next.js 14 App Router and Tailwind CSS.`,
       specs: [
-        { label: "Arsitektur", value: "Next.js 14 (App Router / SSR)" },
-        { label: "Styling", value: "Tailwind CSS v3.4 + Custom Tokens" },
-        { label: "Motion", value: "Scrollcraft Stagger & CSS Physics" },
-        { label: "Palet Warna", value: "#050505 (Obsidian), #F5F5F5 (Silver), #141416" },
-        { label: "Kompatibilitas", value: "Claude Code, Hermes, Cursor, Windsurf" },
-        { label: "PageSpeed Median", value: "100 Desktop / 98 Mobile" }
+        { label: "Arsitektur", value: "Docker Sandbox + Python/TypeScript Engine" },
+        { label: "LLM Provider", value: "Anthropic, OpenAI, Ollama, DeepSeek" },
+        { label: "GitHub Stars", value: "92,500+ Stars (Verified)" },
+        { label: "Lisensi", value: "MIT Open Source" }
       ],
-      tokens: [
-        "bg-[#050505]", "text-[#f5f5f5]", "border-white/[0.08]", "font-sans", "tracking-tight", "rounded-[14px]"
-      ]
+      tokens: ["bg-[#0c0c0e]", "border-white/[0.08]", "font-mono", "rounded-[14px]"]
     },
-    prisma: {
-      id: "prisma",
-      title: "Prisma",
-      category: "AI / Tech",
-      badge: "New",
-      image: "https://storage.getlayers.ai/templates/prisma-574345227d.webp",
-      tagline: "Developer telemetry workspace for autonomous agents & LLM pipelines.",
-      overview: "Prisma adalah blueprint interface untuk ruang kerja engineering agen AI. Memadukan panel telemetri neon kontras tinggi dengan backplate kaca gelap dan visualizer latensi responsif.",
-      prompt: `Design an immersive developer workspace for autonomous coding agents with neon telemetry charts, dark glassmorphism backplate, and high-performance latency monitors. Next.js 14, Tailwind CSS, zero external UI libraries.`,
+    ollama: {
+      id: "ollama",
+      title: "Ollama Local Core",
+      category: "AI Engineering",
+      badge: "185k Stars",
+      image: "https://opengraph.githubassets.com/1/ollama/ollama",
+      tagline: "Run open-weights LLMs locally with zero cloud lock & ultra-low latency.",
+      overview: "Ollama memungkinkan pengembang menjalankan model AI frontier (Llama 3, DeepSeek, Qwen, Mistral) langsung di laptop lokal dengan runtime C++ teroptimasi dan endpoint kompatibel OpenAI.",
+      prompt: `Deploy and run local open-weights LLMs (Kimi, DeepSeek, Qwen, Gemma) with zero cloud dependency, OpenAI-compatible local endpoints, and low VRAM footprint.`,
       specs: [
-        { label: "Arsitektur", value: "Next.js 14 App Router" },
-        { label: "Styling", value: "Tailwind CSS + Glassmorphism Tokens" },
-        { label: "Telemetry", value: "Realtime WebSocket / Edge Streaming" },
-        { label: "Palet Warna", value: "#08080a, #ff6600, #10b981" }
+        { label: "Runtime", value: "Go + llama.cpp Hardware Accelerated" },
+        { label: "GitHub Stars", value: "185,700+ Stars" },
+        { label: "Batas VRAM", value: "Quantized 4-bit / 8-bit Support" },
+        { label: "Lisensi", value: "MIT Open Source" }
       ],
-      tokens: ["bg-[#08080a]", "border-white/[0.1]", "backdrop-blur-xl", "font-mono"]
+      tokens: ["font-mono", "bg-black", "text-zinc-200"]
     },
-    vesper: {
-      id: "vesper",
-      title: "Vesper",
-      category: "SaaS",
-      badge: "Popular",
-      image: "https://storage.getlayers.ai/templates/vesper-1eb7223b93.webp",
-      tagline: "Asymmetric bento grid analytics for modern B2B SaaS platforms.",
-      overview: "Vesper mengusung tata letak asymmetric bento grid yang intuitif, dirancang khusus untuk menyajikan metrik keuangan, retensi pengguna, dan feed candlestick real-time secara elegan.",
-      prompt: `Build a modern B2B analytics platform dashboard featuring asymmetric bento grids, real-time candlestick feeds, and dark obsidian aesthetic. Ensure high density information display without clutter.`,
+    gemini_grant: {
+      id: "gemini_grant",
+      title: "Google AI Studio & Gemini 1.5 Pro Grant",
+      category: "Cloud Grants & Quotas",
+      badge: "2M Context",
+      image: "/screenshots/template_dashboard.png",
+      tagline: "Free tier access for multimodal frontier reasoning up to 2,000,000 tokens.",
+      overview: "Alokasi resmi tanpa biaya dari Google Cloud untuk model Gemini 1.5 Pro dan Flash dengan kuota 1,000,000 TPM dan rate limit longgar tanpa perlu kartu kredit.",
+      prompt: `Architect an enterprise multi-modal intelligence portal consuming Google AI Studio Gemini 1.5 Pro free API tier with 1,000,000 TPM, video-audio parsing, and zero credit card lock.`,
       specs: [
-        { label: "Arsitektur", value: "Next.js 14 + Server Components" },
-        { label: "Grid System", value: "12-Column Asymmetric Bento" },
-        { label: "Typography", value: "Geist Sans & JetBrains Mono" }
+        { label: "Jendela Konteks", value: "2,000,000 Token (Audio, Video, PDF)" },
+        { label: "Batas Gratis", value: "15 RPM, 1,000,000 TPM, 1,500 RPD" },
+        { label: "Format Output", value: "JSON Schema Structured Output" }
       ],
-      tokens: ["grid-cols-12", "rounded-2xl", "bg-[#0c0c0e]"]
+      tokens: ["text-white", "bg-[#050505]", "border-white/[0.08]"]
     },
-    stride: {
-      id: "stride",
-      title: "Stride",
-      category: "Fintech",
-      badge: "Hot",
-      image: "https://storage.getlayers.ai/templates/stride.webp",
-      tagline: "Institutional wealth management portal with micro-interactions.",
-      overview: "Stride adalah portal manajemen aset dan kekayaan institusi. Memiliki garis pembatas presisi 1px, visualisasi alokasi multi-mata uang, dan animasi transaksi staccato.",
-      prompt: `Institutional wealth management portal with clean border-1px lines, multi-currency portfolio breakdown, and micro-interactions. Zero AI slop, WCAG AAA compliant.`,
+    groq_lpu: {
+      id: "groq_lpu",
+      title: "Groq Cloud LPU High-Speed Inference",
+      category: "AI Engineering",
+      badge: "800 T/s LPU",
+      image: "/screenshots/template_home.png",
+      tagline: "Sub-second token rendering at 800+ tokens/sec on LPU hardware.",
+      overview: "Inferensi model open-weights (Llama 3.1 70B) dengan kecepatan rendering tercepat di dunia berkat chip Language Processing Unit (LPU) khusus dari Groq.",
+      prompt: `Integrate Groq Cloud Language Processing Unit (LPU) ultra-low latency inference engine running Llama-3.1-70B at 800+ tokens per second with Next.js 14 streaming response.`,
       specs: [
-        { label: "Arsitektur", value: "Next.js 14 + Supabase Edge" },
-        { label: "Security", value: "Hardened Content-Security-Policy" },
-        { label: "Compliance", value: "WCAG AAA Accessible" }
+        { label: "Kecepatan Render", value: "500 - 850 Token / Detik" },
+        { label: "Batas Harian", value: "Ribuan Request Gratis per Hari" },
+        { label: "Kompatibilitas", value: "OpenAI Client Drop-in" }
       ],
-      tokens: ["border-white/[0.08]", "font-sans", "text-emerald-400"]
+      tokens: ["text-orange-400", "font-mono", "bg-[#0a0a0c]"]
     },
-    aistudio: {
-      id: "aistudio",
-      title: "AI Studio",
-      category: "AI / Tech",
-      badge: "Frontier",
-      image: "https://storage.getlayers.ai/templates/ai-studio-419b674eb8.webp",
-      tagline: "Multi-agent autonomous orchestration console & DAG visualizer.",
-      overview: "AI Studio menghadirkan antarmuka orkestrator multi-agen dengan terminal log interaktif, diagram alur DAG terintegrasi, dan analitik konsumsi token yang komprehensif.",
-      prompt: `Autonomous AI multi-agent orchestration console with live terminal logs, DAG pipeline visualizer, and token consumption analytics.`,
+    r3f: {
+      id: "r3f",
+      title: "React Three Fiber Canvas",
+      category: "UI/UX Architecture",
+      badge: "33.4k Stars",
+      image: "https://opengraph.githubassets.com/1/pmndrs/react-three-fiber",
+      tagline: "Declarative Three.js WebGL canvas for React & Next.js applications.",
+      overview: "Pustaka standar industri dari Poimandres untuk merender grafis 3D interaktif di React dengan performa 60fps tanpa membebani main thread.",
+      prompt: `Craft a declarative 3D canvas experience using Three.js and React Three Fiber with custom GLSL shaders, camera physics, and anti-aliased dark scene rendering.`,
       specs: [
-        { label: "Arsitektur", value: "Next.js 14 + WebWorker Pipeline" },
-        { label: "Console", value: "Virtual Scroll PTY Output" }
+        { label: "Renderer", value: "Three.js WebGL / WebGPU" },
+        { label: "GitHub Stars", value: "33,400+ Stars" }
       ],
-      tokens: ["font-mono", "bg-black", "border-zinc-800"]
+      tokens: ["aspect-[16/9]", "rounded-2xl", "bg-black"]
     },
-    dantora: {
-      id: "dantora",
-      title: "Dantora",
-      category: "Health / Science",
-      badge: "Featured",
-      image: "https://storage.getlayers.ai/templates/dantora-f9c3ffb5f0.webp",
-      tagline: "Biotechnology & genomic data explorer with scientific typography.",
-      overview: "Dantora didedikasikan untuk platform bioteknologi dan eksplorasi genomik. Menawarkan struktur data ilmiah yang tajam, kontras visual tinggi, dan penyajian data tabular yang kokoh.",
-      prompt: `Biotechnology & genomic data explorer web application with clean scientific grid, high contrast data tables, and WCAG AAA compliance.`,
+    scrapling: {
+      id: "scrapling",
+      title: "Scrapling Framework",
+      category: "Autonomous Agents",
+      badge: "92.5k Stars",
+      image: "https://opengraph.githubassets.com/1/D4Vinci/Scrapling",
+      tagline: "Stealth autonomous web scraping framework with DOM parser.",
+      overview: "Framework scraping generasi terbaru yang dirancang untuk agen otonom, mampu menembus proteksi Cloudflare dan mengekstraksi data web dengan efisiensi memori tinggi.",
+      prompt: `High-throughput autonomous web scraping framework capable of bypassing modern bot barriers, DOM stealth emulation, and JSON structured data normalization.`,
       specs: [
-        { label: "Arsitektur", value: "Next.js 14 App Router" },
-        { label: "Data Engine", value: "Vector Tabular Search" }
+        { label: "Bahasa", value: "Python 3.10+" },
+        { label: "Stars", value: "92,500+ Stars" }
       ],
-      tokens: ["bg-[#070709]", "font-sans", "text-sky-400"]
+      tokens: ["font-mono", "bg-[#08080a]"]
     },
-    clarix: {
-      id: "clarix",
-      title: "Clarix",
-      category: "AI / Tech",
-      badge: "New",
-      image: "https://storage.getlayers.ai/templates/clarix-1da2281a4b.webp",
-      tagline: "Minimal developer documentation and interactive API playground.",
-      overview: "Clarix adalah dokumentasi API minimalis dengan pencarian instan, syntax highlighting tanpa library berat, dan blok cuplikan curl/SDK yang dapat disalin satu klik.",
-      prompt: `Full-bleed minimal developer documentation and API playground portal with instant search, syntax highlighting, and copyable bash snippets.`,
+    fastmcp: {
+      id: "fastmcp",
+      title: "FastMCP Protocol Server",
+      category: "Autonomous Agents",
+      badge: "Verified",
+      image: "https://opengraph.githubassets.com/1/jlowin/fastmcp",
+      tagline: "Anthropic Model Context Protocol server SDK for developer agents.",
+      overview: "Implementasi standar MCP yang memungkinkan agen seperti Claude Desktop dan Hermes memanggil tool eksternal secara aman dan terstruktur.",
+      prompt: `Standard Model Context Protocol (MCP) server implementation exposing autonomous tools, resource endpoints, and deterministic schema validation to LLMs.`,
       specs: [
-        { label: "Arsitektur", value: "Next.js 14 + MDX Engine" },
-        { label: "Search", value: "Client-side Trie In-Memory" }
+        { label: "Standar", value: "Model Context Protocol (MCP)" },
+        { label: "Integrasi", value: "Claude Code, Hermes, Cursor" }
       ],
       tokens: ["font-mono", "bg-[#09090b]"]
     },
-    kyoto: {
-      id: "kyoto",
-      title: "Kyoto Villa",
-      category: "Brutalist 3D",
-      badge: "Trending",
-      image: "https://storage.getlayers.ai/templates/house-22508188f8.webp",
-      tagline: "Raw concrete pavilion architectural showcase with volumetric lighting.",
-      overview: "Kyoto Villa adalah etalase arsitektur brutalist dengan pencahayaan volumetrik sinematik. Menampilkan paviliun beton mentah di tengah hutan bambu Kyoto yang basah berkabut.",
-      prompt: `Ultra-minimalist raw concrete pavilion villa nestled inside misty autumn bamboo forest in Kyoto, cinematic volumetric lighting, raytraced reflections on wet stone pavement, brutalist architectural composition, 8k resolution, photorealistic shot on Hasselblad X2D 100C --ar 16:9 --style raw`,
+    vaul: {
+      id: "vaul",
+      title: "Vaul Drawer Motion",
+      category: "UI/UX Architecture",
+      badge: "8.7k Stars",
+      image: "https://opengraph.githubassets.com/1/emilkowalski/vaul",
+      tagline: "Unstyled drawer component for React with spring touch physics.",
+      overview: "Komponen drawer mobile berstandar kelas dunia karya Emil Kowalski dengan physics peredam pegas halus yang mencegah layout shift pada smartphone.",
+      prompt: `Minimalist iOS-style draggable drawer component for mobile web applications with spring physics, touch gesture velocity tracking, and zero layout shift.`,
       specs: [
-        { label: "Arsitektur", value: "Next.js 14 + WebGL2 Background" },
-        { label: "Lighting", value: "Volumetric Shader Simulation" }
+        { label: "Framework", value: "React & React Native Web" },
+        { label: "Ukuran Bundle", value: "< 5 KB Minified" }
       ],
-      tokens: ["bg-[#050505]", "font-serif", "tracking-tight"]
+      tokens: ["rounded-t-3xl", "backdrop-blur-xl"]
     }
   }
 
-  const current = templatesDb[id] || templatesDb['lumiere']
+  const current = templatesDb[id] || templatesDb['openhands']
 
   const handleCopyPrompt = () => {
     if (navigator.clipboard) {

@@ -114,112 +114,106 @@ export default function Home() {
     }))
   }
 
-  // Curated GetLayers-Style Immersive Templates with Authentic Images and Categories
+  // Curated Authentic OXID CORTEX Blueprints (Real Repos, Grants & Architecture)
   const templateCatalog = [
     {
-      id: "lumiere",
-      title: "Lumière",
-      category: "E-commerce",
-      badge: "New",
-      image: "https://storage.getlayers.ai/templates/lumi-re-9893947dfd.webp",
-      prompt: `Create a luxury high-end editorial fragrance e-commerce store with minimal Swiss typography, generous whitespace, smooth scroll-driven product reveal, and dark matte aesthetic. Built in Next.js 14 and Tailwind CSS.`
+      id: "openhands",
+      title: "OpenHands Developer Agent",
+      category: "Autonomous Agents",
+      badge: "92.5k Stars",
+      image: "https://opengraph.githubassets.com/1/All-Hands-AI/OpenHands",
+      prompt: `Build an autonomous AI-driven development agent harness with virtual sandbox, git version control integration, multi-model LLM router, and real-time terminal streaming interface.`
     },
     {
-      id: "prisma",
-      title: "Prisma",
-      category: "AI / Tech",
-      badge: "New",
-      image: "https://storage.getlayers.ai/templates/prisma-574345227d.webp",
-      prompt: `Design an immersive developer workspace for autonomous coding agents with neon telemetry charts, dark glassmorphism backplate, and high-performance latency monitors.`
+      id: "gemini_grant",
+      title: "Gemini 1.5 Pro Grant",
+      category: "Cloud Grants & Quotas",
+      badge: "2M Context",
+      image: "/screenshots/template_dashboard.png",
+      prompt: `Architect an enterprise multi-modal intelligence portal consuming Google AI Studio Gemini 1.5 Pro free API tier with 1,000,000 TPM, video-audio parsing, and zero credit card lock.`
     },
     {
-      id: "vesper",
-      title: "Vesper",
-      category: "SaaS",
-      badge: "Popular",
-      image: "https://storage.getlayers.ai/templates/vesper-1eb7223b93.webp",
-      prompt: `Build a modern B2B analytics platform dashboard featuring asymmetric bento grids, real-time candlestick feeds, and dark obsidian aesthetic.`
+      id: "groq_lpu",
+      title: "Groq LPU 800 T/s Engine",
+      category: "AI Engineering",
+      badge: "800 T/s LPU",
+      image: "/screenshots/template_home.png",
+      prompt: `Integrate Groq Cloud Language Processing Unit (LPU) ultra-low latency inference engine running Llama-3.1-70B at 800+ tokens per second with Next.js 14 streaming response.`
     },
     {
-      id: "stride",
-      title: "Stride",
-      category: "Fintech",
-      badge: "Hot",
-      image: "https://storage.getlayers.ai/templates/stride.webp",
-      prompt: `Institutional wealth management portal with clean border-1px lines, multi-currency portfolio breakdown, and micro-interactions.`
+      id: "ollama",
+      title: "Ollama Local Core",
+      category: "AI Engineering",
+      badge: "185k Stars",
+      image: "https://opengraph.githubassets.com/1/ollama/ollama",
+      prompt: `Deploy and run local open-weights LLMs (Kimi, DeepSeek, Qwen, Gemma) with zero cloud dependency, OpenAI-compatible local endpoints, and low VRAM footprint.`
     },
     {
-      id: "aistudio",
-      title: "AI Studio",
-      category: "AI / Tech",
-      badge: "Frontier",
-      image: "https://storage.getlayers.ai/templates/ai-studio-419b674eb8.webp",
-      prompt: `Autonomous AI multi-agent orchestration console with live terminal logs, DAG pipeline visualizer, and token consumption analytics.`
+      id: "r3f",
+      title: "React Three Fiber Canvas",
+      category: "UI/UX Architecture",
+      badge: "33.4k Stars",
+      image: "https://opengraph.githubassets.com/1/pmndrs/react-three-fiber",
+      prompt: `Craft a declarative 3D canvas experience using Three.js and React Three Fiber with custom GLSL shaders, camera physics, and anti-aliased dark scene rendering.`
     },
     {
-      id: "dantora",
-      title: "Dantora",
-      category: "Health / Science",
-      badge: "Featured",
-      image: "https://storage.getlayers.ai/templates/dantora-f9c3ffb5f0.webp",
-      prompt: `Biotechnology & genomic data explorer web application with clean scientific grid, high contrast data tables, and WCAG AAA compliance.`
+      id: "scrapling",
+      title: "Scrapling Framework",
+      category: "Autonomous Agents",
+      badge: "92.5k Stars",
+      image: "https://opengraph.githubassets.com/1/D4Vinci/Scrapling",
+      prompt: `High-throughput autonomous web scraping framework capable of bypassing modern bot barriers, DOM stealth emulation, and JSON structured data normalization.`
     },
     {
-      id: "clarix",
-      title: "Clarix",
-      category: "AI / Tech",
-      badge: "New",
-      image: "https://storage.getlayers.ai/templates/clarix-1da2281a4b.webp",
-      prompt: `Full-bleed minimal developer documentation and API playground portal with instant search, syntax highlighting, and copyable bash snippets.`
+      id: "fastmcp",
+      title: "FastMCP Protocol Server",
+      category: "Autonomous Agents",
+      badge: "Verified",
+      image: "https://opengraph.githubassets.com/1/jlowin/fastmcp",
+      prompt: `Standard Model Context Protocol (MCP) server implementation exposing autonomous tools, resource endpoints, and deterministic schema validation to LLMs.`
     },
     {
-      id: "kyoto",
-      title: "Kyoto Villa",
-      category: "Brutalist 3D",
-      badge: "Trending",
-      image: "https://storage.getlayers.ai/templates/house-22508188f8.webp",
-      prompt: `Ultra-minimalist raw concrete pavilion villa nestled inside misty autumn bamboo forest in Kyoto, cinematic volumetric lighting, raytraced reflections on wet stone pavement, brutalist architectural composition, 8k resolution, photorealistic shot on Hasselblad X2D 100C --ar 16:9 --style raw`
+      id: "vaul",
+      title: "Vaul Drawer Motion",
+      category: "UI/UX Architecture",
+      badge: "8.7k Stars",
+      image: "https://opengraph.githubassets.com/1/emilkowalski/vaul",
+      prompt: `Minimalist iOS-style draggable drawer component for mobile web applications with spring physics, touch gesture velocity tracking, and zero layout shift.`
     }
   ]
 
-  // Free SVG Category Icon Helper
+  // Free SVG Category Icon Helper for Real Project Categories
   const getCategoryIcon = (category: string) => {
     switch (category) {
-      case 'E-commerce':
+      case 'Autonomous Agents':
         return (
           <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
           </svg>
         )
-      case 'AI / Tech':
+      case 'Cloud Grants & Quotas':
         return (
           <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z" />
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 00-9.78 2.096A4.001 4.001 0 003 15z" />
           </svg>
         )
-      case 'SaaS':
+      case 'AI Engineering':
+        return (
+          <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+          </svg>
+        )
+      case 'UI/UX Architecture':
         return (
           <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z" />
           </svg>
         )
-      case 'Fintech':
-        return (
-          <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
-          </svg>
-        )
-      case 'Health / Science':
-        return (
-          <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
-          </svg>
-        )
-      case 'Brutalist 3D':
+      case 'Frontier Research':
       default:
         return (
           <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
           </svg>
         )
     }
@@ -451,14 +445,16 @@ export default function Home() {
             ))}
           </div>
 
-          {/* Iconic GetLayers Gradient Fade-Out & Floating Capsule CTA */}
-          <div className="absolute bottom-0 inset-x-0 h-44 bg-gradient-to-t from-[#000000] via-[#000000]/90 to-transparent flex items-end justify-center pb-2 pointer-events-none">
+          {/* Dedicated Section CTA Button Below Grid (Zero Glitch / Pure Layout Flow) */}
+          <div className="pt-10 flex justify-center">
             <Link 
               href="/templates" 
-              className="pointer-events-auto px-6 py-3 rounded-full bg-white/[0.08] hover:bg-white text-white hover:text-black border border-white/[0.2] text-xs font-mono font-bold transition-all shadow-2xl backdrop-blur-xl flex items-center gap-2 group"
+              className="silver-beam-wrapper !rounded-full group inline-block p-[1.5px]"
             >
-              <span>Explore 100+ Templates & Prompts</span>
-              <span className="group-hover:translate-x-1 transition-transform">→</span>
+              <div className="silver-beam-inner !rounded-full !bg-[#121216] px-8 py-3 flex items-center gap-3 border border-white/20 text-xs font-mono font-bold text-white shadow-2xl hover:scale-[1.02] transition-transform cursor-pointer">
+                <span>Jelajahi Semua Repo, Prompt &amp; Bansos AI (100+)</span>
+                <span className="group-hover:translate-x-1 transition-transform text-orange-400">→</span>
+              </div>
             </Link>
           </div>
 
@@ -854,7 +850,7 @@ export default function Home() {
                 <div className="w-6 h-6 rounded-full bg-white p-0.5 flex items-center justify-center">
                   <img src="/images/oxid-logo.png" alt="OXID" className="w-full h-full object-contain" />
                 </div>
-                <span className="font-mono text-sm font-bold text-white">getlayers.ai / oxid</span>
+                <span className="font-mono text-sm font-bold text-white">OXID CORTEX / OXID LABS</span>
               </div>
               <p className="text-xs text-zinc-400 max-w-sm leading-relaxed">
                 Stay updated with weekly prompt drops, free AI grants, and zero-slop UI components delivered straight to your inbox.
@@ -932,7 +928,7 @@ export default function Home() {
 
         {/* Huge Background Watermark */}
         <div className="absolute -bottom-10 left-1/2 -translate-x-1/2 text-[14vw] font-black font-sans text-white/[0.02] select-none pointer-events-none whitespace-nowrap leading-none tracking-tighter">
-          GETLAYERS
+          OXID CORTEX
         </div>
       </footer>
 
