@@ -6,6 +6,7 @@ import SearchModal from '@/components/SearchModal'
 import ModelComparisonArenaModal from '@/components/ModelComparisonArenaModal'
 import CommunitySubmitModal from '@/components/CommunitySubmitModal'
 import FlueHeroCanvas from '@/components/FlueHeroCanvas'
+import StudioNavbar from '@/components/StudioNavbar'
 
 export default function Home() {
   const [darkMode, setDarkMode] = useState(true)
@@ -257,147 +258,12 @@ export default function Home() {
     <main className="min-h-screen bg-[#000000] text-zinc-100 font-sans antialiased selection:bg-orange-500 selection:text-white transition-colors duration-200">
       
       {/* ======================================================== */}
-      {/* 1. GETLAYERS-STYLE SLIM STICKY HEADER (DUAL PILL GROUPS) */}
+      {/* 1. UNIFIED STUDIO NAVBAR                                 */}
       {/* ======================================================== */}
-      <header className="sticky top-0 z-50 bg-[#000000]/90 backdrop-blur-xl border-b border-white/[0.08]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-14 sm:h-16 flex items-center justify-between gap-3">
-          
-          {/* 1. Left Brand Logo */}
-          <Link href="/" className="flex items-center gap-2.5 group cursor-pointer flex-shrink-0" title="OXID CORTEX STUDIO">
-            <div className="w-7 h-7 rounded-full bg-white p-1 flex items-center justify-center shadow-md shadow-white/10 group-hover:scale-105 transition-transform flex-shrink-0">
-              <img src="/images/oxid-logo.png" alt="OXID" className="w-full h-full object-contain" />
-            </div>
-            <div className="flex items-center font-sans text-sm font-bold tracking-tight text-white">
-              <span>OXID</span>
-              <span className="text-zinc-400 font-light ml-1">CORTEX</span>
-            </div>
-          </Link>
-
-          {/* 2. Center-Left Search Pill Button */}
-          <button 
-            onClick={() => setIsSearchOpen(true)}
-            className="hidden xl:flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-white/[0.04] hover:bg-white/[0.08] border border-white/[0.08] text-xs font-mono text-zinc-400 hover:text-zinc-200 transition-all cursor-pointer flex-shrink-0"
-            title="Cari Library Prompt (/)"
-          >
-            <svg className="w-3.5 h-3.5 text-zinc-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-            </svg>
-            <span className="text-[11px]">Cari library prompt</span>
-            <kbd className="px-1.5 py-0.5 rounded bg-white/[0.08] text-[9px] text-zinc-400 font-mono border border-white/[0.1]">/</kbd>
-          </button>
-
-          {/* 3. Center Navigation Pill Container (Pill Group 1) */}
-          <nav className="hidden lg:flex items-center px-4 py-1.5 rounded-full bg-white/[0.04] border border-white/[0.08] text-xs font-mono font-medium text-zinc-400 space-x-5">
-            <Link href="/prompts" className="hover:text-white transition-colors">Prompt Lab</Link>
-            <Link href="/grants" className="hover:text-white transition-colors flex items-center gap-1.5">
-              <span>Bansos AI</span>
-              <span className="px-1.5 py-0.2 text-[9px] bg-emerald-500/15 text-emerald-400 border border-emerald-500/25 rounded-full font-bold">Free</span>
-            </Link>
-            <Link href="/tools" className="hover:text-white transition-colors">Tools Radar</Link>
-            <Link href="/intel" className="hover:text-white transition-colors">Threads Intel</Link>
-            <Link href="/templates" className="hover:text-white transition-colors">Templates</Link>
-          </nav>
-
-          {/* 4. Center-Right Action Pill Container (Pill Group 2) */}
-          <div className="hidden md:flex items-center px-3.5 py-1.5 rounded-full bg-white/[0.04] border border-white/[0.08] text-xs font-mono space-x-3.5 flex-shrink-0">
-            <button
-              onClick={() => setIsArenaOpen(true)}
-              className="text-zinc-300 hover:text-white transition-colors flex items-center gap-1.5 cursor-pointer"
-              title="Side-by-Side Model Arena"
-            >
-              <span>⚔️</span>
-              <span>Model Arena</span>
-            </button>
-            <span className="text-white/20">|</span>
-            <button
-              onClick={() => setIsSubmitOpen(true)}
-              className="text-zinc-300 hover:text-white transition-colors flex items-center gap-1.5 cursor-pointer"
-              title="Submit Weapon / Prompt Baru"
-            >
-              <span>➕ Submit</span>
-              <span className="px-1.5 py-0.2 text-[9px] bg-orange-500/15 text-orange-400 border border-orange-500/25 rounded-full font-bold">New</span>
-            </button>
-          </div>
-
-          {/* 5. Far Right Action Cluster */}
-          <div className="flex items-center space-x-2">
-            <button 
-              onClick={() => setIsSearchOpen(true)}
-              className="xl:hidden p-2 rounded-full bg-white/[0.04] hover:bg-white/[0.08] border border-white/[0.08] text-zinc-400 hover:text-white transition-all cursor-pointer"
-              title="Cari"
-            >
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
-            </button>
-
-            {/* Notification Bell */}
-            <div className="relative">
-              <button 
-                onClick={() => setShowNotifications(!showNotifications)}
-                className="p-2 sm:p-2.5 rounded-full bg-white/[0.04] hover:bg-white/[0.08] text-zinc-400 hover:text-white border border-white/[0.08] transition-all cursor-pointer relative"
-                title="Pusat Notifikasi Radar"
-              >
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path></svg>
-                {unreadNotifications > 0 && (
-                  <span className="absolute top-1 right-1 w-2 h-2 rounded-full bg-orange-500 animate-pulse"></span>
-                )}
-              </button>
-
-              {/* Notifications Tray Popover */}
-              {showNotifications && (
-                <div className="absolute right-0 mt-3 w-80 sm:w-96 bg-[#0c0c0e] border border-white/[0.1] rounded-2xl shadow-2xl z-50 p-4 space-y-3 font-mono text-xs animate-in fade-in slide-in-from-top-2 duration-200">
-                  <div className="flex items-center justify-between border-b border-white/[0.08] pb-2.5">
-                    <span className="font-bold text-white uppercase text-[11px]">Real Ingestion Radar</span>
-                    <button onClick={() => setUnreadNotifications(0)} className="text-[10px] text-orange-400 hover:underline cursor-pointer">Tandai Dibaca</button>
-                  </div>
-                  <div className="space-y-2 max-h-60 overflow-y-auto">
-                    {notificationsList.length === 0 ? (
-                      <div className="p-4 text-center text-zinc-500 text-xs">Memuat data live radar...</div>
-                    ) : (
-                      notificationsList.map(n => (
-                        <Link 
-                          key={n.id}
-                          href={n.link}
-                          onClick={() => setShowNotifications(false)}
-                          className="p-2.5 rounded-xl bg-white/[0.02] hover:bg-white/[0.06] border border-white/[0.04] transition-all block"
-                        >
-                          <div className="flex items-center justify-between mb-1">
-                            <span className="text-[9px] font-bold text-orange-400 bg-orange-500/10 px-1.5 py-0.5 rounded">{n.type}</span>
-                            <span className="text-[10px] text-zinc-500">{n.time}</span>
-                          </div>
-                          <p className="font-sans font-medium text-xs text-zinc-300 line-clamp-1">{n.title}</p>
-                        </Link>
-                      ))
-                    )}
-                  </div>
-                </div>
-              )}
-            </div>
-
-            {/* Mobile Hamburger Toggle */}
-            <button 
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="md:hidden p-2 rounded-full bg-white/[0.04] border border-white/[0.08] text-zinc-400 hover:text-white"
-            >
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
-            </button>
-          </div>
-
-        </div>
-
-        {/* Mobile Dropdown Menu */}
-        {mobileMenuOpen && (
-          <div className="md:hidden border-t border-white/[0.08] bg-[#000000]/95 backdrop-blur-2xl p-4 space-y-3 font-mono text-xs">
-            <Link href="/templates" onClick={() => setMobileMenuOpen(false)} className="block p-2.5 rounded-xl bg-white/[0.04] text-white font-bold">✨ All Templates</Link>
-            <Link href="/prompts" onClick={() => setMobileMenuOpen(false)} className="block p-2.5 rounded-xl bg-white/[0.04] text-white">⚡ Prompt Lab</Link>
-            <Link href="/grants" onClick={() => setMobileMenuOpen(false)} className="block p-2.5 rounded-xl bg-white/[0.04] text-emerald-400">🎁 Bansos AI &amp; Free Quotas</Link>
-            <Link href="/tools" onClick={() => setMobileMenuOpen(false)} className="block p-2.5 rounded-xl bg-white/[0.04] text-white">🛠️ AI Tools Radar</Link>
-            <Link href="/intel" onClick={() => setMobileMenuOpen(false)} className="block p-2.5 rounded-xl bg-white/[0.04] text-white">🌐 Live Intel Feed</Link>
-          </div>
-        )}
-      </header>
+      <StudioNavbar activeRoute="home" />
 
       {/* ======================================================== */}
-      {/* 2. OXID CORTEX CINEMATIC HERO SECTION (STAGE BOX & FLUE) */}
+      {/* 2. GETLAYERS CINEMATIC HERO SECTION (STAGE BOX & FLUE)   */}
       {/* ======================================================== */}
       <section className="hero-region max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4 sm:pt-6 pb-8 sm:pb-12">
         <div className="hero-stage relative rounded-[24px] sm:rounded-[32px] border border-white/[0.08] overflow-hidden min-h-[480px] sm:min-h-[540px] flex items-center justify-center p-6 sm:p-14 text-center bg-[#050505] shadow-2xl">

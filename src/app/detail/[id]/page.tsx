@@ -4,6 +4,7 @@ import React, { useState } from 'react'
 import Link from 'next/link'
 import { useParams } from 'next/navigation'
 import { useStudioTheme } from '@/lib/useStudioTheme'
+import StudioNavbar from '@/components/StudioNavbar'
 
 export default function DetailPage() {
   const params = useParams()
@@ -101,56 +102,8 @@ export async function runGroqInference(prompt: string) {
   return (
     <main className="min-h-screen bg-[#000000] text-zinc-100 font-sans antialiased selection:bg-orange-500 selection:text-white">
       
-      {/* 1. TOP NAVBAR */}
-      <header className="sticky top-0 z-50 bg-[#000000]/90 backdrop-blur-xl border-b border-white/[0.08]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-14 sm:h-16 flex items-center justify-between gap-3">
-          
-          <Link href="/" className="flex items-center gap-2.5 group cursor-pointer flex-shrink-0" title="OXID CORTEX STUDIO">
-            <div className="w-7 h-7 rounded-full bg-white p-1 flex items-center justify-center shadow-md shadow-white/10 group-hover:scale-105 transition-transform flex-shrink-0">
-              <img src="/images/oxid-logo.png" alt="OXID" className="w-full h-full object-contain" />
-            </div>
-            <div className="flex items-center font-sans text-sm font-bold tracking-tight text-white">
-              <span>OXID</span>
-              <span className="text-zinc-400 font-light ml-1">CORTEX</span>
-            </div>
-          </Link>
-
-          <nav className="hidden lg:flex items-center px-4 py-1.5 rounded-full bg-white/[0.04] border border-white/[0.08] text-xs font-mono font-medium text-zinc-400 space-x-5">
-            <Link href="/templates" className="hover:text-white transition-colors">Templates</Link>
-            <Link href="/prompts" className="hover:text-white transition-colors">Prompt Lab</Link>
-            <Link href="/grants" className="hover:text-white transition-colors">Bansos AI</Link>
-            <Link href="/tools" className="hover:text-white transition-colors">Tools Radar</Link>
-            <Link href="/intel" className="hover:text-white transition-colors">Threads Intel</Link>
-          </nav>
-
-          <div className="flex items-center space-x-2">
-            <Link 
-              href="/grants" 
-              className="px-4 py-1.5 rounded-full bg-white text-black hover:bg-zinc-200 text-xs font-mono font-bold transition-all"
-            >
-              ← Kembali ke Radar
-            </Link>
-
-            <button 
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="md:hidden p-2 rounded-full bg-white/[0.04] border border-white/[0.08] text-zinc-400"
-            >
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
-            </button>
-          </div>
-
-        </div>
-
-        {mobileMenuOpen && (
-          <div className="md:hidden border-t border-white/[0.08] bg-[#000000]/95 backdrop-blur-2xl p-4 space-y-3 font-mono text-xs">
-            <Link href="/templates" onClick={() => setMobileMenuOpen(false)} className="block p-2.5 rounded-xl bg-white/[0.04] text-white">✨ Templates</Link>
-            <Link href="/prompts" onClick={() => setMobileMenuOpen(false)} className="block p-2.5 rounded-xl bg-white/[0.04] text-white">⚡ Prompt Lab</Link>
-            <Link href="/grants" onClick={() => setMobileMenuOpen(false)} className="block p-2.5 rounded-xl bg-white/[0.04] text-emerald-400">🎁 Bansos AI</Link>
-            <Link href="/tools" onClick={() => setMobileMenuOpen(false)} className="block p-2.5 rounded-xl bg-white/[0.04] text-white">🛠️ Tools Radar</Link>
-            <Link href="/intel" onClick={() => setMobileMenuOpen(false)} className="block p-2.5 rounded-xl bg-white/[0.04] text-white">🌐 Threads Intel</Link>
-          </div>
-        )}
-      </header>
+      {/* 1. UNIFIED STUDIO NAVBAR */}
+      <StudioNavbar activeRoute="detail" />
 
       {/* 2. READER VIEW CONTENT */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 sm:pt-14 pb-20 space-y-8">
