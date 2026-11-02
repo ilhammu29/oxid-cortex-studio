@@ -54,12 +54,12 @@ export default function ReposPage() {
     {
       id: "fastmcp",
       name: "jlowin / fastmcp",
-      category: "Developer Harnesses",
+      category: "Developer Tools",
       stars: "6.8k",
       forks: "520",
       language: "Python",
       langColor: "#3572A5",
-      badge: "Anthropic Standard",
+      badge: "Anthropic MCP",
       image: "https://opengraph.githubassets.com/1/jlowin/fastmcp",
       url: "https://github.com/jlowin/fastmcp",
       description: "The fast, Pythonic way to build Model Context Protocol (MCP) servers. Expose custom tools, resources, and filesystem helpers to Claude and cursor agents.",
@@ -110,7 +110,7 @@ export default function ReposPage() {
     {
       id: "vercel_ai",
       name: "vercel / ai",
-      category: "Developer Harnesses",
+      category: "Developer Tools",
       stars: "18.9k",
       forks: "2.4k",
       language: "TypeScript",
@@ -123,7 +123,7 @@ export default function ReposPage() {
     }
   ]
 
-  const categories = ['All', 'Autonomous Agents', 'Model Runtimes', 'Developer Harnesses', 'UI Engines']
+  const categories = ['All', 'Autonomous Agents', 'Model Runtimes', 'Developer Tools', 'UI Engines']
 
   const filteredRepos = repos.filter(r => {
     const matchCat = activeFilter === 'All' || r.category === activeFilter
@@ -141,36 +141,36 @@ export default function ReposPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#050507] text-white selection:bg-white/20 selection:text-white">
+    <div className="min-h-screen bg-[#000000] text-zinc-100 font-sans antialiased selection:bg-white/20 selection:text-white">
       {/* 1. Global Navigation */}
       <StudioNavbar activeRoute="repos" />
 
-      {/* 2. Compact Stage Header */}
-      <section className="relative pt-24 pb-12 px-4 sm:px-6 max-w-7xl mx-auto border-b border-white/[0.06]">
-        <div className="max-w-3xl">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.04] border border-white/[0.08] text-[11px] font-mono text-zinc-400 mb-4">
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
-            CURATED OPEN-SOURCE REPOSITORIES
-          </div>
-          <h1 className="text-3xl sm:text-5xl font-light tracking-tight text-white mb-4">
+      {/* 2. Subpage Header (Matching GetLayers /templates) */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 sm:pt-14 pb-6 space-y-6 border-b border-white/[0.06]">
+        {/* Title Group */}
+        <div className="space-y-2">
+          <span className="text-[11px] font-mono uppercase tracking-widest text-zinc-500 block">
+            {repos.length} repositori produksi · open-source ai harness
+          </span>
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-sans font-[300] tracking-[-1px] text-white">
             GitHub AI Repositories
           </h1>
-          <p className="text-sm sm:text-base text-zinc-400 leading-relaxed font-sans font-light">
-            Koleksi repositori kecerdasan buatan, agen otonom, serverless model runtimes, dan developer tools berkelas dunia yang terverifikasi siap pakai.
+          <p className="text-sm text-zinc-400 font-sans max-w-2xl leading-relaxed">
+            Koleksi repositori kecerdasan buatan, agen otonom, local model runtimes, dan developer tools berkelas dunia yang terverifikasi siap pakai.
           </p>
         </div>
 
         {/* Search & Filter Bar */}
-        <div className="mt-8 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4">
-          {/* Category Pills */}
+        <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 pt-2">
+          {/* Category Filter Chips */}
           <div className="flex items-center gap-1.5 overflow-x-auto pb-2 sm:pb-0 font-mono text-xs">
             {categories.map(cat => (
               <button
                 key={cat}
                 onClick={() => setActiveFilter(cat)}
-                className={`px-3 py-1.5 rounded-full transition-all whitespace-nowrap cursor-pointer ${
+                className={`px-3 py-1.5 rounded-lg transition-all whitespace-nowrap cursor-pointer ${
                   activeFilter === cat
-                    ? 'bg-white text-black font-semibold shadow'
+                    ? 'bg-white text-black font-bold shadow'
                     : 'bg-white/[0.04] text-zinc-400 hover:text-white border border-white/[0.08]'
                 }`}
               >
@@ -179,14 +179,14 @@ export default function ReposPage() {
             ))}
           </div>
 
-          {/* Quick Search Filter */}
+          {/* Quick Search Input */}
           <div className="relative w-full sm:w-72">
             <input 
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Cari repo atau tag..."
-              className="w-full bg-[#0c0c0e] border border-white/[0.08] rounded-full px-4 py-1.5 text-xs text-white placeholder-zinc-500 focus:outline-none focus:border-white/30 font-mono"
+              className="w-full bg-[#0c0c0e] border border-white/[0.08] rounded-xl px-4 py-1.5 text-xs text-white placeholder-zinc-500 focus:outline-none focus:border-white/30 font-mono"
             />
             {searchQuery && (
               <button 
@@ -200,69 +200,83 @@ export default function ReposPage() {
         </div>
       </section>
 
-      {/* 3. Repositories Cardbox Grid */}
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {/* 3. Repositories Cardbox Grid (Authentic GetLayers Aspect Ratio & Images) */}
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 sm:gap-6">
           {filteredRepos.map(repo => (
             <article 
               key={repo.id}
               className="silver-beam-wrapper group flex flex-col justify-between !rounded-[14px]"
             >
-              <div className="silver-beam-inner flex flex-col justify-between p-5 bg-[#0c0c0e]">
-                {/* Header Metadata */}
-                <div>
-                  <div className="flex items-center justify-between gap-2 mb-3">
-                    <span className="px-2 py-0.5 rounded-full text-[10px] font-mono font-bold bg-white/[0.06] text-zinc-300 border border-white/[0.08]">
+              <div className="silver-beam-inner flex flex-col justify-between !rounded-[13px] bg-[#0c0c0e] overflow-hidden">
+                {/* Authentic Media Stage: Aspect [960/684] */}
+                <div className="relative aspect-[960/684] w-full overflow-hidden bg-zinc-950">
+                  <img 
+                    src={repo.image} 
+                    alt={repo.name} 
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#0c0c0e] via-transparent to-transparent"></div>
+
+                  {/* Top-Left Badge */}
+                  <div className="absolute top-2.5 left-2.5 flex items-center gap-1.5">
+                    <span className="px-2 py-0.5 rounded-full text-[9px] font-mono font-bold bg-white text-black shadow">
                       {repo.badge}
                     </span>
-                    <div className="flex items-center gap-1.5 text-amber-300 font-mono text-xs">
-                      <span>★</span>
-                      <span className="font-bold text-white">{repo.stars}</span>
-                    </div>
                   </div>
 
-                  <h3 className="font-sans font-semibold text-lg text-white group-hover:text-zinc-200 transition-colors mb-2">
-                    {repo.name}
-                  </h3>
-
-                  <p className="text-xs text-zinc-400 font-sans leading-relaxed line-clamp-3 mb-4">
-                    {repo.description}
-                  </p>
+                  {/* Top-Right Stars Pill */}
+                  <div className="absolute top-2.5 right-2.5 px-2 py-0.5 rounded-full bg-black/70 border border-white/10 text-amber-300 font-mono text-[10px] flex items-center gap-1 backdrop-blur-md">
+                    <span>★</span>
+                    <span className="font-bold text-white">{repo.stars}</span>
+                  </div>
                 </div>
 
-                {/* Bottom Actions & CLI Command */}
-                <div className="pt-4 border-t border-white/[0.06] space-y-3">
-                  <div className="flex items-center justify-between text-xs font-mono text-zinc-500">
-                    <div className="flex items-center gap-1.5">
-                      <span className="w-2 h-2 rounded-full" style={{ backgroundColor: repo.langColor }}></span>
-                      <span className="text-zinc-400">{repo.language}</span>
+                {/* Content Details */}
+                <div className="p-4 flex-1 flex flex-col justify-between">
+                  <div>
+                    <h3 className="font-sans font-medium text-[15px] text-white group-hover:text-zinc-200 transition-colors mb-1 truncate">
+                      {repo.name}
+                    </h3>
+                    <p className="text-xs text-zinc-400 font-sans leading-relaxed line-clamp-2 mb-3">
+                      {repo.description}
+                    </p>
+                  </div>
+
+                  {/* Bottom Meta & CLI Actions */}
+                  <div className="pt-3 border-t border-white/[0.06] space-y-2.5">
+                    <div className="flex items-center justify-between text-[11px] font-mono text-zinc-500">
+                      <div className="flex items-center gap-1.5">
+                        <span className="w-2 h-2 rounded-full" style={{ backgroundColor: repo.langColor }}></span>
+                        <span className="text-zinc-400">{repo.language}</span>
+                      </div>
+                      <span className="text-[10px] text-zinc-400">{repo.category}</span>
                     </div>
-                    <span>{repo.category}</span>
-                  </div>
 
-                  {/* Quick Install/Clone Snippet */}
-                  <div 
-                    onClick={() => handleCopyCmd(repo.id, repo.cloneCmd)}
-                    className="p-2 rounded-lg bg-black/60 border border-white/[0.06] hover:border-white/20 transition-colors cursor-pointer group/cmd flex items-center justify-between"
-                    title="Klik untuk menyalin perintah instalasi"
-                  >
-                    <code className="text-[10px] font-mono text-zinc-400 truncate max-w-[210px]">
-                      {repo.cloneCmd}
-                    </code>
-                    <span className="text-[9px] font-mono text-zinc-400 group-hover/cmd:text-white flex-shrink-0 ml-2">
-                      {copiedId === repo.id ? 'Tersalin ✓' : 'Salin'}
-                    </span>
-                  </div>
+                    {/* Quick Install/Clone Snippet */}
+                    <div 
+                      onClick={() => handleCopyCmd(repo.id, repo.cloneCmd)}
+                      className="p-2 rounded-lg bg-black/60 border border-white/[0.06] hover:border-white/20 transition-colors cursor-pointer group/cmd flex items-center justify-between"
+                      title="Klik untuk menyalin perintah instalasi"
+                    >
+                      <code className="text-[10px] font-mono text-zinc-400 truncate max-w-[180px]">
+                        {repo.cloneCmd}
+                      </code>
+                      <span className="text-[9px] font-mono text-zinc-400 group-hover/cmd:text-white flex-shrink-0 ml-1.5">
+                        {copiedId === repo.id ? 'Tersalin ✓' : 'Salin'}
+                      </span>
+                    </div>
 
-                  {/* External Link */}
-                  <a
-                    href={repo.url}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="w-full py-2 px-3 rounded-lg bg-white/[0.04] hover:bg-white/[0.1] text-xs font-mono text-center text-white transition-all block border border-white/[0.08]"
-                  >
-                    Buka di GitHub ↗
-                  </a>
+                    {/* External Link */}
+                    <a
+                      href={repo.url}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="w-full py-2 px-3 rounded-lg bg-white/[0.04] hover:bg-white/[0.1] text-xs font-mono text-center text-white transition-all block border border-white/[0.08]"
+                    >
+                      Buka di GitHub ↗
+                    </a>
+                  </div>
                 </div>
               </div>
             </article>
