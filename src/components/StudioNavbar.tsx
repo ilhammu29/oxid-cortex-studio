@@ -32,30 +32,16 @@ export default function StudioNavbar({ activeRoute = 'home' }: StudioNavbarProps
       <header className="sticky top-0 z-50 bg-[#000000]/90 backdrop-blur-xl border-b border-white/[0.08]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-14 sm:h-16 flex items-center justify-between gap-4">
           
-          {/* 1. Left: Brand Logo & Micro Search */}
-          <div className="flex items-center gap-3">
-            <Link href="/" className="flex items-center gap-2.5 group cursor-pointer flex-shrink-0" title="OXID CORTEX STUDIO">
-              <div className="w-7 h-7 rounded-full bg-white p-1 flex items-center justify-center shadow-md shadow-white/10 group-hover:scale-105 transition-transform flex-shrink-0">
-                <img src="/images/oxid-logo.png" alt="OXID" className="w-full h-full object-contain" />
-              </div>
-              <div className="flex items-center font-sans text-sm font-bold tracking-tight text-white">
-                <span>OXID</span>
-                <span className="text-zinc-400 font-light ml-1">CORTEX</span>
-              </div>
-            </Link>
-
-            {/* Micro Search Pill */}
-            <button 
-              onClick={() => setIsSearchOpen(true)}
-              className="hidden sm:flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white/[0.04] hover:bg-white/[0.08] border border-white/[0.08] text-xs font-mono text-zinc-400 hover:text-zinc-200 transition-all cursor-pointer flex-shrink-0"
-              title="Cari (/)"
-            >
-              <svg className="w-3.5 h-3.5 text-zinc-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-              </svg>
-              <kbd className="px-1.5 py-0.2 rounded bg-white/[0.08] text-[10px] text-zinc-400 font-mono border border-white/[0.1]">/</kbd>
-            </button>
-          </div>
+          {/* 1. Left: Brand Logo */}
+          <Link href="/" className="flex items-center gap-2.5 group cursor-pointer flex-shrink-0" title="OXID CORTEX STUDIO">
+            <div className="w-7 h-7 rounded-full bg-white p-1 flex items-center justify-center shadow-md shadow-white/10 group-hover:scale-105 transition-transform flex-shrink-0">
+              <img src="/images/oxid-logo.png" alt="OXID" className="w-full h-full object-contain" />
+            </div>
+            <div className="flex items-center font-sans text-sm font-bold tracking-tight text-white">
+              <span>OXID</span>
+              <span className="text-zinc-400 font-light ml-1">CORTEX</span>
+            </div>
+          </Link>
 
           {/* 2. Center: Single Focused Navigation Pill Container */}
           <nav className="hidden md:flex items-center px-5 py-1.5 rounded-full bg-white/[0.04] border border-white/[0.08] text-xs font-mono font-medium space-x-6">
@@ -89,17 +75,18 @@ export default function StudioNavbar({ activeRoute = 'home' }: StudioNavbarProps
             </Link>
           </nav>
 
-          {/* 3. Right: Clean and Uncluttered */}
+          {/* 3. Far Right: Search Button in the Corner */}
           <div className="flex items-center space-x-2">
-            {/* Mobile Search Button */}
             <button 
               onClick={() => setIsSearchOpen(true)}
-              className="sm:hidden p-2 rounded-full bg-white/[0.04] hover:bg-white/[0.08] border border-white/[0.08] text-zinc-400 hover:text-white transition-all cursor-pointer"
-              title="Cari"
+              className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/[0.04] hover:bg-white/[0.08] border border-white/[0.08] text-xs font-mono text-zinc-400 hover:text-zinc-200 transition-all cursor-pointer"
+              title="Cari (/)"
             >
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-3.5 h-3.5 text-zinc-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
               </svg>
+              <span className="hidden sm:inline text-[11px]">Cari</span>
+              <kbd className="px-1.5 py-0.2 rounded bg-white/[0.08] text-[10px] text-zinc-400 font-mono border border-white/[0.1]">/</kbd>
             </button>
 
             {/* Mobile Hamburger Toggle */}

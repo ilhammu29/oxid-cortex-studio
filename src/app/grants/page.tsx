@@ -203,62 +203,64 @@ export default function GrantsPage() {
           {filteredGrants.map((g, idx) => (
             <React.Fragment key={g.id}>
               
-              {/* Simple Cardbox */}
+              {/* Simple Cardbox with Rotating Silver Beam */}
               <article 
-                className="group relative bg-[#0c0c0e] border border-white/[0.08] hover:border-white/[0.2] rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-1 flex flex-col justify-between"
+                className="silver-beam-wrapper group flex flex-col justify-between"
               >
-                {/* 16:9 Image Container */}
-                <div className="relative aspect-[16/9] w-full overflow-hidden bg-zinc-950">
-                  <img 
-                    src={g.image} 
-                    alt={g.title} 
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+                <div className="silver-beam-inner flex flex-col justify-between">
+                  {/* 16:9 Image Container */}
+                  <div className="relative aspect-[16/9] w-full overflow-hidden bg-zinc-950">
+                    <img 
+                      src={g.image} 
+                      alt={g.title} 
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
 
-                  {/* Top-Left Badge */}
-                  <div className="absolute top-2.5 left-2.5 flex items-center gap-1.5">
-                    <span className="px-2 py-0.5 rounded-full text-[9px] font-mono font-bold bg-white text-black shadow">
-                      {g.badge}
-                    </span>
-                  </div>
+                    {/* Top-Left Badge */}
+                    <div className="absolute top-2.5 left-2.5 flex items-center gap-1.5">
+                      <span className="px-2 py-0.5 rounded-full text-[9px] font-mono font-bold bg-white text-black shadow">
+                        {g.badge}
+                      </span>
+                    </div>
 
-                  {/* Top-Right Like Button */}
-                  <button 
-                    onClick={(e) => handleLike(g.id, e)}
-                    className="absolute top-2.5 right-2.5 px-2 py-0.5 rounded-full bg-black/60 hover:bg-black/90 text-[10px] font-mono text-zinc-300 backdrop-blur-md border border-white/10 flex items-center gap-1 transition-colors"
-                  >
-                    <span>♥</span>
-                    <span>{likes[g.id] || 400}</span>
-                  </button>
-
-                  {/* Center Direct Claim Link Overlay */}
-                  <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/50 backdrop-blur-[2px]">
-                    <a
-                      href={g.claimUrl}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="px-4 py-1.5 rounded-full bg-white text-black font-mono text-xs font-bold shadow-xl flex items-center gap-1.5"
+                    {/* Top-Right Like Button */}
+                    <button 
+                      onClick={(e) => handleLike(g.id, e)}
+                      className="absolute top-2.5 right-2.5 px-2 py-0.5 rounded-full bg-black/60 hover:bg-black/90 text-[10px] font-mono text-zinc-300 backdrop-blur-md border border-white/10 flex items-center gap-1 transition-colors"
                     >
-                      <span>Klaim Kuota</span>
-                      <span>↗</span>
-                    </a>
-                  </div>
-                </div>
+                      <span>♥</span>
+                      <span>{likes[g.id] || 400}</span>
+                    </button>
 
-                {/* Card Footer Bar */}
-                <div className="p-3.5 space-y-1 border-t border-white/[0.06] font-mono text-xs">
-                  <div className="flex items-center justify-between">
-                    <span className="font-bold text-white group-hover:text-orange-400 transition-colors line-clamp-1">
-                      {g.title}
-                    </span>
-                    <span className="text-[11px] text-zinc-500 flex-shrink-0">
-                      {g.category}
-                    </span>
+                    {/* Center Direct Claim Link Overlay */}
+                    <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/50 backdrop-blur-[2px]">
+                      <a
+                        href={g.claimUrl}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="px-4 py-1.5 rounded-full bg-white text-black font-mono text-xs font-bold shadow-xl flex items-center gap-1.5"
+                      >
+                        <span>Klaim Kuota</span>
+                        <span>↗</span>
+                      </a>
+                    </div>
                   </div>
-                  <div className="flex items-center justify-between text-[11px] text-zinc-400">
-                    <span className="text-zinc-500">{g.provider}</span>
-                    <span className="text-emerald-400 font-bold">{g.value}</span>
+
+                  {/* Card Footer Bar */}
+                  <div className="p-3.5 space-y-1 border-t border-white/[0.06] font-mono text-xs">
+                    <div className="flex items-center justify-between">
+                      <span className="font-bold text-white group-hover:text-orange-400 transition-colors line-clamp-1">
+                        {g.title}
+                      </span>
+                      <span className="text-[11px] text-zinc-500 flex-shrink-0">
+                        {g.category}
+                      </span>
+                    </div>
+                    <div className="flex items-center justify-between text-[11px] text-zinc-400">
+                      <span className="text-zinc-500">{g.provider}</span>
+                      <span className="text-emerald-400 font-bold">{g.value}</span>
+                    </div>
                   </div>
                 </div>
               </article>

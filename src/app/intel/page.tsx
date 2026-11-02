@@ -107,87 +107,89 @@ export default function IntelPage() {
             {filteredThreads.map(th => (
               <article 
                 key={th.id}
-                className="group relative bg-[#0c0c0e] border border-white/[0.08] hover:border-white/[0.2] rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-1 flex flex-col justify-between"
+                className="silver-beam-wrapper group flex flex-col justify-between"
               >
-                {/* 16:9 Image or Media Container */}
-                <div className="relative aspect-[16/9] w-full overflow-hidden bg-zinc-950">
-                  <img 
-                    src={th.image_url || "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80"} 
-                    alt={th.author_name} 
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+                <div className="silver-beam-inner flex flex-col justify-between">
+                  {/* 16:9 Image or Media Container */}
+                  <div className="relative aspect-[16/9] w-full overflow-hidden bg-zinc-950">
+                    <img 
+                      src={th.image_url || "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80"} 
+                      alt={th.author_name} 
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
 
-                  {/* Top-Left Model / Author Badge */}
-                  <div className="absolute top-2.5 left-2.5 flex items-center gap-1.5">
-                    <span className="px-2 py-0.5 rounded-full text-[9px] font-mono font-bold bg-white text-black shadow">
-                      {th.model_used || "AI Studio"}
-                    </span>
+                    {/* Top-Left Model / Author Badge */}
+                    <div className="absolute top-2.5 left-2.5 flex items-center gap-1.5">
+                      <span className="px-2 py-0.5 rounded-full text-[9px] font-mono font-bold bg-white text-black shadow">
+                        {th.model_used || "AI Studio"}
+                      </span>
+                    </div>
+
+                    {/* Top-Right Like Button */}
+                    <button 
+                      onClick={(e) => handleLike(th.id, e)}
+                      className="absolute top-2.5 right-2.5 px-2 py-0.5 rounded-full bg-black/60 hover:bg-black/90 text-[10px] font-mono text-zinc-300 backdrop-blur-md border border-white/10 flex items-center gap-1 transition-colors"
+                    >
+                      <span>♥</span>
+                      <span>{likes[th.id] || 210}</span>
+                    </button>
+
+                    {/* Center Zoom / Copy Overlay */}
+                    <div className="absolute inset-0 flex items-center justify-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity bg-black/50 backdrop-blur-[2px]">
+                      {th.prompt && (
+                        <button
+                          onClick={(e) => handleCopyPrompt(th.id, th.prompt, e)}
+                          className="px-3 py-1.5 rounded-full bg-white text-black font-mono text-[11px] font-bold shadow-xl cursor-pointer"
+                        >
+                          {copiedPromptId === th.id ? "✓ Copied!" : "Salin Prompt"}
+                        </button>
+                      )}
+                      {th.image_url && (
+                        <button
+                          onClick={() => setZoomImage(th.image_url)}
+                          className="px-3 py-1.5 rounded-full bg-white/[0.15] text-white font-mono text-[11px] font-bold backdrop-blur-md border border-white/20"
+                        >
+                          Zoom 🔍
+                        </button>
+                      )}
+                    </div>
                   </div>
 
-                  {/* Top-Right Like Button */}
-                  <button 
-                    onClick={(e) => handleLike(th.id, e)}
-                    className="absolute top-2.5 right-2.5 px-2 py-0.5 rounded-full bg-black/60 hover:bg-black/90 text-[10px] font-mono text-zinc-300 backdrop-blur-md border border-white/10 flex items-center gap-1 transition-colors"
-                  >
-                    <span>♥</span>
-                    <span>{likes[th.id] || 210}</span>
-                  </button>
-
-                  {/* Center Zoom / Copy Overlay */}
-                  <div className="absolute inset-0 flex items-center justify-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity bg-black/50 backdrop-blur-[2px]">
-                    {th.prompt && (
-                      <button
-                        onClick={(e) => handleCopyPrompt(th.id, th.prompt, e)}
-                        className="px-3 py-1.5 rounded-full bg-white text-black font-mono text-[11px] font-bold shadow-xl cursor-pointer"
-                      >
-                        {copiedPromptId === th.id ? "✓ Copied!" : "Salin Prompt"}
-                      </button>
-                    )}
-                    {th.image_url && (
-                      <button
-                        onClick={() => setZoomImage(th.image_url)}
-                        className="px-3 py-1.5 rounded-full bg-white/[0.15] text-white font-mono text-[11px] font-bold backdrop-blur-md border border-white/20"
-                      >
-                        Zoom 🔍
-                      </button>
-                    )}
-                  </div>
-                </div>
-
-                {/* Card Content & Footer */}
-                <div className="p-4 space-y-3 font-mono text-xs flex-1 flex flex-col justify-between">
-                  <div className="space-y-2">
-                    <div className="flex items-center justify-between text-[11px]">
-                      <div className="flex items-center gap-2">
-                        <img 
-                          src={th.author_avatar || "https://avatars.githubusercontent.com/u/241138?v=4"} 
-                          alt={th.author_name} 
-                          className="w-5 h-5 rounded-full object-cover border border-white/10" 
-                        />
-                        <span className="font-bold text-white line-clamp-1">{th.author_name}</span>
+                  {/* Card Content & Footer */}
+                  <div className="p-4 space-y-3 font-mono text-xs flex-1 flex flex-col justify-between">
+                    <div className="space-y-2">
+                      <div className="flex items-center justify-between text-[11px]">
+                        <div className="flex items-center gap-2">
+                          <img 
+                            src={th.author_avatar || "https://avatars.githubusercontent.com/u/241138?v=4"} 
+                            alt={th.author_name} 
+                            className="w-5 h-5 rounded-full object-cover border border-white/10" 
+                          />
+                          <span className="font-bold text-white line-clamp-1">{th.author_name}</span>
+                        </div>
+                        <span className="text-[10px] text-zinc-500">@{th.author_handle}</span>
                       </div>
-                      <span className="text-[10px] text-zinc-500">@{th.author_handle}</span>
+
+                      <p className="font-sans text-xs text-zinc-300 leading-relaxed line-clamp-2">
+                        {th.content}
+                      </p>
                     </div>
 
-                    <p className="font-sans text-xs text-zinc-300 leading-relaxed line-clamp-2">
-                      {th.content}
-                    </p>
-                  </div>
-
-                  {th.prompt && (
-                    <div className="p-2.5 rounded-xl bg-white/[0.02] border border-white/[0.06] text-[10px] text-zinc-400 font-mono line-clamp-2">
-                      <strong className="text-orange-400">Prompt:</strong> {th.prompt}
-                    </div>
-                  )}
-
-                  <div className="pt-2 border-t border-white/[0.06] flex items-center justify-between text-[10px] text-zinc-500">
-                    <span>{th.post_date || "Verified"}</span>
-                    {th.post_url && (
-                      <a href={th.post_url} target="_blank" rel="noreferrer" className="text-zinc-400 hover:text-white">
-                        Sumber Asli ↗
-                      </a>
+                    {th.prompt && (
+                      <div className="p-2.5 rounded-xl bg-white/[0.02] border border-white/[0.06] text-[10px] text-zinc-400 font-mono line-clamp-2">
+                        <strong className="text-orange-400">Prompt:</strong> {th.prompt}
+                      </div>
                     )}
+
+                    <div className="pt-2 border-t border-white/[0.06] flex items-center justify-between text-[10px] text-zinc-500">
+                      <span>{th.post_date || "Verified"}</span>
+                      {th.post_url && (
+                        <a href={th.post_url} target="_blank" rel="noreferrer" className="text-zinc-400 hover:text-white">
+                          Sumber Asli ↗
+                        </a>
+                      )}
+                    </div>
                   </div>
                 </div>
               </article>
