@@ -42,6 +42,7 @@ export default function IntelPage() {
 
   const filteredThreads = threads.filter(th => {
     if (activeCategory === 'all') return true
+    if (activeCategory === 'papers') return th.category?.includes('Paper')
     if (activeCategory === 'art') return th.category?.includes('Art') || th.category?.includes('Prompt')
     if (activeCategory === 'coding') return th.category?.includes('Coding') || th.category?.includes('Autonomous')
     if (activeCategory === 'design') return th.category?.includes('Design') || th.category?.includes('Motion')
@@ -126,6 +127,7 @@ export default function IntelPage() {
           <span className="text-zinc-500 uppercase tracking-wider text-[10px]">CATEGORY:</span>
           {[
             { id: 'all', label: `Semua (${threads.length})` },
+            { id: 'papers', label: '📄 Frontier Papers (Hugging Face)' },
             { id: 'art', label: '🎨 Generative Art & Prompts' },
             { id: 'coding', label: '⚡ Autonomous AI & Coding' },
             { id: 'design', label: '❤️‍🔥 Design & Motion' },

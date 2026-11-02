@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { useStudioTheme } from '@/lib/useStudioTheme'
 import { useBookmarks } from '@/lib/useBookmarks'
@@ -10,6 +10,8 @@ export default function ToolsPage() {
   const [activeCategory, setActiveCategory] = useState('all')
   const [activeTab, setActiveTab] = useState('all')
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [toolsList, setToolsList] = useState<any[]>([])
+  const [loading, setLoading] = useState(true)
   const { darkMode, toggleTheme } = useStudioTheme()
   const { toggleBookmark, isBookmarked } = useBookmarks()
   const [likes, setLikes] = useState<Record<string, number>>({
@@ -33,6 +35,18 @@ export default function ToolsPage() {
     e.stopPropagation()
     setLikes(prev => ({ ...prev, [id]: (prev[id] || 0) + 1 }))
   }
+
+  useEffect(() => {
+    fetch('/api/tools')
+      .then(res => res.json())
+      .then(data => {
+        if (data.success && data.data) {
+          setToolsList(data.data)
+        }
+      })
+      .catch(err => console.error("Error loading tools:", err))
+      .finally(() => setLoading(false))
+  }, [])
 
   const realTools = [
     // 5 FREE AI DESIGN RESOURCES
@@ -168,7 +182,9 @@ export default function ToolsPage() {
     }
   ]
 
-  const filteredTools = realTools.filter(t => {
+  const displayTools = toolsList.length > 0 ? toolsList : realTools
+
+  const filteredTools = displayTools.filter(t => {
     if (activeCategory !== 'all' && t.type !== activeCategory) return false
     if (searchQuery && !t.name.toLowerCase().includes(searchQuery.toLowerCase()) && !t.category.toLowerCase().includes(searchQuery.toLowerCase())) return false
     if (activeTab === 'saved' && !isBookmarked(t.id)) return false

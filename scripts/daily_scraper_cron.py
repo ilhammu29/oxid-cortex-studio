@@ -14,6 +14,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(BASE_DIR))
 
 from scripts.fetch_real_threads import fetch_real_karpathy_threads
+from scripts.github_scraper import fetch_github_skills
 
 DATA_FILE = BASE_DIR / "data" / "scraped_threads.json"
 CRON_LOG_FILE = BASE_DIR / "data" / "cron_last_run.json"
@@ -37,7 +38,8 @@ def run_sync():
     
     try:
         items = fetch_real_karpathy_threads()
-        new_count = len(items)
+        gh_items = fetch_github_skills()
+        new_count = len(items) + len(gh_items)
     except Exception as e:
         print(f"Scraping warning: {e}")
         new_count = 0
