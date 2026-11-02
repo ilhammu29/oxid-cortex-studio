@@ -110,12 +110,12 @@ const SEARCH_DATABASE: SearchItem[] = [
     badge: "Design System"
   },
   {
-    id: "res_landbook",
-    title: "Land-book — Curated Landing Page Inspiration",
+    id: "res_v0",
+    title: "v0 by Vercel — AI Generative UI Builder",
     category: "Tools",
-    snippet: "Landing page inspiration curated well. Discover finest web designs, portfolios, and SaaS apps.",
+    snippet: "Build full-stack web applications and components with AI prompts. Native Next.js and Tailwind CSS.",
     link: "/tools",
-    badge: "Top Showcase"
+    badge: "AI Builder"
   },
   {
     id: "res_recentdesign",

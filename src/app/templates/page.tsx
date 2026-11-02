@@ -110,7 +110,7 @@ export default function TemplatesPage() {
       tone: "dark",
       badge: "2M Context",
       likes: 340,
-      image: "/screenshots/template_dashboard.png",
+      image: "/screenshots/real/google_ai_studio.png",
       prompt: `Architect an enterprise multi-modal intelligence portal consuming Google AI Studio Gemini 1.5 Pro free API tier with 1,000,000 TPM, video-audio parsing, and zero credit card lock.`
     },
     {
@@ -120,7 +120,7 @@ export default function TemplatesPage() {
       tone: "dark",
       badge: "800 T/s LPU",
       likes: 310,
-      image: "/screenshots/template_home.png",
+      image: "/screenshots/real/groq_console.png",
       prompt: `Integrate Groq Cloud Language Processing Unit (LPU) ultra-low latency inference engine running Llama-3.1-70B at 800+ tokens per second with Next.js 14 streaming response.`
     },
     {
@@ -190,7 +190,7 @@ export default function TemplatesPage() {
       tone: "dark",
       badge: "Free 10k/day",
       likes: 224,
-      image: "/screenshots/template_dashboard.png",
+      image: "/screenshots/real/cloudflare_workers_ai.png",
       prompt: `Serverless edge AI inference with Cloudflare Workers AI, Vectorize vector database, and 10,000 free neuron executions daily.`
     },
     {
@@ -200,7 +200,7 @@ export default function TemplatesPage() {
       tone: "dark",
       badge: "Core System",
       likes: 540,
-      image: "/screenshots/template_home.png",
+      image: "/screenshots/real/shadcn_ui.png",
       prompt: `Flagship OXID Hub dark obsidian dashboard featuring rotating silver border beams, WebGL2 Flue canvas, and live multi-source ingestion.`
     }
   ]

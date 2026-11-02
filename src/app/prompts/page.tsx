@@ -58,7 +58,7 @@ export default function PromptsPage() {
       creator: "Andrej Karpathy",
       category: "Architecture",
       badge: "Flagship",
-      image: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=800&auto=format&fit=crop&q=80",
+      image: "/images/card_agent_copilot.svg",
       body: `Design a developer-first Autonomous AI Agent studio workspace.
 Key Specifications:
 - Structure: 3-pane cardbox layout with DAG agent viewer on left, live streaming terminal log in center, and contextual token/memory inspector on right.
@@ -71,7 +71,7 @@ Key Specifications:
       creator: "OXID Architecture Collective",
       category: "Architecture",
       badge: "Hot",
-      image: "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?w=800&auto=format&fit=crop&q=80",
+      image: "/screenshots/real/cloudflare_workers_ai.png",
       body: `Bertindaklah sebagai Lead Software Architect kelas dunia. Bangun arsitektur aplikasi tanpa boilerplate palsu dan tanpa pola AI slop. Utamakan stdlib/native, exit code 0, dan modular API contract.`
     },
     {
@@ -80,7 +80,7 @@ Key Specifications:
       creator: "Aira Core",
       category: "Refactoring",
       badge: "Core",
-      image: "https://images.unsplash.com/photo-1542744094-3a31f272c490?w=800&auto=format&fit=crop&q=80",
+      image: "/screenshots/real/shadcn_ui.png",
       body: `Senior Systems Developer yang memegang prinsip lazy engineering efisien (YAGNI). Refactoring kode dengan memangkas baris, hapus abstraksi berlebih, pertahankan backward compatibility.`
     },
     {
@@ -89,7 +89,7 @@ Key Specifications:
       creator: "Shu Ding",
       category: "UI/UX Bento",
       badge: "Popular",
-      image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&auto=format&fit=crop&q=80",
+      image: "/images/card_fintech_wealth.svg",
       body: `Design a high-end institutional wealth management dashboard in Tailwind CSS and Next.js. Bento Grid with live candlestick feeds, yield curve tracker, and liquidity metrics.`
     },
     {
@@ -98,7 +98,7 @@ Key Specifications:
       creator: "swyx",
       category: "UI/UX Bento",
       badge: "Verified",
-      image: "https://images.unsplash.com/photo-1505373877841-8d25f7d46678?w=800&auto=format&fit=crop&q=80",
+      image: "/images/card_swiss_editorial.svg",
       body: `Create a clean, human-centric editorial web magazine interface inspired by Swiss typography. Lora serif headlines, generous white space, and zero noisy banners.`
     },
     {
@@ -107,7 +107,7 @@ Key Specifications:
       creator: "OXID Metacortex",
       category: "Reasoning",
       badge: "Core",
-      image: "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=800&auto=format&fit=crop&q=80",
+      image: "/screenshots/real/v0_dev.png",
       body: `Bedah masalah dari prinsip paling mendasar: bongkar asumsi lumrah, pecah ke komponen fundamental, rekonstruksi solusi baru tanpa meniru pasar, hasilkan 3 opsi keputusan 1-3-1.`
     },
     {
@@ -116,7 +116,7 @@ Key Specifications:
       creator: "Shu Ding",
       category: "UI/UX Bento",
       badge: "Trending",
-      image: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?w=800&auto=format&fit=crop&q=80",
+      image: "/images/card_hardware_showcase.svg",
       body: `Ultra-minimalist flagship product launch page for bespoke hardware. Full-bleed product render hero, smooth scroll perspective reveal, and exploded view components.`
     },
     {
@@ -125,7 +125,7 @@ Key Specifications:
       creator: "OXID Database Engineer",
       category: "Architecture",
       badge: "Verified",
-      image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&auto=format&fit=crop&q=80",
+      image: "/screenshots/template_dashboard.png",
       body: `Tulis skema database PostgreSQL Supabase kelas produksi: foreign key terindeks, RLS policies ketat, enum types, trigger auto-updated_at, dan security hardening.`
     }
   ]

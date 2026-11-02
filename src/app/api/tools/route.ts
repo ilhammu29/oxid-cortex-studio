@@ -64,7 +64,7 @@ export async function GET() {
     name: d.name,
     category: d.category,
     badge: d.type === 'skill' ? '✦ Motion Craft' : 'Design Vault',
-    image: d.previewImage || 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80',
+    image: d.previewImage || '/screenshots/real/recent_design.png',
     type: d.type === 'skill' ? 'skills' : 'design',
     url: d.url,
     stars: 'Verified',

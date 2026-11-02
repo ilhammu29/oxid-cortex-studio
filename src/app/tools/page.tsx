@@ -56,25 +56,25 @@ export default function ToolsPage() {
       name: "shadcn/ui",
       category: "Design System",
       badge: "Open Source",
-      image: "https://opengraph.githubassets.com/1/shadcn-ui/ui",
+      image: "/screenshots/real/shadcn_ui.png",
       type: "design",
       url: "https://ui.shadcn.com"
     },
     {
-      id: "res_landbook",
-      name: "Land-book",
-      category: "Design Showcase",
-      badge: "Curated",
-      image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80",
+      id: "res_v0",
+      name: "v0 by Vercel",
+      category: "Generative UI",
+      badge: "AI Builder",
+      image: "/screenshots/real/v0_dev.png",
       type: "design",
-      url: "https://land-book.com"
+      url: "https://v0.dev"
     },
     {
       id: "res_recentdesign",
       name: "Recent Design",
       category: "Trend Vault",
       badge: "Daily",
-      image: "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=800&q=80",
+      image: "/screenshots/real/recent_design.png",
       type: "design",
       url: "https://recent.design"
     },
@@ -83,7 +83,7 @@ export default function ToolsPage() {
       name: "Landdding",
       category: "Bento Library",
       badge: "High-Conv",
-      image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80",
+      image: "/screenshots/real/landdding.png",
       type: "design",
       url: "https://landdding.com"
     },
@@ -92,7 +92,7 @@ export default function ToolsPage() {
       name: "FontInLogo",
       category: "Typography",
       badge: "Radar",
-      image: "https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=800&q=80",
+      image: "/screenshots/real/fontinlogo.png",
       type: "design",
       url: "https://www.fontinlogo.com"
     },
@@ -103,7 +103,7 @@ export default function ToolsPage() {
       name: "Emil Kowalski — Vaul & Motion",
       category: "Motion Physics",
       badge: "Masterclass",
-      image: "https://opengraph.githubassets.com/1/emilkowalski/vaul",
+      image: "/screenshots/real/emil_animations.png",
       type: "skills",
       url: "https://animations.dev"
     },

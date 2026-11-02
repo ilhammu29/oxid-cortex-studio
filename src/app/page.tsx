@@ -129,7 +129,7 @@ export default function Home() {
       title: "Gemini 1.5 Pro Grant",
       category: "Cloud Grants & Quotas",
       badge: "2M Context",
-      image: "/screenshots/template_dashboard.png",
+      image: "/screenshots/real/google_ai_studio.png",
       prompt: `Architect an enterprise multi-modal intelligence portal consuming Google AI Studio Gemini 1.5 Pro free API tier with 1,000,000 TPM, video-audio parsing, and zero credit card lock.`
     },
     {
@@ -137,7 +137,7 @@ export default function Home() {
       title: "Groq LPU 800 T/s Engine",
       category: "AI Engineering",
       badge: "800 T/s LPU",
-      image: "/screenshots/template_home.png",
+      image: "/screenshots/real/groq_console.png",
       prompt: `Integrate Groq Cloud Language Processing Unit (LPU) ultra-low latency inference engine running Llama-3.1-70B at 800+ tokens per second with Next.js 14 streaming response.`
     },
     {
