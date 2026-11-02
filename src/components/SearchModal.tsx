@@ -1,225 +1,195 @@
 'use client'
 
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 
 interface SearchItem {
   id: string
   title: string
-  category: 'Prompts' | 'Bansos AI' | 'Tools' | 'Threads Intel' | 'Templates'
+  category: 'Templates' | 'GitHub Repos' | 'Prompts' | 'Bansos AI' | 'Intel'
   snippet: string
   link: string
   badge: string
 }
 
 const SEARCH_DATABASE: SearchItem[] = [
+  // 1. Templates & Blueprints (UI/UX)
   {
-    id: "prompt_1",
-    title: "Senior Full-Stack Architect (Anti-AI Slop)",
-    category: "Prompts",
-    snippet: "Master prompt arsitektur Next.js, Supabase, Tailwind tanpa boilerplate generik.",
-    link: "/detail/code_1",
-    badge: "Genesis Prompt"
-  },
-  {
-    id: "prompt_2",
-    title: "Zero-Latency Realtime Speech Agent",
-    category: "Prompts",
-    snippet: "System prompt untuk voice agent deterministik dengan interruption handling.",
-    link: "/prompts",
-    badge: "Voice AI"
-  },
-  {
-    id: "prompt_3",
-    title: "Automated Civil & Construction Estimator",
-    category: "Prompts",
-    snippet: "Prompt perhitungan kuantitas volume dan analisis harga satuan standar PUPR.",
-    link: "/prompts",
-    badge: "Engineering"
-  },
-  {
-    id: "grant_1",
-    title: "Google AI Studio & Gemini 1.5 Pro (1M TPM)",
-    category: "Bansos AI",
-    snippet: "Akses frontier model Gemini 1.5 Pro dan 1.5 Flash tanpa kartu kredit (15 RPM / 1M TPM).",
-    link: "/detail/grant_gcp_1",
-    badge: "Free Quota Active"
-  },
-  {
-    id: "grant_2",
-    title: "Groq Cloud LPU High-Speed Inference",
-    category: "Bansos AI",
-    snippet: "Inference ultra-cepat 800+ tokens/detik Llama 3 dan Mixtral gratis 14,400 req/hari.",
-    link: "/detail/grant_groq_2",
-    badge: "Ultra Fast"
-  },
-  {
-    id: "grant_3",
-    title: "Cloudflare Workers AI Free Tier",
-    category: "Bansos AI",
-    snippet: "Serverless inference 10,000 neurons/hari di edge CDN global Cloudflare.",
-    link: "/grants",
-    badge: "Edge Compute"
-  },
-  {
-    id: "tool_1",
-    title: "Ollama Local Model Runner",
-    category: "Tools",
-    snippet: "Jalankan Llama 3, DeepSeek-Coder, dan Mistral di laptop secara lokal dan offline.",
-    link: "/tools",
-    badge: "Local AI"
-  },
-  {
-    id: "tool_2",
-    title: "vLLM High-Throughput Serving Engine",
-    category: "Tools",
-    snippet: "Engine serving LLM dengan PagedAttention dan continuous batching super efisien.",
-    link: "/tools",
-    badge: "Inference Engine"
-  },
-  {
-    id: "intel_1",
-    title: "Andrej Karpathy on Software 2.0 & LLM OS",
-    category: "Threads Intel",
-    snippet: "Wawasan mendalam mengenai transformasi software engineering menjadi neural architecture.",
-    link: "/intel",
-    badge: "Real Threads Feed"
-  },
-  {
-    id: "template_1",
-    title: "Autonomous Agent Copilot & Studio (Duke Layout)",
+    id: "tpl_lumiere",
+    title: "Lumière — Editorial E-Commerce",
     category: "Templates",
-    snippet: "Arsitektur 3-pane cardbox dengan DAG viewer, terminal log, dan inspection drawer.",
-    link: "/templates",
-    badge: "Template #01"
+    snippet: "Minimalist fashion and luxury lifestyle web layout with Swiss typography and bespoke product grids.",
+    link: "/detail/lumiere",
+    badge: "E-commerce"
   },
   {
-    id: "template_2",
-    title: "OXID Hub Pro 4-Pane Dashboard",
+    id: "tpl_prisma",
+    title: "Prisma — Dark Bento AI Platform",
     category: "Templates",
-    snippet: "Layout komprehensif: Left Icon Rail, Header Filter, Split Main Content, dan Right Action Widget.",
-    link: "/templates",
-    badge: "Template #02"
+    snippet: "High-density dark mode SaaS dashboard with live status cards, metric meters, and hairline borders.",
+    link: "/detail/prisma",
+    badge: "AI & Tech"
   },
   {
-    id: "res_shadcn",
-    title: "shadcn/ui — Re-usable Design System & Components",
-    category: "Tools",
-    snippet: "Beautifully designed components that you can copy and paste into your apps. Accessible. Customizable. Open Source.",
-    link: "/tools",
-    badge: "Design System"
+    id: "tpl_vesper",
+    title: "Vesper — Fintech Analytics Dashboard",
+    category: "Templates",
+    snippet: "Institutional yield curve tracking, candlestick charts, and liquidity pool metrics in Next.js 14.",
+    link: "/detail/vesper",
+    badge: "Fintech"
   },
   {
-    id: "res_v0",
-    title: "v0 by Vercel — AI Generative UI Builder",
-    category: "Tools",
-    snippet: "Build full-stack web applications and components with AI prompts. Native Next.js and Tailwind CSS.",
-    link: "/tools",
-    badge: "AI Builder"
+    id: "tpl_stride",
+    title: "Stride — Digital Banking Experience",
+    category: "Templates",
+    snippet: "Multi-currency digital banking app interface with fluid card drag animations and instant settlement flow.",
+    link: "/detail/stride",
+    badge: "Fintech"
   },
   {
-    id: "res_recentdesign",
-    title: "Recent Design — Fresh Web Gallery",
-    category: "Tools",
-    snippet: "A great gallery of fresh web design inspiration updated daily with clean Swiss typography focus.",
-    link: "/tools",
-    badge: "Fresh Daily"
+    id: "tpl_kyoto",
+    title: "Kyoto Villa — Brutalist 3D Architecture",
+    category: "Templates",
+    snippet: "Architectural showcase with perspective scroll reveal, Three.js spatial viewport, and stone textures.",
+    link: "/detail/kyoto_villa",
+    badge: "Brutalist 3D"
   },
-  {
-    id: "res_landdding",
-    title: "Landdding — Top-Tier Landing Pages",
-    category: "Tools",
-    snippet: "Top-tier SaaS landing pages with micro-interactions, dark mode elegance, and high-conversion layouts.",
-    link: "/tools",
-    badge: "High Conversion"
-  },
-  {
-    id: "res_fontinlogo",
-    title: "FontInLogo — Find The Fonts in Famous Brands",
-    category: "Tools",
-    snippet: "Find the exact fonts used in world-famous company logos, tech brands, and startup identities.",
-    link: "/tools",
-    badge: "Brand Typography"
-  },
-  {
-    id: "skill_design_eng",
-    title: "Design Engineering — Easing, Durations & Springs",
-    category: "Prompts",
-    snippet: "Master micro-interactions by Emil Kowalski: cubic-bezier easing, spring physics, and organic UI transitions.",
-    link: "/prompts",
-    badge: "Motion Physics"
-  },
-  {
-    id: "skill_shader_dev",
-    title: "Shader Dev — 36 ShaderToy Techniques",
-    category: "Prompts",
-    snippet: "36 production ShaderToy and GLSL techniques for real-time generative canvas visuals in web apps.",
-    link: "/prompts",
-    badge: "WebGL & Shaders"
-  },
-  {
-    id: "skill_diagram_design",
-    title: "Diagram Design — 44 Editorial Diagram Types",
-    category: "Prompts",
-    snippet: "44 editorial diagram types for architectural documentation, DAG flows, and system engineering.",
-    link: "/prompts",
-    badge: "44 Diagram Types"
-  },
-  {
-    id: "skill_vercel_guidelines",
-    title: "Web Interface Guidelines — Vercel UI Review",
-    category: "Prompts",
-    snippet: "The gold standard for web interface quality: accessibility, focus states, keyboard shortcuts, and zero-slop UI.",
-    link: "/prompts",
-    badge: "Design Standards"
-  },
-  {
-    id: "skill_craftwork",
-    title: "Craftwork — Real Fonts, Icons & UI Components",
-    category: "Prompts",
-    snippet: "High-fidelity design assets: vector icons, production fonts, 3D illustrations, and crafted design systems.",
-    link: "/prompts",
-    badge: "Component Craft"
-  },
+
+  // 2. GitHub Repositories (Curated Open-Source)
   {
     id: "gh_openhands",
-    title: "All-Hands-AI / OpenHands (Autonomous Agent)",
-    category: "Tools",
-    snippet: "Autonomous software development agent in bash and browser with 92k+ GitHub stars.",
-    link: "/tools",
-    badge: "⭐ 92.4k Stars"
+    title: "All-Hands-AI / OpenHands (92.5k ★)",
+    category: "GitHub Repos",
+    snippet: "Autonomous software development agent capable of editing files, executing bash, and web exploration.",
+    link: "/repos",
+    badge: "Autonomous Agent"
   },
   {
-    id: "gh_vaul",
-    title: "emilkowalski / vaul (Drawer Component)",
-    category: "Tools",
-    snippet: "Unstyled drawer component for React with organic physics and spring dragging.",
-    link: "/tools",
-    badge: "⭐ 12.5k Stars"
+    id: "gh_ollama",
+    title: "ollama / ollama (185.7k ★)",
+    category: "GitHub Repos",
+    snippet: "Run open LLMs locally on CPU and GPU: DeepSeek, Qwen 2.5, Llama 3.3 with OpenAI-compatible API.",
+    link: "/repos",
+    badge: "Model Runtime"
   },
   {
-    id: "gh_three_fiber",
-    title: "pmndrs / react-three-fiber (3D Canvas)",
-    category: "Tools",
-    snippet: "Declarative Three.js WebGL renderer for React & Next.js apps with 28k+ stars.",
-    link: "/tools",
-    badge: "⭐ 28.1k Stars"
+    id: "gh_scrapling",
+    title: "D4Vinci / Scrapling (92.5k ★)",
+    category: "GitHub Repos",
+    snippet: "Undetectable stealth web scraper capable of Cloudflare Turnstile bypass and structured JSON normalization.",
+    link: "/repos",
+    badge: "Stealth Scraper"
   },
   {
     id: "gh_fastmcp",
-    title: "jlowin / fastmcp (Model Context Protocol)",
-    category: "Tools",
-    snippet: "Fast Model Context Protocol (MCP) servers in Python for AI agents.",
-    link: "/tools",
-    badge: "⭐ 6.5k Stars"
+    title: "jlowin / fastmcp (6.8k ★)",
+    category: "GitHub Repos",
+    snippet: "Fast Pythonic Model Context Protocol (MCP) server framework for Claude and cursor agents.",
+    link: "/repos",
+    badge: "Developer Tool"
   },
   {
-    id: "gh_shadcn_ui",
-    title: "shadcn-ui / ui (Accessible Components)",
-    category: "Tools",
-    snippet: "Beautifully designed components copy-paste ready for Next.js with 89k+ stars.",
-    link: "/tools",
-    badge: "⭐ 89.2k Stars"
+    id: "gh_r3f",
+    title: "pmndrs / react-three-fiber (33.4k ★)",
+    category: "GitHub Repos",
+    snippet: "Declarative Three.js WebGL canvas renderer for React & Next.js applications.",
+    link: "/repos",
+    badge: "UI Engine"
+  },
+  {
+    id: "gh_vaul",
+    title: "emilkowalski / vaul (12.5k ★)",
+    category: "GitHub Repos",
+    snippet: "Unstyled drawer component for React with organic physics, spring dragging, and zero layout shift.",
+    link: "/repos",
+    badge: "UI Engine"
+  },
+  {
+    id: "gh_vllm",
+    title: "vllm-project / vllm (45.2k ★)",
+    category: "GitHub Repos",
+    snippet: "High-throughput and memory-efficient LLM inference and serving engine with PagedAttention.",
+    link: "/repos",
+    badge: "Model Runtime"
+  },
+  {
+    id: "gh_shadcn",
+    title: "shadcn-ui / ui (89.2k ★)",
+    category: "GitHub Repos",
+    snippet: "Accessible, customizable Tailwind component system copy-paste ready for Next.js applications.",
+    link: "/repos",
+    badge: "Design System"
+  },
+
+  // 3. Prompts & Architecture Blueprints
+  {
+    id: "pmt_copilot",
+    title: "Autonomous Agent Copilot Workspace",
+    category: "Prompts",
+    snippet: "Master prompt: 3-pane cardbox layout with DAG agent viewer, streaming terminal, and token inspector.",
+    link: "/prompts",
+    badge: "Agent Blueprint"
+  },
+  {
+    id: "pmt_architect",
+    title: "Senior Full-Stack Architect (Anti-AI Slop)",
+    category: "Prompts",
+    snippet: "System prompt for clean, unbloated Next.js, Supabase, and Tailwind code generation.",
+    link: "/prompts",
+    badge: "Production Code"
+  },
+  {
+    id: "pmt_refactor",
+    title: "Surgical Code Refactoring (YAGNI)",
+    category: "Prompts",
+    snippet: "Minimal diffs, stdlib-first, remove dead abstractions while preserving full backward compatibility.",
+    link: "/prompts",
+    badge: "Refactoring"
+  },
+
+  // 4. Cloud Bansos AI
+  {
+    id: "grt_gemini",
+    title: "Google AI Studio & Gemini 1.5 Pro (1M TPM)",
+    category: "Bansos AI",
+    snippet: "Free frontier multimodal API access up to 2,000,000 token context without credit card requirements.",
+    link: "/grants",
+    badge: "Free Tier"
+  },
+  {
+    id: "grt_groq",
+    title: "Groq Cloud LPU High-Speed Inference (800 T/s)",
+    category: "Bansos AI",
+    snippet: "Sub-second token rendering at 800+ tokens/sec on dedicated Language Processing Unit chips.",
+    link: "/grants",
+    badge: "Ultra Fast"
+  },
+  {
+    id: "grt_cf",
+    title: "Cloudflare Workers AI Serverless",
+    category: "Bansos AI",
+    snippet: "Serverless edge model execution with 10,000 free neuron executions daily on 300+ data centers.",
+    link: "/grants",
+    badge: "Edge Compute"
+  },
+
+  // 5. Frontier Intel Radar
+  {
+    id: "intl_hf",
+    title: "Hugging Face Daily Papers Ingestion",
+    category: "Intel",
+    snippet: "Automated pipeline indexing latest arXiv machine learning papers with community peer upvotes.",
+    link: "/intel",
+    badge: "Research"
+  },
+  {
+    id: "intl_hn",
+    title: "HackerNews Autonomous AI Drops",
+    category: "Intel",
+    snippet: "Real-time discussions and open-weights drops filtered from HackerNews Algolia stream.",
+    link: "/intel",
+    badge: "Community Radar"
   }
 ]
 
@@ -231,14 +201,20 @@ interface SearchModalProps {
 export default function SearchModal({ isOpen, onClose }: SearchModalProps) {
   const [query, setQuery] = useState('')
   const [selectedCategory, setSelectedCategory] = useState<string>('All')
+  const [selectedIndex, setSelectedIndex] = useState(0)
+  const inputRef = useRef<HTMLInputElement>(null)
+  const router = useRouter()
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') onClose()
+      if (e.key === 'Escape') {
+        onClose()
+      }
     }
     if (isOpen) {
       window.addEventListener('keydown', handleKeyDown)
       document.body.style.overflow = 'hidden'
+      setTimeout(() => inputRef.current?.focus(), 50)
     }
     return () => {
       window.removeEventListener('keydown', handleKeyDown)
@@ -248,52 +224,82 @@ export default function SearchModal({ isOpen, onClose }: SearchModalProps) {
 
   if (!isOpen) return null
 
-  const categories = ['All', 'Prompts', 'Bansos AI', 'Tools', 'Threads Intel', 'Templates']
+  const categories = ['All', 'Templates', 'GitHub Repos', 'Prompts', 'Bansos AI', 'Intel']
 
   const filteredItems = SEARCH_DATABASE.filter(item => {
     const matchesCategory = selectedCategory === 'All' || item.category === selectedCategory
-    const q = query.toLowerCase()
-    const matchesQuery = item.title.toLowerCase().includes(q) ||
-                         item.snippet.toLowerCase().includes(q) ||
-                         item.category.toLowerCase().includes(q) ||
-                         item.badge.toLowerCase().includes(q)
-    return matchesCategory && matchesQuery
+    const q = query.toLowerCase().trim()
+    if (!q) return matchesCategory
+    return matchesCategory && (
+      item.title.toLowerCase().includes(q) ||
+      item.snippet.toLowerCase().includes(q) ||
+      item.category.toLowerCase().includes(q) ||
+      item.badge.toLowerCase().includes(q)
+    )
   })
 
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === 'ArrowDown') {
+      e.preventDefault()
+      setSelectedIndex(prev => (prev + 1) % Math.max(1, filteredItems.length))
+    } else if (e.key === 'ArrowUp') {
+      e.preventDefault()
+      setSelectedIndex(prev => (prev - 1 + filteredItems.length) % Math.max(1, filteredItems.length))
+    } else if (e.key === 'Enter') {
+      if (filteredItems[selectedIndex]) {
+        e.preventDefault()
+        router.push(filteredItems[selectedIndex].link)
+        onClose()
+      }
+    }
+  }
+
   return (
-    <div className="fixed inset-0 z-50 flex items-start justify-center pt-16 sm:pt-24 px-4 bg-black/80 backdrop-blur-md animate-in fade-in duration-200">
+    <div className="fixed inset-0 z-50 flex items-start justify-center pt-20 sm:pt-28 px-4 bg-black/80 backdrop-blur-md animate-in fade-in duration-150">
       
-      {/* Background click to dismiss */}
+      {/* Click outside to close */}
       <div className="fixed inset-0" onClick={onClose} />
 
-      {/* Modal Container */}
-      <div className="relative w-full max-w-2xl bg-white dark:bg-[#121216] border border-zinc-200 dark:border-[#26262e] rounded-3xl shadow-2xl overflow-hidden z-10 flex flex-col max-h-[80vh]">
-        
-        {/* Search Header Input */}
-        <div className="p-4 sm:p-5 border-b border-zinc-200 dark:border-[#26262e] flex items-center gap-3">
-          <svg className="w-5 h-5 text-orange-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      {/* Sleek Minimalist Modal Dialog */}
+      <div 
+        onKeyDown={handleKeyDown}
+        className="relative w-full max-w-xl bg-[#0c0c0e] border border-white/[0.08] rounded-2xl shadow-2xl overflow-hidden z-10 flex flex-col max-h-[75vh]"
+      >
+        {/* Clean Search Input */}
+        <div className="p-4 border-b border-white/[0.06] flex items-center gap-3 bg-[#0a0a0c]">
+          <svg className="w-4 h-4 text-zinc-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
           </svg>
           <input 
+            ref={inputRef}
             type="text" 
-            autoFocus
             value={query}
-            onChange={(e) => setQuery(e.target.value)}
-            placeholder="Cari prompt, bansos AI, tools, atau template... (ketik apa saja)"
-            className="w-full bg-transparent text-sm sm:text-base text-zinc-900 dark:text-white placeholder-zinc-400 focus:outline-none font-sans"
+            onChange={(e) => {
+              setQuery(e.target.value)
+              setSelectedIndex(0)
+            }}
+            placeholder="Cari templates, repos, prompts, atau bansos..."
+            className="w-full bg-transparent text-sm text-white placeholder-zinc-500 focus:outline-none font-sans"
           />
-          <kbd className="hidden sm:inline-block px-2 py-1 text-[10px] font-mono font-bold bg-zinc-100 dark:bg-[#1a1a24] text-zinc-500 rounded-lg border border-zinc-200 dark:border-[#26262e]">
+          <kbd className="px-1.5 py-0.5 text-[10px] font-mono bg-white/[0.04] text-zinc-400 rounded border border-white/[0.08]">
             ESC
           </kbd>
         </div>
 
-        {/* Category Filter Pills */}
-        <div className="px-4 py-2.5 bg-zinc-50 dark:bg-[#0a0a0c] border-b border-zinc-200 dark:border-[#26262e] flex items-center gap-2 overflow-x-auto text-xs font-mono">
+        {/* Minimal Monochromatic Category Filter */}
+        <div className="px-4 py-2 border-b border-white/[0.06] flex items-center gap-1.5 overflow-x-auto text-[11px] font-mono bg-[#09090b]">
           {categories.map(cat => (
             <button
               key={cat}
-              onClick={() => setSelectedCategory(cat)}
-              className={`px-3 py-1 rounded-full whitespace-nowrap transition-all cursor-pointer font-bold ${selectedCategory === cat ? 'bg-orange-500 text-white shadow-sm shadow-orange-500/30' : 'bg-transparent text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white'}`}
+              onClick={() => {
+                setSelectedCategory(cat)
+                setSelectedIndex(0)
+              }}
+              className={`px-2.5 py-1 rounded-full whitespace-nowrap transition-colors cursor-pointer ${
+                selectedCategory === cat 
+                  ? 'bg-white text-black font-semibold' 
+                  : 'bg-transparent text-zinc-400 hover:text-white'
+              }`}
             >
               {cat}
             </button>
@@ -301,47 +307,56 @@ export default function SearchModal({ isOpen, onClose }: SearchModalProps) {
         </div>
 
         {/* Search Results List */}
-        <div className="p-3 overflow-y-auto space-y-2 flex-1">
+        <div className="p-2 overflow-y-auto space-y-1 flex-1">
           {filteredItems.length === 0 ? (
-            <div className="py-12 text-center space-y-2">
-              <span className="text-3xl block">🔍</span>
-              <p className="text-xs font-mono text-zinc-500">Tidak ada hasil yang cocok dengan &quot;{query}&quot;</p>
+            <div className="py-12 text-center text-zinc-500 font-mono text-xs">
+              Tidak ada hasil untuk &quot;{query}&quot;
             </div>
           ) : (
-            filteredItems.map(item => (
+            filteredItems.map((item, idx) => (
               <Link
                 key={item.id}
                 href={item.link}
                 onClick={onClose}
-                className="p-3.5 rounded-2xl bg-zinc-50/50 hover:bg-zinc-100 dark:bg-[#0e0e12] dark:hover:bg-[#181822] border border-zinc-200/60 dark:border-[#26262e] hover:border-orange-500/40 transition-all block group"
+                onMouseEnter={() => setSelectedIndex(idx)}
+                className={`p-3 rounded-xl transition-all flex items-center justify-between gap-3 group ${
+                  selectedIndex === idx 
+                    ? 'bg-white/[0.06] border border-white/[0.12]' 
+                    : 'bg-transparent border border-transparent hover:bg-white/[0.03]'
+                }`}
               >
-                <div className="flex items-center justify-between mb-1">
-                  <span className="text-[10px] font-mono font-bold uppercase text-orange-500 bg-orange-500/10 px-2 py-0.5 rounded-full">
-                    {item.category}
-                  </span>
-                  <span className="text-[10px] font-mono text-zinc-400 group-hover:text-zinc-300">
-                    {item.badge} ↗
-                  </span>
+                <div className="min-w-0 flex-1">
+                  <div className="flex items-center gap-2 mb-1">
+                    <span className="text-[10px] font-mono font-medium text-zinc-400">
+                      {item.category}
+                    </span>
+                    <span className="text-zinc-600 text-[10px]">•</span>
+                    <span className="text-[10px] font-mono text-zinc-500 truncate">
+                      {item.badge}
+                    </span>
+                  </div>
+                  <h4 className="font-sans font-medium text-sm text-white group-hover:text-zinc-200 truncate">
+                    {item.title}
+                  </h4>
+                  <p className="text-xs text-zinc-400 font-sans mt-0.5 line-clamp-1 leading-relaxed">
+                    {item.snippet}
+                  </p>
                 </div>
-                <h4 className="font-sans font-bold text-sm text-zinc-900 dark:text-white group-hover:text-orange-500 dark:group-hover:text-orange-400 transition-colors">
-                  {item.title}
-                </h4>
-                <p className="text-xs text-zinc-500 dark:text-zinc-400 font-sans mt-0.5 leading-relaxed line-clamp-1">
-                  {item.snippet}
-                </p>
+
+                <div className="flex-shrink-0 text-zinc-600 group-hover:text-zinc-300 text-xs font-mono">
+                  ↵
+                </div>
               </Link>
             ))
           )}
         </div>
 
-        {/* Footer Shortcut Helper */}
-        <div className="p-3 border-t border-zinc-200 dark:border-[#26262e] bg-zinc-50 dark:bg-[#0a0a0c] flex items-center justify-between text-[11px] font-mono text-zinc-400">
-          <span>Menampilkan {filteredItems.length} hasil relevan</span>
-          <span>Tekan ESC untuk menutup</span>
+        {/* Minimal Footer Helper */}
+        <div className="px-4 py-2.5 border-t border-white/[0.06] bg-black/50 flex items-center justify-between text-[11px] font-mono text-zinc-500">
+          <span>{filteredItems.length} hasil ditemukan</span>
+          <span className="hidden sm:inline">Gunakan ↑ ↓ untuk navigasi · Enter untuk pilih</span>
         </div>
-
       </div>
-
     </div>
   )
 }

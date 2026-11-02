@@ -5,7 +5,7 @@ import Link from 'next/link'
 import SearchModal from '@/components/SearchModal'
 
 interface StudioNavbarProps {
-  activeRoute?: 'home' | 'prompts' | 'grants' | 'tools' | 'intel' | 'templates' | 'detail'
+  activeRoute?: 'home' | 'prompts' | 'grants' | 'tools' | 'intel' | 'templates' | 'detail' | 'repos'
 }
 
 export default function StudioNavbar({ activeRoute = 'home' }: StudioNavbarProps) {
@@ -33,9 +33,12 @@ export default function StudioNavbar({ activeRoute = 'home' }: StudioNavbarProps
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-14 sm:h-16 flex items-center justify-between gap-4">
           
           {/* 1. Left: Brand Logo */}
-          <Link href="/" className="flex items-center gap-2.5 group cursor-pointer flex-shrink-0" title="OXID HUB STUDIO">
-            <div className="w-7 h-7 rounded-full bg-white p-1 flex items-center justify-center shadow-md shadow-white/10 group-hover:scale-105 transition-transform flex-shrink-0">
-              <img src="/images/oxid-logo.png" alt="OXID" className="w-full h-full object-contain" />
+          <Link href="/" className="flex items-center gap-2.5 group cursor-pointer flex-shrink-0" title="OXID HUB">
+            <div className="w-7 h-7 rounded-full bg-black border border-white/20 p-1 flex items-center justify-center shadow-md shadow-black group-hover:scale-105 transition-transform flex-shrink-0">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" className="w-full h-full">
+                <circle cx="32" cy="32" r="24" fill="none" stroke="#ffffff" strokeWidth="4"/>
+                <circle cx="32" cy="32" r="10" fill="#ffffff"/>
+              </svg>
             </div>
             <div className="flex items-center font-sans text-sm font-bold tracking-tight text-white">
               <span>OXID</span>
@@ -43,13 +46,21 @@ export default function StudioNavbar({ activeRoute = 'home' }: StudioNavbarProps
             </div>
           </Link>
 
-          {/* 2. Center: Single Focused Navigation Pill Container */}
+          {/* 2. Center: Single Focused Navigation Pill Container (5 Dedicated Pillars) */}
           <nav className="hidden md:flex items-center px-5 py-1.5 rounded-full bg-white/[0.04] border border-white/[0.08] text-xs font-mono font-medium space-x-6">
             <Link 
               href="/templates" 
               className={`transition-colors ${activeRoute === 'templates' ? 'text-white font-bold' : 'text-zinc-400 hover:text-white'}`}
             >
               Templates
+            </Link>
+
+            <Link 
+              href="/repos" 
+              className={`transition-colors flex items-center gap-1.5 ${activeRoute === 'repos' ? 'text-white font-bold' : 'text-zinc-400 hover:text-white'}`}
+            >
+              <span>GitHub Repos</span>
+              <span className="px-1.5 py-0.2 text-[9px] bg-white/10 text-zinc-300 border border-white/15 rounded-full font-bold">Code</span>
             </Link>
 
             <Link 
@@ -112,6 +123,14 @@ export default function StudioNavbar({ activeRoute = 'home' }: StudioNavbarProps
               className={`block p-2.5 rounded-xl border transition-all ${activeRoute === 'templates' ? 'bg-white text-black font-bold border-white' : 'bg-white/[0.03] text-zinc-300 border-white/[0.06]'}`}
             >
               ✨ Templates
+            </Link>
+
+            <Link 
+              href="/repos" 
+              onClick={() => setMobileMenuOpen(false)} 
+              className={`block p-2.5 rounded-xl border transition-all ${activeRoute === 'repos' ? 'bg-white text-black font-bold border-white' : 'bg-white/[0.03] text-zinc-300 border-white/[0.06]'}`}
+            >
+              🐙 GitHub Repos
             </Link>
 
             <Link 

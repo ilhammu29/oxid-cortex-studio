@@ -5,9 +5,9 @@ export const metadata: Metadata = {
   title: 'OXID Hub — AI Blueprints, Prompts & Cloud Grants',
   description: 'Bansos AI, Pustaka Master Prompt Siap Pakai, Tools Radar & Ingestion Threads',
   icons: {
-    icon: '/images/oxid-logo.png',
-    shortcut: '/images/oxid-logo.png',
-    apple: '/images/oxid-logo.png',
+    icon: '/favicon.svg',
+    shortcut: '/favicon.svg',
+    apple: '/favicon.svg',
   },
 }
 

@@ -84,116 +84,6 @@ export default function TemplatesPage() {
 
   const templatesList = [
     {
-      id: "openhands",
-      title: "OpenHands Developer Agent",
-      category: "Autonomous Agents",
-      tone: "dark",
-      badge: "92.5k Stars",
-      likes: 412,
-      image: "https://opengraph.githubassets.com/1/All-Hands-AI/OpenHands",
-      prompt: `Build an autonomous AI-driven development agent harness with virtual sandbox, git version control integration, multi-model LLM router, and real-time terminal streaming interface.`
-    },
-    {
-      id: "ollama",
-      title: "Ollama Local Core",
-      category: "AI Engineering",
-      tone: "dark",
-      badge: "185k Stars",
-      likes: 523,
-      image: "https://opengraph.githubassets.com/1/ollama/ollama",
-      prompt: `Deploy and run local open-weights LLMs (Kimi, DeepSeek, Qwen, Gemma) with zero cloud dependency, OpenAI-compatible local endpoints, and low VRAM footprint.`
-    },
-    {
-      id: "gemini_grant",
-      title: "Gemini 1.5 Pro Grant",
-      category: "Cloud Grants & Quotas",
-      tone: "dark",
-      badge: "2M Context",
-      likes: 340,
-      image: "/screenshots/real/google_ai_studio.png",
-      prompt: `Architect an enterprise multi-modal intelligence portal consuming Google AI Studio Gemini 1.5 Pro free API tier with 1,000,000 TPM, video-audio parsing, and zero credit card lock.`
-    },
-    {
-      id: "groq_lpu",
-      title: "Groq LPU 800 T/s Engine",
-      category: "AI Engineering",
-      tone: "dark",
-      badge: "800 T/s LPU",
-      likes: 310,
-      image: "/screenshots/real/groq_console.png",
-      prompt: `Integrate Groq Cloud Language Processing Unit (LPU) ultra-low latency inference engine running Llama-3.1-70B at 800+ tokens per second with Next.js 14 streaming response.`
-    },
-    {
-      id: "r3f",
-      title: "React Three Fiber Canvas",
-      category: "UI/UX Architecture",
-      tone: "dark",
-      badge: "33.4k Stars",
-      likes: 289,
-      image: "https://opengraph.githubassets.com/1/pmndrs/react-three-fiber",
-      prompt: `Craft a declarative 3D canvas experience using Three.js and React Three Fiber with custom GLSL shaders, camera physics, and anti-aliased dark scene rendering.`
-    },
-    {
-      id: "scrapling",
-      title: "Scrapling Framework",
-      category: "Autonomous Agents",
-      tone: "dark",
-      badge: "92.5k Stars",
-      likes: 245,
-      image: "https://opengraph.githubassets.com/1/D4Vinci/Scrapling",
-      prompt: `High-throughput autonomous web scraping framework capable of bypassing modern bot barriers, DOM stealth emulation, and JSON structured data normalization.`
-    },
-    {
-      id: "fastmcp",
-      title: "FastMCP Protocol Server",
-      category: "Autonomous Agents",
-      tone: "dark",
-      badge: "Verified",
-      likes: 198,
-      image: "https://opengraph.githubassets.com/1/jlowin/fastmcp",
-      prompt: `Standard Model Context Protocol (MCP) server implementation exposing autonomous tools, resource endpoints, and deterministic schema validation to LLMs.`
-    },
-    {
-      id: "vaul",
-      title: "Vaul Drawer Motion",
-      category: "UI/UX Architecture",
-      tone: "dark",
-      badge: "8.7k Stars",
-      likes: 167,
-      image: "https://opengraph.githubassets.com/1/emilkowalski/vaul",
-      prompt: `Minimalist iOS-style draggable drawer component for mobile web applications with spring physics, touch gesture velocity tracking, and zero layout shift.`
-    },
-    {
-      id: "minimax",
-      title: "MiniMax Shader Skills",
-      category: "UI/UX Architecture",
-      tone: "dark",
-      badge: "13.8k Stars",
-      likes: 281,
-      image: "https://opengraph.githubassets.com/1/MiniMax-AI/skills",
-      prompt: `Production library of 36 ShaderToy GLSL Canvas techniques optimized for WebGL2 fluid motion and ambient backgrounds.`
-    },
-    {
-      id: "hf_papers",
-      title: "Hugging Face Daily Papers",
-      category: "Frontier Research",
-      tone: "dark",
-      badge: "Live Daily",
-      likes: 315,
-      image: "https://opengraph.githubassets.com/1/huggingface/transformers",
-      prompt: `Automated pipeline indexing frontier arXiv and Hugging Face daily AI research papers with community upvotes and key insight extractions.`
-    },
-    {
-      id: "cloudflare_ai",
-      title: "Cloudflare Workers AI",
-      category: "Cloud Grants & Quotas",
-      tone: "dark",
-      badge: "Free 10k/day",
-      likes: 224,
-      image: "/screenshots/real/cloudflare_workers_ai.png",
-      prompt: `Serverless edge AI inference with Cloudflare Workers AI, Vectorize vector database, and 10,000 free neuron executions daily.`
-    },
-    {
       id: "cortex_obsidian",
       title: "OXID Hub Dashboard",
       category: "UI/UX Architecture",
@@ -202,18 +92,95 @@ export default function TemplatesPage() {
       likes: 540,
       image: "/screenshots/real/shadcn_ui.png",
       prompt: `Flagship OXID Hub dark obsidian dashboard featuring rotating silver border beams, WebGL2 Flue canvas, and live multi-source ingestion.`
+    },
+    {
+      id: "lumiere",
+      title: "Lumière Editorial E-Commerce",
+      category: "UI/UX Architecture",
+      tone: "dark",
+      badge: "Swiss Modern",
+      likes: 412,
+      image: "/images/card_swiss_editorial.svg",
+      prompt: `Minimalist fashion and luxury lifestyle web layout with Swiss typography, generous whitespace, and bespoke product grids.`
+    },
+    {
+      id: "prisma",
+      title: "Prisma Dark Bento Platform",
+      category: "UI/UX Architecture",
+      tone: "dark",
+      badge: "High Density",
+      likes: 388,
+      image: "/screenshots/template_dashboard.png",
+      prompt: `High-density dark mode SaaS dashboard with live status cards, metric meters, and hairline borders in Tailwind CSS.`
+    },
+    {
+      id: "vesper",
+      title: "Vesper Wealth Bento",
+      category: "UI/UX Architecture",
+      tone: "dark",
+      badge: "Fintech",
+      likes: 345,
+      image: "/images/card_fintech_wealth.svg",
+      prompt: `Institutional yield curve tracking, live candlestick feeds, and liquidity pool metrics in Next.js 14 and Tailwind CSS.`
+    },
+    {
+      id: "stride",
+      title: "Bespoke Hardware Showcase",
+      category: "UI/UX Architecture",
+      tone: "dark",
+      badge: "Industrial",
+      likes: 295,
+      image: "/images/card_hardware_showcase.svg",
+      prompt: `Flagship product launch page with tactile knobs, frequency OLED meters, and perspective scroll reveal.`
+    },
+    {
+      id: "agent_copilot",
+      title: "Agent Copilot Workspace",
+      category: "UI/UX Architecture",
+      tone: "dark",
+      badge: "Developer Tool",
+      likes: 460,
+      image: "/images/card_agent_copilot.svg",
+      prompt: `3-pane cardbox layout with DAG agent viewer on left, live streaming terminal log in center, and contextual token inspector on right.`
+    },
+    {
+      id: "gemini_grant",
+      title: "Gemini 1.5 Pro Multimodal UI",
+      category: "Cloud Grants & Quotas",
+      tone: "dark",
+      badge: "2M Context",
+      likes: 340,
+      image: "/screenshots/real/google_ai_studio.png",
+      prompt: `Architect an enterprise multi-modal intelligence portal consuming Google AI Studio Gemini 1.5 Pro free API tier with 1,000,000 TPM.`
+    },
+    {
+      id: "groq_lpu",
+      title: "Groq LPU High-Speed Console",
+      category: "AI Engineering",
+      tone: "dark",
+      badge: "800 T/s LPU",
+      likes: 310,
+      image: "/screenshots/real/groq_console.png",
+      prompt: `Integrate Groq Cloud Language Processing Unit (LPU) ultra-low latency inference engine running Llama-3.1-70B at 800+ tokens per second.`
+    },
+    {
+      id: "cloudflare_ai",
+      title: "Cloudflare Workers AI Portal",
+      category: "Cloud Grants & Quotas",
+      tone: "dark",
+      badge: "Free 10k/day",
+      likes: 224,
+      image: "/screenshots/real/cloudflare_workers_ai.png",
+      prompt: `Serverless edge AI inference with Cloudflare Workers AI, Vectorize vector database, and 10,000 free neuron executions daily.`
     }
   ]
+  const categories = Array.from(new Set(templatesList.map(t => t.category)))
 
   const filteredTemplates = templatesList.filter(t => {
-    if (activeTone !== 'all' && t.tone !== activeTone) return false
     if (activeCategory !== 'all' && t.category !== activeCategory) return false
-    if (searchQuery && !t.title.toLowerCase().includes(searchQuery.toLowerCase()) && !t.category.toLowerCase().includes(searchQuery.toLowerCase())) return false
     if (activeTab === 'saved' && !isBookmarked(t.id)) return false
     return true
   })
-
-  const categories = Array.from(new Set(templatesList.map(t => t.category)))
 
   return (
     <main className="min-h-screen bg-[#000000] text-zinc-100 font-sans antialiased selection:bg-orange-500 selection:text-white">
