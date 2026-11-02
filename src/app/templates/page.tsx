@@ -195,13 +195,13 @@ export default function TemplatesPage() {
     },
     {
       id: "cortex_obsidian",
-      title: "OXID Cortex Dashboard",
+      title: "OXID Hub Dashboard",
       category: "UI/UX Architecture",
       tone: "dark",
       badge: "Core System",
       likes: 540,
       image: "/screenshots/template_home.png",
-      prompt: `Flagship OXID Cortex Studio dark obsidian dashboard featuring rotating silver border beams, WebGL2 Flue canvas, and live multi-source ingestion.`
+      prompt: `Flagship OXID Hub dark obsidian dashboard featuring rotating silver border beams, WebGL2 Flue canvas, and live multi-source ingestion.`
     }
   ]
 

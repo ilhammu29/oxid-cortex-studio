@@ -267,7 +267,7 @@ export default function Home() {
   const faqList = [
     {
       q: "Can I use these prompts and templates for commercial client projects?",
-      a: "Yes, 100%. Everything in the OXID Cortex library is open and royalty-free. You can use the prompts, components, and code directly in personal projects, agency client builds, or commercial SaaS products."
+      a: "Yes, 100%. Everything in the OXID Hub library is open and royalty-free. You can use the prompts, components, and code directly in personal projects, agency client builds, or commercial SaaS products."
     },
     {
       q: "Which AI coding assistants and models work best with these prompts?",
@@ -573,7 +573,7 @@ export default function Home() {
                   devicePreviewMode === 'desktop' ? 'w-full' : devicePreviewMode === 'tablet' ? 'w-3/4' : 'w-1/2'
                 }`}>
                   <div className="flex items-center justify-between text-[9px] font-mono text-zinc-500 border-b border-white/[0.06] pb-1">
-                    <span>OXID CORTEX</span>
+                    <span>OXID HUB</span>
                     <span>{devicePreviewMode === 'desktop' ? '1440px' : devicePreviewMode === 'tablet' ? '768px' : '390px'}</span>
                   </div>
                   <div className="h-2 w-2/3 bg-white/20 rounded mx-auto"></div>
@@ -705,17 +705,11 @@ export default function Home() {
       {/* ======================================================== */}
       {/* 6. REAL LIVE INGESTED INTELLIGENCE (SCRAPED THREADS & ART)*/}
       {/* ======================================================== */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-6 border-t border-white/[0.08]">
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-8 border-t border-white/[0.08]">
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3 border-b border-white/[0.08] pb-4">
           <div className="space-y-1">
-            <div className="flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-              <span className="text-[10px] font-mono font-bold uppercase tracking-widest text-emerald-400">
-                LIVE INGESTED INTELLIGENCE RADAR
-              </span>
-            </div>
             <h2 className="text-2xl sm:text-3xl font-sans font-bold text-white tracking-tight">
-              Community Radar & Generative Art
+              Community Radar &amp; Generative Art
             </h2>
             <p className="text-xs text-zinc-400 font-mono">
               Real high-signal data scraped from public developer feeds with reproduction prompts.
@@ -733,67 +727,84 @@ export default function Home() {
         {liveIngestedThreads.length > 0 ? (
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {liveIngestedThreads.map((th: any) => (
-              <div 
+              <article 
                 key={th.id}
-                className="bg-[#0c0c0e] border border-white/[0.08] hover:border-white/[0.2] rounded-2xl p-5 flex flex-col justify-between space-y-4 transition-all"
+                className="silver-beam-wrapper group flex flex-col justify-between !rounded-[14px]"
               >
-                <div className="space-y-3">
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-2.5">
-                      <img 
-                        src={th.author_avatar || "https://avatars.githubusercontent.com/u/241138?v=4"} 
-                        alt={th.author_name} 
-                        className="w-8 h-8 rounded-full border border-white/10 object-cover" 
-                      />
-                      <div>
-                        <h4 className="font-bold text-xs text-white line-clamp-1">{th.author_name}</h4>
-                        <span className="text-[10px] text-zinc-500 font-mono">@{th.author_handle}</span>
-                      </div>
-                    </div>
-                    <span className="text-[9px] font-mono font-bold text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded-full border border-emerald-500/20">
-                      LIVE
-                    </span>
-                  </div>
+                <div className="silver-beam-inner flex flex-col justify-between !rounded-[13px] bg-[#0c0c0e]">
+                  {/* Aspect Ratio aspect-[960/684] Media Container */}
+                  <div className="relative aspect-[960/684] w-full overflow-hidden bg-zinc-950">
+                    <img 
+                      src={th.image_url || "https://opengraph.githubassets.com/1/huggingface/transformers"} 
+                      alt={th.author_name} 
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-transparent"></div>
 
-                  {th.image_url && (
-                    <div className="relative h-40 w-full rounded-xl overflow-hidden border border-white/10 bg-black/60">
-                      <img src={th.image_url} alt={th.content} className="w-full h-full object-cover" />
-                      {th.model_used && (
-                        <div className="absolute top-2 left-2 bg-black/80 backdrop-blur-md px-2 py-0.5 rounded-full text-[9px] font-mono text-purple-400 font-bold border border-white/10">
-                          {th.model_used}
-                        </div>
+                    {/* Top-Left Badges */}
+                    <div className="absolute top-2.5 left-2.5 flex items-center gap-1.5">
+                      <span className="px-2 py-0.5 rounded-full text-[9.5px] font-mono font-bold bg-white text-black shadow">
+                        {th.source === 'hackernews' ? 'HackerNews' : 'arXiv Paper'}
+                      </span>
+                      <span className="px-2 py-0.5 rounded-full text-[9.5px] font-mono font-semibold bg-white/[0.12] text-zinc-200 backdrop-blur-md border border-white/10 flex items-center gap-1">
+                        <span>Frontier Research</span>
+                      </span>
+                    </div>
+
+                    {/* Top-Right Badge (Upvotes / Live Pulse) */}
+                    <div className="absolute top-2.5 right-2.5 px-2 py-0.5 rounded-full bg-black/60 text-[10px] font-mono text-emerald-400 backdrop-blur-md border border-emerald-500/20 flex items-center gap-1">
+                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                      <span>LIVE</span>
+                    </div>
+
+                    {/* Center Action Overlay */}
+                    <div className="absolute inset-0 flex items-center justify-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity bg-black/50 backdrop-blur-[2px]">
+                      {th.prompt && (
+                        <button 
+                          onClick={() => handleCopyPrompt(th.id, th.prompt)}
+                          className="px-3.5 py-1.5 rounded-full bg-white text-black font-mono text-xs font-bold shadow-xl cursor-pointer"
+                        >
+                          {copiedPromptId === th.id ? "✓ Copied!" : "Salin Prompt"}
+                        </button>
+                      )}
+                      {th.post_url && (
+                        <a 
+                          href={th.post_url} 
+                          target="_blank" 
+                          rel="noreferrer" 
+                          className="px-3.5 py-1.5 rounded-full bg-white/[0.15] text-white font-mono text-xs font-bold backdrop-blur-md border border-white/20 hover:bg-white hover:text-black transition-all shadow-xl"
+                        >
+                          Sumber ↗
+                        </a>
                       )}
                     </div>
-                  )}
+                  </div>
 
-                  <p className="text-xs text-zinc-300 font-sans leading-relaxed line-clamp-3">
-                    {th.content}
-                  </p>
-
-                  <div className="p-2.5 bg-white/[0.02] border border-white/[0.06] rounded-xl text-[11px] font-mono text-zinc-400">
-                    <strong className="text-orange-400">Insight:</strong> {th.cortex_insight}
+                  {/* Card Meta Footer Bar */}
+                  <div className="p-4 space-y-2 border-t border-white/[0.06]">
+                    <div className="flex items-center justify-between font-mono text-xs">
+                      <div className="flex items-center gap-2">
+                        {th.author_avatar && (
+                          <img 
+                            src={th.author_avatar} 
+                            alt={th.author_name} 
+                            className="w-4 h-4 rounded-full border border-white/10 object-cover" 
+                          />
+                        )}
+                        <span className="font-sans font-medium text-[15px] text-white line-clamp-1 group-hover:text-orange-400 transition-colors">
+                          {th.author_name}
+                        </span>
+                      </div>
+                      <span className="text-[11px] text-zinc-500">
+                        {th.post_date || th.scraped_at}
+                      </span>
+                    </div>
+                    <p className="text-xs text-zinc-400 font-sans line-clamp-2 leading-relaxed">
+                      {th.content}
+                    </p>
                   </div>
                 </div>
-
-                <div className="pt-2 border-t border-white/[0.06] flex items-center justify-between text-[11px] font-mono">
-                  <span className="text-zinc-500">{th.post_date || th.scraped_at}</span>
-                  <div className="flex items-center gap-2">
-                    {th.prompt && (
-                      <button 
-                        onClick={() => handleCopyPrompt(th.id, th.prompt)}
-                        className="text-orange-400 hover:underline font-bold cursor-pointer"
-                      >
-                        {copiedPromptId === th.id ? "✓ Tersalin" : "Salin Prompt"}
-                      </button>
-                    )}
-                    {th.post_url && (
-                      <a href={th.post_url} target="_blank" rel="noreferrer" className="text-zinc-400 hover:text-white">
-                        ↗
-                      </a>
-                    )}
-                  </div>
-                </div>
-              </div>
+              </article>
             ))}
           </div>
         ) : (
@@ -850,7 +861,7 @@ export default function Home() {
                 <div className="w-6 h-6 rounded-full bg-white p-0.5 flex items-center justify-center">
                   <img src="/images/oxid-logo.png" alt="OXID" className="w-full h-full object-contain" />
                 </div>
-                <span className="font-mono text-sm font-bold text-white">OXID CORTEX / OXID LABS</span>
+                <span className="font-mono text-sm font-bold text-white">OXID HUB / OXID LABS</span>
               </div>
               <p className="text-xs text-zinc-400 max-w-sm leading-relaxed">
                 Stay updated with weekly prompt drops, free AI grants, and zero-slop UI components delivered straight to your inbox.
@@ -928,7 +939,7 @@ export default function Home() {
 
         {/* Huge Background Watermark */}
         <div className="absolute -bottom-10 left-1/2 -translate-x-1/2 text-[14vw] font-black font-sans text-white/[0.02] select-none pointer-events-none whitespace-nowrap leading-none tracking-tighter">
-          OXID CORTEX
+          OXID HUB
         </div>
       </footer>
 

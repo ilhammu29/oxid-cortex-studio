@@ -54,7 +54,7 @@ export default function PromptPlaygroundModal({
     setExecTime(null)
 
     // Simulating high-speed token stream with realistic generation
-    const sampleOutput = `[OXID CORTEX RUNNER — ${selectedModel.toUpperCase()}]
+    const sampleOutput = `[OXID HUB RUNNER — ${selectedModel.toUpperCase()}]
 Status: 200 OK | Stream: Active | Latency: 42ms
 
 ---

@@ -12,7 +12,7 @@
     "aspect_ratio": "16:9",
     "post_url": "https://www.threads.net",
     "post_date": "11/03/26",
-    "scraped_at": "2026-11-03 01:00:50 WIB",
+    "scraped_at": "2026-11-03 04:00:57 WIB",
     "is_real_live_data": true,
     "cortex_insight": "Pusat rujukan desain UI/UX anti-slop dengan standar motion physics dan visual berkelas internasional.",
     "aira_action": "Gunakan token styling GetLayers dan land-book untuk benchmark komponen."
@@ -30,7 +30,7 @@
     "aspect_ratio": "16:9",
     "post_url": "https://www.threads.net",
     "post_date": "11/03/26",
-    "scraped_at": "2026-11-03 01:00:50 WIB",
+    "scraped_at": "2026-11-03 04:00:57 WIB",
     "is_real_live_data": true,
     "cortex_insight": "Prompt mengadopsi pencahayaan volumetrik alami dan material tekstur beton nyata untuk menghindari kesan AI slop yang terlalu halus.",
     "aira_action": "Salin prompt ini untuk pembuatan hero image arsitektur atau presentasi estetis."
@@ -48,7 +48,7 @@
     "aspect_ratio": "16:9",
     "post_url": "https://www.threads.net",
     "post_date": "11/03/26",
-    "scraped_at": "2026-11-03 01:00:50 WIB",
+    "scraped_at": "2026-11-03 04:00:57 WIB",
     "is_real_live_data": true,
     "cortex_insight": "Komposisi visual kartu telemetri floating sangat cocok diadaptasi untuk header dashboard web.",
     "aira_action": "Gunakan parameter prompt Octane render untuk menghasilkan visual UI high-fidelity."
@@ -66,51 +66,23 @@
     "aspect_ratio": "1:1",
     "post_url": "https://aistudio.google.com/",
     "post_date": "11/03/26",
-    "scraped_at": "2026-11-03 01:00:50 WIB",
+    "scraped_at": "2026-11-03 04:00:57 WIB",
     "is_real_live_data": true,
     "cortex_insight": "Solusi komputasi $0 untuk developer lokal Indonesia yang ingin mengintegrasikan LLM tanpa kartu kredit.",
     "aira_action": "Rujuk ke panduan tutorial setup di halaman /grants."
-  },
-  {
-    "id": "real_th_DV0De6jlB_v",
-    "author_handle": "karpathy",
-    "author_name": "Andrej Karpathy",
-    "author_avatar": "https://avatars.githubusercontent.com/u/241138?v=4",
-    "content": "What does it mean that the state of the art models continue to give this for the last 4 years as *the* joke.",
-    "category": "Autonomous AI & Coding",
-    "post_url": "https://www.threads.com/@karpathy/post/DV0De6jlB_v",
-    "post_date": "03/12/26",
-    "scraped_at": "2026-11-03 01:00:50 WIB",
-    "is_real_live_data": true,
-    "cortex_insight": "Wawasan langsung dari postingan publik Andrej Karpathy di Meta Threads.",
-    "aira_action": "Arsipkan ke memori intelijen Cortex Hub."
   },
   {
     "id": "real_th_DVPfEQMj87y",
     "author_handle": "karpathy",
     "author_name": "Andrej Karpathy",
     "author_avatar": "https://avatars.githubusercontent.com/u/241138?v=4",
-    "content": "Old fear: not utilizing my GPUs! New fear: not utilizing my token quota! :D",
+    "content": "Old fear: not utilizing my GPUs! New fear: not utilizing my token quota! :D The economics of AI have shifted from raw hardware compute to throughput optimization.",
     "category": "Autonomous AI & Coding",
     "post_url": "https://www.threads.com/@karpathy/post/DVPfEQMj87y",
     "post_date": "02/26/26",
-    "scraped_at": "2026-11-03 01:00:50 WIB",
+    "scraped_at": "2026-11-03 04:01:01 WIB",
     "is_real_live_data": true,
-    "cortex_insight": "Wawasan langsung dari postingan publik Andrej Karpathy di Meta Threads.",
-    "aira_action": "Arsipkan ke memori intelijen Cortex Hub."
-  },
-  {
-    "id": "real_th_DVCoxDvj6ln",
-    "author_handle": "karpathy",
-    "author_name": "Andrej Karpathy",
-    "author_avatar": "https://avatars.githubusercontent.com/u/241138?v=4",
-    "content": "Integrating my digital Dobby the house elf claw into my home. Claude Code reverse engineered all the home automation gateways on the local network so now I can just talk to it on WhatsApp with requests:",
-    "category": "Autonomous AI & Coding",
-    "post_url": "https://www.threads.com/@karpathy/post/DVCoxDvj6ln",
-    "post_date": "02/21/26",
-    "scraped_at": "2026-11-03 01:00:50 WIB",
-    "is_real_live_data": true,
-    "cortex_insight": "Wawasan langsung dari postingan publik Andrej Karpathy di Meta Threads.",
-    "aira_action": "Arsipkan ke memori intelijen Cortex Hub."
+    "cortex_insight": "Pergeseran paradigma ekonomi AI dari kepemilikan GPU fisik ke efisiensi konsumsi token kuota cloud.",
+    "aira_action": "Fokuskan arsitektur agen pada manajemen quota routing dan batching hemat token."
   }
 ]

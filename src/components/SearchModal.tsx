@@ -95,7 +95,7 @@ const SEARCH_DATABASE: SearchItem[] = [
   },
   {
     id: "template_2",
-    title: "OXID Cortex Pro 4-Pane Dashboard",
+    title: "OXID Hub Pro 4-Pane Dashboard",
     category: "Templates",
     snippet: "Layout komprehensif: Left Icon Rail, Header Filter, Split Main Content, dan Right Action Widget.",
     link: "/templates",

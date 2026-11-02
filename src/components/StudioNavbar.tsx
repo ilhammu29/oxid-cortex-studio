@@ -33,13 +33,13 @@ export default function StudioNavbar({ activeRoute = 'home' }: StudioNavbarProps
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-14 sm:h-16 flex items-center justify-between gap-4">
           
           {/* 1. Left: Brand Logo */}
-          <Link href="/" className="flex items-center gap-2.5 group cursor-pointer flex-shrink-0" title="OXID CORTEX STUDIO">
+          <Link href="/" className="flex items-center gap-2.5 group cursor-pointer flex-shrink-0" title="OXID HUB STUDIO">
             <div className="w-7 h-7 rounded-full bg-white p-1 flex items-center justify-center shadow-md shadow-white/10 group-hover:scale-105 transition-transform flex-shrink-0">
               <img src="/images/oxid-logo.png" alt="OXID" className="w-full h-full object-contain" />
             </div>
             <div className="flex items-center font-sans text-sm font-bold tracking-tight text-white">
               <span>OXID</span>
-              <span className="text-zinc-400 font-light ml-1">CORTEX</span>
+              <span className="text-zinc-400 font-light ml-1">HUB</span>
             </div>
           </Link>
 

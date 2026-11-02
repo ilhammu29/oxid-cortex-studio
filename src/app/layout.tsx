@@ -2,8 +2,8 @@ import './globals.css'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'OXID Cortex Studio — AI Intelligence & Prompt Lab',
-  description: 'Bansos AI, Pustaka Prompt Siap Pakai, Tools Radar & Ingestion Threads',
+  title: 'OXID Hub — AI Blueprints, Prompts & Cloud Grants',
+  description: 'Bansos AI, Pustaka Master Prompt Siap Pakai, Tools Radar & Ingestion Threads',
   icons: {
     icon: '/images/oxid-logo.png',
     shortcut: '/images/oxid-logo.png',
