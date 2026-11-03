@@ -7,6 +7,7 @@ Runs every 5 hours (starting at 04:35 WIB: 04:35, 09:35, 14:35, 19:35, 00:35 WIB
 import sys
 import json
 import datetime
+import subprocess
 from pathlib import Path
 
 # Add project root to path
@@ -28,6 +29,42 @@ def calculate_next_5h_run(now_dt):
             return candidate.strftime("%Y-%m-%d %H:%M WIB")
     tomorrow = now_dt + datetime.timedelta(days=1)
     return tomorrow.replace(hour=0, minute=35, second=0, microsecond=0).strftime("%Y-%m-%d %H:%M WIB")
+
+def push_to_online(now_str):
+    """Auto-commit scraped data files, push to GitHub, and deploy directly to Vercel production."""
+    try:
+        print(f"[{now_str}] 🚀 Checking data changes for auto-sync to live server...")
+        subprocess.run(["git", "add", "data/scraped_threads.json", "data/github_skills.json", "data/cron_last_run.json"], cwd=str(BASE_DIR), check=True, capture_output=True)
+        
+        status = subprocess.run(["git", "diff", "--staged", "--name-only"], cwd=str(BASE_DIR), capture_output=True, text=True)
+        staged_files = status.stdout.strip()
+        if not staged_files:
+            print(f"[{now_str}] ℹ️ No new data changes to push.")
+            return
+
+        print(f"[{now_str}] 📦 Auto-committing new scraped data: {staged_files}")
+        subprocess.run(
+            ["git", "commit", "-m", f"chore(data): auto-sync scraped intelligence ({now_str}) [skip ci]"],
+            cwd=str(BASE_DIR), check=True, capture_output=True
+        )
+        print(f"[{now_str}] ⬆️ Pushing changes to GitHub origin main...")
+        subprocess.run(["git", "push", "origin", "main"], cwd=str(BASE_DIR), check=True, capture_output=True)
+
+        vercel_cli = Path.home() / ".npm/_npx/69f9afb961c37556/node_modules/vercel/dist/index.js"
+        if vercel_cli.exists():
+            print(f"[{now_str}] ⚡ Triggering Vercel production deployment...")
+            res = subprocess.run(
+                ["node", str(vercel_cli), "--prod", "--yes"],
+                cwd=str(BASE_DIR), capture_output=True, text=True, timeout=120
+            )
+            if res.returncode == 0:
+                print(f"[{now_str}] ✅ Production successfully deployed live to https://cortex.oxidlabs.my.id!")
+            else:
+                print(f"[{now_str}] ⚠️ Vercel deploy output: {res.stderr[:200]}")
+        else:
+            print(f"[{now_str}] ✅ Pushed to GitHub main! (GitHub integration auto-triggers build)")
+    except Exception as err:
+        print(f"[{now_str}] ⚠️ Auto-push warning: {err}")
 
 def run_sync():
     now_dt = datetime.datetime.now()
@@ -59,6 +96,9 @@ def run_sync():
         json.dump(cron_meta, f, indent=2)
         
     print(f"[{now_str}] ✅ 5-Hour sync completed successfully. Next scheduled run: {next_sync_str}.")
+    
+    # Auto-Push changes to Online Server
+    push_to_online(now_str)
 
 if __name__ == "__main__":
     run_sync()
