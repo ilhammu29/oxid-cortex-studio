@@ -127,6 +127,42 @@ Key Specifications:
       badge: "Verified",
       image: "/screenshots/template_dashboard.png",
       body: `Tulis skema database PostgreSQL Supabase kelas produksi: foreign key terindeks, RLS policies ketat, enum types, trigger auto-updated_at, dan security hardening.`
+    },
+    {
+      id: "prompt_kyoto_villa",
+      title: "Kyoto Villa Brutalist Architecture",
+      creator: "synth_artisan (Threads Ingest)",
+      category: "UI/UX Bento",
+      badge: "Flux.1 Schnell",
+      image: "/images/card_swiss_editorial.svg",
+      body: `Ultra-minimalist raw concrete pavilion villa nestled inside misty autumn bamboo forest in Kyoto, cinematic volumetric lighting, raytraced reflections on wet stone pavement, brutalist architectural composition, 8k resolution, photorealistic shot on Hasselblad X2D 100C --ar 16:9 --style raw`
+    },
+    {
+      id: "prompt_hud_telemetry",
+      title: "Sci-Fi HUD Holographic Telemetry",
+      creator: "prompt_craft_lab (Threads Ingest)",
+      category: "UI/UX Bento",
+      badge: "Midjourney v6.1",
+      image: "/images/card_hardware_showcase.svg",
+      body: `Futuristic sci-fi HUD holographic dashboard card, floating neon cyan and cyber flame orange wireframes, glowing telemetry graphs, dark glassmorphism backplate, hyper-detailed UI elements, clean typography, cinematic studio render in Octane --ar 16:9`
+    },
+    {
+      id: "prompt_karpathy_home",
+      title: "Autonomous WhatsApp Local Gateway",
+      creator: "Andrej Karpathy (Threads Ingest)",
+      category: "Architecture",
+      badge: "Claude Code",
+      image: "/screenshots/real/shadcn_ui.png",
+      body: `Reverse engineer local network IoT gateways using Claude Code CLI harness. Expose bidirectional messaging loop over WhatsApp webhook to control home devices with deterministic function calling.`
+    },
+    {
+      id: "prompt_gemini_flash_agent",
+      title: "Gemini 1.5 Flash Zero-Cost Agent",
+      creator: "cloud_hunter_id (Threads Ingest)",
+      category: "Architecture",
+      badge: "1M TPM Free",
+      image: "/screenshots/real/google_ai_studio.png",
+      body: `const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);\nconst model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash', generationConfig: { responseMimeType: 'application/json' } });\n// High throughput 15 RPM / 1M TPM free tier agent harness without credit card lock.`
     }
   ]
 

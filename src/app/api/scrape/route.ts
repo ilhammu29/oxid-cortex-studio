@@ -82,11 +82,19 @@ export async function GET() {
     console.warn('Warning fetching HackerNews drops:', err)
   }
 
-  // Combine live sources with cached data (prioritizing fresh live data)
+  // Combine live sources with cached data (balanced multi-source blend)
+  // Ensure real curated threads (Karpathy, Design, Architecture) get prominent exposure
+  const curatedThreads = cachedData.slice(0, 4)
+  const topPapers = livePapers.slice(0, 3)
+  const topHN = liveHNAgents.slice(0, 3)
+
   const combined = [
+    ...curatedThreads,
+    ...topPapers,
+    ...topHN,
+    ...cachedData,
     ...livePapers,
-    ...liveHNAgents,
-    ...cachedData
+    ...liveHNAgents
   ]
 
   // Deduplicate by ID

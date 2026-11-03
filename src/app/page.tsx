@@ -53,7 +53,7 @@ export default function Home() {
       .then(res => res.json())
       .then(data => {
         if (data.success && data.data) {
-          setLiveIngestedThreads(data.data.slice(0, 3))
+          setLiveIngestedThreads(data.data.slice(0, 6))
         }
       })
       .catch(err => console.error("Error loading live threads:", err))
@@ -725,7 +725,7 @@ export default function Home() {
         </div>
 
         {liveIngestedThreads.length > 0 ? (
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {liveIngestedThreads.map((th: any) => (
               <article 
                 key={th.id}
