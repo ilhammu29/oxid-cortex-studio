@@ -12,7 +12,7 @@
     "avatar": "https://github.com/MiniMax-AI.png",
     "preview_image": "https://opengraph.githubassets.com/1/MiniMax-AI/skills",
     "badge": "GITHUB VERIFIED",
-    "updated_at": "2026-11-03 18:00:05 WIB",
+    "updated_at": "2026-11-03 18:47:25 WIB",
     "license": "MIT"
   },
   {
@@ -23,12 +23,12 @@
     "description": "\ud83d\ude4c OpenHands: AI-Driven Development",
     "language": "TypeScript",
     "stars": "92.6k",
-    "forks": "12342",
+    "forks": "12343",
     "html_url": "https://github.com/All-Hands-AI/OpenHands",
     "avatar": "https://github.com/All-Hands-AI.png",
     "preview_image": "https://opengraph.githubassets.com/1/All-Hands-AI/OpenHands",
     "badge": "GITHUB VERIFIED",
-    "updated_at": "2026-11-03 18:00:06 WIB",
+    "updated_at": "2026-11-03 18:47:26 WIB",
     "license": "MIT"
   },
   {
@@ -39,12 +39,12 @@
     "description": "Get up and running with Kimi, GLM, MiniMax, DeepSeek, gpt-oss, Qwen, Gemma and other models.",
     "language": "Go",
     "stars": "185.8k",
-    "forks": "18888",
+    "forks": "18889",
     "html_url": "https://github.com/ollama/ollama",
     "avatar": "https://github.com/ollama.png",
     "preview_image": "https://opengraph.githubassets.com/1/ollama/ollama",
     "badge": "GITHUB VERIFIED",
-    "updated_at": "2026-11-03 18:00:07 WIB",
+    "updated_at": "2026-11-03 18:47:30 WIB",
     "license": "MIT"
   },
   {
@@ -60,7 +60,7 @@
     "avatar": "https://github.com/emilkowalski.png",
     "preview_image": "https://opengraph.githubassets.com/1/emilkowalski/vaul",
     "badge": "GITHUB VERIFIED",
-    "updated_at": "2026-11-03 18:00:08 WIB",
+    "updated_at": "2026-11-03 18:47:30 WIB",
     "license": "MIT"
   },
   {
@@ -76,7 +76,7 @@
     "avatar": "https://github.com/pmndrs.png",
     "preview_image": "https://opengraph.githubassets.com/1/pmndrs/react-three-fiber",
     "badge": "GITHUB VERIFIED",
-    "updated_at": "2026-11-03 18:00:09 WIB",
+    "updated_at": "2026-11-03 18:47:32 WIB",
     "license": "MIT"
   },
   {
@@ -87,12 +87,12 @@
     "description": "\ud83d\udd77\ufe0f The BEST Web Scraping framework that handles everything from a single request to a full-scale crawl! Don't be shy, join here: https://discord.gg/EMgGbDceNQ and follow here for daily tips and tricks: https://x.com/Scrapling_dev",
     "language": "Python",
     "stars": "93.7k",
-    "forks": "9838",
+    "forks": "9840",
     "html_url": "https://github.com/D4Vinci/Scrapling",
     "avatar": "https://github.com/D4Vinci.png",
     "preview_image": "https://opengraph.githubassets.com/1/D4Vinci/Scrapling",
     "badge": "GITHUB VERIFIED",
-    "updated_at": "2026-11-03 18:00:10 WIB",
+    "updated_at": "2026-11-03 18:47:32 WIB",
     "license": "BSD-3-Clause"
   },
   {
@@ -108,7 +108,7 @@
     "avatar": "https://github.com/jlowin.png",
     "preview_image": "https://opengraph.githubassets.com/1/jlowin/fastmcp",
     "badge": "GITHUB VERIFIED",
-    "updated_at": "2026-11-03 18:00:11 WIB",
+    "updated_at": "2026-11-03 18:47:35 WIB",
     "license": "Apache-2.0"
   },
   {
@@ -124,7 +124,7 @@
     "avatar": "https://github.com/shadcn-ui.png",
     "preview_image": "https://opengraph.githubassets.com/1/shadcn-ui/ui",
     "badge": "GITHUB VERIFIED",
-    "updated_at": "2026-11-03 18:00:13 WIB",
+    "updated_at": "2026-11-03 18:47:36 WIB",
     "license": "MIT"
   }
 ]
