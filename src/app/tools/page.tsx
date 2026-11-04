@@ -57,7 +57,7 @@ export default function ToolsPage() {
       category: "AI Design Prompts",
       badge: "1,400+ Prompts",
       image: "/screenshots/real/jiro_build.png",
-      type: "design",
+      type: "website",
       url: "https://jiro.build"
     },
     {
@@ -66,7 +66,7 @@ export default function ToolsPage() {
       category: "Design Showcase",
       badge: "Top Showcase",
       image: "/screenshots/real/landbook.webp",
-      type: "design",
+      type: "website",
       url: "https://land-book.com"
     },
     {
@@ -75,7 +75,7 @@ export default function ToolsPage() {
       category: "Minimalist Showcase",
       badge: "Clean Design",
       image: "/screenshots/real/minimal_gallery.jpg",
-      type: "design",
+      type: "website",
       url: "https://minimal.gallery"
     },
     {
@@ -84,7 +84,7 @@ export default function ToolsPage() {
       category: "Typography",
       badge: "Brand Fonts",
       image: "/screenshots/real/fontinlogo.jpg",
-      type: "design",
+      type: "website",
       url: "https://www.fontinlogo.com"
     },
     {
@@ -93,7 +93,7 @@ export default function ToolsPage() {
       category: "3D Visual Assets",
       badge: "Open 3D Icons",
       image: "/screenshots/real/3dicons.jpg",
-      type: "design",
+      type: "website",
       url: "https://3dicons.co"
     },
     {
@@ -102,7 +102,7 @@ export default function ToolsPage() {
       category: "Design System",
       badge: "Open Source",
       image: "/screenshots/real/shadcn_ui.png",
-      type: "design",
+      type: "website",
       url: "https://ui.shadcn.com"
     },
     {
@@ -111,7 +111,7 @@ export default function ToolsPage() {
       category: "Generative UI",
       badge: "AI Builder",
       image: "/screenshots/real/v0_dev.png",
-      type: "design",
+      type: "website",
       url: "https://v0.dev"
     },
     {
@@ -120,7 +120,7 @@ export default function ToolsPage() {
       category: "Trend Vault",
       badge: "Daily",
       image: "/screenshots/real/recent_design.png",
-      type: "design",
+      type: "website",
       url: "https://recent.design"
     },
     {
@@ -129,7 +129,7 @@ export default function ToolsPage() {
       category: "Bento Library",
       badge: "High-Conv",
       image: "/screenshots/real/landdding.png",
-      type: "design",
+      type: "website",
       url: "https://landdding.com"
     },
 
@@ -285,16 +285,16 @@ export default function ToolsPage() {
             Semua ({displayTools.length})
           </button>
           <button 
+            onClick={() => setActiveCategory('website')}
+            className={`px-2.5 py-1 rounded-full border transition-all cursor-pointer ${activeCategory === 'website' ? 'bg-white text-black font-bold border-white' : 'bg-transparent text-zinc-400 border-white/[0.08] hover:border-white/20'}`}
+          >
+            🌐 Websites ({displayTools.filter(t => t.type === 'website').length})
+          </button>
+          <button 
             onClick={() => setActiveCategory('github')}
             className={`px-2.5 py-1 rounded-full border transition-all cursor-pointer ${activeCategory === 'github' ? 'bg-white text-black font-bold border-white' : 'bg-transparent text-zinc-400 border-white/[0.08] hover:border-white/20'}`}
           >
-            ⭐ GitHub Repos ({displayTools.filter(t => t.type === 'github').length})
-          </button>
-          <button 
-            onClick={() => setActiveCategory('design')}
-            className={`px-2.5 py-1 rounded-full border transition-all cursor-pointer ${activeCategory === 'design' ? 'bg-white text-black font-bold border-white' : 'bg-transparent text-zinc-400 border-white/[0.08] hover:border-white/20'}`}
-          >
-            ❤️‍🔥 Design Vault ({displayTools.filter(t => t.type === 'design').length})
+            🐙 GitHub Repos ({displayTools.filter(t => t.type === 'github').length})
           </button>
           <button 
             onClick={() => setActiveCategory('skills')}
@@ -328,11 +328,24 @@ export default function ToolsPage() {
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
 
-                    {/* Top-Left Badge */}
+                    {/* Top-Left Badges (Clear visual distinction: Website vs Repo vs Skill) */}
                     <div className="absolute top-2.5 left-2.5 flex items-center gap-1.5">
                       <span className="px-2 py-0.5 rounded-full text-[9.5px] font-mono font-bold bg-white text-black shadow">
                         {t.badge}
                       </span>
+                      {t.type === 'website' ? (
+                        <span className="px-2 py-0.5 rounded-full text-[9px] font-mono font-semibold bg-blue-500/20 text-blue-300 border border-blue-500/30 backdrop-blur-md">
+                          🌐 Website
+                        </span>
+                      ) : t.type === 'github' ? (
+                        <span className="px-2 py-0.5 rounded-full text-[9px] font-mono font-semibold bg-amber-500/20 text-amber-300 border border-amber-500/30 backdrop-blur-md">
+                          🐙 Repo
+                        </span>
+                      ) : (
+                        <span className="px-2 py-0.5 rounded-full text-[9px] font-mono font-semibold bg-purple-500/20 text-purple-300 border border-purple-500/30 backdrop-blur-md">
+                          ✦ Skill
+                        </span>
+                      )}
                     </div>
 
                     {/* Top-Right Like Button */}
@@ -352,9 +365,9 @@ export default function ToolsPage() {
                         href={t.url}
                         target="_blank"
                         rel="noreferrer"
-                        className="px-4 py-1.5 rounded-full bg-white text-black font-mono text-xs font-bold shadow-xl flex items-center gap-1.5"
+                        className="px-4 py-1.5 rounded-full bg-white text-black font-mono text-xs font-bold shadow-xl flex items-center gap-1.5 hover:scale-105 transition-transform"
                       >
-                        <span>Buka Repo / Link</span>
+                        <span>{t.type === 'website' ? 'Kunjungi Web' : (t.type === 'github' ? 'Lihat Source Code' : 'Buka Modul')}</span>
                         <span>↗</span>
                       </a>
                     </div>

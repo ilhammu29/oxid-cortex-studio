@@ -20,14 +20,14 @@ export async function GET() {
     cachedDesign = JSON.parse(await fs.readFile(designPath, 'utf8'))
   } catch (_) {}
 
-  // Format Design Resources into unified structure
+  // Format Design Resources into unified structure with explicit type distinction (website vs skills)
   const formattedDesign = cachedDesign.map((d: any) => ({
     id: d.id,
     name: d.title || d.name,
     category: d.category || 'Design Showcase',
     badge: d.badge || 'Verified',
     image: d.image || '/screenshots/real/recent_design.png',
-    type: 'design',
+    type: d.id?.startsWith('skill_') ? 'skills' : 'website',
     url: d.url,
     stars: 'Curated',
     description: d.description,
