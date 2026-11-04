@@ -19,6 +19,7 @@ export default function Home() {
   const [unreadNotifications, setUnreadNotifications] = useState(0)
   const [notificationsList, setNotificationsList] = useState<any[]>([])
   const [liveIngestedThreads, setLiveIngestedThreads] = useState<any[]>([])
+  const [totalIntelCount, setTotalIntelCount] = useState(0)
   
   // Interactive Bento / Workflow States
   const [activeWorkflowStep, setActiveWorkflowStep] = useState(0)
@@ -53,6 +54,7 @@ export default function Home() {
       .then(res => res.json())
       .then(data => {
         if (data.success && data.data) {
+          setTotalIntelCount(data.total || data.data.length)
           setLiveIngestedThreads(data.data.slice(0, 6))
         }
       })
@@ -719,7 +721,7 @@ export default function Home() {
             href="/intel"
             className="text-xs font-mono text-orange-400 hover:text-orange-300 flex items-center gap-1 font-bold"
           >
-            <span>Buka Semua Intel ({liveIngestedThreads.length})</span>
+            <span>Buka Semua Intel ({totalIntelCount || liveIngestedThreads.length})</span>
             <span>→</span>
           </Link>
         </div>
@@ -735,19 +737,16 @@ export default function Home() {
                   {/* Aspect Ratio aspect-[960/684] Media Container */}
                   <div className="relative aspect-[960/684] w-full overflow-hidden bg-zinc-950">
                     <img 
-                      src={th.image_url || "https://opengraph.githubassets.com/1/huggingface/transformers"} 
+                      src={th.image_url || "/screenshots/real/cloudflare_workers_ai.png"} 
                       alt={th.author_name} 
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-transparent"></div>
 
-                    {/* Top-Left Badges */}
+                    {/* Top-Left Category Badge */}
                     <div className="absolute top-2.5 left-2.5 flex items-center gap-1.5">
                       <span className="px-2 py-0.5 rounded-full text-[9.5px] font-mono font-bold bg-white text-black shadow">
-                        {th.source === 'hackernews' ? 'HackerNews' : 'arXiv Paper'}
-                      </span>
-                      <span className="px-2 py-0.5 rounded-full text-[9.5px] font-mono font-semibold bg-white/[0.12] text-zinc-200 backdrop-blur-md border border-white/10 flex items-center gap-1">
-                        <span>Frontier Research</span>
+                        {th.category || 'AI Intel'}
                       </span>
                     </div>
 

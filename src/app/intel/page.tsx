@@ -9,9 +9,9 @@ export default function IntelPage() {
   const [threads, setThreads] = useState<any[]>([])
   const [loading, setLoading] = useState(true)
   const [activeCategory, setActiveCategory] = useState('all')
+  const [searchQuery, setSearchQuery] = useState('')
   const [copiedPromptId, setCopiedPromptId] = useState<string | null>(null)
   const [zoomImage, setZoomImage] = useState<string | null>(null)
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const { darkMode, toggleTheme } = useStudioTheme()
   const [likes, setLikes] = useState<Record<string, number>>({})
 
@@ -41,15 +41,36 @@ export default function IntelPage() {
     setLikes(prev => ({ ...prev, [id]: (prev[id] || 150) + 1 }))
   }
 
+  const matchCategory = (cat: string, targetId: string) => {
+    if (!cat) return false
+    const lower = cat.toLowerCase()
+    if (targetId === 'all') return true
+    if (targetId === 'papers') return lower.includes('paper') || lower.includes('frontier')
+    if (targetId === 'art') return lower.includes('art') || lower.includes('prompt')
+    if (targetId === 'coding') return lower.includes('coding') || lower.includes('autonomous') || lower.includes('agent')
+    if (targetId === 'design') return lower.includes('design') || lower.includes('motion')
+    if (targetId === 'grants') return lower.includes('bansos') || lower.includes('cloud') || lower.includes('quota')
+    return false
+  }
+
   const filteredThreads = threads.filter(th => {
-    if (activeCategory === 'all') return true
-    if (activeCategory === 'papers') return th.category?.includes('Paper')
-    if (activeCategory === 'art') return th.category?.includes('Art') || th.category?.includes('Prompt')
-    if (activeCategory === 'coding') return th.category?.includes('Coding') || th.category?.includes('Autonomous')
-    if (activeCategory === 'design') return th.category?.includes('Design') || th.category?.includes('Motion')
-    if (activeCategory === 'grants') return th.category?.includes('Bansos') || th.category?.includes('Cloud')
-    return true
+    const matchesCat = matchCategory(th.category, activeCategory)
+    const matchesQuery = !searchQuery || 
+      (th.content && th.content.toLowerCase().includes(searchQuery.toLowerCase())) ||
+      (th.author_name && th.author_name.toLowerCase().includes(searchQuery.toLowerCase())) ||
+      (th.category && th.category.toLowerCase().includes(searchQuery.toLowerCase())) ||
+      (th.prompt && th.prompt.toLowerCase().includes(searchQuery.toLowerCase()))
+    return matchesCat && matchesQuery
   })
+
+  const categoryChips = [
+    { id: 'all', label: 'Semua Feed' },
+    { id: 'papers', label: '📄 Frontier Papers' },
+    { id: 'coding', label: '⚡ Coding & Autonomous' },
+    { id: 'art', label: '🎨 Generative Art & Prompts' },
+    { id: 'design', label: '❤️‍🔥 Design & Motion' },
+    { id: 'grants', label: '🎁 Bansos & Cloud Quotas' }
+  ]
 
   return (
     <main className="min-h-screen bg-[#000000] text-zinc-100 font-sans antialiased selection:bg-orange-500 selection:text-white">
@@ -57,40 +78,64 @@ export default function IntelPage() {
       {/* 1. UNIFIED STUDIO NAVBAR */}
       <StudioNavbar activeRoute="intel" />
 
-      {/* 2. GETLAYERS SUBPAGE HEADER & TABLIST */}
+      {/* 2. SUBPAGE HEADER & TABLIST */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 sm:pt-14 pb-6 space-y-6">
         
         <div className="space-y-2">
           <span className="text-[11px] font-mono uppercase tracking-widest text-emerald-400 block">
-            High-Signal Filtered Feed · Master Prompts Attached
+            {threads.length} intel terverifikasi · sinkronisasi multi-sumber (arXiv + HN + Threads)
           </span>
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-sans font-[300] tracking-[-1px] text-white">
-            Community Intel &amp; AI Generative Art
+            Community Intel &amp; AI Radar
           </h1>
           <p className="text-sm text-zinc-400 font-sans max-w-2xl leading-relaxed">
-            Wawasan developer terverifikasi dan karya seni visual AI komunitas bebas slop, lengkap dengan master prompt pembuatannya.
+            Wawasan developer terverifikasi, riset frontier harian, dan karya visual AI bebas slop lengkap dengan master prompt pembuatannya.
           </p>
         </div>
 
-        {/* Category Filter Chips */}
-        <div className="flex flex-wrap items-center gap-2 pt-2 text-[11px] font-mono border-t border-white/[0.06]">
-          <span className="text-zinc-500 uppercase tracking-wider text-[10px]">CATEGORY:</span>
-          {[
-            { id: 'all', label: `Semua (${threads.length})` },
-            { id: 'papers', label: '📄 Frontier Papers (Hugging Face)' },
-            { id: 'art', label: '🎨 Generative Art & Prompts' },
-            { id: 'coding', label: '⚡ Autonomous AI & Coding' },
-            { id: 'design', label: '❤️‍🔥 Design & Motion' },
-            { id: 'grants', label: '🎁 Bansos AI & Cloud Quotas' }
-          ].map(cat => (
-            <button
-              key={cat.id}
-              onClick={() => setActiveCategory(cat.id)}
-              className={`px-3 py-1 rounded-full border transition-all cursor-pointer ${activeCategory === cat.id ? 'bg-white text-black font-bold border-white' : 'bg-transparent text-zinc-400 border-white/[0.08] hover:border-white/20'}`}
-            >
-              {cat.label}
-            </button>
-          ))}
+        {/* Filter & Search Bar */}
+        <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 pt-2 border-t border-white/[0.06]">
+          {/* Category Filter Chips with Live Counts */}
+          <div className="flex items-center gap-1.5 overflow-x-auto pb-2 sm:pb-0 font-mono text-xs">
+            {categoryChips.map(cat => {
+              const count = cat.id === 'all' ? threads.length : threads.filter(th => matchCategory(th.category, cat.id)).length
+              return (
+                <button
+                  key={cat.id}
+                  onClick={() => setActiveCategory(cat.id)}
+                  className={`px-3 py-1 rounded-full border transition-all cursor-pointer whitespace-nowrap flex items-center gap-1.5 ${
+                    activeCategory === cat.id 
+                      ? 'bg-white text-black font-bold border-white' 
+                      : 'bg-transparent text-zinc-400 border-white/[0.08] hover:border-white/20'
+                  }`}
+                >
+                  <span>{cat.label}</span>
+                  <span className={`text-[10px] ${activeCategory === cat.id ? 'text-zinc-700' : 'text-zinc-500'}`}>
+                    ({count})
+                  </span>
+                </button>
+              )
+            })}
+          </div>
+
+          {/* Search Input */}
+          <div className="relative w-full sm:w-64">
+            <input 
+              type="text"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              placeholder="Cari riset, author, keyword..."
+              className="w-full bg-[#0c0c0e] border border-white/[0.08] rounded-full px-4 py-1 text-xs text-white placeholder-zinc-500 focus:outline-none focus:border-white/30 font-mono"
+            />
+            {searchQuery && (
+              <button 
+                onClick={() => setSearchQuery('')}
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-zinc-400 hover:text-white text-xs font-mono"
+              >
+                ✕
+              </button>
+            )}
+          </div>
         </div>
 
       </section>
@@ -107,9 +152,9 @@ export default function IntelPage() {
             {filteredThreads.map(th => (
               <article 
                 key={th.id}
-                className="silver-beam-wrapper group flex flex-col justify-between"
+                className="silver-beam-wrapper group flex flex-col justify-between !rounded-[14px]"
               >
-                <div className="silver-beam-inner flex flex-col justify-between">
+                <div className="silver-beam-inner flex flex-col justify-between !rounded-[13px] bg-[#0c0c0e] overflow-hidden">
                   {/* 16:9 Image or Media Container */}
                   <div className="relative aspect-[16/9] w-full overflow-hidden bg-zinc-950">
                     <img 
@@ -117,12 +162,12 @@ export default function IntelPage() {
                       alt={th.author_name} 
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#0c0c0e] via-transparent to-transparent"></div>
 
-                    {/* Top-Left Model / Author Badge */}
+                    {/* Top-Left Category Badge */}
                     <div className="absolute top-2.5 left-2.5 flex items-center gap-1.5">
                       <span className="px-2 py-0.5 rounded-full text-[9px] font-mono font-bold bg-white text-black shadow">
-                        {th.model_used || "AI Studio"}
+                        {th.category || "AI Intel"}
                       </span>
                     </div>
 
@@ -168,10 +213,10 @@ export default function IntelPage() {
                           />
                           <span className="font-bold text-white line-clamp-1">{th.author_name}</span>
                         </div>
-                        <span className="text-[10px] text-zinc-500">@{th.author_handle}</span>
+                        <span className="text-[10px] text-zinc-500 font-mono">@{th.author_handle}</span>
                       </div>
 
-                      <p className="font-sans text-xs text-zinc-300 leading-relaxed line-clamp-2">
+                      <p className="font-sans text-xs text-zinc-300 leading-relaxed line-clamp-3">
                         {th.content}
                       </p>
                     </div>
@@ -183,9 +228,9 @@ export default function IntelPage() {
                     )}
 
                     <div className="pt-2 border-t border-white/[0.06] flex items-center justify-between text-[10px] text-zinc-500">
-                      <span>{th.post_date || "Verified"}</span>
+                      <span className="text-zinc-400 font-mono">{th.post_date || "Hari ini"}</span>
                       {th.post_url && (
-                        <a href={th.post_url} target="_blank" rel="noreferrer" className="text-zinc-400 hover:text-white">
+                        <a href={th.post_url} target="_blank" rel="noreferrer" className="text-zinc-400 hover:text-white underline">
                           Sumber Asli ↗
                         </a>
                       )}
@@ -202,7 +247,7 @@ export default function IntelPage() {
       {/* Lightbox Zoom Modal */}
       {zoomImage && (
         <div 
-          className="fixed inset-0 z-50 bg-black/95 backdrop-blur-md flex items-center justify-center p-4"
+          className="fixed inset-0 z-50 bg-black/95 backdrop-blur-md flex items-center justify-center p-4 cursor-pointer"
           onClick={() => setZoomImage(null)}
         >
           <div className="relative max-w-5xl max-h-[90vh] overflow-hidden rounded-2xl border border-white/20 shadow-2xl">

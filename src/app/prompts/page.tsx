@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { useStudioTheme } from '@/lib/useStudioTheme'
 import { useBookmarks } from '@/lib/useBookmarks'
@@ -166,9 +166,38 @@ Key Specifications:
     }
   ]
 
-  const categories = Array.from(new Set(promptGrid.map(p => p.category)))
+  const [prompts, setPrompts] = useState<any[]>(promptGrid)
 
-  const filteredPrompts = promptGrid.filter(p => {
+  useEffect(() => {
+    fetch('/api/scrape')
+      .then(res => res.json())
+      .then(data => {
+        if (data.success && data.data) {
+          const scraped = data.data
+            .filter((th: any) => th.prompt && th.prompt.trim().length > 15)
+            .map((th: any) => ({
+              id: th.id,
+              title: th.content ? (th.content.length > 50 ? th.content.slice(0, 50) + '...' : th.content) : `${th.author_name} Prompt`,
+              creator: th.author_name || 'Community Engineer',
+              category: th.category?.includes('Art') ? 'Generative Art' : (th.category?.includes('Bansos') ? 'Cloud Grants' : 'Architecture'),
+              badge: th.model_used || 'Scraped Intel',
+              image: th.image_url || '/screenshots/real/recent_design.png',
+              body: th.prompt
+            }))
+          
+          const existingIds = new Set(promptGrid.map(p => p.id))
+          const newUnique = scraped.filter((s: any) => !existingIds.has(s.id))
+          if (newUnique.length > 0) {
+            setPrompts([...promptGrid, ...newUnique])
+          }
+        }
+      })
+      .catch(() => {})
+  }, [])
+
+  const categories = Array.from(new Set(prompts.map(p => p.category)))
+
+  const filteredPrompts = prompts.filter(p => {
     if (activeCategory !== 'all' && p.category !== activeCategory) return false
     if (searchQuery && !p.title.toLowerCase().includes(searchQuery.toLowerCase()) && !p.body.toLowerCase().includes(searchQuery.toLowerCase())) return false
     if (activeTab === 'saved' && !isBookmarked(p.id)) return false
@@ -185,8 +214,8 @@ Key Specifications:
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 sm:pt-14 pb-6 space-y-6">
         
         <div className="space-y-2">
-          <span className="text-[11px] font-mono uppercase tracking-widest text-zinc-500 block">
-            {promptGrid.length} master prompts · zero hallucination &amp; anti-slop
+          <span className="text-[11px] font-mono uppercase tracking-widest text-emerald-400 block">
+            {prompts.length} master prompts · zero hallucination &amp; anti-slop
           </span>
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-sans font-[300] tracking-[-1px] text-white">
             Production AI Prompts &amp; Engineering Doctrines
@@ -202,14 +231,14 @@ Key Specifications:
             onClick={() => setActiveTab('all')}
             className={`px-3.5 py-1.5 rounded-lg transition-all cursor-pointer ${activeTab === 'all' ? 'bg-white text-black font-bold shadow' : 'text-zinc-400 hover:text-white'}`}
           >
-            Semua Prompts ({promptGrid.length})
+            Semua Prompts ({prompts.length})
           </button>
           <button 
             onClick={() => setActiveTab('saved')}
             className={`px-3.5 py-1.5 rounded-lg transition-all cursor-pointer flex items-center gap-1.5 ${activeTab === 'saved' ? 'bg-white text-black font-bold shadow' : 'text-zinc-400 hover:text-white'}`}
           >
             <span>⭐ Favourites</span>
-            <span>({promptGrid.filter(p => isBookmarked(p.id)).length})</span>
+            <span>({prompts.filter(p => isBookmarked(p.id)).length})</span>
           </button>
         </div>
 
@@ -220,7 +249,7 @@ Key Specifications:
             onClick={() => setActiveCategory('all')}
             className={`px-2.5 py-1 rounded-full border transition-all cursor-pointer ${activeCategory === 'all' ? 'bg-white text-black font-bold border-white' : 'bg-transparent text-zinc-400 border-white/[0.08] hover:border-white/20'}`}
           >
-            Semua
+            Semua ({prompts.length})
           </button>
           {categories.map(cat => (
             <button 
@@ -228,7 +257,7 @@ Key Specifications:
               onClick={() => setActiveCategory(cat)}
               className={`px-2.5 py-1 rounded-full border transition-all cursor-pointer ${activeCategory === cat ? 'bg-white text-black font-bold border-white' : 'bg-transparent text-zinc-400 border-white/[0.08] hover:border-white/20'}`}
             >
-              {cat} ({promptGrid.filter(p => p.category === cat).length})
+              {cat} ({prompts.filter(p => p.category === cat).length})
             </button>
           ))}
         </div>

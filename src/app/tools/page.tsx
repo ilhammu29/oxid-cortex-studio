@@ -211,8 +211,8 @@ export default function ToolsPage() {
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 sm:pt-14 pb-6 space-y-6">
         
         <div className="space-y-2">
-          <span className="text-[11px] font-mono uppercase tracking-widest text-zinc-500 block">
-            {realTools.length} repositori &amp; resources · sinkronisasi otomatis
+          <span className="text-[11px] font-mono uppercase tracking-widest text-emerald-400 block">
+            {displayTools.length} repositori &amp; resources · sinkronisasi otomatis
           </span>
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-sans font-[300] tracking-[-1px] text-white">
             AI Tools, Repositories &amp; Motion Skills
@@ -228,14 +228,14 @@ export default function ToolsPage() {
             onClick={() => setActiveTab('all')}
             className={`px-3.5 py-1.5 rounded-lg transition-all cursor-pointer ${activeTab === 'all' ? 'bg-white text-black font-bold shadow' : 'text-zinc-400 hover:text-white'}`}
           >
-            Semua Resources ({realTools.length})
+            Semua Resources ({displayTools.length})
           </button>
           <button 
             onClick={() => setActiveTab('saved')}
             className={`px-3.5 py-1.5 rounded-lg transition-all cursor-pointer flex items-center gap-1.5 ${activeTab === 'saved' ? 'bg-white text-black font-bold shadow' : 'text-zinc-400 hover:text-white'}`}
           >
             <span>⭐ Favourites</span>
-            <span>({realTools.filter(t => isBookmarked(t.id)).length})</span>
+            <span>({displayTools.filter(t => isBookmarked(t.id)).length})</span>
           </button>
         </div>
 
@@ -246,25 +246,25 @@ export default function ToolsPage() {
             onClick={() => setActiveCategory('all')}
             className={`px-2.5 py-1 rounded-full border transition-all cursor-pointer ${activeCategory === 'all' ? 'bg-white text-black font-bold border-white' : 'bg-transparent text-zinc-400 border-white/[0.08] hover:border-white/20'}`}
           >
-            Semua ({realTools.length})
+            Semua ({displayTools.length})
           </button>
           <button 
             onClick={() => setActiveCategory('github')}
             className={`px-2.5 py-1 rounded-full border transition-all cursor-pointer ${activeCategory === 'github' ? 'bg-white text-black font-bold border-white' : 'bg-transparent text-zinc-400 border-white/[0.08] hover:border-white/20'}`}
           >
-            ⭐ GitHub Repos ({realTools.filter(t => t.type === 'github').length})
+            ⭐ GitHub Repos ({displayTools.filter(t => t.type === 'github').length})
           </button>
           <button 
             onClick={() => setActiveCategory('design')}
             className={`px-2.5 py-1 rounded-full border transition-all cursor-pointer ${activeCategory === 'design' ? 'bg-white text-black font-bold border-white' : 'bg-transparent text-zinc-400 border-white/[0.08] hover:border-white/20'}`}
           >
-            ❤️‍🔥 Design Vault ({realTools.filter(t => t.type === 'design').length})
+            ❤️‍🔥 Design Vault ({displayTools.filter(t => t.type === 'design').length})
           </button>
           <button 
             onClick={() => setActiveCategory('skills')}
             className={`px-2.5 py-1 rounded-full border transition-all cursor-pointer ${activeCategory === 'skills' ? 'bg-white text-black font-bold border-white' : 'bg-transparent text-zinc-400 border-white/[0.08] hover:border-white/20'}`}
           >
-            ✦ Motion &amp; Craft ({realTools.filter(t => t.type === 'skills').length})
+            ✦ Motion &amp; Craft ({displayTools.filter(t => t.type === 'skills').length})
           </button>
         </div>
 
