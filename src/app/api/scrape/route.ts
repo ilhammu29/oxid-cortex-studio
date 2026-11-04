@@ -33,7 +33,7 @@ export async function GET() {
           author_avatar: 'https://huggingface.co/front/assets/huggingface_logo-noborder.svg',
           content: item.summary ? (item.summary.length > 220 ? item.summary.substring(0, 220) + '...' : item.summary) : item.title,
           category: 'Frontier AI Papers',
-          image_url: 'https://images.unsplash.com/photo-1620712943543-bcc4688e7485?auto=format&fit=crop&w=1200&q=80',
+          image_url: '/screenshots/real/cloudflare_workers_ai.png',
           prompt: `Research Abstract: ${item.title} — Published on arXiv (${item.id}). Analyze methodology, benchmark implications, and autonomous reasoning performance.`,
           model_used: 'Hugging Face Daily Papers',
           aspect_ratio: '16:9',
@@ -77,7 +77,7 @@ export async function GET() {
           imageUrl = '/screenshots/real/cloudflare_workers_ai.png'
         } else if (titleLower.includes('flux') || titleLower.includes('midjourney') || titleLower.includes('art') || titleLower.includes('prompt')) {
           category = 'AI Generative Art & Prompts'
-          imageUrl = 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1200&q=80'
+          imageUrl = '/screenshots/real/emil_animations.png'
         }
 
         return {

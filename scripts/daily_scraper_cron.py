@@ -58,7 +58,7 @@ def push_to_online(now_str):
                 cwd=str(BASE_DIR), capture_output=True, text=True, timeout=120
             )
             if res.returncode == 0:
-                print(f"[{now_str}] ✅ Production successfully deployed live to https://cortex.oxidlabs.my.id!")
+                print(f"[{now_str}] ✅ Production successfully deployed live to https://promptlabs.oxidlabs.my.id!")
             else:
                 print(f"[{now_str}] ⚠️ Vercel deploy output: {res.stderr[:200]}")
         else:

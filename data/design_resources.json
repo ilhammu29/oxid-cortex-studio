@@ -1,27 +1,27 @@
 [
   {
-    "id": "res_getlayers",
-    "title": "GetLayers AI \u2014 Website Prompts & Motion Sections",
+    "id": "res_jiro",
+    "title": "Jiro — 1,400+ Design Resources & AI-Ready Prompts",
     "category": "AI Design Prompts",
-    "url": "https://getlayers.ai",
-    "image": "https://www.getlayers.ai/opengraph-image",
-    "badge": "100+ Free Prompts",
-    "description": "100+ free premium website prompts with 1,000+ backgrounds, motion sections and gradients. Paste them into Claude, v0, or Cursor and ship.",
+    "url": "https://jiro.build",
+    "image": "/screenshots/real/jiro_build.png",
+    "badge": "1,400+ Prompts",
+    "description": "1,400+ design resources with AI-ready prompts, including source code to design better with AI.",
     "tags": [
       "AI Prompts",
-      "Claude",
-      "Gradients",
-      "Motion"
+      "Source Code",
+      "Design Resources",
+      "AI Design"
     ]
   },
   {
     "id": "res_landbook",
-    "title": "Land-book \u2014 Curated Landing Page Inspiration",
+    "title": "Land-book — Curated Landing Page Inspiration",
     "category": "Design Showcase",
     "url": "https://land-book.com",
-    "image": "https://cdn.land-book.com/assets/og-image.webp",
+    "image": "/screenshots/real/landbook.webp",
     "badge": "Top Showcase",
-    "description": "Landing page inspiration, curated well. Discover finest designs, web apps, portfolios and corporate websites.",
+    "description": "A huge gallery of real landing pages, web apps, portfolios, and corporate websites curated well.",
     "tags": [
       "Landing Page",
       "Inspiration",
@@ -30,11 +30,41 @@
     ]
   },
   {
+    "id": "res_minimalgallery",
+    "title": "Minimal Gallery — When Clean Beats Clever",
+    "category": "Minimalist Showcase",
+    "url": "https://minimal.gallery",
+    "image": "/screenshots/real/minimal_gallery.jpg",
+    "badge": "Clean Design",
+    "description": "Curated web design gallery for when clean beats clever. Clean Swiss grid and human typography focus.",
+    "tags": [
+      "Gallery",
+      "Minimalist",
+      "Clean",
+      "Editorial"
+    ]
+  },
+  {
+    "id": "res_3dicons",
+    "title": "3dicons — Free 3D Icons & Open Meshes",
+    "category": "3D Visual Assets",
+    "url": "https://3dicons.co",
+    "image": "/screenshots/real/3dicons.jpg",
+    "badge": "Free 3D Icons",
+    "description": "1,400+ free 3D icons & meshes in PNG, GLTF, and Blender formats for commercial and personal projects.",
+    "tags": [
+      "3D Icons",
+      "Assets",
+      "Blender",
+      "Open Source"
+    ]
+  },
+  {
     "id": "res_recentdesign",
-    "title": "Recent Design \u2014 Fresh Web Gallery",
+    "title": "Recent Design — Fresh Web Gallery",
     "category": "Design Showcase",
     "url": "https://recent.design",
-    "image": "https://recent.design/og.png",
+    "image": "/screenshots/real/recent_design.png",
     "badge": "Fresh Daily",
     "description": "A great gallery of fresh web design inspiration updated daily. Clean Swiss grid and human typography focus.",
     "tags": [
@@ -46,10 +76,10 @@
   },
   {
     "id": "res_landdding",
-    "title": "Landdding \u2014 Top-Tier SaaS Landing Pages",
+    "title": "Landdding — Top-Tier SaaS Landing Pages",
     "category": "Design Showcase",
     "url": "https://landdding.com",
-    "image": "https://landdding.com/images/thumbnail.png",
+    "image": "/screenshots/real/landdding.png",
     "badge": "High Conversion",
     "description": "Top-tier SaaS landing pages with micro-interactions, dark mode elegance, and high-conversion layouts.",
     "tags": [
@@ -61,10 +91,10 @@
   },
   {
     "id": "res_fontinlogo",
-    "title": "FontInLogo \u2014 Find The Fonts in Famous Brands",
+    "title": "FontInLogo — Find The Fonts in Famous Brands",
     "category": "Typography Tools",
     "url": "https://www.fontinlogo.com",
-    "image": "https://www.fontinlogo.com/images/1.jpg",
+    "image": "/screenshots/real/fontinlogo.jpg",
     "badge": "Brand Typography",
     "description": "Find the exact fonts used in world-famous company logos, tech brands, and startup identities.",
     "tags": [

@@ -7,7 +7,7 @@ import { useRouter } from 'next/navigation'
 interface SearchItem {
   id: string
   title: string
-  category: 'Templates' | 'GitHub Repos' | 'Prompts' | 'Bansos AI' | 'Intel'
+  category: 'Templates' | 'GitHub Repos' | 'Prompts' | 'Bansos AI' | 'Tools' | 'Intel'
   snippet: string
   link: string
   badge: string
@@ -190,6 +190,48 @@ const SEARCH_DATABASE: SearchItem[] = [
     snippet: "Real-time discussions and open-weights drops filtered from HackerNews Algolia stream.",
     link: "/intel",
     badge: "Community Radar"
+  },
+
+  // 6. Curated AI Design Stack (Minham Selection)
+  {
+    id: "res_jiro",
+    title: "Jiro (jiro.build) — 1,400+ Design Resources & Prompts",
+    category: "Tools",
+    snippet: "1,400+ design resources with AI-ready prompts and source code to design better with AI.",
+    link: "/tools",
+    badge: "AI Prompts"
+  },
+  {
+    id: "res_landbook",
+    title: "Land-book (land-book.com) — Curated Landing Pages",
+    category: "Tools",
+    snippet: "Huge gallery of real landing pages, web apps, portfolios, and corporate showcases.",
+    link: "/tools",
+    badge: "Showcase"
+  },
+  {
+    id: "res_minimalgallery",
+    title: "Minimal Gallery (minimal.gallery) — Clean Beats Clever",
+    category: "Tools",
+    snippet: "Curated web design gallery for when clean beats clever. Clean Swiss grid and human typography.",
+    link: "/tools",
+    badge: "Clean Design"
+  },
+  {
+    id: "res_fontinlogo",
+    title: "FontInLogo (fontinlogo.com) — Brand Typography",
+    category: "Tools",
+    snippet: "Find the exact fonts used in world-famous company logos, tech brands, and startup identities.",
+    link: "/tools",
+    badge: "Typography"
+  },
+  {
+    id: "res_3dicons",
+    title: "3dicons (3dicons.co) — 1,400+ Free 3D Icons",
+    category: "Tools",
+    snippet: "Free 3D icons & meshes in PNG, GLTF, and Blender formats for personal and commercial projects.",
+    link: "/tools",
+    badge: "3D Assets"
   }
 ]
 
@@ -224,7 +266,7 @@ export default function SearchModal({ isOpen, onClose }: SearchModalProps) {
 
   if (!isOpen) return null
 
-  const categories = ['All', 'Templates', 'GitHub Repos', 'Prompts', 'Bansos AI', 'Intel']
+  const categories = ['All', 'Templates', 'GitHub Repos', 'Prompts', 'Bansos AI', 'Tools', 'Intel']
 
   const filteredItems = SEARCH_DATABASE.filter(item => {
     const matchesCategory = selectedCategory === 'All' || item.category === selectedCategory

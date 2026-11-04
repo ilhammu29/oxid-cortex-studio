@@ -250,7 +250,7 @@ export default function Home() {
       preview: {
         title: "Global Edge Deployment",
         badge: "100 PageSpeed",
-        meta: "cortex.oxidlabs.my.id verified live across 250+ PoPs worldwide."
+        meta: "promptlabs.oxidlabs.my.id verified live across 250+ PoPs worldwide."
       }
     },
     {
@@ -928,7 +928,7 @@ export default function Home() {
               © 2026 OXID LABS. All rights reserved. Built for autonomous engineers.
             </div>
             <div className="flex items-center gap-4">
-              <span>cortex.oxidlabs.my.id</span>
+              <span>promptlabs.oxidlabs.my.id</span>
               <span>•</span>
               <span>promptlabs-oxid.vercel.app</span>
             </div>

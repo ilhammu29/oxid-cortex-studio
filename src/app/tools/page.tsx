@@ -50,7 +50,52 @@ export default function ToolsPage() {
   }, [])
 
   const realTools = [
-    // 5 FREE AI DESIGN & ARCHITECTURE RESOURCES
+    // 5 ESSENTIAL AI DESIGN STACK RESOURCES (MINHAM SELECTION)
+    {
+      id: "res_jiro",
+      name: "jiro.build",
+      category: "AI Design Prompts",
+      badge: "1,400+ Prompts",
+      image: "/screenshots/real/jiro_build.png",
+      type: "design",
+      url: "https://jiro.build"
+    },
+    {
+      id: "res_landbook",
+      name: "Land-book",
+      category: "Design Showcase",
+      badge: "Top Showcase",
+      image: "/screenshots/real/landbook.webp",
+      type: "design",
+      url: "https://land-book.com"
+    },
+    {
+      id: "res_minimalgallery",
+      name: "Minimal Gallery",
+      category: "Minimalist Showcase",
+      badge: "Clean Design",
+      image: "/screenshots/real/minimal_gallery.jpg",
+      type: "design",
+      url: "https://minimal.gallery"
+    },
+    {
+      id: "res_fontinlogo",
+      name: "FontInLogo",
+      category: "Typography",
+      badge: "Brand Fonts",
+      image: "/screenshots/real/fontinlogo.jpg",
+      type: "design",
+      url: "https://www.fontinlogo.com"
+    },
+    {
+      id: "res_3dicons",
+      name: "3dicons",
+      category: "3D Visual Assets",
+      badge: "Open 3D Icons",
+      image: "/screenshots/real/3dicons.jpg",
+      type: "design",
+      url: "https://3dicons.co"
+    },
     {
       id: "res_shadcn",
       name: "shadcn/ui",
@@ -86,15 +131,6 @@ export default function ToolsPage() {
       image: "/screenshots/real/landdding.png",
       type: "design",
       url: "https://landdding.com"
-    },
-    {
-      id: "res_fontinlogo",
-      name: "FontInLogo",
-      category: "Typography",
-      badge: "Radar",
-      image: "/screenshots/real/fontinlogo.png",
-      type: "design",
-      url: "https://www.fontinlogo.com"
     },
 
     // 5 MOTION & CRAFT SKILLS
