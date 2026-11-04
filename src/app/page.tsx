@@ -464,6 +464,114 @@ export default function Home() {
       </section>
 
       {/* ======================================================== */}
+      {/* 3B. THE ESSENTIAL AI DESIGN STACK (CURATED BY MINHAM)   */}
+      {/* ======================================================== */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-14 space-y-6 border-t border-white/[0.08]">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-white/[0.08] pb-5">
+          <div className="space-y-1.5">
+            <span className="text-[11px] font-mono uppercase tracking-widest text-orange-400 block font-bold">
+              ★ Curated AI Design Stack
+            </span>
+            <h2 className="text-2xl sm:text-3xl font-sans font-bold text-white tracking-tight">
+              Essential design resources &amp; production tools
+            </h2>
+            <p className="text-xs text-zinc-400 font-sans max-w-xl">
+              1,400+ prompt UI, galeri inspirasi minimalis, tipografi brand, dan aset 3D open-source pilihan Minham.
+            </p>
+          </div>
+          <Link 
+            href="/tools" 
+            className="text-xs font-mono text-zinc-400 hover:text-white flex items-center gap-1.5 transition-colors self-start md:self-end"
+          >
+            <span>Buka Semua Tools &amp; Stack (18+)</span>
+            <span>→</span>
+          </Link>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+          {[
+            {
+              id: "stk_jiro",
+              name: "jiro.build",
+              badge: "1,400+ Prompts",
+              category: "AI Design Prompts",
+              image: "/screenshots/real/jiro_build.png",
+              url: "https://jiro.build"
+            },
+            {
+              id: "stk_landbook",
+              name: "Land-book",
+              badge: "Top Showcase",
+              category: "Design Showcase",
+              image: "/screenshots/real/landbook.webp",
+              url: "https://land-book.com"
+            },
+            {
+              id: "stk_minimal",
+              name: "Minimal Gallery",
+              badge: "Clean Design",
+              category: "Minimalist Showcase",
+              image: "/screenshots/real/minimal_gallery.jpg",
+              url: "https://minimal.gallery"
+            },
+            {
+              id: "stk_fontinlogo",
+              name: "FontInLogo",
+              badge: "Brand Fonts",
+              category: "Typography",
+              image: "/screenshots/real/fontinlogo.jpg",
+              url: "https://www.fontinlogo.com"
+            },
+            {
+              id: "stk_3dicons",
+              name: "3dicons",
+              badge: "Free 3D Icons",
+              category: "3D Visual Assets",
+              image: "/screenshots/real/3dicons.jpg",
+              url: "https://3dicons.co"
+            }
+          ].map(tool => (
+            <a 
+              key={tool.id} 
+              href={tool.url} 
+              target="_blank" 
+              rel="noreferrer"
+              className="silver-beam-wrapper group cursor-pointer flex flex-col justify-between !rounded-[14px]"
+            >
+              <div className="silver-beam-inner flex flex-col justify-between !rounded-[13px] bg-[#0c0c0e]">
+                <div className="relative aspect-[960/684] w-full overflow-hidden bg-zinc-950">
+                  <img 
+                    src={tool.image} 
+                    alt={tool.name} 
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+                  <div className="absolute top-2 left-2 flex items-center gap-1">
+                    <span className="px-2 py-0.5 rounded-full text-[9px] font-mono font-bold bg-white text-black shadow">
+                      {tool.badge}
+                    </span>
+                  </div>
+                  <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/40 backdrop-blur-[2px]">
+                    <span className="px-3 py-1 rounded-full bg-white text-black font-mono text-xs font-bold shadow-xl">
+                      Kunjungi ↗
+                    </span>
+                  </div>
+                </div>
+                <div className="p-3 flex items-center justify-between border-t border-white/[0.06] font-mono text-xs">
+                  <span className="font-sans font-medium text-[14px] text-white group-hover:text-orange-400 transition-colors">
+                    {tool.name}
+                  </span>
+                  <span className="text-[10.5px] text-zinc-500 font-mono">
+                    {tool.category}
+                  </span>
+                </div>
+              </div>
+            </a>
+          ))}
+        </div>
+      </section>
+
+      {/* ======================================================== */}
       {/* 4. GETLAYERS TECHNICAL PROOF BENTO GRID                  */}
       {/* "Fast, findable, and yours to rebuild"                   */}
       {/* ======================================================== */}

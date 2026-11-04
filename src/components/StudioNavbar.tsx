@@ -46,8 +46,8 @@ export default function StudioNavbar({ activeRoute = 'home' }: StudioNavbarProps
             </div>
           </Link>
 
-          {/* 2. Center: Single Focused Navigation Pill Container (5 Dedicated Pillars) */}
-          <nav className="hidden md:flex items-center px-5 py-1.5 rounded-full bg-white/[0.04] border border-white/[0.08] text-xs font-mono font-medium space-x-6">
+          {/* 2. Center: Single Focused Navigation Pill Container (6 Dedicated Pillars) */}
+          <nav className="hidden md:flex items-center px-4 py-1.5 rounded-full bg-white/[0.04] border border-white/[0.08] text-xs font-mono font-medium space-x-5">
             <Link 
               href="/templates" 
               className={`transition-colors ${activeRoute === 'templates' ? 'text-white font-bold' : 'text-zinc-400 hover:text-white'}`}
@@ -68,6 +68,14 @@ export default function StudioNavbar({ activeRoute = 'home' }: StudioNavbarProps
               className={`transition-colors ${activeRoute === 'prompts' ? 'text-white font-bold' : 'text-zinc-400 hover:text-white'}`}
             >
               Prompts
+            </Link>
+
+            <Link 
+              href="/tools" 
+              className={`transition-colors flex items-center gap-1.5 ${activeRoute === 'tools' ? 'text-white font-bold' : 'text-zinc-400 hover:text-white'}`}
+            >
+              <span>Tools</span>
+              <span className="px-1.5 py-0.2 text-[9px] bg-white/10 text-zinc-300 border border-white/15 rounded-full font-bold">Stack</span>
             </Link>
             
             <Link 
@@ -139,6 +147,14 @@ export default function StudioNavbar({ activeRoute = 'home' }: StudioNavbarProps
               className={`block p-2.5 rounded-xl border transition-all ${activeRoute === 'prompts' ? 'bg-white text-black font-bold border-white' : 'bg-white/[0.03] text-zinc-300 border-white/[0.06]'}`}
             >
               ⚡ Prompts
+            </Link>
+
+            <Link 
+              href="/tools" 
+              onClick={() => setMobileMenuOpen(false)} 
+              className={`block p-2.5 rounded-xl border transition-all ${activeRoute === 'tools' ? 'bg-white text-black font-bold border-white' : 'bg-white/[0.03] text-zinc-300 border-white/[0.06]'}`}
+            >
+              🛠️ Tools &amp; AI Design Stack
             </Link>
 
             <Link 
