@@ -17,7 +17,7 @@
     "image": "https://opengraph.githubassets.com/1/All-Hands-AI/OpenHands",
     "badge": "\u2605 92.8k",
     "cloneCmd": "docker run -it --pull=always -p 3000:3000 ghcr.io/all-hands-ai/openhands:latest",
-    "updated_at": "2026-11-07 01:00:01 WIB",
+    "updated_at": "2026-11-07 02:00:05 WIB",
     "license": "MIT"
   },
   {
@@ -30,7 +30,7 @@
     "type": "github",
     "language": "Python",
     "stars": "261.1k",
-    "forks": "57768",
+    "forks": "57773",
     "html_url": "https://github.com/NousResearch/Hermes-Agent",
     "url": "https://github.com/NousResearch/Hermes-Agent",
     "avatar": "https://github.com/NousResearch.png",
@@ -38,7 +38,7 @@
     "image": "https://opengraph.githubassets.com/1/NousResearch/Hermes-Agent",
     "badge": "\u2605 261.1k",
     "cloneCmd": "git clone https://github.com/NousResearch/Hermes-Agent.git",
-    "updated_at": "2026-11-07 01:00:02 WIB",
+    "updated_at": "2026-11-07 02:00:06 WIB",
     "license": "MIT"
   },
   {
@@ -59,7 +59,7 @@
     "image": "https://opengraph.githubassets.com/1/browser-use/browser-use",
     "badge": "\u2605 120.2k",
     "cloneCmd": "pip install browser-use",
-    "updated_at": "2026-11-07 01:00:02 WIB",
+    "updated_at": "2026-11-07 02:00:07 WIB",
     "license": "MIT"
   },
   {
@@ -80,7 +80,7 @@
     "image": "https://opengraph.githubassets.com/1/Significant-Gravitas/AutoGPT",
     "badge": "\u2605 187.9k",
     "cloneCmd": "git clone https://github.com/Significant-Gravitas/AutoGPT.git",
-    "updated_at": "2026-11-07 01:00:03 WIB",
+    "updated_at": "2026-11-07 02:00:07 WIB",
     "license": "NOASSERTION"
   },
   {
@@ -93,7 +93,7 @@
     "type": "github",
     "language": "Go",
     "stars": "186.1k",
-    "forks": "18929",
+    "forks": "18931",
     "html_url": "https://github.com/ollama/ollama",
     "url": "https://github.com/ollama/ollama",
     "avatar": "https://github.com/ollama.png",
@@ -101,7 +101,7 @@
     "image": "https://opengraph.githubassets.com/1/ollama/ollama",
     "badge": "\u2605 186.1k",
     "cloneCmd": "curl -fsSL https://ollama.com/install.sh | sh",
-    "updated_at": "2026-11-07 01:00:03 WIB",
+    "updated_at": "2026-11-07 02:00:08 WIB",
     "license": "MIT"
   },
   {
@@ -122,7 +122,7 @@
     "image": "https://opengraph.githubassets.com/1/vllm-project/vllm",
     "badge": "\u2605 96.5k",
     "cloneCmd": "pip install vllm",
-    "updated_at": "2026-11-07 01:00:04 WIB",
+    "updated_at": "2026-11-07 02:00:08 WIB",
     "license": "Apache-2.0"
   },
   {
@@ -135,7 +135,7 @@
     "type": "github",
     "language": "C++",
     "stars": "133.6k",
-    "forks": "25212",
+    "forks": "25215",
     "html_url": "https://github.com/ggerganov/llama.cpp",
     "url": "https://github.com/ggerganov/llama.cpp",
     "avatar": "https://github.com/ggerganov.png",
@@ -143,7 +143,7 @@
     "image": "https://opengraph.githubassets.com/1/ggerganov/llama.cpp",
     "badge": "\u2605 133.6k",
     "cloneCmd": "git clone https://github.com/ggerganov/llama.cpp",
-    "updated_at": "2026-11-07 01:00:04 WIB",
+    "updated_at": "2026-11-07 02:00:09 WIB",
     "license": "MIT"
   },
   {
@@ -155,16 +155,16 @@
     "category": "Frontend & Scraper",
     "type": "github",
     "language": "Python",
-    "stars": "98.7k",
+    "stars": "98.8k",
     "forks": "10343",
     "html_url": "https://github.com/D4Vinci/Scrapling",
     "url": "https://github.com/D4Vinci/Scrapling",
     "avatar": "https://github.com/D4Vinci.png",
     "preview_image": "https://opengraph.githubassets.com/1/D4Vinci/Scrapling",
     "image": "https://opengraph.githubassets.com/1/D4Vinci/Scrapling",
-    "badge": "\u2605 98.7k",
+    "badge": "\u2605 98.8k",
     "cloneCmd": "pip install scrapling",
-    "updated_at": "2026-11-07 01:00:05 WIB",
+    "updated_at": "2026-11-07 02:00:10 WIB",
     "license": "BSD-3-Clause"
   },
   {
@@ -185,7 +185,7 @@
     "image": "https://opengraph.githubassets.com/1/vercel/ai",
     "badge": "\u2605 27.8k",
     "cloneCmd": "npm i ai @ai-sdk/openai",
-    "updated_at": "2026-11-07 01:00:06 WIB",
+    "updated_at": "2026-11-07 02:00:10 WIB",
     "license": "NOASSERTION"
   },
   {
@@ -206,7 +206,7 @@
     "image": "https://opengraph.githubassets.com/1/emilkowalski/vaul",
     "badge": "\u2605 8.7k",
     "cloneCmd": "npm i vaul",
-    "updated_at": "2026-11-07 01:00:07 WIB",
+    "updated_at": "2026-11-07 02:00:11 WIB",
     "license": "MIT"
   },
   {
@@ -227,7 +227,7 @@
     "image": "https://opengraph.githubassets.com/1/shadcn-ui/ui",
     "badge": "\u2605 127.5k",
     "cloneCmd": "npx shadcn-ui@latest init",
-    "updated_at": "2026-11-07 01:00:07 WIB",
+    "updated_at": "2026-11-07 02:00:11 WIB",
     "license": "MIT"
   },
   {
@@ -248,7 +248,7 @@
     "image": "https://opengraph.githubassets.com/1/pmndrs/react-three-fiber",
     "badge": "\u2605 33.5k",
     "cloneCmd": "npm i three @react-three/fiber",
-    "updated_at": "2026-11-07 01:00:08 WIB",
+    "updated_at": "2026-11-07 02:00:12 WIB",
     "license": "MIT"
   },
   {
@@ -269,7 +269,7 @@
     "image": "https://opengraph.githubassets.com/1/MiniMax-AI/skills",
     "badge": "\u2605 13.8k",
     "cloneCmd": "git clone https://github.com/MiniMax-AI/skills.git",
-    "updated_at": "2026-11-07 01:00:08 WIB",
+    "updated_at": "2026-11-07 02:00:12 WIB",
     "license": "MIT"
   },
   {
@@ -290,7 +290,7 @@
     "image": "https://opengraph.githubassets.com/1/jlowin/fastmcp",
     "badge": "\u2605 28.3k",
     "cloneCmd": "pip install fastmcp",
-    "updated_at": "2026-11-07 01:00:09 WIB",
+    "updated_at": "2026-11-07 02:00:13 WIB",
     "license": "Apache-2.0"
   },
   {
@@ -303,7 +303,7 @@
     "type": "github",
     "language": "Python",
     "stars": "44.6k",
-    "forks": "7678",
+    "forks": "7679",
     "html_url": "https://github.com/langchain-ai/langgraph",
     "url": "https://github.com/langchain-ai/langgraph",
     "avatar": "https://github.com/langchain-ai.png",
@@ -311,7 +311,7 @@
     "image": "https://opengraph.githubassets.com/1/langchain-ai/langgraph",
     "badge": "\u2605 44.6k",
     "cloneCmd": "pip install langgraph",
-    "updated_at": "2026-11-07 01:00:10 WIB",
+    "updated_at": "2026-11-07 02:00:14 WIB",
     "license": "MIT"
   }
 ]
