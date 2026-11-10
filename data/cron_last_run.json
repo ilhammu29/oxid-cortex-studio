@@ -1,7 +1,7 @@
 {
   "status": "online",
-  "last_sync": "2026-11-11 04:05:23 WIB",
-  "next_sync": "2026-11-11 04:35 WIB",
+  "last_sync": "2026-11-11 05:00:51 WIB",
+  "next_sync": "2026-11-11 09:35 WIB",
   "interval": "5 jam sekali (04:35, 09:35, 14:35, 19:35, 00:35 WIB)",
   "total_sources_scraped": 8,
   "new_items_found": 34
