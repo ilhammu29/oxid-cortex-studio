@@ -17,7 +17,7 @@
     "image": "https://opengraph.githubassets.com/1/All-Hands-AI/OpenHands",
     "badge": "GITHUB VERIFIED",
     "cloneCmd": "docker run -it --pull=always -p 3000:3000 ghcr.io/all-hands-ai/openhands:latest",
-    "updated_at": "2026-11-24 00:00:44 WIB"
+    "updated_at": "2026-11-24 01:01:01 WIB"
   },
   {
     "id": "gh_nousresearch_hermes-agent",
@@ -37,7 +37,7 @@
     "image": "https://opengraph.githubassets.com/1/NousResearch/Hermes-Agent",
     "badge": "GITHUB VERIFIED",
     "cloneCmd": "git clone https://github.com/NousResearch/Hermes-Agent.git",
-    "updated_at": "2026-11-24 00:00:52 WIB"
+    "updated_at": "2026-11-24 01:01:21 WIB"
   },
   {
     "id": "gh_browser-use_browser-use",
@@ -57,7 +57,7 @@
     "image": "https://opengraph.githubassets.com/1/browser-use/browser-use",
     "badge": "GITHUB VERIFIED",
     "cloneCmd": "pip install browser-use",
-    "updated_at": "2026-11-24 00:00:57 WIB"
+    "updated_at": "2026-11-24 01:01:41 WIB"
   },
   {
     "id": "gh_significant-gravitas_autogpt",
@@ -77,7 +77,7 @@
     "image": "https://opengraph.githubassets.com/1/Significant-Gravitas/AutoGPT",
     "badge": "GITHUB VERIFIED",
     "cloneCmd": "git clone https://github.com/Significant-Gravitas/AutoGPT.git",
-    "updated_at": "2026-11-24 00:01:02 WIB"
+    "updated_at": "2026-11-24 01:02:01 WIB"
   },
   {
     "id": "gh_ollama_ollama",
@@ -97,7 +97,7 @@
     "image": "https://opengraph.githubassets.com/1/ollama/ollama",
     "badge": "GITHUB VERIFIED",
     "cloneCmd": "curl -fsSL https://ollama.com/install.sh | sh",
-    "updated_at": "2026-11-24 00:01:07 WIB"
+    "updated_at": "2026-11-24 01:02:21 WIB"
   },
   {
     "id": "gh_vllm-project_vllm",
@@ -117,7 +117,7 @@
     "image": "https://opengraph.githubassets.com/1/vllm-project/vllm",
     "badge": "GITHUB VERIFIED",
     "cloneCmd": "pip install vllm",
-    "updated_at": "2026-11-24 00:01:12 WIB"
+    "updated_at": "2026-11-24 01:02:41 WIB"
   },
   {
     "id": "gh_ggerganov_llama.cpp",
@@ -137,7 +137,7 @@
     "image": "https://opengraph.githubassets.com/1/ggerganov/llama.cpp",
     "badge": "GITHUB VERIFIED",
     "cloneCmd": "git clone https://github.com/ggerganov/llama.cpp",
-    "updated_at": "2026-11-24 00:01:17 WIB"
+    "updated_at": "2026-11-24 01:03:01 WIB"
   },
   {
     "id": "gh_d4vinci_scrapling",
@@ -157,28 +157,27 @@
     "image": "https://opengraph.githubassets.com/1/D4Vinci/Scrapling",
     "badge": "GITHUB VERIFIED",
     "cloneCmd": "pip install scrapling",
-    "updated_at": "2026-11-24 00:01:22 WIB"
+    "updated_at": "2026-11-24 01:03:21 WIB"
   },
   {
     "id": "gh_vercel_ai",
     "owner": "vercel",
     "name": "ai",
     "full_name": "vercel/ai",
-    "description": "The AI Toolkit for TypeScript. From the creators of Next.js, the AI SDK is a free open-source library for building AI-powered applications and agents ",
+    "description": "Build AI-powered streaming user interfaces in React, Next.js, and Svelte",
     "category": "Frontend & Scraper",
     "type": "github",
     "language": "TypeScript",
-    "stars": "28.1k",
-    "forks": "5697",
+    "stars": "15k+",
+    "forks": "2k+",
     "html_url": "https://github.com/vercel/ai",
     "url": "https://github.com/vercel/ai",
     "avatar": "https://github.com/vercel.png",
     "preview_image": "https://opengraph.githubassets.com/1/vercel/ai",
     "image": "https://opengraph.githubassets.com/1/vercel/ai",
-    "badge": "\u2605 28.1k",
+    "badge": "GITHUB VERIFIED",
     "cloneCmd": "npm i ai @ai-sdk/openai",
-    "updated_at": "2026-11-24 00:01:27 WIB",
-    "license": "NOASSERTION"
+    "updated_at": "2026-11-24 01:03:41 WIB"
   },
   {
     "id": "gh_emilkowalski_vaul",
@@ -198,7 +197,7 @@
     "image": "https://opengraph.githubassets.com/1/emilkowalski/vaul",
     "badge": "GITHUB VERIFIED",
     "cloneCmd": "npm i vaul",
-    "updated_at": "2026-11-24 00:01:32 WIB"
+    "updated_at": "2026-11-24 01:04:01 WIB"
   },
   {
     "id": "gh_shadcn-ui_ui",
@@ -218,28 +217,27 @@
     "image": "https://opengraph.githubassets.com/1/shadcn-ui/ui",
     "badge": "GITHUB VERIFIED",
     "cloneCmd": "npx shadcn-ui@latest init",
-    "updated_at": "2026-11-24 00:01:37 WIB"
+    "updated_at": "2026-11-24 01:04:21 WIB"
   },
   {
     "id": "gh_pmndrs_react-three-fiber",
     "owner": "pmndrs",
     "name": "react-three-fiber",
     "full_name": "pmndrs/react-three-fiber",
-    "description": "\ud83c\udde8\ud83c\udded A React renderer for Three.js",
+    "description": "A React renderer for Three.js WebGL and 3D canvas in browser",
     "category": "Design Systems",
     "type": "github",
-    "language": "TypeScript",
-    "stars": "33.9k",
-    "forks": "2129",
+    "language": "JavaScript / GLSL",
+    "stars": "15k+",
+    "forks": "2k+",
     "html_url": "https://github.com/pmndrs/react-three-fiber",
     "url": "https://github.com/pmndrs/react-three-fiber",
     "avatar": "https://github.com/pmndrs.png",
     "preview_image": "https://opengraph.githubassets.com/1/pmndrs/react-three-fiber",
     "image": "https://opengraph.githubassets.com/1/pmndrs/react-three-fiber",
-    "badge": "\u2605 33.9k",
+    "badge": "GITHUB VERIFIED",
     "cloneCmd": "npm i three @react-three/fiber",
-    "updated_at": "2026-11-24 00:01:42 WIB",
-    "license": "MIT"
+    "updated_at": "2026-11-24 01:04:41 WIB"
   },
   {
     "id": "gh_minimax-ai_skills",
@@ -259,7 +257,7 @@
     "image": "https://opengraph.githubassets.com/1/MiniMax-AI/skills",
     "badge": "GITHUB VERIFIED",
     "cloneCmd": "git clone https://github.com/MiniMax-AI/skills.git",
-    "updated_at": "2026-11-24 00:01:47 WIB"
+    "updated_at": "2026-11-24 01:05:01 WIB"
   },
   {
     "id": "gh_jlowin_fastmcp",
@@ -279,27 +277,26 @@
     "image": "https://opengraph.githubassets.com/1/jlowin/fastmcp",
     "badge": "GITHUB VERIFIED",
     "cloneCmd": "pip install fastmcp",
-    "updated_at": "2026-11-24 00:01:52 WIB"
+    "updated_at": "2026-11-24 01:05:21 WIB"
   },
   {
     "id": "gh_langchain-ai_langgraph",
     "owner": "langchain-ai",
     "name": "langgraph",
     "full_name": "langchain-ai/langgraph",
-    "description": "Build resilient agents.",
+    "description": "Build resilient language agents as graphs with human-in-the-loop",
     "category": "SDK & Frameworks",
     "type": "github",
-    "language": "Python",
-    "stars": "45.3k",
-    "forks": "7832",
+    "language": "Python / TypeScript",
+    "stars": "15k+",
+    "forks": "2k+",
     "html_url": "https://github.com/langchain-ai/langgraph",
     "url": "https://github.com/langchain-ai/langgraph",
     "avatar": "https://github.com/langchain-ai.png",
     "preview_image": "https://opengraph.githubassets.com/1/langchain-ai/langgraph",
     "image": "https://opengraph.githubassets.com/1/langchain-ai/langgraph",
-    "badge": "\u2605 45.3k",
+    "badge": "GITHUB VERIFIED",
     "cloneCmd": "pip install langgraph",
-    "updated_at": "2026-11-24 00:01:57 WIB",
-    "license": "MIT"
+    "updated_at": "2026-11-24 01:05:41 WIB"
   }
 ]
