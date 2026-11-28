@@ -4,105 +4,100 @@
     "owner": "All-Hands-AI",
     "name": "OpenHands",
     "full_name": "All-Hands-AI/OpenHands",
-    "description": "\ud83d\ude4c OpenHands: AI-Driven Development",
+    "description": "Autonomous Software Engineering Agent CLI",
     "category": "Autonomous Agents",
     "type": "github",
-    "language": "TypeScript",
-    "stars": "94.5k",
-    "forks": "12673",
+    "language": "Python / TypeScript",
+    "stars": "15k+",
+    "forks": "2k+",
     "html_url": "https://github.com/All-Hands-AI/OpenHands",
     "url": "https://github.com/All-Hands-AI/OpenHands",
     "avatar": "https://github.com/All-Hands-AI.png",
     "preview_image": "https://opengraph.githubassets.com/1/All-Hands-AI/OpenHands",
     "image": "https://opengraph.githubassets.com/1/All-Hands-AI/OpenHands",
-    "badge": "\u2605 94.5k",
+    "badge": "GITHUB VERIFIED",
     "cloneCmd": "docker run -it --pull=always -p 3000:3000 ghcr.io/all-hands-ai/openhands:latest",
-    "updated_at": "2026-11-28 12:00:40 WIB",
-    "license": "MIT"
+    "updated_at": "2026-11-28 13:09:43 WIB"
   },
   {
     "id": "gh_nousresearch_hermes-agent",
     "owner": "NousResearch",
     "name": "Hermes-Agent",
     "full_name": "NousResearch/Hermes-Agent",
-    "description": "The agent that grows with you",
+    "description": "Autonomous multi-agent harness with real CLI execution",
     "category": "Autonomous Agents",
     "type": "github",
     "language": "Python",
-    "stars": "266.6k",
-    "forks": "60522",
+    "stars": "15k+",
+    "forks": "2k+",
     "html_url": "https://github.com/NousResearch/Hermes-Agent",
     "url": "https://github.com/NousResearch/Hermes-Agent",
     "avatar": "https://github.com/NousResearch.png",
     "preview_image": "https://opengraph.githubassets.com/1/NousResearch/Hermes-Agent",
     "image": "https://opengraph.githubassets.com/1/NousResearch/Hermes-Agent",
-    "badge": "\u2605 266.6k",
+    "badge": "GITHUB VERIFIED",
     "cloneCmd": "git clone https://github.com/NousResearch/Hermes-Agent.git",
-    "updated_at": "2026-11-28 12:00:41 WIB",
-    "license": "MIT"
+    "updated_at": "2026-11-28 13:10:03 WIB"
   },
   {
     "id": "gh_browser-use_browser-use",
     "owner": "browser-use",
     "name": "browser-use",
     "full_name": "browser-use/browser-use",
-    "description": "Open-source Python library for AI browser agents, plus Browser Use Cloud: stealth browsers and a hosted agent API.",
+    "description": "Make websites accessible for AI agents via browser automation",
     "category": "Autonomous Agents",
     "type": "github",
     "language": "Python",
-    "stars": "122.2k",
-    "forks": "13679",
+    "stars": "15k+",
+    "forks": "2k+",
     "html_url": "https://github.com/browser-use/browser-use",
     "url": "https://github.com/browser-use/browser-use",
     "avatar": "https://github.com/browser-use.png",
     "preview_image": "https://opengraph.githubassets.com/1/browser-use/browser-use",
     "image": "https://opengraph.githubassets.com/1/browser-use/browser-use",
-    "badge": "\u2605 122.2k",
+    "badge": "GITHUB VERIFIED",
     "cloneCmd": "pip install browser-use",
-    "updated_at": "2026-11-28 12:00:41 WIB",
-    "license": "MIT"
+    "updated_at": "2026-11-28 13:10:30 WIB"
   },
   {
     "id": "gh_significant-gravitas_autogpt",
     "owner": "Significant-Gravitas",
     "name": "AutoGPT",
     "full_name": "Significant-Gravitas/AutoGPT",
-    "description": "AutoGPT is the vision of accessible AI for everyone, to use and to build on. Our mission is to provide the tools, so that you can focus on what matters.",
+    "description": "Autonomous GPT-4 agent running in the browser and CLI",
     "category": "Autonomous Agents",
     "type": "github",
     "language": "Python",
-    "stars": "188.2k",
-    "forks": "45825",
+    "stars": "15k+",
+    "forks": "2k+",
     "html_url": "https://github.com/Significant-Gravitas/AutoGPT",
     "url": "https://github.com/Significant-Gravitas/AutoGPT",
     "avatar": "https://github.com/Significant-Gravitas.png",
     "preview_image": "https://opengraph.githubassets.com/1/Significant-Gravitas/AutoGPT",
     "image": "https://opengraph.githubassets.com/1/Significant-Gravitas/AutoGPT",
-    "badge": "\u2605 188.2k",
+    "badge": "GITHUB VERIFIED",
     "cloneCmd": "git clone https://github.com/Significant-Gravitas/AutoGPT.git",
-    "updated_at": "2026-11-28 12:00:42 WIB",
-    "license": "NOASSERTION"
+    "updated_at": "2026-11-28 13:10:49 WIB"
   },
   {
     "id": "gh_ollama_ollama",
     "owner": "ollama",
     "name": "ollama",
     "full_name": "ollama/ollama",
-    "description": "Get up and running with Kimi, GLM, MiniMax, DeepSeek, gpt-oss, Qwen, Gemma and other models.",
+    "description": "Get up and running with Llama 3, Mistral, and DeepSeek locally",
     "category": "Model Runtimes",
     "type": "github",
-    "language": "Go",
-    "stars": "188.3k",
-    "forks": "19247",
+    "language": "Go / C++",
+    "stars": "15k+",
+    "forks": "2k+",
     "html_url": "https://github.com/ollama/ollama",
     "url": "https://github.com/ollama/ollama",
     "avatar": "https://github.com/ollama.png",
     "preview_image": "https://opengraph.githubassets.com/1/ollama/ollama",
     "image": "https://opengraph.githubassets.com/1/ollama/ollama",
-    "badge": "\u2605 188.3k",
+    "badge": "GITHUB VERIFIED",
     "cloneCmd": "curl -fsSL https://ollama.com/install.sh | sh",
-    "updated_at": "2026-11-28 12:00:42 WIB",
-    "license": "MIT"
+    "updated_at": "2026-11-28 13:11:06 WIB"
   },
   {
     "id": "gh_vllm-project_vllm",
@@ -114,7 +109,7 @@
     "type": "github",
     "language": "Python",
     "stars": "97.7k",
-    "forks": "25396",
+    "forks": "25399",
     "html_url": "https://github.com/vllm-project/vllm",
     "url": "https://github.com/vllm-project/vllm",
     "avatar": "https://github.com/vllm-project.png",
@@ -122,7 +117,7 @@
     "image": "https://opengraph.githubassets.com/1/vllm-project/vllm",
     "badge": "\u2605 97.7k",
     "cloneCmd": "pip install vllm",
-    "updated_at": "2026-11-28 12:00:43 WIB",
+    "updated_at": "2026-11-28 13:11:28 WIB",
     "license": "Apache-2.0"
   },
   {
@@ -135,7 +130,7 @@
     "type": "github",
     "language": "C++",
     "stars": "136.5k",
-    "forks": "26193",
+    "forks": "26194",
     "html_url": "https://github.com/ggerganov/llama.cpp",
     "url": "https://github.com/ggerganov/llama.cpp",
     "avatar": "https://github.com/ggerganov.png",
@@ -143,7 +138,7 @@
     "image": "https://opengraph.githubassets.com/1/ggerganov/llama.cpp",
     "badge": "\u2605 136.5k",
     "cloneCmd": "git clone https://github.com/ggerganov/llama.cpp",
-    "updated_at": "2026-11-28 12:00:43 WIB",
+    "updated_at": "2026-11-28 13:11:38 WIB",
     "license": "MIT"
   },
   {
@@ -156,7 +151,7 @@
     "type": "github",
     "language": "Python",
     "stars": "106.5k",
-    "forks": "11175",
+    "forks": "11178",
     "html_url": "https://github.com/D4Vinci/Scrapling",
     "url": "https://github.com/D4Vinci/Scrapling",
     "avatar": "https://github.com/D4Vinci.png",
@@ -164,7 +159,7 @@
     "image": "https://opengraph.githubassets.com/1/D4Vinci/Scrapling",
     "badge": "\u2605 106.5k",
     "cloneCmd": "pip install scrapling",
-    "updated_at": "2026-11-28 12:00:44 WIB",
+    "updated_at": "2026-11-28 13:11:39 WIB",
     "license": "BSD-3-Clause"
   },
   {
@@ -185,7 +180,7 @@
     "image": "https://opengraph.githubassets.com/1/vercel/ai",
     "badge": "\u2605 28.3k",
     "cloneCmd": "npm i ai @ai-sdk/openai",
-    "updated_at": "2026-11-28 12:00:45 WIB",
+    "updated_at": "2026-11-28 13:11:40 WIB",
     "license": "NOASSERTION"
   },
   {
@@ -206,7 +201,7 @@
     "image": "https://opengraph.githubassets.com/1/emilkowalski/vaul",
     "badge": "\u2605 8.8k",
     "cloneCmd": "npm i vaul",
-    "updated_at": "2026-11-28 12:00:45 WIB",
+    "updated_at": "2026-11-28 13:11:40 WIB",
     "license": "MIT"
   },
   {
@@ -227,7 +222,7 @@
     "image": "https://opengraph.githubassets.com/1/shadcn-ui/ui",
     "badge": "\u2605 129.3k",
     "cloneCmd": "npx shadcn-ui@latest init",
-    "updated_at": "2026-11-28 12:00:46 WIB",
+    "updated_at": "2026-11-28 13:11:40 WIB",
     "license": "MIT"
   },
   {
@@ -248,7 +243,7 @@
     "image": "https://opengraph.githubassets.com/1/pmndrs/react-three-fiber",
     "badge": "\u2605 34.0k",
     "cloneCmd": "npm i three @react-three/fiber",
-    "updated_at": "2026-11-28 12:00:46 WIB",
+    "updated_at": "2026-11-28 13:11:41 WIB",
     "license": "MIT"
   },
   {
@@ -269,7 +264,7 @@
     "image": "https://opengraph.githubassets.com/1/MiniMax-AI/skills",
     "badge": "\u2605 13.9k",
     "cloneCmd": "git clone https://github.com/MiniMax-AI/skills.git",
-    "updated_at": "2026-11-28 12:00:47 WIB",
+    "updated_at": "2026-11-28 13:11:41 WIB",
     "license": "MIT"
   },
   {
@@ -282,7 +277,7 @@
     "type": "github",
     "language": "Python",
     "stars": "28.8k",
-    "forks": "2661",
+    "forks": "2662",
     "html_url": "https://github.com/jlowin/fastmcp",
     "url": "https://github.com/jlowin/fastmcp",
     "avatar": "https://github.com/jlowin.png",
@@ -290,7 +285,7 @@
     "image": "https://opengraph.githubassets.com/1/jlowin/fastmcp",
     "badge": "\u2605 28.8k",
     "cloneCmd": "pip install fastmcp",
-    "updated_at": "2026-11-28 12:00:47 WIB",
+    "updated_at": "2026-11-28 13:11:42 WIB",
     "license": "Apache-2.0"
   },
   {
@@ -311,7 +306,7 @@
     "image": "https://opengraph.githubassets.com/1/langchain-ai/langgraph",
     "badge": "\u2605 45.5k",
     "cloneCmd": "pip install langgraph",
-    "updated_at": "2026-11-28 12:00:48 WIB",
+    "updated_at": "2026-11-28 13:11:44 WIB",
     "license": "MIT"
   }
 ]
