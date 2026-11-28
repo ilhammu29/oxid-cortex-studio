@@ -1,6 +1,6 @@
 {
   "status": "online",
-  "last_sync": "2026-11-28 20:42:46 WIB",
+  "last_sync": "2026-11-28 20:53:01 WIB",
   "next_sync": "2026-11-28 21:00 WIB",
   "interval": "60 menit (1 jam)",
   "cron_expression": "0 * * * *",
